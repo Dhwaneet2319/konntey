@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <!-- Modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            min-height: 100vh;
+            width: 100vw;
+            overflow: hidden; /* Prevent scrolling if not needed */
+            position: relative;
+        }
+
+        /* Container for the text content */
+        .content-wrapper {
+            position: absolute;
+            top: 20%;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title {
+            color: #2b2b2b; /* Modern dark gray instead of brown */
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: #555555;
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+
+
+        /* SVG wave filling the bottom space */
+        .wave-svg-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 45vh; /* Responsive height for the wave */
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .wave-svg-container svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Character positioning */
+        .character-img {
+            position: absolute;
+            left: 5%;
+            bottom: 5%; 
+            height: 65vh; 
+            z-index: 5;
+            max-width: 45vw; /* Ensure it doesn't overlap to the center too much */
+            object-fit: contain;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            .subtitle {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+            .character-img {
+                height: 45vh;
+                left: -10%;
+                bottom: 5%;
+                max-width: 80vw;
+            }
+            .content-wrapper {
+                top: 15%;
+            }
+            .wave-svg-container {
+                height: 35vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-wrapper">
+        <h1 class="title">Coming Soon</h1>
+        <div class="subtitle">
+            We're currently working on creating our new website.<br>
+            We'll be launching soon, subscribe to be notified.
+        </div>
+    </div>
+
+    <div class="wave-svg-container">
+        <!-- Recreated the sweeping yellow shape -->
+        <svg viewBox="0 0 1440 600" preserveAspectRatio="none">
+            <!-- Curve starts bottom-left, swoops up to the right and flattens out slightly -->
+            <path fill="#fce40a" d="M0,500 C400,200 800,100 1440,150 L1440,600 L0,600 Z" />
+        </svg>
+    </div>
+
+    <img src="bob.png" alt="Character" class="character-img" id="bob-image" onerror="this.style.display='none'">
+
+</body>
+</html>
