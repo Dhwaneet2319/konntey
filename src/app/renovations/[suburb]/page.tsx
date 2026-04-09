@@ -18,14 +18,14 @@ const suburbs: Record<string, { name: string; nearby: string[] }> = {
   pakenham: { name: "Pakenham", nearby: ["Officer", "Berwick", "Clyde", "Nar Nar Goon"] },
 };
 
-type Props = { params: Promise<{ suburb: string }> };
+type Props = { params: { suburb: string } };
 
 export async function generateStaticParams() {
   return Object.keys(suburbs).map((suburb) => ({ suburb }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { suburb: slug } = await params;
+  const slug = params.suburb;
   const suburb = suburbs[slug];
   if (!suburb) return {};
 
@@ -46,8 +46,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function SuburbPage({ params }: Props) {
-  const { suburb: slug } = await params;
+export default function SuburbPage({ params }: Props) {
+  const slug = params.suburb;
   const suburb = suburbs[slug];
   if (!suburb) notFound();
 
