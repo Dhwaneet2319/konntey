@@ -16,6 +16,12 @@ const suburbs: Record<string, { name: string; nearby: string[] }> = {
   berwick: { name: "Berwick", nearby: ["Narre Warren", "Officer", "Pakenham", "Clyde"] },
   springvale: { name: "Springvale", nearby: ["Dandenong", "Clayton", "Noble Park", "Keysborough"] },
   pakenham: { name: "Pakenham", nearby: ["Officer", "Berwick", "Clyde", "Nar Nar Goon"] },
+  "manor-lakes": { name: "Manor Lakes", nearby: ["Wyndham Vale", "Tarneit", "Werribee", "Melton"] },
+  "williams-landing": { name: "Williams Landing", nearby: ["Laverton", "Point Cook", "Hoppers Crossing", "Truganina"] },
+  laverton: { name: "Laverton", nearby: ["Williams Landing", "Point Cook", "Truganina", "Hoppers Crossing"] },
+  officer: { name: "Officer", nearby: ["Pakenham", "Berwick", "Narre Warren", "Clyde"] },
+  clyde: { name: "Clyde", nearby: ["Cranbourne", "Berwick", "Pakenham", "Officer"] },
+  melton: { name: "Melton", nearby: ["Wyndham Vale", "Manor Lakes", "Tarneit", "Werribee"] },
 };
 
 type Props = { params: { suburb: string } };
@@ -38,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `Renovation Company ${suburb.name} | Konntey Home & Renovations`,
       description: `Licensed renovation builders in ${suburb.name}. Kitchen & bathroom renovations, home extensions, decks & painting. Free quotes for ${suburb.name} and ${suburb.nearby.slice(0, 2).join(", ")}.`,
-      url: `https://konntey.com.au/renovations/${slug}`,
+      url: `https://www.konnteyhomerenovations.com.au/renovations/${slug}`,
       siteName: "Konntey Home & Renovations",
       locale: "en_AU",
       type: "website",
@@ -67,7 +73,7 @@ export default function SuburbPage({ params }: Props) {
     provider: {
       "@type": "HomeAndConstructionBusiness",
       name: "Konntey Home & Renovations",
-      url: "https://konntey.com.au",
+      url: "https://www.konnteyhomerenovations.com.au",
       telephone: "+61493191798",
       address: { "@type": "PostalAddress", addressLocality: "Melbourne", addressRegion: "VIC", addressCountry: "AU" },
     },

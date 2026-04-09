@@ -32,7 +32,7 @@ export default function TermsPage() {
             </h2>
             <p className="mt-4">
               By using the Konntey Home & Renovations website
-              (konntey.com.au), you agree to the following terms. If you do not
+              (konnteyhomerenovations.com.au), you agree to the following terms. If you do not
               agree, please do not use this website.
             </p>
           </section>

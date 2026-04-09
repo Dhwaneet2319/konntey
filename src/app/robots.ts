@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://konntey.com.au/sitemap.xml",
+    sitemap: "https://www.konnteyhomerenovations.com.au/sitemap.xml",
   };
 }

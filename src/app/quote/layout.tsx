@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Get a Free Renovation Quote | Konntey Home & Renovations",
     description:
       "Request a free renovation quote. Licensed builders in Melbourne servicing Tarneit, Truganina, Werribee & all western suburbs.",
-    url: "https://konntey.com.au/quote",
+    url: "https://www.konnteyhomerenovations.com.au/quote",
     siteName: "Konntey Home & Renovations",
     locale: "en_AU",
     type: "website",

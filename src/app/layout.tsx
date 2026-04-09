@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     "Konntey Home and Renovations",
     "Konntey renovations Melbourne",
   ],
-  metadataBase: new URL("https://konntey.com.au"),
+  metadataBase: new URL("https://www.konnteyhomerenovations.com.au"),
   alternates: {
     canonical: "/",
   },
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
       "Affordable kitchen & bathroom renovations, home extensions, deck building & interior finishing across Melbourne's west and southeast. Family-run, licensed & insured. Free on-site quotes.",
     type: "website",
     locale: "en_AU",
-    url: "https://konntey.com.au",
+    url: "https://www.konnteyhomerenovations.com.au",
     siteName: "Konntey Home & Renovations",
     images: [
       {
@@ -125,14 +125,14 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "@id": "https://konntey.com.au/#business",
+  "@id": "https://www.konnteyhomerenovations.com.au/#business",
   name: "Konntey Home & Renovations",
   alternateName: "Konntey H&R",
   description:
     "Licensed renovation company in Melbourne specializing in affordable kitchen renovations, bathroom renos, home extensions, deck building and interior painting across Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook and all western Melbourne suburbs.",
-  url: "https://konntey.com.au",
-  logo: "https://konntey.com.au/images/logo.png",
-  image: "https://konntey.com.au/images/hero_main.png",
+  url: "https://www.konnteyhomerenovations.com.au",
+  logo: "https://www.konnteyhomerenovations.com.au/images/logo.png",
+  image: "https://www.konnteyhomerenovations.com.au/images/hero_main.png",
   telephone: "+61493191798",
   email: "info@konnteyhomerenovations.com.au",
   taxID: "64 684 703 972",
@@ -234,7 +234,7 @@ const localBusinessSchema = {
       },
     ],
   },
-  sameAs: ["https://konntey.com.au"],
+  sameAs: ["https://www.konnteyhomerenovations.com.au"],
 };
 
 const faqSchema = {
@@ -300,7 +300,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://konntey.com.au",
+      item: "https://www.konnteyhomerenovations.com.au",
     },
   ],
 };
@@ -309,10 +309,10 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Konntey Home & Renovations",
-  url: "https://konntey.com.au",
+  url: "https://www.konnteyhomerenovations.com.au",
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://konntey.com.au/?s={search_term_string}",
+    target: "https://www.konnteyhomerenovations.com.au/?s={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };

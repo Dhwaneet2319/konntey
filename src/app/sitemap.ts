@@ -2,12 +2,13 @@ import { MetadataRoute } from "next";
 
 const suburbs = [
   "tarneit", "truganina", "werribee", "hoppers-crossing", "point-cook",
-  "wyndham-vale", "dandenong", "cranbourne", "frankston", "narre-warren",
-  "berwick", "springvale", "pakenham",
+  "wyndham-vale", "manor-lakes", "williams-landing", "laverton",
+  "dandenong", "cranbourne", "frankston", "narre-warren",
+  "berwick", "springvale", "pakenham", "officer", "clyde", "melton",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://konntey.com.au";
+  const baseUrl = "https://www.konnteyhomerenovations.com.au";
 
   const staticPages = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1 },
