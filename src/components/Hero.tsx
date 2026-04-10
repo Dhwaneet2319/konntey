@@ -100,13 +100,13 @@ export default function Hero() {
                 priority
               />
 
-              <div className="corner-cut corner-cut-white-tl" />
-              <div className="corner-cut corner-cut-white-br" />
+              <div className="corner-cut corner-cut-tl" />
+              <div className="corner-cut corner-cut-br" />
 
               <div className="chevron-decoration chevron-tl">»</div>
               <div className="chevron-decoration chevron-br">»</div>
 
-              <div className="absolute bottom-6 right-6 z-10 border border-gold-bright/30 bg-white/80 px-5 py-3 backdrop-blur-md">
+              <div className="absolute bottom-6 right-6 z-10 border border-gold-bright/30 bg-navy/80 px-5 py-3 backdrop-blur-md">
                 <span className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright">
                   Melbourne&apos;s Own
                 </span>
