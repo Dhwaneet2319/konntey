@@ -68,7 +68,7 @@ export default function ProcessStrip() {
               <h3 className="mt-8 font-display text-[22px] font-black uppercase tracking-button text-white">
                 {step.title}
               </h3>
-              <p className="mt-4 font-body text-[15px] leading-relaxed text-white/70 max-w-sm">
+              <p className="mt-4 font-body text-[15px] leading-relaxed text-white/85 max-w-sm">
                 {step.desc}
               </p>
             </motion.div>

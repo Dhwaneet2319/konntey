@@ -42,7 +42,7 @@ export default function BeforeAfterSlider() {
           <h2 className="mt-4 font-display text-[clamp(3.5rem,8vw,6rem)] font-black uppercase leading-[0.85] tracking-tightest">
             SEE <span className="text-gold-bright text-transparent" style={{ WebkitTextStroke: "1px #d4a832" }}>WHAT&apos;S</span> POSSIBLE
           </h2>
-          <p className="mt-6 font-body text-[16px] leading-[1.8] text-navy/80">
+          <p className="mt-6 font-body text-[16px] leading-[1.8] text-navy/90">
             Slide to reveal the difference between an outdated space and a premium Konntey execution. 
             We turn potential into reality.
           </p>

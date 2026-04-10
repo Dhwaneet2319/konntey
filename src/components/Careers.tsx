@@ -26,7 +26,7 @@ export default function Careers() {
                 SKILLED TRADESPERSON?{" "}
                 <span className="text-gold-bright">LET&apos;S TALK.</span>
               </h2>
-              <p className="mt-6 font-body text-[16px] leading-[1.8] text-white/70">
+              <p className="mt-6 font-body text-[16px] leading-[1.8] text-white/85">
                 We&apos;re building a team of reliable, quality-focused tradespeople
                 across Melbourne. If you take pride in your craft and want to work
                 with a company that values communication and integrity, get in touch.

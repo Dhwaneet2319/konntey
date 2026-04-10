@@ -41,7 +41,7 @@ function ContactForm() {
         <h4 className="mt-6 font-display text-[24px] font-black uppercase tracking-button text-white">
           Request Received
         </h4>
-        <p className="mt-3 max-w-sm font-body text-[16px] leading-[1.7] text-white/70">
+        <p className="mt-3 max-w-sm font-body text-[16px] leading-[1.7] text-white/85">
           Thanks for reaching out. We&apos;ll review your details and get back to you within 24 hours.
         </p>
       </div>
@@ -52,25 +52,25 @@ function ContactForm() {
     <form className="space-y-6" onSubmit={handleSubmit}>
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
-          <label htmlFor="name" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/50">Full Name</label>
+          <label htmlFor="name" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Full Name</label>
           <input type="text" id="name" name="name" required className="w-full border-b border-white/20 bg-transparent py-3 font-body text-white transition-colors focus:border-gold-bright focus:outline-none" placeholder="John Doe" />
           <ValidationError prefix="Name" field="name" errors={state.errors} className="font-body text-[12px] text-red-400" />
         </div>
         <div className="space-y-2">
-          <label htmlFor="phone" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/50">Phone Number</label>
+          <label htmlFor="phone" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Phone Number</label>
           <input type="tel" id="phone" name="phone" required className="w-full border-b border-white/20 bg-transparent py-3 font-body text-white transition-colors focus:border-gold-bright focus:outline-none" placeholder="0493 191 798" />
           <ValidationError prefix="Phone" field="phone" errors={state.errors} className="font-body text-[12px] text-red-400" />
         </div>
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="email" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/50">Email Address</label>
+        <label htmlFor="email" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Email Address</label>
         <input type="email" id="email" name="email" required className="w-full border-b border-white/20 bg-transparent py-3 font-body text-white transition-colors focus:border-gold-bright focus:outline-none" placeholder="john@example.com" />
         <ValidationError prefix="Email" field="email" errors={state.errors} className="font-body text-[12px] text-red-400" />
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="message" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/50">Project Details</label>
+        <label htmlFor="message" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Project Details</label>
         <textarea id="message" name="message" rows={3} required className="w-full border-b border-white/20 bg-transparent py-3 font-body text-white transition-colors focus:border-gold-bright focus:outline-none resize-none" placeholder="Tell us about your renovation..."></textarea>
         <ValidationError prefix="Message" field="message" errors={state.errors} className="font-body text-[12px] text-red-400" />
       </div>
@@ -129,7 +129,7 @@ export default function Contact() {
                   {col.icon}
                 </div>
               </div>
-              <div className="mt-6 font-body text-[15px] leading-loose text-white/70 whitespace-pre-line">
+              <div className="mt-6 font-body text-[15px] leading-loose text-white/85 whitespace-pre-line">
                 {col.text}
               </div>
             </motion.div>
@@ -148,7 +148,7 @@ export default function Contact() {
             <h3 className="font-display text-[clamp(2rem,4vw,3rem)] font-black uppercase tracking-tightest text-white">
               REQUEST A <span className="text-gold-bright">QUOTATION</span>
             </h3>
-            <p className="font-body text-[16px] leading-[1.8] text-white/70">
+            <p className="font-body text-[16px] leading-[1.8] text-white/85">
               Fill out the form with your project details. We will review your requirements and get back to you within 24 hours to arrange an on-site consultation.
             </p>
           </div>

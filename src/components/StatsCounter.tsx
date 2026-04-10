@@ -55,7 +55,7 @@ export default function StatsCounter() {
                 <AnimatedCounter value={stat.value} />
                 {stat.suffix}
               </div>
-              <div className="mt-4 font-body text-[14px] font-semibold uppercase tracking-kicker text-white/70">
+              <div className="mt-4 font-body text-[14px] font-semibold uppercase tracking-kicker text-white/85">
                 {stat.label}
               </div>
             </motion.div>

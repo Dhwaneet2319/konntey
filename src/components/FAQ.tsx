@@ -65,7 +65,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-6 font-body text-[16px] leading-[1.8] text-white/70 max-w-3xl">
+            <p className="pb-6 font-body text-[16px] leading-[1.8] text-white/85 max-w-3xl">
               {a}
             </p>
           </motion.div>
@@ -93,7 +93,7 @@ export default function FAQ() {
               <h2 className="mt-4 font-display text-[clamp(3rem,6vw,5rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
                 FREQUENTLY ASKED
               </h2>
-              <p className="mt-6 font-body text-[16px] leading-[1.8] text-white/70">
+              <p className="mt-6 font-body text-[16px] leading-[1.8] text-white/85">
                 Everything you need to know about renovation costs, timelines, and working with Konntey in Melbourne.
               </p>
             </motion.div>

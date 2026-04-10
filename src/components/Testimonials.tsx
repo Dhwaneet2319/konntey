@@ -34,7 +34,7 @@ export default function Testimonials() {
           <h2 className="mt-4 font-display text-[clamp(3.5rem,6vw,5.5rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
             BUILT ON TRUST
           </h2>
-          <p className="mt-6 max-w-lg font-body text-[16px] leading-[1.8] text-white/70">
+          <p className="mt-6 max-w-lg font-body text-[16px] leading-[1.8] text-white/85">
             We&apos;re a newly launched renovation company in Melbourne &mdash; earning our reputation one project at a time. Here&apos;s what every Konntey client can expect.
           </p>
         </motion.div>
@@ -55,7 +55,7 @@ export default function Testimonials() {
               <h3 className="font-display text-[20px] font-black uppercase tracking-button text-white mb-4">
                 {p.title}
               </h3>
-              <p className="font-body text-[16px] leading-[1.8] text-white/80">
+              <p className="font-body text-[16px] leading-[1.8] text-white/90">
                 {p.text}
               </p>
               <div className="mt-8 h-[2px] w-12 bg-gold-bright/40" />

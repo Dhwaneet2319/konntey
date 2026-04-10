@@ -100,7 +100,7 @@ export default function SuburbPage({ params }: Props) {
             HOME RENOVATIONS <br />
             <span className="text-gold-bright">{suburb.name.toUpperCase()}</span>
           </h1>
-          <p className="mt-8 max-w-2xl font-body text-[18px] leading-[1.8] text-white/80">
+          <p className="mt-8 max-w-2xl font-body text-[18px] leading-[1.8] text-white/90">
             Konntey Home & Renovations is {suburb.name}&apos;s licensed renovation company. 
             We deliver affordable kitchen renovations, bathroom renos, home extensions, deck building 
             and interior painting across {suburb.name} and nearby suburbs including{" "}
@@ -138,7 +138,7 @@ export default function SuburbPage({ params }: Props) {
                 <h3 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
                   {svc.name}
                 </h3>
-                <p className="mt-4 font-body text-[15px] leading-relaxed text-white/70">
+                <p className="mt-4 font-body text-[15px] leading-relaxed text-white/85">
                   {svc.desc}
                 </p>
               </div>
@@ -154,7 +154,7 @@ export default function SuburbPage({ params }: Props) {
             Why Choose Konntey in <span className="text-gold-bright">{suburb.name}</span>?
           </h2>
           <div className="grid gap-8 lg:grid-cols-2">
-            <div className="space-y-6 font-body text-[16px] leading-[1.8] text-white/80">
+            <div className="space-y-6 font-body text-[16px] leading-[1.8] text-white/90">
               <p>
                 {suburb.name} homeowners deserve renovation builders who understand the local area.
                 Konntey Home &amp; Renovations is a licensed and insured renovation company based in
@@ -177,7 +177,7 @@ export default function SuburbPage({ params }: Props) {
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <span className="mt-1.5 h-2 w-2 shrink-0 bg-gold-bright" />
-                  <span className="font-body text-[15px] text-white/70">{item}</span>
+                  <span className="font-body text-[15px] text-white/85">{item}</span>
                 </div>
               ))}
               <div className="mt-8">
@@ -207,7 +207,7 @@ export default function SuburbPage({ params }: Props) {
                 <Link
                   key={nearbyName}
                   href={`/renovations/${nearbySlug}`}
-                  className="border border-white/10 px-6 py-3 font-display text-[14px] font-bold uppercase tracking-button text-white/70 hover:border-gold-bright hover:text-gold-bright transition-colors"
+                  className="border border-white/10 px-6 py-3 font-display text-[14px] font-bold uppercase tracking-button text-white/85 hover:border-gold-bright hover:text-gold-bright transition-colors"
                 >
                   Renovations {nearbyName}
                 </Link>

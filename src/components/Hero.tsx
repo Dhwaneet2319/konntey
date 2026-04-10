@@ -54,7 +54,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="mt-8 max-w-md font-body text-[16px] leading-[1.7] text-white/80"
+              className="mt-8 max-w-md font-body text-[16px] leading-[1.7] text-white/90"
             >
               Licensed renovation builders in Melbourne delivering affordable kitchen renovations, 
               bathroom renos, home extensions & deck building. Quality craftsmanship servicing 

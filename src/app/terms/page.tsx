@@ -21,11 +21,11 @@ export default function TermsPage() {
         <h1 className="mt-10 font-display text-[clamp(2.5rem,6vw,4rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
           Terms of Service
         </h1>
-        <p className="mt-4 font-body text-[14px] text-white/50">
+        <p className="mt-4 font-body text-[14px] text-white/70">
           Last updated: April 2026
         </p>
 
-        <div className="mt-12 space-y-10 font-body text-[16px] leading-[1.8] text-white/80">
+        <div className="mt-12 space-y-10 font-body text-[16px] leading-[1.8] text-white/90">
           <section>
             <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
               Agreement

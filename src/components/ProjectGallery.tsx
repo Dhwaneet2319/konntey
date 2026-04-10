@@ -46,7 +46,7 @@ export default function ProjectGallery() {
               className="mt-6 h-[2px] w-24 origin-left bg-white/20"
             />
 
-            <p className="mt-8 font-body text-[17px] leading-[1.8] text-white/80">
+            <p className="mt-8 font-body text-[17px] leading-[1.8] text-white/90">
               We&apos;re currently taking on our first showcase projects across
               Melbourne&apos;s west and southeast. Early clients get priority
               scheduling, founder-led oversight, and launch pricing.
@@ -66,7 +66,7 @@ export default function ProjectGallery() {
               </a>
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-3 font-display text-[14px] font-black uppercase tracking-button text-white/60 transition-colors duration-300 hover:text-gold-bright"
+                className="group inline-flex items-center gap-3 font-display text-[14px] font-black uppercase tracking-button text-white/75 transition-colors duration-300 hover:text-gold-bright"
               >
                 <span>Or request a free quote</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -92,7 +92,7 @@ export default function ProjectGallery() {
                 <div className="font-display text-[clamp(2rem,4vw,3rem)] font-black leading-none text-gold-bright/15 transition-colors duration-500 group-hover:text-gold-bright/30">
                   {cat.icon}
                 </div>
-                <div className="mt-4 font-display text-[14px] font-black uppercase tracking-button leading-tight text-white/80 transition-colors duration-300 group-hover:text-white sm:text-[16px]">
+                <div className="mt-4 font-display text-[14px] font-black uppercase tracking-button leading-tight text-white/90 transition-colors duration-300 group-hover:text-white sm:text-[16px]">
                   {cat.label}
                 </div>
                 <div className="mt-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-kicker text-gold-bright/50">

@@ -44,14 +44,14 @@ export default function Footer() {
             <div className="font-display text-[22px] font-black uppercase tracking-tighter text-white">
               KONNTEY <span className="text-gold-bright">H&R</span>
             </div>
-            <p className="mt-4 font-body text-[14px] leading-relaxed text-white/60">
+            <p className="mt-4 font-body text-[14px] leading-relaxed text-white/75">
               Melbourne&apos;s trusted renovation company. Licensed builders delivering affordable kitchen renovations, bathroom renos, home extensions, decks & interior finishing.
             </p>
             <div className="mt-4 flex items-center gap-2 font-body text-[12px] uppercase tracking-kicker text-gold-bright">
               <span className="inline-block h-2 w-2 rounded-full bg-green-500" />
               Licensed & Insured — VIC
             </div>
-            <div className="mt-2 font-body text-[12px] uppercase tracking-kicker text-white/50">
+            <div className="mt-2 font-body text-[12px] uppercase tracking-kicker text-white/70">
               ABN 64 684 703 972
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Footer() {
             <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4">
               Our Services
             </div>
-            <ul className="space-y-2 font-body text-[14px] text-white/60">
+            <ul className="space-y-2 font-body text-[14px] text-white/75">
               <li>Kitchen Renovation Melbourne</li>
               <li>Bathroom Renovation Melbourne</li>
               <li>Home Extensions & New Builds</li>
@@ -74,7 +74,7 @@ export default function Footer() {
             <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4">
               Contact Us
             </div>
-            <ul className="space-y-2 font-body text-[14px] text-white/60">
+            <ul className="space-y-2 font-body text-[14px] text-white/75">
               <li>Melbourne, VIC</li>
               <li>0493 191 798</li>
               <li>info@konnteyhomerenovations.com.au</li>
@@ -87,7 +87,7 @@ export default function Footer() {
             <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4">
               Quick Links
             </div>
-            <ul className="space-y-2 font-body text-[14px] text-white/60">
+            <ul className="space-y-2 font-body text-[14px] text-white/75">
               <li><a href="#hero" className="transition-colors hover:text-gold-bright">Home</a></li>
               <li><a href="#services" className="transition-colors hover:text-gold-bright">Services</a></li>
               <li><a href="#about" className="transition-colors hover:text-gold-bright">About Us</a></li>
@@ -116,7 +116,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-[13px] text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-[13px] text-white/70 sm:flex-row sm:items-center sm:justify-between">
           <div>
             © {new Date().getFullYear()} Konntey Home & Renovations. Melbourne, VIC. Built by{" "}
             <a

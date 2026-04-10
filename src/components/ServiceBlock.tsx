@@ -124,7 +124,7 @@ export default function ServiceBlock({
             >
               <p
                 className={`max-w-xl font-body text-[16px] xl:text-[18px] leading-[1.8] ${
-                  dark ? "text-white/80" : "text-navy/85"
+                  dark ? "text-white/90" : "text-navy/90"
                 }`}
               >
                 {body}

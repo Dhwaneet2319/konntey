@@ -80,7 +80,7 @@ export default function NavBar() {
               <button
                 key={item.label}
                 onClick={() => smoothScrollTo(item.href)}
-                className="group relative font-body text-[13px] font-medium tracking-[1px] text-white/80 uppercase"
+                className="group relative font-body text-[13px] font-medium tracking-[1px] text-white/90 uppercase"
               >
                 <span className="relative z-10 transition-colors duration-300 group-hover:text-gold-bright">
                   {item.label}

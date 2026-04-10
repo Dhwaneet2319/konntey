@@ -60,7 +60,7 @@ export default function About() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-xl font-body text-[17px] leading-[1.8] text-white/80"
+              className="max-w-xl font-body text-[17px] leading-[1.8] text-white/90"
             >
               Konntey Home & Renovations is Melbourne&apos;s trusted, family-run
               renovation company. As licensed renovation contractors in Victoria, we bring 
@@ -98,7 +98,7 @@ export default function About() {
                   <div className="mt-8 font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
                     {v.name}
                   </div>
-                  <p className="mt-4 font-body text-[15px] leading-body text-white/60 transition-colors duration-300 group-hover:text-white/90">
+                  <p className="mt-4 font-body text-[15px] leading-body text-white/75 transition-colors duration-300 group-hover:text-white/90">
                     {v.desc}
                   </p>
                 </motion.div>

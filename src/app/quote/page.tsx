@@ -76,7 +76,7 @@ export default function QuotePage() {
             <h2 className="mt-4 font-display text-[28px] font-black uppercase tracking-tighter text-gold-bright">
               Thank You
             </h2>
-            <p className="mt-3 font-body text-[15px] leading-body text-white/80">
+            <p className="mt-3 font-body text-[15px] leading-body text-white/90">
               We&apos;ve received your request. A member of our team will be in
               touch within 24 hours.
             </p>
@@ -151,7 +151,7 @@ export default function QuotePage() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 bg-navy-light">
-        <div className="mx-auto flex max-w-[1600px] flex-col gap-4 px-4 py-6 text-[13px] text-white/70 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-[1600px] flex-col gap-4 px-4 py-6 text-[13px] text-white/85 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
             © {new Date().getFullYear()} Konntey Home & Renovations. Melbourne,
             VIC. Built by{" "}
