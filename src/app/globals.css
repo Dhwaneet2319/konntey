@@ -36,6 +36,14 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.glass-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(13, 31, 60, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
 /* Grain overlay - disabled for performance */
 .grain-overlay {
   display: none;
@@ -97,14 +105,14 @@ body {
 .corner-cut-offwhite-tl {
   top: 0;
   left: 0;
-  border-left: 60px solid var(--navy);
+  border-left: 60px solid var(--off-white);
   border-bottom: 80px solid transparent;
 }
 
 .corner-cut-offwhite-br {
   bottom: 0;
   right: 0;
-  border-right: 60px solid var(--navy);
+  border-right: 60px solid var(--off-white);
   border-top: 80px solid transparent;
 }
 
@@ -113,6 +121,20 @@ body {
   left: 0;
   border-left: 30px solid var(--navy);
   border-bottom: 40px solid transparent;
+}
+
+.corner-cut-white-tl {
+  top: 0;
+  left: 0;
+  border-left: 60px solid #fff;
+  border-bottom: 80px solid transparent;
+}
+
+.corner-cut-white-br {
+  bottom: 0;
+  right: 0;
+  border-right: 60px solid #fff;
+  border-top: 80px solid transparent;
 }
 
 /* Gold bracket corners on images */
@@ -252,7 +274,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--navy);
+  background: var(--off-white);
 }
 
 ::-webkit-scrollbar-thumb {

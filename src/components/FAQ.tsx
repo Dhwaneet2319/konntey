@@ -39,13 +39,13 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className="border-b border-white/10"
+      className="border-b border-navy/10"
     >
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between py-6 text-left"
       >
-        <span className="font-display text-[18px] sm:text-[22px] font-bold uppercase tracking-tight text-white pr-4">
+        <span className="font-display text-[18px] sm:text-[22px] font-bold uppercase tracking-tight text-navy pr-4">
           {q}
         </span>
         <motion.div
@@ -65,7 +65,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-6 font-body text-[16px] leading-[1.8] text-white/85 max-w-3xl">
+            <p className="pb-6 font-body text-[16px] leading-[1.8] text-navy/65 max-w-3xl">
               {a}
             </p>
           </motion.div>
@@ -77,7 +77,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function FAQ() {
   return (
-    <section className="bg-navy-light py-20 sm:py-32 relative">
+    <section className="bg-off-white py-20 sm:py-32 relative">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
@@ -90,10 +90,10 @@ export default function FAQ() {
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
                 GOT QUESTIONS?
               </div>
-              <h2 className="mt-4 font-display text-[clamp(3rem,6vw,5rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
+              <h2 className="mt-4 font-display text-[clamp(3rem,6vw,5rem)] font-black uppercase leading-[0.9] tracking-tightest text-navy">
                 FREQUENTLY ASKED
               </h2>
-              <p className="mt-6 font-body text-[16px] leading-[1.8] text-white/85">
+              <p className="mt-6 font-body text-[16px] leading-[1.8] text-navy/65">
                 Everything you need to know about renovation costs, timelines, and working with Konntey in Melbourne.
               </p>
             </motion.div>

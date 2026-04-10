@@ -12,9 +12,9 @@ export default function Ticker({ dark = false, text }: TickerProps) {
     <div
       className={`${
         dark
-          ? "bg-navy text-gold-bright"
-          : "bg-gold text-navy"
-      } overflow-hidden border-y border-white/10 py-3`}
+          ? "bg-navy text-gold-bright border-y border-white/10"
+          : "bg-gold text-navy border-y border-gold-bright/30"
+      } overflow-hidden py-3`}
     >
       <div className="ticker-track font-display text-[20px] font-black uppercase tracking-kicker whitespace-nowrap">
         <span>{repeatedText}</span>

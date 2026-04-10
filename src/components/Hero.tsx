@@ -27,13 +27,12 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100vh] overflow-hidden bg-navy pt-[120px]"
+      className="relative min-h-[100vh] overflow-hidden bg-white pt-[120px]"
     >
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-16">
-          {/* Text Content */}
           <div className="flex flex-col justify-center lg:col-span-5 xl:col-span-6">
-            <h1 className="flex flex-col gap-1 font-display text-[clamp(4.2rem,11vw,8rem)] xl:text-[9.5rem] font-black uppercase leading-[0.82] tracking-tighter text-white">
+            <h1 className="flex flex-col gap-1 font-display text-[clamp(4.2rem,11vw,8rem)] xl:text-[9.5rem] font-black uppercase leading-[0.82] tracking-tighter text-navy">
               <MaskTitle delay={0}>IT&apos;S YOUR</MaskTitle>
               <MaskTitle delay={0.1}>
                 <span className="relative inline-block text-gold-bright">
@@ -54,7 +53,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="mt-8 max-w-md font-body text-[16px] leading-[1.7] text-white/90"
+              className="mt-8 max-w-md font-body text-[16px] leading-[1.7] text-navy/70"
             >
               Licensed renovation builders in Melbourne delivering affordable kitchen renovations, 
               bathroom renos, home extensions & deck building. Quality craftsmanship servicing 
@@ -85,13 +84,12 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Hero Image Block */}
           <div className="relative mt-8 lg:col-span-7 xl:col-span-6 lg:mt-0 xl:mt-12">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[65vh] min-h-[450px] w-full overflow-hidden border border-white/5 parent-group"
+              className="relative h-[65vh] min-h-[450px] w-full overflow-hidden border border-navy/10 parent-group"
             >
               <Image
                 src="/images/hero_main.png"
@@ -102,23 +100,18 @@ export default function Hero() {
                 priority
               />
 
-              {/* Corner cuts */}
-              <div className="corner-cut corner-cut-tl" />
-              <div className="corner-cut corner-cut-br" />
+              <div className="corner-cut corner-cut-white-tl" />
+              <div className="corner-cut corner-cut-white-br" />
 
-              {/* Chevrons */}
               <div className="chevron-decoration chevron-tl">»</div>
               <div className="chevron-decoration chevron-br">»</div>
 
-              {/* Badge overlay */}
-              <div className="absolute bottom-6 right-6 z-10 border border-gold-bright/30 bg-navy/80 px-5 py-3 backdrop-blur-md">
+              <div className="absolute bottom-6 right-6 z-10 border border-gold-bright/30 bg-white/80 px-5 py-3 backdrop-blur-md">
                 <span className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright">
                   Melbourne&apos;s Own
                 </span>
               </div>
             </motion.div>
-
-
           </div>
         </div>
       </div>

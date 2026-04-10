@@ -58,7 +58,7 @@ const services = [
 
 export default function HomePage() {
   return (
-    <div className="bg-navy text-white font-body selection:bg-gold-bright selection:text-navy hide-scrollbar">
+    <div className="bg-white text-navy font-body selection:bg-gold-bright selection:text-navy hide-scrollbar">
       <Preloader />
       <NavBar />
       <WhatsAppButton />
@@ -93,7 +93,6 @@ export default function HomePage() {
         <Careers />
 
         <Ticker
-          dark
           text="Respect ◆ Growth ◆ Teamwork ◆"
         />
 

@@ -17,7 +17,7 @@ const additionalServices = [
 
 export default function MoreServices() {
   return (
-    <section className="bg-off-white py-20 sm:py-28">
+    <section className="bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ y: 40, opacity: 0 }}

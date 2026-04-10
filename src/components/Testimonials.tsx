@@ -19,7 +19,7 @@ const promises = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-navy py-20 sm:py-32 relative">
+    <section className="bg-off-white py-20 sm:py-32 relative">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
@@ -31,10 +31,10 @@ export default function Testimonials() {
           <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
             WHY KONNTEY
           </div>
-          <h2 className="mt-4 font-display text-[clamp(3.5rem,6vw,5.5rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
+          <h2 className="mt-4 font-display text-[clamp(3.5rem,6vw,5.5rem)] font-black uppercase leading-[0.9] tracking-tightest text-navy">
             BUILT ON TRUST
           </h2>
-          <p className="mt-6 max-w-lg font-body text-[16px] leading-[1.8] text-white/85">
+          <p className="mt-6 max-w-lg font-body text-[16px] leading-[1.8] text-navy/65">
             We&apos;re a newly launched renovation company in Melbourne &mdash; earning our reputation one project at a time. Here&apos;s what every Konntey client can expect.
           </p>
         </motion.div>
@@ -47,15 +47,15 @@ export default function Testimonials() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="border border-white/10 bg-navy-light/50 p-8 sm:p-10 hover:border-gold-bright/30 transition-colors duration-500"
+              className="border border-navy/8 bg-white p-8 sm:p-10 hover:border-gold-bright/30 transition-colors duration-500"
             >
               <div className="font-display text-[clamp(3rem,5vw,4rem)] font-black leading-none text-gold-bright/20 mb-6">
                 0{i + 1}
               </div>
-              <h3 className="font-display text-[20px] font-black uppercase tracking-button text-white mb-4">
+              <h3 className="font-display text-[20px] font-black uppercase tracking-button text-navy mb-4">
                 {p.title}
               </h3>
-              <p className="font-body text-[16px] leading-[1.8] text-white/90">
+              <p className="font-body text-[16px] leading-[1.8] text-navy/70">
                 {p.text}
               </p>
               <div className="mt-8 h-[2px] w-12 bg-gold-bright/40" />

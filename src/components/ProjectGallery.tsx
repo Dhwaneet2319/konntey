@@ -13,9 +13,9 @@ const categories = [
 
 export default function ProjectGallery() {
   return (
-    <section className="relative bg-navy overflow-hidden">
+    <section className="relative bg-off-white overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0 flex items-center justify-center">
-        <span className="font-display text-[clamp(10rem,20vw,30rem)] font-black text-white leading-none select-none whitespace-nowrap">
+        <span className="font-display text-[clamp(10rem,20vw,30rem)] font-black text-navy leading-none select-none whitespace-nowrap">
           PROJECTS
         </span>
       </div>
@@ -32,7 +32,7 @@ export default function ProjectGallery() {
             <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
               PORTFOLIO
             </div>
-            <h2 className="mt-4 font-display text-[clamp(3.5rem,8vw,7rem)] font-black uppercase leading-[0.85] tracking-tightest text-white">
+            <h2 className="mt-4 font-display text-[clamp(3.5rem,8vw,7rem)] font-black uppercase leading-[0.85] tracking-tightest text-navy">
               YOUR PROJECT{" "}
               <span className="text-gold-bright">COULD BE</span>{" "}
               FIRST.
@@ -43,10 +43,10 @@ export default function ProjectGallery() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-6 h-[2px] w-24 origin-left bg-white/20"
+              className="mt-6 h-[2px] w-24 origin-left bg-navy/20"
             />
 
-            <p className="mt-8 font-body text-[17px] leading-[1.8] text-white/90">
+            <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70">
               We&apos;re currently taking on our first showcase projects across
               Melbourne&apos;s west and southeast. Early clients get priority
               scheduling, founder-led oversight, and launch pricing.
@@ -66,7 +66,7 @@ export default function ProjectGallery() {
               </a>
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-3 font-display text-[14px] font-black uppercase tracking-button text-white/75 transition-colors duration-300 hover:text-gold-bright"
+                className="group inline-flex items-center gap-3 font-display text-[14px] font-black uppercase tracking-button text-navy/60 transition-colors duration-300 hover:text-gold-bright"
               >
                 <span>Or request a free quote</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -86,13 +86,13 @@ export default function ProjectGallery() {
                   delay: i * 0.08,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="group relative border border-white/[0.06] bg-navy-light/60 p-6 transition-all duration-500 hover:border-gold-bright/30 hover:bg-navy-light sm:p-8"
+                className="group relative border border-navy/[0.08] bg-white p-6 transition-all duration-500 hover:border-gold-bright/30 hover:shadow-sm sm:p-8"
               >
                 <span className="absolute top-0 left-0 h-[2px] w-0 bg-gold-bright transition-all duration-500 ease-out group-hover:w-full" />
-                <div className="font-display text-[clamp(2rem,4vw,3rem)] font-black leading-none text-gold-bright/15 transition-colors duration-500 group-hover:text-gold-bright/30">
+                <div className="font-display text-[clamp(2rem,4vw,3rem)] font-black leading-none text-gold-bright/20 transition-colors duration-500 group-hover:text-gold-bright/40">
                   {cat.icon}
                 </div>
-                <div className="mt-4 font-display text-[14px] font-black uppercase tracking-button leading-tight text-white/90 transition-colors duration-300 group-hover:text-white sm:text-[16px]">
+                <div className="mt-4 font-display text-[14px] font-black uppercase tracking-button leading-tight text-navy/80 transition-colors duration-300 group-hover:text-navy sm:text-[16px]">
                   {cat.label}
                 </div>
                 <div className="mt-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-kicker text-gold-bright/50">

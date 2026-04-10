@@ -21,7 +21,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-white/10 bg-navy-light relative">
+    <footer className="border-t border-white/10 bg-navy-light relative text-white">
       <AnimatePresence>
         {toast && (
           <motion.div

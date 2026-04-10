@@ -39,7 +39,7 @@ const stats = [
 
 export default function StatsCounter() {
   return (
-    <section className="border-t border-white/10 bg-navy-light py-16 sm:py-24">
+    <section className="border-y border-navy/8 bg-off-white py-16 sm:py-24">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
           {stats.map((stat, index) => (
@@ -55,7 +55,7 @@ export default function StatsCounter() {
                 <AnimatedCounter value={stat.value} />
                 {stat.suffix}
               </div>
-              <div className="mt-4 font-body text-[14px] font-semibold uppercase tracking-kicker text-white/85">
+              <div className="mt-4 font-body text-[14px] font-semibold uppercase tracking-kicker text-navy/60">
                 {stat.label}
               </div>
             </motion.div>

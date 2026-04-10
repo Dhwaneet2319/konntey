@@ -93,11 +93,10 @@ function ContactForm() {
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative bg-navy overflow-hidden">
+    <section id="contact" className="relative bg-navy overflow-hidden text-white">
       <div className="grain-overlay" />
       
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-16 sm:px-6 lg:px-8 lg:py-32">
-        {/* Giant wordmark mask reveal */}
         <div className="overflow-hidden">
           <motion.h2
             initial={{ y: "100%" }}
@@ -110,7 +109,6 @@ export default function Contact() {
           </motion.h2>
         </div>
 
-        {/* Info grid */}
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {contactColumns.map((col, index) => (
             <motion.div
@@ -136,7 +134,6 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Inline Contact Form */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}

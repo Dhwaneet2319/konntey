@@ -28,7 +28,7 @@ const values = [
 
 export default function About() {
   return (
-    <section id="about" className="relative bg-navy overflow-hidden">
+    <section id="about" className="relative bg-white overflow-hidden">
       <div className="grain-overlay" />
       
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
@@ -44,7 +44,7 @@ export default function About() {
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
                 WHO WE ARE
               </div>
-              <h2 className="font-display text-[clamp(3.5rem,8.5vw,7.5rem)] font-black uppercase leading-display tracking-tightest text-white">
+              <h2 className="font-display text-[clamp(3.5rem,8.5vw,7.5rem)] font-black uppercase leading-display tracking-tightest text-navy">
                 BUILT ON{" "}
                 <span className="text-gold-bright">
                   CRAFT.
@@ -60,7 +60,7 @@ export default function About() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-xl font-body text-[17px] leading-[1.8] text-white/90"
+              className="max-w-xl font-body text-[17px] leading-[1.8] text-navy/70"
             >
               Konntey Home & Renovations is Melbourne&apos;s trusted, family-run
               renovation company. As licensed renovation contractors in Victoria, we bring 
@@ -70,7 +70,6 @@ export default function About() {
             </motion.p>
           </div>
 
-          {/* Staggered masonry-like Value tiles */}
           <div className="grid gap-6 sm:grid-cols-2 lg:pt-12 relative">
             {values.map((v, index) => {
               const Icon = v.icon;
@@ -85,20 +84,19 @@ export default function About() {
                     delay: index * 0.15 + 0.1,
                     ease: [0.16, 1, 0.3, 1] 
                   }}
-                  className={`group relative border border-white/5 bg-navy-light p-8 transition-colors duration-500 hover:border-gold-bright/30 ${
+                  className={`group relative border border-navy/8 bg-off-white p-8 transition-colors duration-500 hover:border-gold-bright/30 ${
                     index % 2 !== 0 ? "sm:mt-12" : ""
                   }`}
                 >
-                  {/* Hover line reveal top */}
                   <span className="absolute left-0 top-0 h-[2px] w-0 bg-gold-bright transition-all duration-500 ease-out group-hover:w-full" />
                   
-                  <div className="text-white transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:text-gold-bright">
+                  <div className="text-navy/40 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:text-gold-bright">
                     <Icon size={40} strokeWidth={1.25} />
                   </div>
                   <div className="mt-8 font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
                     {v.name}
                   </div>
-                  <p className="mt-4 font-body text-[15px] leading-body text-white/75 transition-colors duration-300 group-hover:text-white/90">
+                  <p className="mt-4 font-body text-[15px] leading-body text-navy/60 transition-colors duration-300 group-hover:text-navy/80">
                     {v.desc}
                   </p>
                 </motion.div>

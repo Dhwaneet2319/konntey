@@ -22,7 +22,7 @@ export default function Preloader() {
           key="preloader"
           exit={{ y: "-100%" }}
           transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-navy"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white"
         >
           <div className="overflow-hidden">
             <motion.h1

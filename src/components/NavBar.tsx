@@ -44,7 +44,7 @@ export default function NavBar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass h-[70px]" : "bg-transparent h-[90px]"
+          scrolled ? "glass-light h-[70px]" : "bg-transparent h-[90px]"
         }`}
       >
         <div className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -60,7 +60,7 @@ export default function NavBar() {
               <motion.span
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="font-display text-[22px] sm:text-[26px] font-black tracking-tighter text-white"
+                className="font-display text-[22px] sm:text-[26px] font-black tracking-tighter text-navy"
               >
                 KONNTEY
               </motion.span>
@@ -80,7 +80,7 @@ export default function NavBar() {
               <button
                 key={item.label}
                 onClick={() => smoothScrollTo(item.href)}
-                className="group relative font-body text-[13px] font-medium tracking-[1px] text-white/90 uppercase"
+                className="group relative font-body text-[13px] font-medium tracking-[1px] text-navy/80 uppercase"
               >
                 <span className="relative z-10 transition-colors duration-300 group-hover:text-gold-bright">
                   {item.label}
@@ -104,23 +104,23 @@ export default function NavBar() {
           <button
             aria-label="Toggle menu"
             onClick={() => setMobileOpen((v) => !v)}
-            className="relative z-50 inline-flex h-12 w-12 items-center justify-center text-white lg:hidden"
+            className="relative z-50 inline-flex h-12 w-12 items-center justify-center lg:hidden"
           >
             <div className="flex flex-col gap-1.5">
               <motion.span
                 animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="block h-[2px] w-8 bg-white"
+                className={`block h-[2px] w-8 ${mobileOpen ? "bg-white" : "bg-navy"}`}
               />
               <motion.span
                 animate={mobileOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
                 transition={{ duration: 0.2 }}
-                className="block h-[2px] w-8 bg-white"
+                className={`block h-[2px] w-8 ${mobileOpen ? "bg-white" : "bg-navy"}`}
               />
               <motion.span
                 animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="block h-[2px] w-8 bg-white"
+                className={`block h-[2px] w-8 ${mobileOpen ? "bg-white" : "bg-navy"}`}
               />
             </div>
           </button>
@@ -137,7 +137,6 @@ export default function NavBar() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-40 bg-navy pt-[90px] lg:hidden"
           >
-            {/* Background grain noise for the menu */}
             <div className="grain-overlay" />
             <div className="flex h-full flex-col justify-center px-6 relative z-10">
               {navLinks.map((item, index) => (

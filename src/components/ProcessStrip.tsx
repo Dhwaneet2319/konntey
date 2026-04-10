@@ -27,9 +27,8 @@ const steps = [
 
 export default function ProcessStrip() {
   return (
-    <section className="bg-navy-light py-20 sm:py-32 relative overflow-hidden">
-      {/* Background large watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0 font-display text-[clamp(8rem,15vw,25rem)] font-black text-white leading-none whitespace-nowrap">
+    <section className="bg-white py-20 sm:py-32 relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0 font-display text-[clamp(8rem,15vw,25rem)] font-black text-navy leading-none whitespace-nowrap">
         PROCESS
       </div>
 
@@ -44,14 +43,13 @@ export default function ProcessStrip() {
           <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
             HOW WE WORK
           </div>
-          <h2 className="mt-4 font-display text-[clamp(3.5rem,6vw,5.5rem)] font-black uppercase leading-display tracking-tightest text-white">
+          <h2 className="mt-4 font-display text-[clamp(3.5rem,6vw,5.5rem)] font-black uppercase leading-display tracking-tightest text-navy">
             THE KONNTEY <br className="hidden sm:block" /> WAY
           </h2>
         </motion.div>
 
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 relative group">
-          {/* Horizontal connector line on desktop */}
-          <div className="hidden lg:block absolute top-[28px] left-[10%] right-[10%] h-[1px] bg-white/10 z-0" />
+          <div className="hidden lg:block absolute top-[28px] left-[10%] right-[10%] h-[1px] bg-navy/10 z-0" />
           
           {steps.map((step, index) => (
             <motion.div
@@ -62,13 +60,13 @@ export default function ProcessStrip() {
               transition={{ duration: 0.6, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left"
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-navy border border-gold-bright font-display text-[20px] font-black text-gold-bright transition-transform duration-500 hover:scale-110 hover:bg-gold-bright hover:text-navy">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-off-white border border-gold-bright font-display text-[20px] font-black text-gold-bright transition-transform duration-500 hover:scale-110 hover:bg-gold-bright hover:text-navy">
                 {step.num}
               </div>
-              <h3 className="mt-8 font-display text-[22px] font-black uppercase tracking-button text-white">
+              <h3 className="mt-8 font-display text-[22px] font-black uppercase tracking-button text-navy">
                 {step.title}
               </h3>
-              <p className="mt-4 font-body text-[15px] leading-relaxed text-white/85 max-w-sm">
+              <p className="mt-4 font-body text-[15px] leading-relaxed text-navy/65 max-w-sm">
                 {step.desc}
               </p>
             </motion.div>
