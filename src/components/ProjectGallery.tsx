@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const categories = [
-  { label: "Kitchen Renovations", icon: "01" },
-  { label: "Bathroom Renovations", icon: "02" },
-  { label: "Extensions & New Builds", icon: "03" },
-  { label: "Decks & Outdoor Living", icon: "04" },
-  { label: "Interior Finishing", icon: "05" },
-  { label: "Full Home Transformations", icon: "06" },
+  { label: "Extensions & New Builds", icon: "01" },
+  { label: "Vastu & Feng Shui", icon: "02" },
+  { label: "Kitchen Renovations", icon: "03" },
+  { label: "Bathroom Renovations", icon: "04" },
+  { label: "Decks & Outdoor Living", icon: "05" },
+  { label: "Interior Finishing", icon: "06" },
 ];
 
 export default function ProjectGallery() {
@@ -34,9 +34,9 @@ export default function ProjectGallery() {
               PORTFOLIO
             </div>
             <h2 className="mt-4 font-display text-[clamp(3.5rem,8vw,7rem)] font-black uppercase leading-[0.85] tracking-tightest text-navy">
-              YOUR PROJECT{" "}
-              <span className="text-gold-bright">COULD BE</span>{" "}
-              FIRST.
+              BE THE BUILD{" "}
+              <span className="text-gold-bright">THAT SETS THE</span>{" "}
+              STANDARD.
             </h2>
 
             <motion.div
@@ -48,9 +48,9 @@ export default function ProjectGallery() {
             />
 
             <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70">
-              We&apos;re currently taking on our first showcase projects across
-              Melbourne&apos;s west and southeast. Early clients get priority
-              scheduling, founder-led oversight, and launch pricing.
+              We&apos;re selective about the projects we take on across
+              Melbourne&apos;s west. Every job gets founder-led oversight,
+              priority scheduling, and the full Konntey standard from day one.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -59,7 +59,7 @@ export default function ProjectGallery() {
                 className="group relative inline-flex overflow-hidden bg-gold-bright px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-navy"
               >
                 <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-12">
-                  Be Our First Project
+                  Start Your Project
                 </span>
                 <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-12">
                   <span>Let&apos;s Go</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
@@ -96,9 +96,9 @@ export default function ProjectGallery() {
                 <div className="mt-4 font-display text-[14px] font-black uppercase tracking-button leading-tight text-navy/80 transition-colors duration-300 group-hover:text-navy sm:text-[16px]">
                   {cat.label}
                 </div>
-                <div className="mt-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-kicker text-gold-bright/50">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold-bright/40" />
-                  Coming Soon
+                <div className="mt-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-kicker text-gold-bright">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold-bright" />
+                  Now Booking
                 </div>
               </motion.div>
             ))}

@@ -14,6 +14,7 @@ interface ServiceBlockProps {
   imageLeft: boolean;
   index: number;
   sectionId?: string;
+  children?: React.ReactNode;
 }
 
 export default function ServiceBlock({
@@ -26,6 +27,7 @@ export default function ServiceBlock({
   imageLeft,
   index,
   sectionId,
+  children,
 }: ServiceBlockProps) {
   return (
     <section
@@ -122,6 +124,8 @@ export default function ServiceBlock({
               <p className="max-w-xl font-body text-[16px] xl:text-[18px] leading-[1.8] text-navy/70">
                 {body}
               </p>
+
+              {children}
               
               <div className="mt-10">
                 <a

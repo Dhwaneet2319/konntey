@@ -97,43 +97,6 @@ export default function Contact() {
       <div className="grain-overlay" />
       
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-16 sm:px-6 lg:px-8 lg:py-32">
-        <div className="overflow-hidden">
-          <motion.h2
-            initial={{ y: "100%" }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[clamp(5rem,21vw,18rem)] font-black uppercase leading-[0.8] tracking-[-4px] lg:tracking-[-10px] text-gold-bright mix-blend-screen"
-          >
-            KONNTEY
-          </motion.h2>
-        </div>
-
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {contactColumns.map((col, index) => (
-            <motion.div
-              key={col.title}
-              initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group border border-white/5 bg-navy-light/90 p-8 transition-colors duration-500 hover:bg-navy-light"
-            >
-              <div className="flex items-center justify-between">
-                <div className="font-display text-[16px] font-black uppercase tracking-button text-gold-bright">
-                  {col.title}
-                </div>
-                <div className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  {col.icon}
-                </div>
-              </div>
-              <div className="mt-6 font-body text-[15px] leading-loose text-white/85 whitespace-pre-line">
-                {col.text}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}

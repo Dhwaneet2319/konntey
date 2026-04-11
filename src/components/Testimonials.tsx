@@ -35,7 +35,7 @@ export default function Testimonials() {
             BUILT ON TRUST
           </h2>
           <p className="mt-6 max-w-lg font-body text-[16px] leading-[1.8] text-navy/65">
-            We&apos;re a newly launched renovation company in Melbourne &mdash; earning our reputation one project at a time. Here&apos;s what every Konntey client can expect.
+            Konntey is Melbourne&apos;s renovation company built on one simple promise — every client gets the same high standard, every time. Here&apos;s what you can expect when you build with us.
           </p>
         </motion.div>
 

@@ -65,8 +65,8 @@ export default function About() {
               Konntey Home & Renovations is Melbourne&apos;s trusted, family-run
               renovation company. As licensed renovation contractors in Victoria, we bring 
               top-tier trade expertise, transparent pricing, and meticulous care to every project — 
-              from affordable bathroom renovations in Tarneit to full home transformations in 
-              Werribee and Hoppers Crossing. We build spaces meant to be lived in and loved.
+              from bathroom renovations to full home transformations across western 
+              Melbourne. We build spaces meant to be lived in and loved.
             </motion.p>
           </div>
 

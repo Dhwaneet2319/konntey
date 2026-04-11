@@ -16,6 +16,7 @@ import FAQ from "@/components/FAQ";
 import MoreServices from "@/components/MoreServices";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CtaBanner from "@/components/CtaBanner";
+import VastuSection from "@/components/VastuSection";
 
 const heroService = {
   kicker: "BUILDING & EXTENSIONS",
@@ -67,7 +68,43 @@ export default function HomePage() {
       <main>
         <Hero />
 
-        <ServiceBlock {...heroService} index={0} sectionId="services" />
+        <ServiceBlock {...heroService} index={0} sectionId="services">
+          <ul className="mt-8 space-y-3 font-body text-[15px] xl:text-[17px] text-navy/80">
+            <li className="flex items-start gap-3">
+              <span className="text-gold-bright font-bold mt-0.5">✓</span>
+              <span>Structural extensions, second storeys &amp; granny flats</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-gold-bright font-bold mt-0.5">✓</span>
+              <span>Knockdown rebuilds &amp; new home construction</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-gold-bright font-bold mt-0.5">✓</span>
+              <span>Full project management from permits to handover</span>
+            </li>
+          </ul>
+
+          <div className="mt-8 grid grid-cols-2 gap-3">
+            <div className="border border-navy/8 bg-off-white p-4 text-center">
+              <div className="font-display text-[22px] font-black text-gold-bright leading-none">10+</div>
+              <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Years Trade Experience</div>
+            </div>
+            <div className="border border-navy/8 bg-off-white p-4 text-center">
+              <div className="font-display text-[22px] font-black text-gold-bright leading-none">✓</div>
+              <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Council Approvals Handled</div>
+            </div>
+            <div className="border border-navy/8 bg-off-white p-4 text-center">
+              <div className="font-display text-[22px] font-black text-gold-bright leading-none">✓</div>
+              <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Fixed-Price Contracts</div>
+            </div>
+            <div className="border border-navy/8 bg-off-white p-4 text-center">
+              <div className="font-display text-[22px] font-black text-gold-bright leading-none">✓</div>
+              <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Founder-Led Every Build</div>
+            </div>
+          </div>
+        </ServiceBlock>
+
+        <VastuSection />
 
         <Ticker text="Quality Work ◆ On Time ◆ Fair Pricing ◆ Melbourne Based ◆ Family Run ◆" />
 
@@ -95,13 +132,12 @@ export default function HomePage() {
 
         <Careers />
 
-        <Ticker text="Respect ◆ Growth ◆ Teamwork ◆" />
+        <FAQ />
 
         <Contact />
-
-        <FAQ />
       </main>
 
+      <Ticker text="Respect ◆ Growth ◆ Teamwork ◆" />
       <Footer />
     </div>
   );

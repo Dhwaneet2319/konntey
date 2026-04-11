@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { Clock } from "lucide-react";
+import StarBorder from "./StarBorder";
 
 const serviceAreas = [
   "Tarneit", "Truganina", "Werribee", "Hoppers Crossing", "Point Cook",
@@ -38,13 +40,20 @@ export default function Footer() {
         )}
       </AnimatePresence>
 
-      <div className="mx-auto max-w-[1600px] px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-[1600px] px-4 pt-12 pb-4 sm:px-6 lg:px-8 overflow-hidden">
+        <motion.h2
+          initial={{ y: "100%" }}
+          whileInView={{ y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-display text-[clamp(5rem,21vw,18rem)] font-black uppercase leading-[0.8] tracking-[-4px] lg:tracking-[-10px] text-gold-bright mb-12 ml-[-0.04em]"
+        >
+          KONNTEY
+        </motion.h2>
+
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div>
-            <div className="font-display text-[22px] font-black uppercase tracking-tighter text-white">
-              KONNTEY <span className="text-gold-bright">H&R</span>
-            </div>
-            <p className="mt-4 font-body text-[14px] leading-relaxed text-white/75">
+            <p className="font-body text-[14px] leading-relaxed text-white/75">
               Melbourne&apos;s trusted renovation company. Licensed builders delivering affordable kitchen renovations, bathroom renos, home extensions, decks & interior finishing.
             </p>
             <div className="mt-4 flex items-center gap-2 font-body text-[12px] uppercase tracking-kicker text-gold-bright">
@@ -61,12 +70,12 @@ export default function Footer() {
               Our Services
             </div>
             <ul className="space-y-2 font-body text-[14px] text-white/75">
+              <li>Home Extensions & New Builds</li>
+              <li>Vastu & Feng Shui Consultation</li>
               <li>Kitchen Renovation Melbourne</li>
               <li>Bathroom Renovation Melbourne</li>
-              <li>Home Extensions & New Builds</li>
               <li>Deck & Pergola Installation</li>
               <li>Interior Painting & Finishing</li>
-              <li>Full Home Renovation</li>
             </ul>
           </div>
 
@@ -78,21 +87,31 @@ export default function Footer() {
               <li>Melbourne, VIC</li>
               <li>0493 191 798</li>
               <li>info@konnteyhomerenovations.com.au</li>
-              <li className="pt-2">Mon–Fri 7am–5pm</li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4 flex items-center justify-between xl:w-4/5">
+              <span>Working Hours</span>
+              <Clock size={16} />
+            </div>
+            <ul className="space-y-2 font-body text-[14px] text-white/75">
+              <li>Mon–Fri 9:00am–9:00pm</li>
               <li>Sat by appointment</li>
             </ul>
           </div>
 
           <div>
             <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4">
-              Quick Links
+              Company
             </div>
             <ul className="space-y-2 font-body text-[14px] text-white/75">
               <li><a href="#hero" className="transition-colors hover:text-gold-bright">Home</a></li>
               <li><a href="#services" className="transition-colors hover:text-gold-bright">Services</a></li>
               <li><a href="#about" className="transition-colors hover:text-gold-bright">About Us</a></li>
+              <li><a href="#careers" className="transition-colors hover:text-gold-bright">Careers</a></li>
               <li><a href="#contact" className="transition-colors hover:text-gold-bright">Contact</a></li>
-              <li><a href="/quote" className="transition-colors hover:text-gold-bright">Free Quote</a></li>
+              <li><a href="/quote" className="transition-colors hover:text-gold-bright">Get a Quote</a></li>
             </ul>
           </div>
         </div>
@@ -117,24 +136,28 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-[13px] text-white/70 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            © {new Date().getFullYear()} Konntey Home & Renovations. Melbourne, VIC. Built by{" "}
-            <a
-              href="https://dhwaneet.codes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors duration-150 hover:text-gold-bright"
-            >
-              dhwaneet
-            </a>
-            .
-          </div>
+          <span>© {new Date().getFullYear()} Konntey Home & Renovations. Melbourne, VIC.</span>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="transition-colors duration-150 hover:text-gold-bright">Privacy</Link>
             <Link href="/terms" className="transition-colors duration-150 hover:text-gold-bright">Terms</Link>
             <button onClick={handleSocialClick} className="transition-colors duration-150 hover:text-gold-bright">IG</button>
             <button onClick={handleSocialClick} className="transition-colors duration-150 hover:text-gold-bright">FB</button>
           </div>
+        </div>
+
+        <div className="mt-6 flex justify-center pb-2">
+          <StarBorder
+            as="a"
+            href="https://dhwaneet.codes"
+            target="_blank"
+            rel="noopener noreferrer"
+            color="#d4a832"
+            speed="5s"
+            thickness={1}
+            className="scale-95 origin-bottom opacity-80 hover:opacity-100 transition-opacity"
+          >
+            Built by dhwaneet
+          </StarBorder>
         </div>
       </div>
     </footer>
