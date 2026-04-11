@@ -16,7 +16,7 @@ export default function ProjectGallery() {
   return (
     <section className="relative bg-off-white overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0 flex items-center justify-center">
-        <span className="font-display text-[clamp(10rem,20vw,30rem)] font-black text-navy leading-none select-none whitespace-nowrap">
+        <span className="font-display text-[clamp(3.5rem,22vw,30rem)] font-black text-navy leading-none select-none whitespace-nowrap">
           PROJECTS
         </span>
       </div>

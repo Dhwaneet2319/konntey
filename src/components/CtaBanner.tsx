@@ -7,7 +7,7 @@ export default function CtaBanner() {
   return (
     <section className="relative overflow-hidden bg-gold-bright py-20 sm:py-24">
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-        <div className="absolute -left-20 top-1/2 -translate-y-1/2 font-display text-[clamp(12rem,20vw,22rem)] font-black leading-none text-navy whitespace-nowrap select-none">
+        <div className="absolute -left-4 top-1/2 -translate-y-1/2 font-display text-[clamp(5rem,22vw,22rem)] font-black leading-none text-navy whitespace-nowrap select-none">
           READY?
         </div>
       </div>

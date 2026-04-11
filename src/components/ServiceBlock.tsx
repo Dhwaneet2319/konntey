@@ -34,7 +34,7 @@ export default function ServiceBlock({
         dark ? "bg-off-white text-navy pt-20 pb-10" : "bg-white text-navy pt-20"
       }`}
     >
-      <div className="absolute left-4 top-6 sm:left-8 sm:top-10 lg:left-10 opacity-[0.04] pointer-events-none z-0 font-display text-[clamp(8rem,13vw,16rem)] font-black text-current leading-none select-none">
+      <div className="absolute left-4 top-6 sm:left-8 sm:top-10 lg:left-10 opacity-[0.04] pointer-events-none z-0 font-display text-[clamp(4rem,13vw,16rem)] font-black text-current leading-none select-none">
         0{index + 1}
       </div>
 

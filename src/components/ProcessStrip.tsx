@@ -28,7 +28,7 @@ const steps = [
 export default function ProcessStrip() {
   return (
     <section className="bg-white py-20 sm:py-32 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0 font-display text-[clamp(8rem,15vw,25rem)] font-black text-navy leading-none whitespace-nowrap">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0 font-display text-[clamp(3.5rem,22vw,25rem)] font-black text-navy leading-none whitespace-nowrap">
         PROCESS
       </div>
 
