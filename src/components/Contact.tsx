@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Copy, MapPin, Clock, Info } from "lucide-react";
+import { Copy, MapPin, Clock, Info, ArrowRight } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
 
 const contactColumns = [
@@ -83,8 +83,8 @@ function ContactForm() {
         <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-[150%]">
           {state.submitting ? "Sending..." : "Submit Initial Request"}
         </span>
-        <span className="absolute inset-x-0 top-[150%] z-10 flex h-full items-center justify-center transition-transform duration-300 group-hover:-translate-y-[150%]">
-          Send to Konntey →
+        <span className="absolute inset-x-0 top-[150%] z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-[150%]">
+          <span>Send to Konntey</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
         </span>
       </button>
     </form>

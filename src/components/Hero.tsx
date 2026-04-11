@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 function MaskTitle({
   children,
@@ -77,8 +78,8 @@ export default function Hero() {
                 <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-12">
                   Get a Free Quote
                 </span>
-                <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center transition-transform duration-300 group-hover:-translate-y-12">
-                  Ready? →
+                <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-12">
+                  <span>Ready?</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
                 </span>
               </a>
             </motion.div>

@@ -20,7 +20,7 @@ import CtaBanner from "@/components/CtaBanner";
 const heroService = {
   kicker: "BUILDING & EXTENSIONS",
   title: "EXTENSIONS & NEW BUILDS",
-  body: "Need a home extension in Melbourne's west? Whether you're opening up space for a growing family or starting a new build in Point Cook, Hoppers Crossing or Wyndham Vale, Konntey delivers reliable project management and expert craftsmanship.",
+  body: "Need a home extension or new build in western Melbourne? Whether you're creating more space for a growing family or starting fresh from the ground up, Konntey delivers reliable project management and expert craftsmanship — built to the highest standard, every time.",
   image: "/images/extension.png",
   imageAlt: "Home extension builders Melbourne suburbs — modern luxury extension",
   dark: true,

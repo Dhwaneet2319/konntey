@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import CircleArrow from "@/components/CircleArrow";
 
 const additionalServices = [
   "Flooring",
@@ -61,9 +62,7 @@ export default function MoreServices() {
             className="group inline-flex items-center gap-4 font-display text-[15px] font-black uppercase tracking-button text-navy transition-colors duration-300 hover:text-gold"
           >
             <span>Tell Us What You Need</span>
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-current transition-transform duration-300 group-hover:translate-x-2">
-              →
-            </span>
+            <CircleArrow className="transition-transform duration-300 group-hover:translate-x-2" />
           </a>
         </motion.div>
       </div>

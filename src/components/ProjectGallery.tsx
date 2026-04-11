@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 const categories = [
   { label: "Kitchen Renovations", icon: "01" },
@@ -60,8 +61,8 @@ export default function ProjectGallery() {
                 <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-12">
                   Be Our First Project
                 </span>
-                <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center transition-transform duration-300 group-hover:-translate-y-12">
-                  Let&apos;s Go →
+                <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-12">
+                  <span>Let&apos;s Go</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
                 </span>
               </a>
               <a
@@ -69,7 +70,7 @@ export default function ProjectGallery() {
                 className="group inline-flex items-center gap-3 font-display text-[14px] font-black uppercase tracking-button text-navy/60 transition-colors duration-300 hover:text-gold-bright"
               >
                 <span>Or request a free quote</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <ArrowRight size={16} strokeWidth={2.25} className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </div>
           </motion.div>

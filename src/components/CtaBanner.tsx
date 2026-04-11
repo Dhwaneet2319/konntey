@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export default function CtaBanner() {
   return (
@@ -43,8 +44,8 @@ export default function CtaBanner() {
               <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-12">
                 Get a Free Quote
               </span>
-              <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center transition-transform duration-300 group-hover:-translate-y-12">
-                Let&apos;s Go →
+              <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-12">
+                <span>Let&apos;s Go</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
               </span>
             </a>
             <a

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const COMBINED_IMAGE = "/images/before-after.png";
 
@@ -107,9 +108,9 @@ export default function BeforeAfterSlider() {
               style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold-bright bg-navy text-gold-bright shadow-lg sm:h-16 sm:w-16 transition-transform duration-300">
-                <div className="flex gap-1 sm:gap-2">
-                  <span className="text-sm sm:text-xl">⟨</span>
-                  <span className="text-sm sm:text-xl">⟩</span>
+                <div className="flex items-center justify-center gap-0.5 sm:gap-1">
+                  <ChevronLeft size={16} strokeWidth={2.25} className="shrink-0 sm:h-[18px] sm:w-[18px]" />
+                  <ChevronRight size={16} strokeWidth={2.25} className="shrink-0 sm:h-[18px] sm:w-[18px]" />
                 </div>
               </div>
             </div>

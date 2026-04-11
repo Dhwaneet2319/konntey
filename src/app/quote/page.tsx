@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 const serviceOptions = [
   "Kitchen & Bathroom",
@@ -43,9 +44,10 @@ export default function QuotePage() {
           </Link>
           <Link
             href="/"
-            className="font-body text-[13px] font-medium tracking-[0.5px] text-white/75 transition-colors duration-150 hover:text-gold-bright"
+            className="inline-flex items-center gap-2 font-body text-[13px] font-medium tracking-[0.5px] text-white/75 transition-colors duration-150 hover:text-gold-bright"
           >
-            ← Back to Home
+            <ArrowLeft size={15} strokeWidth={2.25} className="shrink-0" />
+            <span>Back to Home</span>
           </Link>
         </div>
       </motion.header>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Konntey Home & Renovations",
@@ -15,7 +16,8 @@ export default function PrivacyPage() {
           href="/"
           className="inline-flex items-center gap-2 font-display text-[14px] font-bold uppercase tracking-button text-gold-bright transition-colors hover:text-gold"
         >
-          ← Back to Home
+          <ArrowLeft size={16} strokeWidth={2.25} className="shrink-0" />
+          <span>Back to Home</span>
         </Link>
 
         <h1 className="mt-10 font-display text-[clamp(2.5rem,6vw,4rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">

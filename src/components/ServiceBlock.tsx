@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import CircleArrow from "@/components/CircleArrow";
 
 interface ServiceBlockProps {
   kicker: string;
@@ -30,10 +31,10 @@ export default function ServiceBlock({
     <section
       id={sectionId}
       className={`relative overflow-hidden ${
-        dark ? "bg-off-white text-navy pb-10" : "bg-white text-navy pt-20"
+        dark ? "bg-off-white text-navy pt-20 pb-10" : "bg-white text-navy pt-20"
       }`}
     >
-      <div className="absolute top-10 left-4 sm:top-20 sm:left-12 opacity-[0.04] pointer-events-none z-0 font-display text-[clamp(10rem,15vw,20rem)] font-black text-current leading-none select-none">
+      <div className="absolute left-4 top-6 sm:left-8 sm:top-10 lg:left-10 opacity-[0.04] pointer-events-none z-0 font-display text-[clamp(8rem,13vw,16rem)] font-black text-current leading-none select-none">
         0{index + 1}
       </div>
 
@@ -128,9 +129,7 @@ export default function ServiceBlock({
                   className="group inline-flex items-center gap-4 font-display text-[15px] font-black uppercase tracking-button text-navy transition-colors duration-300 hover:text-gold"
                 >
                   <span>Discuss Your Project</span>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-current transition-transform duration-300 group-hover:translate-x-2">
-                    →
-                  </span>
+                  <CircleArrow className="transition-transform duration-300 group-hover:translate-x-2" />
                 </a>
               </div>
             </motion.div>

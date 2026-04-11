@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 const suburbs: Record<string, { name: string; nearby: string[] }> = {
   tarneit: { name: "Tarneit", nearby: ["Truganina", "Werribee", "Hoppers Crossing", "Wyndham Vale", "Manor Lakes"] },
@@ -224,9 +225,10 @@ export default function SuburbPage({ params }: Props) {
           <div className="mt-10">
             <Link
               href="/"
-              className="font-display text-[15px] font-black uppercase tracking-button text-gold-bright hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-display text-[15px] font-black uppercase tracking-button text-gold-bright hover:text-white transition-colors"
             >
-              ← Back to Konntey Home
+              <ArrowLeft size={16} strokeWidth={2.25} className="shrink-0" />
+              <span>Back to Konntey Home</span>
             </Link>
           </div>
         </div>
