@@ -12,6 +12,7 @@ interface ServiceBlockProps {
   dark: boolean;
   imageLeft: boolean;
   index: number;
+  sectionId?: string;
 }
 
 export default function ServiceBlock({
@@ -23,9 +24,11 @@ export default function ServiceBlock({
   dark,
   imageLeft,
   index,
+  sectionId,
 }: ServiceBlockProps) {
   return (
     <section
+      id={sectionId}
       className={`relative overflow-hidden ${
         dark ? "bg-off-white text-navy pb-10" : "bg-white text-navy pt-20"
       }`}

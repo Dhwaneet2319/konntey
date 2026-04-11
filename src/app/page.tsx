@@ -17,7 +17,17 @@ import MoreServices from "@/components/MoreServices";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CtaBanner from "@/components/CtaBanner";
 
-const services = [
+const heroService = {
+  kicker: "BUILDING & EXTENSIONS",
+  title: "EXTENSIONS & NEW BUILDS",
+  body: "Need a home extension in Melbourne's west? Whether you're opening up space for a growing family or starting a new build in Point Cook, Hoppers Crossing or Wyndham Vale, Konntey delivers reliable project management and expert craftsmanship.",
+  image: "/images/extension.png",
+  imageAlt: "Home extension builders Melbourne suburbs — modern luxury extension",
+  dark: true,
+  imageLeft: false,
+};
+
+const remainingServices = [
   {
     kicker: "OUR SERVICES",
     title: "KITCHEN & BATHROOM RENOS",
@@ -28,22 +38,13 @@ const services = [
     imageLeft: true,
   },
   {
-    kicker: "BUILDING & EXTENSIONS",
-    title: "EXTENSIONS & NEW BUILDS",
-    body: "Need a home extension in Melbourne's west? Whether you're opening up space for a growing family or starting a new build in Point Cook, Hoppers Crossing or Wyndham Vale, Konntey delivers reliable project management and expert craftsmanship.",
-    image: "/images/extension.png",
-    imageAlt: "Home extension builders Melbourne suburbs — modern luxury extension",
-    dark: true,
-    imageLeft: false,
-  },
-  {
     kicker: "OUTDOOR LIVING",
     title: "DECKS, PERGOLAS & LANDSCAPING",
     body: "Melbourne's trusted deck builder and pergola installation experts. We build premium outdoor living spaces across the western and southeastern suburbs — strong, clean, and ready for real Australian weather.",
     image: "/images/outdoor.png",
     imageAlt: "Deck builder Melbourne — premium timber pergola installation",
-    dark: false,
-    imageLeft: true,
+    dark: true,
+    imageLeft: false,
   },
   {
     kicker: "INTERIOR FINISHING",
@@ -51,8 +52,8 @@ const services = [
     body: "Sharp lines, fresh finishes, and careful attention to every last detail. Our licensed interior painters in Melbourne turn construction sites into polished homes — servicing Dandenong, Cranbourne, Frankston, Berwick and beyond.",
     image: "/images/interior.png",
     imageAlt: "Interior painter Melbourne — professional finishing and painting",
-    dark: true,
-    imageLeft: false,
+    dark: false,
+    imageLeft: true,
   },
 ];
 
@@ -66,35 +67,35 @@ export default function HomePage() {
       <main>
         <Hero />
 
+        <ServiceBlock {...heroService} index={0} sectionId="services" />
+
         <Ticker text="Quality Work ◆ On Time ◆ Fair Pricing ◆ Melbourne Based ◆ Family Run ◆" />
 
         <BeforeAfterSlider />
 
-        <div id="services">
-          {services.map((service, index) => (
-            <ServiceBlock key={service.title} {...service} index={index} />
+        <div>
+          {remainingServices.map((service, index) => (
+            <ServiceBlock key={service.title} {...service} index={index + 1} />
           ))}
         </div>
 
         <MoreServices />
 
-        <StatsCounter />
-
         <ProcessStrip />
+
+        <StatsCounter />
 
         <ProjectGallery />
 
         <About />
 
-        <CtaBanner />
-
         <Testimonials />
+
+        <CtaBanner />
 
         <Careers />
 
-        <Ticker
-          text="Respect ◆ Growth ◆ Teamwork ◆"
-        />
+        <Ticker text="Respect ◆ Growth ◆ Teamwork ◆" />
 
         <Contact />
 
