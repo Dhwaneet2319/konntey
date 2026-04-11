@@ -1,31 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Copy, MapPin, Clock, Info, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
-
-const contactColumns = [
-  {
-    title: "CONTACT US",
-    icon: <Copy size={18} className="text-gold" />,
-    text: "Melbourne, VIC\n0493 191 798\ninfo@konnteyhomerenovations.com.au",
-  },
-  {
-    title: "SERVICES",
-    icon: <MapPin size={18} className="text-gold" />,
-    text: "Kitchen & Bathroom\nExtensions\nDecks & Outdoor\nPainting & Finishing\n& Many More",
-  },
-  {
-    title: "COMPANY",
-    icon: <Info size={18} className="text-gold" />,
-    text: "About Us\nCareers\nGet a Quote",
-  },
-  {
-    title: "WORKING HOURS",
-    icon: <Clock size={18} className="text-gold" />,
-    text: "Mon–Fri 7:00am–5:00pm\nSat by appointment",
-  },
-];
 
 function ContactForm() {
   const [state, handleSubmit] = useForm("xkopaqvd");
