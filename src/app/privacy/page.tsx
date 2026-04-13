@@ -33,7 +33,7 @@ export default function PrivacyPage() {
               Who We Are
             </h2>
             <p className="mt-4">
-              Konntey Home & Renovations is a licensed renovation company based
+              Konntey Home & Renovations is a professional renovation company based
               in Melbourne, Victoria. This policy explains how we handle personal
               information collected through our website at konnteyhomerenovations.com.au.
             </p>

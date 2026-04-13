@@ -18,10 +18,6 @@ const faqs = [
     a: "Home extension costs in Melbourne vary from $1,800 to $4,500+ per square metre depending on complexity, materials and finishes. We provide free consultations and detailed quotes for home extensions across Hoppers Crossing, Point Cook, Wyndham Vale, Dandenong and surrounding suburbs.",
   },
   {
-    q: "Are you licensed renovation builders?",
-    a: "Yes. Konntey Home & Renovations is a fully licensed and insured renovation contractor in Victoria. We hold all required building licenses and carry comprehensive insurance for every project we undertake across Melbourne.",
-  },
-  {
     q: "What suburbs in Melbourne do you service?",
     a: "We service all of Melbourne with a focus on western and southeastern suburbs including Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook, Wyndham Vale, Manor Lakes, Williams Landing, Dandenong, Cranbourne, Frankston, Narre Warren, Berwick, Springvale, Pakenham, Officer, Clyde and Melton.",
   },

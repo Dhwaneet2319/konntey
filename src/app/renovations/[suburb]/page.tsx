@@ -38,13 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `Renovation Company ${suburb.name} | Kitchen & Bathroom Renovations ${suburb.name} | Konntey`,
-    description: `Looking for a licensed renovation company in ${suburb.name}? Konntey Home & Renovations offers affordable kitchen renovations, bathroom renos, home extensions, deck building & interior painting in ${suburb.name} and nearby ${suburb.nearby.slice(0, 3).join(", ")}. Free quotes — call today.`,
+    description: `Looking for a professional renovation company in ${suburb.name}? Konntey Home & Renovations offers affordable kitchen renovations, bathroom renovations, home extensions, deck building & interior painting in ${suburb.name} and nearby ${suburb.nearby.slice(0, 3).join(", ")}. Free quotes — call today.`,
     alternates: {
       canonical: `/renovations/${slug}`,
     },
     openGraph: {
       title: `Renovation Company ${suburb.name} | Konntey Home & Renovations`,
-      description: `Licensed renovation builders in ${suburb.name}. Kitchen & bathroom renovations, home extensions, decks & painting. Free quotes for ${suburb.name} and ${suburb.nearby.slice(0, 2).join(", ")}.`,
+      description: `Professional renovation builders in ${suburb.name}. Kitchen & bathroom renovations, home extensions, decks & painting. Free quotes for ${suburb.name} and ${suburb.nearby.slice(0, 2).join(", ")}.`,
       url: `https://www.konnteyhomerenovations.com.au/renovations/${slug}`,
       siteName: "Konntey Home & Renovations",
       locale: "en_AU",
@@ -61,7 +61,7 @@ export default function SuburbPage({ params }: Props) {
   const services = [
     { name: `Kitchen Renovation ${suburb.name}`, desc: `Complete kitchen renovations in ${suburb.name}. From budget refreshes to full luxury transformations with premium materials.` },
     { name: `Bathroom Renovation ${suburb.name}`, desc: `Affordable bathroom renovation and remodeling in ${suburb.name}. Modern designs, quality fixtures, and expert tiling.` },
-    { name: `Home Extension ${suburb.name}`, desc: `Expand your living space with a professionally built home extension in ${suburb.name}. Licensed builders, council-approved plans.` },
+    { name: `Home Extension ${suburb.name}`, desc: `Expand your living space with a professionally built home extension in ${suburb.name}. Professional builders, council-approved plans.` },
     { name: `Deck & Pergola ${suburb.name}`, desc: `Premium timber deck and pergola installation in ${suburb.name}. Built to withstand Australian weather.` },
     { name: `Interior Painting ${suburb.name}`, desc: `Professional interior and exterior painting services in ${suburb.name}. Sharp lines, clean finishes.` },
   ];
@@ -70,7 +70,7 @@ export default function SuburbPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `Home Renovations ${suburb.name}`,
-    description: `Licensed renovation company servicing ${suburb.name} and surrounding suburbs. Kitchen renovations, bathroom renos, home extensions, deck building and interior painting.`,
+    description: `Professional renovation company servicing ${suburb.name} and surrounding suburbs. Kitchen renovations, bathroom renovations, home extensions, deck building and interior painting.`,
     provider: {
       "@type": "HomeAndConstructionBusiness",
       name: "Konntey Home & Renovations",
@@ -102,10 +102,10 @@ export default function SuburbPage({ params }: Props) {
             <span className="text-gold-bright">{suburb.name.toUpperCase()}</span>
           </h1>
           <p className="mt-8 max-w-2xl font-body text-[18px] leading-[1.8] text-white/90">
-            Konntey Home & Renovations is {suburb.name}&apos;s licensed renovation company. 
-            We deliver affordable kitchen renovations, bathroom renos, home extensions, deck building 
+            Konntey Home & Renovations is {suburb.name}&apos;s professional renovation company. 
+            We deliver affordable kitchen renovations, bathroom renovations, home extensions, deck building 
             and interior painting across {suburb.name} and nearby suburbs including{" "}
-            {suburb.nearby.join(", ")}. Licensed, insured, and family-run.
+            {suburb.nearby.join(", ")}. Professional, insured, and family-run.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
@@ -158,7 +158,7 @@ export default function SuburbPage({ params }: Props) {
             <div className="space-y-6 font-body text-[16px] leading-[1.8] text-white/90">
               <p>
                 {suburb.name} homeowners deserve renovation builders who understand the local area.
-                Konntey Home &amp; Renovations is a licensed and insured renovation company based in
+                Konntey Home &amp; Renovations is a professional and insured renovation company based in
                 Melbourne, servicing {suburb.name} and nearby suburbs including {suburb.nearby.join(", ")}.
               </p>
               <p>
@@ -171,8 +171,8 @@ export default function SuburbPage({ params }: Props) {
             <div className="space-y-4">
               {[
                 "Free on-site consultation and quote",
-                "Licensed and fully insured in Victoria",
-                "Transparent, fixed-price agreements",
+                "Professional and fully insured in Victoria",
+                "Transparent, fair price agreements",
                 "One dedicated point of contact throughout",
                 "Servicing " + suburb.name + " and all nearby suburbs",
               ].map((item) => (

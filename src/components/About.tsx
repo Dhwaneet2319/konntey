@@ -63,7 +63,7 @@ export default function About() {
               className="max-w-xl font-body text-[17px] leading-[1.8] text-navy/70"
             >
               Konntey Home & Renovations is Melbourne&apos;s trusted, family-run
-              renovation company. As licensed renovation contractors in Victoria, we bring 
+              renovation company. As professional renovation contractors in Victoria, we bring 
               top-tier trade expertise, transparent pricing, and meticulous care to every project — 
               from bathroom renovations to full home transformations across western 
               Melbourne. We build spaces meant to be lived in and loved.

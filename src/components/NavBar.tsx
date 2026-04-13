@@ -52,15 +52,15 @@ export default function NavBar() {
             <Image
               src="/images/logo.png"
               alt="Konntey Home & Renovations logo"
-              width={44}
-              height={44}
-              className="h-9 w-auto sm:h-11 transition-transform duration-300 group-hover:scale-105"
+              width={56}
+              height={56}
+              className={`h-11 w-auto sm:h-14 transition-all duration-300 group-hover:scale-105 ${mobileOpen ? "brightness-0 invert" : ""}`}
             />
-            <div className="flex items-center gap-1.5">
+            <div className="flex flex-col leading-none">
               <motion.span
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="font-display text-[22px] sm:text-[26px] font-black tracking-tighter text-navy"
+                className={`font-display text-[26px] sm:text-[32px] font-black tracking-tighter transition-colors duration-300 ${mobileOpen ? "text-white" : "text-navy"}`}
               >
                 KONNTEY
               </motion.span>
@@ -68,9 +68,9 @@ export default function NavBar() {
                 initial={{ x: -10, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5, type: "spring" }}
-                className="font-display text-[17px] sm:text-[20px] font-black tracking-tighter text-gold-bright transition-transform duration-300 group-hover:translate-x-1"
+                className="font-display text-[10px] sm:text-[12px] font-bold tracking-[1.5px] uppercase text-gold-bright transition-transform duration-300 group-hover:translate-x-1"
               >
-                H&R
+                Homes and Renovations
               </motion.span>
             </div>
           </Link>
@@ -154,7 +154,7 @@ export default function NavBar() {
                       setMobileOpen(false);
                       setTimeout(() => smoothScrollTo(item.href), 300);
                     }}
-                    className="py-4 text-left font-display text-[clamp(4rem,14vw,8rem)] font-black uppercase tracking-tightest text-white transition-colors hover:text-gold-bright"
+                    className="py-4 text-left font-display text-[clamp(4rem,14vw,8rem)] font-black uppercase tracking-tightest text-white transition-colors active:text-gold-bright"
                   >
                     {item.label}
                   </motion.button>

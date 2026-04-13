@@ -23,9 +23,9 @@ const googleSiteVerification =
 
 export const metadata: Metadata = {
   title:
-    "Konntey Home & Renovations | Licensed Renovation Builders Melbourne | Kitchen, Bathroom & Home Extensions",
+    "Konntey Home & Renovations | Professional Renovation Builders Melbourne | Kitchen, Bathroom & Home Extensions",
   description:
-    "Konntey Home & Renovations is a licensed renovation company in Melbourne. Affordable kitchen renovations, bathroom renos, home extensions, deck building & interior painting across Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook, Wyndham Vale & all western Melbourne suburbs. Free quotes — call today.",
+    "Konntey Home & Renovations is a professional renovation company in Melbourne. Affordable kitchen renovations, bathroom renovations, home extensions, deck building & interior painting across Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook, Wyndham Vale & all western Melbourne suburbs. Free quotes — call today.",
   keywords: [
     "home renovations Melbourne",
     "renovation company Melbourne",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "bathroom renovation Melbourne",
     "home extension Melbourne",
     "renovation builders Melbourne near me",
-    "licensed renovator Melbourne",
+    "professional renovator Melbourne",
     "affordable kitchen renovation Melbourne",
     "small bathroom renovation Melbourne cost",
     "home extension builders Melbourne suburbs",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "bathroom reno Melbourne price",
     "how much does a home extension cost Melbourne",
     "renovation quote Melbourne free",
-    "licensed renovation contractor Victoria",
+    "professional renovation contractor Victoria",
     "renovation builder reviews Melbourne",
     "kitchen renovation Tarneit",
     "bathroom renovation Tarneit",
@@ -76,9 +76,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Konntey Home & Renovations | Licensed Renovation Builders Melbourne",
+      "Konntey Home & Renovations | Professional Renovation Builders Melbourne",
     description:
-      "Affordable kitchen & bathroom renovations, home extensions, deck building & interior finishing across Melbourne's west and southeast. Family-run, licensed & insured. Free on-site quotes.",
+      "Affordable kitchen & bathroom renovations, home extensions, deck building & interior finishing across Melbourne's west and southeast. Family-run, professional & insured. Free on-site quotes.",
     type: "website",
     locale: "en_AU",
     url: "https://www.konnteyhomerenovations.com.au",
@@ -88,15 +88,15 @@ export const metadata: Metadata = {
         url: "/images/hero_main.png",
         width: 1200,
         height: 630,
-        alt: "Konntey Home & Renovations — Licensed renovation builders in Melbourne",
+        alt: "Konntey Home & Renovations — Professional renovation builders in Melbourne",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Konntey Home & Renovations | Licensed Renovation Builders Melbourne",
+    title: "Konntey Home & Renovations | Professional Renovation Builders Melbourne",
     description:
-      "Licensed renovation builders in Melbourne. Kitchen & bathroom renovations, home extensions, decks. Fully insured. Free quotes.",
+      "Professional renovation builders in Melbourne. Kitchen & bathroom renovations, home extensions, decks. Fully insured. Free quotes.",
     images: ["/images/hero_main.png"],
   },
   robots: {
@@ -129,7 +129,7 @@ const localBusinessSchema = {
   name: "Konntey Home & Renovations",
   alternateName: "Konntey H&R",
   description:
-    "Licensed renovation company in Melbourne specializing in affordable kitchen renovations, bathroom renos, home extensions, deck building and interior painting across Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook and all western Melbourne suburbs.",
+    "Professional renovation company in Melbourne specializing in affordable kitchen renovations, bathroom renovations, home extensions, deck building and interior painting across Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook and all western Melbourne suburbs.",
   url: "https://www.konnteyhomerenovations.com.au",
   logo: "https://www.konnteyhomerenovations.com.au/images/logo.png",
   image: "https://www.konnteyhomerenovations.com.au/images/hero_main.png",
@@ -267,10 +267,10 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "Are you licensed renovation builders in Melbourne?",
+      name: "Are you professional renovation builders in Melbourne?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Konntey Home & Renovations is a fully licensed and insured renovation contractor in Victoria. We hold all required building licenses and carry comprehensive insurance for every project we undertake across Melbourne.",
+        text: "Yes. Konntey Home & Renovations is a fully professional and insured renovation contractor in Victoria. We hold all required building licenses and carry comprehensive insurance for every project we undertake across Melbourne.",
       },
     },
     {

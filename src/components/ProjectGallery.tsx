@@ -49,19 +49,19 @@ export default function ProjectGallery() {
 
             <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70">
               We&apos;re selective about the projects we take on across
-              Melbourne&apos;s west. Every job gets founder-led oversight,
+              Melbourne. Every job gets founder-led oversight,
               priority scheduling, and the full Konntey standard from day one.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <a
                 href="#contact"
-                className="group relative inline-flex overflow-hidden bg-gold-bright px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-navy"
+                className="group relative inline-flex items-center overflow-hidden bg-gold-bright px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-navy"
               >
                 <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-12">
                   Start Your Project
                 </span>
-                <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-12">
+                <span className="absolute inset-0 z-10 flex items-center justify-center gap-1 translate-y-12 transition-transform duration-300 group-hover:translate-y-0">
                   <span>Let&apos;s Go</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
                 </span>
               </a>

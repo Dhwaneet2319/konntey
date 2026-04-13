@@ -54,11 +54,11 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div>
             <p className="font-body text-[14px] leading-relaxed text-white/75">
-              Melbourne&apos;s trusted renovation company. Licensed builders delivering affordable kitchen renovations, bathroom renos, home extensions, decks & interior finishing.
+              Melbourne&apos;s trusted renovation company. Professional builders delivering affordable kitchen renovations, bathroom renovations, home extensions, decks & interior finishing.
             </p>
             <div className="mt-4 flex items-center gap-2 font-body text-[12px] uppercase tracking-kicker text-gold-bright">
               <span className="inline-block h-2 w-2 rounded-full bg-green-500" />
-              Licensed & Insured — VIC
+              Professional & Insured — VIC
             </div>
             <div className="mt-2 font-body text-[12px] uppercase tracking-kicker text-white/70">
               ABN 64 684 703 972

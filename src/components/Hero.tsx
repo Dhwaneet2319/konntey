@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-
+import Ticker from "@/components/Ticker";
 function MaskTitle({
   children,
   delay = 0,
@@ -33,7 +33,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-16">
           <div className="flex flex-col justify-center lg:col-span-5 xl:col-span-6">
-            <h1 className="flex flex-col gap-1 font-display text-[clamp(4.2rem,11vw,8rem)] xl:text-[9.5rem] font-black uppercase leading-[0.82] tracking-tighter text-navy">
+            <h1 className="flex flex-col gap-1 font-display text-[clamp(4.5rem,14.5vw,7rem)] md:text-[clamp(3.5rem,9vw,6.5rem)] xl:text-[8rem] font-black uppercase leading-[0.82] tracking-tighter text-navy">
               <MaskTitle delay={0}>IT&apos;S YOUR</MaskTitle>
               <MaskTitle delay={0.1}>
                 <span className="relative inline-block text-gold-bright">
@@ -56,9 +56,9 @@ export default function Hero() {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="mt-8 max-w-md font-body text-[16px] leading-[1.7] text-navy/70"
             >
-              Licensed renovation builders in Melbourne delivering affordable kitchen renovations, 
-              bathroom renos, home extensions & deck building. Quality craftsmanship servicing 
-              Tarneit, Truganina, Werribee & all western Melbourne suburbs.
+              Professional renovation builders in Melbourne delivering affordable kitchen renovations, 
+              bathroom renovations, home extensions & deck building. Quality craftsmanship servicing 
+              Melbourne and surrounding suburbs.
             </motion.p>
 
             <motion.div
@@ -83,6 +83,15 @@ export default function Hero() {
                 </span>
               </a>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.6 }}
+              className="mt-12 md:hidden relative left-1/2 -ml-[50vw] w-[100vw]"
+            >
+              <Ticker text="Quality Work ◆ On Time ◆ Fair Pricing ◆ Melbourne Based ◆ Family Run ◆" />
+            </motion.div>
           </div>
 
           <div className="relative mt-8 lg:col-span-7 xl:col-span-6 lg:mt-0 xl:mt-12">
@@ -94,7 +103,7 @@ export default function Hero() {
             >
               <Image
                 src="/images/hero_main.png"
-                alt="Premium home renovation by Konntey — licensed builders Melbourne"
+                alt="Premium home renovation by Konntey — professional builders Melbourne"
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover"

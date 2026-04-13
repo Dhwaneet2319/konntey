@@ -8,12 +8,12 @@ const promises = [
     text: "One dedicated point of contact from your first consultation to final handover. Weekly progress updates, responsive messaging, and zero runaround — because your time matters as much as ours.",
   },
   {
-    title: "Fixed-Price Quotes",
+    title: "Fair Price Quotes",
     text: "Every project begins with a detailed, transparent scope of work. No hidden fees, no surprise invoices, no guesswork — the price we quote is the price you pay.",
   },
   {
-    title: "Licensed & Insured",
-    text: "Fully registered, licensed, and insured to Australian standards. Every build is backed by proper documentation, compliance checks, and a commitment to getting it right.",
+    title: "Professional & Insured",
+    text: "Fully registered, professional, and insured to Australian standards. Every build is backed by proper documentation, compliance checks, and a commitment to getting it right.",
   },
 ];
 

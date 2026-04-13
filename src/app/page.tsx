@@ -31,17 +31,17 @@ const heroService = {
 const remainingServices = [
   {
     kicker: "OUR SERVICES",
-    title: "KITCHEN & BATHROOM RENOS",
-    body: "Looking for an affordable kitchen renovation in Melbourne? From complete kitchen transformations to precision bathroom upgrades across Tarneit, Truganina & Werribee, we handle every detail — transparent pricing, clear communication, and a finish built to last.",
+    title: "KITCHEN & BATHROOM RENOVATIONS",
+    body: "Looking for an affordable kitchen or bathroom renovation in Melbourne? From complete kitchen transformations to precision bathroom upgrades, we handle every detail — transparent pricing, clear communication, and a finish built to last.",
     image: "/images/kitchen.png",
-    imageAlt: "Affordable kitchen renovation Melbourne by licensed renovation builders",
+    imageAlt: "Affordable kitchen renovation Melbourne by professional renovation builders",
     dark: false,
     imageLeft: true,
   },
   {
     kicker: "OUTDOOR LIVING",
     title: "DECKS, PERGOLAS & LANDSCAPING",
-    body: "Melbourne's trusted deck builder and pergola installation experts. We build premium outdoor living spaces across the western and southeastern suburbs — strong, clean, and ready for real Australian weather.",
+    body: "Your local deck builder and pergola installation experts. We design and build premium outdoor living spaces — decks, pergolas, and landscaping — crafted for Melbourne homes and built to handle real Australian weather.",
     image: "/images/outdoor.png",
     imageAlt: "Deck builder Melbourne — premium timber pergola installation",
     dark: true,
@@ -50,7 +50,7 @@ const remainingServices = [
   {
     kicker: "INTERIOR FINISHING",
     title: "PAINTING & INTERIOR FINISHING",
-    body: "Sharp lines, fresh finishes, and careful attention to every last detail. Our licensed interior painters in Melbourne turn construction sites into polished homes — servicing Dandenong, Cranbourne, Frankston, Berwick and beyond.",
+    body: "Sharp lines, fresh finishes, and careful attention to every last detail. Our professional interior painters in Melbourne turn construction sites into polished, move-in ready homes — servicing suburbs across Melbourne and beyond.",
     image: "/images/interior.png",
     imageAlt: "Interior painter Melbourne — professional finishing and painting",
     dark: false,
@@ -95,7 +95,7 @@ export default function HomePage() {
             </div>
             <div className="border border-navy/8 bg-off-white p-4 text-center">
               <div className="font-display text-[22px] font-black text-gold-bright leading-none">✓</div>
-              <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Fixed-Price Contracts</div>
+              <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Fair Price Contracts</div>
             </div>
             <div className="border border-navy/8 bg-off-white p-4 text-center">
               <div className="font-display text-[22px] font-black text-gold-bright leading-none">✓</div>

@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile-only: loosen tight letter-spacing on display headings to prevent overlap */
+@media (max-width: 767px) {
+  .tracking-tightest {
+    letter-spacing: -0.5px !important;
+  }
+  .tracking-tighter {
+    letter-spacing: 0px !important;
+  }
+  .tracking-\[-4px\] {
+    letter-spacing: -1px !important;
+  }
+  .lg\:tracking-\[-10px\] {
+    letter-spacing: -1px !important;
+  }
+}
+
 :root {
   --navy: #0d1f3c;
   --navy-light: #152848;
