@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Get a Free Renovation Quote | Konntey Home & Renovations Melbourne",
+  title: "Get a Free Renovation Quote in Melbourne",
   description:
-    "Request a free, no-obligation renovation quote from Konntey Home & Renovations. Kitchen renovations, bathroom renovations, home extensions, decks & painting across Melbourne. Professional builders — call 0493 191 798.",
+    "Request a free, no-obligation renovation quote from Konntey. We'll visit your property, understand your vision, and give you an honest price within 24 hours.",
   alternates: {
     canonical: "/quote",
   },
   openGraph: {
-    title: "Get a Free Renovation Quote | Konntey Home & Renovations",
+    title: "Get a Free Renovation Quote in Melbourne | Konntey H&R",
     description:
-      "Request a free renovation quote. Professional builders in Melbourne servicing Tarneit, Truganina, Werribee & all western suburbs.",
+      "Request a free, no-obligation renovation quote from Konntey. We'll visit your property, understand your vision, and give you an honest price within 24 hours.",
     url: "https://www.konnteyhomerenovations.com.au/quote",
     siteName: "Konntey Home & Renovations",
     locale: "en_AU",

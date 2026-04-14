@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Konntey Home & Renovations",
+  title: "Terms & Conditions | Konntey Home & Renovations",
   description:
-    "Terms of Service for Konntey Home & Renovations. Conditions governing use of our website and services.",
+    "Read the terms and conditions for Konntey Home & Renovations, Melbourne VIC.",
 };
 
 export default function TermsPage() {

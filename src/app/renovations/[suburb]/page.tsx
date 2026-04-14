@@ -37,14 +37,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!suburb) return {};
 
   return {
-    title: `Renovation Company ${suburb.name} | Kitchen & Bathroom Renovations ${suburb.name} | Konntey`,
-    description: `Looking for a professional renovation company in ${suburb.name}? Konntey Home & Renovations offers affordable kitchen renovations, bathroom renovations, home extensions, deck building & interior painting in ${suburb.name} and nearby ${suburb.nearby.slice(0, 3).join(", ")}. Free quotes — call today.`,
+    title: `Renovation Builders in ${suburb.name} Melbourne`,
+    description: `Looking for professional renovation builders in ${suburb.name}? Konntey delivers home extensions, kitchen & bathroom renovations, and new builds across ${suburb.name} and surrounding Melbourne suburbs. Get a free quote today.`,
     alternates: {
       canonical: `/renovations/${slug}`,
     },
     openGraph: {
-      title: `Renovation Company ${suburb.name} | Konntey Home & Renovations`,
-      description: `Professional renovation builders in ${suburb.name}. Kitchen & bathroom renovations, home extensions, decks & painting. Free quotes for ${suburb.name} and ${suburb.nearby.slice(0, 2).join(", ")}.`,
+      title: `Renovation Builders in ${suburb.name} Melbourne | Konntey H&R`,
+      description: `Looking for professional renovation builders in ${suburb.name}? Konntey delivers home extensions, kitchen & bathroom renovations, and new builds across ${suburb.name} and surrounding Melbourne suburbs. Get a free quote today.`,
       url: `https://www.konnteyhomerenovations.com.au/renovations/${slug}`,
       siteName: "Konntey Home & Renovations",
       locale: "en_AU",

@@ -22,10 +22,12 @@ const googleSiteVerification =
   process.env.GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
-  title:
-    "Konntey Home & Renovations | Professional Renovation Builders Melbourne | Kitchen, Bathroom & Home Extensions",
+  title: {
+    default: "Home Extensions & Renovations Melbourne | Konntey H&R",
+    template: "%s | Konntey H&R",
+  },
   description:
-    "Konntey Home & Renovations is a professional renovation company in Melbourne. Affordable kitchen renovations, bathroom renovations, home extensions, deck building & interior painting across Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook, Wyndham Vale & all western Melbourne suburbs. Free quotes — call today.",
+    "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship. Get a free quote today.",
   keywords: [
     "home renovations Melbourne",
     "renovation company Melbourne",
@@ -75,10 +77,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title:
-      "Konntey Home & Renovations | Professional Renovation Builders Melbourne",
+    title: "Home Extensions & Renovations Melbourne | Konntey H&R",
     description:
-      "Affordable kitchen & bathroom renovations, home extensions, deck building & interior finishing across Melbourne's west and southeast. Family-run, professional & insured. Free on-site quotes.",
+      "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship. Get a free quote today.",
     type: "website",
     locale: "en_AU",
     url: "https://www.konnteyhomerenovations.com.au",
@@ -94,9 +95,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Konntey Home & Renovations | Professional Renovation Builders Melbourne",
+    title: "Home Extensions & Renovations Melbourne | Konntey H&R",
     description:
-      "Professional renovation builders in Melbourne. Kitchen & bathroom renovations, home extensions, decks. Fully insured. Free quotes.",
+      "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship. Get a free quote today.",
     images: ["/images/hero_main.png"],
   },
   robots: {
@@ -125,17 +126,16 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "@id": "https://www.konnteyhomerenovations.com.au/#business",
   name: "Konntey Home & Renovations",
-  alternateName: "Konntey H&R",
-  description:
-    "Professional renovation company in Melbourne specializing in affordable kitchen renovations, bathroom renovations, home extensions, deck building and interior painting across Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook and all western Melbourne suburbs.",
+  alternateName: ["Konntey H&R", "Konntey Homes and Renovations"],
   url: "https://www.konnteyhomerenovations.com.au",
-  logo: "https://www.konnteyhomerenovations.com.au/images/logo.png",
-  image: "https://www.konnteyhomerenovations.com.au/images/hero_main.png",
+  logo: "https://www.konnteyhomerenovations.com.au/logo.png",
+  image: "https://www.konnteyhomerenovations.com.au/logo.png",
+  description:
+    "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship.",
   telephone: "+61493191798",
   email: "info@konnteyhomerenovations.com.au",
-  taxID: "64 684 703 972",
+  abn: "64 684 703 972",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Melbourne",
@@ -147,27 +147,6 @@ const localBusinessSchema = {
     latitude: -37.8136,
     longitude: 144.9631,
   },
-  areaServed: [
-    { "@type": "City", name: "Melbourne" },
-    { "@type": "City", name: "Tarneit" },
-    { "@type": "City", name: "Truganina" },
-    { "@type": "City", name: "Werribee" },
-    { "@type": "City", name: "Hoppers Crossing" },
-    { "@type": "City", name: "Point Cook" },
-    { "@type": "City", name: "Wyndham Vale" },
-    { "@type": "City", name: "Manor Lakes" },
-    { "@type": "City", name: "Williams Landing" },
-    { "@type": "City", name: "Dandenong" },
-    { "@type": "City", name: "Cranbourne" },
-    { "@type": "City", name: "Frankston" },
-    { "@type": "City", name: "Narre Warren" },
-    { "@type": "City", name: "Berwick" },
-    { "@type": "City", name: "Springvale" },
-    { "@type": "City", name: "Pakenham" },
-    { "@type": "City", name: "Officer" },
-    { "@type": "City", name: "Clyde" },
-    { "@type": "City", name: "Melton" },
-  ],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
@@ -178,63 +157,30 @@ const localBusinessSchema = {
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: "Saturday",
-      opens: "08:00",
+      opens: "09:00",
       closes: "13:00",
     },
   ],
-  priceRange: "$$",
+  areaServed: {
+    "@type": "State",
+    name: "Victoria",
+  },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Renovation Services",
     itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Kitchen Renovation Melbourne",
-          description:
-            "Affordable kitchen renovation services across Melbourne including Tarneit, Truganina, Werribee and all western suburbs.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Bathroom Renovation Melbourne",
-          description:
-            "Complete bathroom renovation and remodeling services. Small bathroom renovation Melbourne cost-effective solutions.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Home Extension Melbourne",
-          description:
-            "Home extension builders Melbourne suburbs. New builds and extensions in Point Cook, Hoppers Crossing, Wyndham Vale.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Deck & Pergola Installation Melbourne",
-          description:
-            "Deck builder Melbourne southeast. Premium timber deck and pergola installation across all Melbourne suburbs.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Interior Painting Melbourne",
-          description:
-            "Interior painter Melbourne. Professional painting and interior finishing for residential renovations.",
-        },
-      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Home Extensions & New Builds" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kitchen Renovations Melbourne" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bathroom Renovations Melbourne" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deck & Pergola Installation" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interior Painting & Finishing" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Vastu & Feng Shui Consultation" } },
     ],
   },
-  sameAs: ["https://www.konnteyhomerenovations.com.au"],
+  sameAs: [
+    "https://www.facebook.com/konnteyhomerenovations",
+    "https://www.instagram.com/konnteyhomerenovations",
+  ],
 };
 
 const faqSchema = {
