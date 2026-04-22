@@ -88,14 +88,14 @@ export default function ScanPage() {
         {/* CTA Section */}
         <div className="flex flex-col gap-4 mt-2">
           <a
-            href="tel:XXXXXXXXXX"
+            href="tel:0493191798"
             className="w-full py-4 px-6 bg-gold hover:bg-gold-bright text-navy font-bold text-center rounded-xl transition-colors shadow-lg text-lg flex items-center justify-center gap-2"
           >
             <PhoneCall className="w-5 h-5" />
             Get a Free Quote
           </a>
           <a
-            href="mailto:contact@konntey.com.au"
+            href="mailto:info@konnteyhomerenovations.com.au"
             className="w-full py-4 px-6 bg-navy-light border border-white/10 hover:border-white/20 text-white font-bold text-center rounded-xl transition-colors text-lg flex items-center justify-center gap-2"
           >
             <Mail className="w-5 h-5" />
