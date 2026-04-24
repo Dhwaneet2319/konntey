@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const COMBINED_IMAGE = "/images/before-after.png";
+const COMBINED_IMAGE = "/images/before-after.webp";
 
 export default function BeforeAfterSlider() {
   const [sliderPosition, setSliderPosition] = useState(50);

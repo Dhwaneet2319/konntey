@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     siteName: "Konntey Home & Renovations",
     images: [
       {
-        url: "/images/hero_main.png",
+        url: "/images/hero_main.webp",
         width: 1200,
         height: 630,
         alt: "Konntey Home & Renovations — Professional renovation builders in Melbourne",
@@ -98,7 +98,7 @@ export const metadata: Metadata = {
     title: "Home Extensions & Renovations Melbourne | Konntey H&R",
     description:
       "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship. Get a free quote today.",
-    images: ["/images/hero_main.png"],
+    images: ["/images/hero_main.webp"],
   },
   robots: {
     index: true,
@@ -306,6 +306,7 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
+        <link rel="preload" href="/images/before-after.webp" as="image" type="image/webp" />
       </head>
       <body className="font-body">
         {children}
