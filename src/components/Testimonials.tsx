@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const promises = [
   {
@@ -21,7 +21,7 @@ export default function Testimonials() {
   return (
     <section className="bg-off-white py-20 sm:py-32 relative">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -37,11 +37,11 @@ export default function Testimonials() {
           <p className="mt-6 max-w-lg font-body text-[16px] leading-[1.8] text-navy/65">
             Konntey is Melbourne&apos;s renovation company built on one simple promise — every client gets the same high standard, every time. Here&apos;s what you can expect when you build with us.
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {promises.map((p, i) => (
-            <motion.div
+            <m.div
               key={p.title}
               initial={{ y: 40, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -59,7 +59,7 @@ export default function Testimonials() {
                 {p.text}
               </p>
               <div className="mt-8 h-[2px] w-12 bg-gold-bright/40" />
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

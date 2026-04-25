@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export default function Careers() {
   return (
     <section id="careers" className="bg-white py-12">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
@@ -41,7 +41,7 @@ export default function Careers() {
               <span className="relative z-10">Get In Touch</span>
             </a>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import CircleArrow from "@/components/CircleArrow";
 
 export default function VastuSection() {
@@ -13,7 +13,7 @@ export default function VastuSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
-        <motion.div
+        <m.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -28,7 +28,7 @@ export default function VastuSection() {
             <span className="text-gold-bright">CONSULTATION</span>
           </h2>
 
-          <motion.div
+          <m.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
@@ -36,7 +36,7 @@ export default function VastuSection() {
             className="mt-6 h-[2px] w-24 origin-left bg-navy/20"
           />
 
-          <motion.p
+          <m.p
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -49,9 +49,9 @@ export default function VastuSection() {
             new home or a full renovation, we can incorporate these principles
             from the ground up — so your space doesn&apos;t just look right, it
             feels right.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -65,8 +65,8 @@ export default function VastuSection() {
               <span>Discuss Your Project</span>
               <CircleArrow className="transition-transform duration-300 group-hover:translate-x-2" />
             </a>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );

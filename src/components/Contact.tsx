@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
 
@@ -74,7 +74,7 @@ export default function Contact() {
       <div className="grain-overlay" />
       
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-16 sm:px-6 lg:px-8 lg:py-32">
-        <motion.div
+        <m.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
@@ -91,7 +91,7 @@ export default function Contact() {
           </div>
           
           <ContactForm />
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

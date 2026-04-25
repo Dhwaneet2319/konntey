@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -27,7 +27,7 @@ export default function QuotePage() {
   return (
     <div className="min-h-screen bg-navy text-white">
       {/* Simple nav header */}
-      <motion.header
+      <m.header
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
@@ -50,10 +50,10 @@ export default function QuotePage() {
             <span>Back to Home</span>
           </Link>
         </div>
-      </motion.header>
+      </m.header>
 
       <div className="mx-auto max-w-3xl px-4 pt-[100px] pb-16 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
@@ -65,10 +65,10 @@ export default function QuotePage() {
             Tell us a little about your project and we&apos;ll get back to you
             with the next steps.
           </p>
-        </motion.div>
+        </m.div>
 
         {submitted ? (
-          <motion.div
+          <m.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -88,9 +88,9 @@ export default function QuotePage() {
             >
               Back to Home
             </Link>
-          </motion.div>
+          </m.div>
         ) : (
-          <motion.form
+          <m.form
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.65, delay: 0.15, ease: "easeOut" }}
@@ -147,7 +147,7 @@ export default function QuotePage() {
             >
               Submit
             </button>
-          </motion.form>
+          </m.form>
         )}
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Clock } from "lucide-react";
 import StarBorder from "./StarBorder";
@@ -26,7 +26,7 @@ export default function Footer() {
     <footer className="border-t border-white/10 bg-navy-light relative text-white">
       <AnimatePresence>
         {toast && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -36,12 +36,12 @@ export default function Footer() {
             <span className="font-display text-[13px] font-bold uppercase tracking-button text-gold-bright">
               Socials coming soon — stay tuned!
             </span>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       <div className="mx-auto max-w-[1600px] px-4 pt-12 pb-4 sm:px-6 lg:px-8 overflow-hidden">
-        <motion.h2
+        <m.h2
           initial={{ y: "100%" }}
           whileInView={{ y: 0 }}
           viewport={{ once: true }}
@@ -49,7 +49,7 @@ export default function Footer() {
           className="font-display text-[clamp(5rem,21vw,18rem)] font-black uppercase leading-[0.8] tracking-[-4px] lg:tracking-[-10px] text-gold-bright mb-12 ml-[-0.04em]"
         >
           KONNTEY
-        </motion.h2>
+        </m.h2>
 
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ShieldCheck, Handshake, Clock, Hammer } from "lucide-react";
 
 const values = [
@@ -34,7 +34,7 @@ export default function About() {
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-end">
           <div className="max-w-2xl space-y-8">
-            <motion.div
+            <m.div
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -53,9 +53,9 @@ export default function About() {
                 BACKED BY{" "}
                 <span className="text-gold-bright">TRUST.</span>
               </h2>
-            </motion.div>
+            </m.div>
 
-            <motion.p
+            <m.p
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -67,14 +67,14 @@ export default function About() {
               top-tier trade expertise, transparent pricing, and meticulous care to every project — 
               from bathroom renovations to full home transformations across western 
               Melbourne. We build spaces meant to be lived in and loved.
-            </motion.p>
+            </m.p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:pt-12 relative">
             {values.map((v, index) => {
               const Icon = v.icon;
               return (
-                <motion.div
+                <m.div
                   key={v.name}
                   initial={{ y: 60, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
@@ -99,7 +99,7 @@ export default function About() {
                   <p className="mt-4 font-body text-[15px] leading-body text-navy/60 transition-colors duration-300 group-hover:text-navy/80">
                     {v.desc}
                   </p>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

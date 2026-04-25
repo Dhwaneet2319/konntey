@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const COMBINED_IMAGE = "/images/before-after.webp";
@@ -30,7 +30,7 @@ export default function BeforeAfterSlider() {
   return (
     <section className="bg-off-white py-20 text-navy sm:py-32">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -47,9 +47,9 @@ export default function BeforeAfterSlider() {
             Slide to reveal the difference between an outdated space and a premium Konntey execution. 
             We turn potential into reality.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -119,7 +119,7 @@ export default function BeforeAfterSlider() {
             <div className="corner-cut corner-cut-light-tl z-30" />
             <div className="corner-cut corner-cut-light-br z-30" />
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

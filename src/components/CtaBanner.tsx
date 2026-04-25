@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 export default function CtaBanner() {
@@ -14,7 +14,7 @@ export default function CtaBanner() {
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-8 text-center lg:flex-row lg:justify-between lg:text-left">
-          <motion.div
+          <m.div
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -28,9 +28,9 @@ export default function CtaBanner() {
               Get a free, no-obligation quote within 24 hours. We&apos;ll come to
               you, understand your vision, and give you an honest price.
             </p>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -57,7 +57,7 @@ export default function CtaBanner() {
               </svg>
               0493 191 798
             </a>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

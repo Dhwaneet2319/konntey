@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Ticker from "@/components/Ticker";
@@ -13,13 +13,13 @@ function MaskTitle({
 }) {
   return (
     <div className="relative overflow-hidden">
-      <motion.div
+      <m.div
         initial={{ y: "110%" }}
         animate={{ y: "0%" }}
         transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
       >
         {children}
-      </motion.div>
+      </m.div>
     </div>
   );
 }
@@ -38,7 +38,7 @@ export default function Hero() {
               <MaskTitle delay={0.1}>
                 <span className="relative inline-block text-gold-bright">
                   HOME.
-                  <motion.span
+                  <m.span
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
@@ -50,7 +50,7 @@ export default function Hero() {
               <MaskTitle delay={0.3}>IT RIGHT.</MaskTitle>
             </h1>
 
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
@@ -59,9 +59,9 @@ export default function Hero() {
               Professional renovation builders in Melbourne delivering affordable kitchen renovations, 
               bathroom renovations, home extensions & deck building. Quality craftsmanship servicing 
               Melbourne and surrounding suburbs.
-            </motion.p>
+            </m.p>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.6 }}
@@ -82,20 +82,20 @@ export default function Hero() {
                   <span>Ready?</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
                 </span>
               </a>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.6 }}
               className="mt-12 md:hidden relative left-1/2 -ml-[50vw] w-[100vw]"
             >
               <Ticker text="Quality Work ◆ On Time ◆ Fair Pricing ◆ Melbourne Based ◆ Family Run ◆" />
-            </motion.div>
+            </m.div>
           </div>
 
           <div className="relative mt-8 lg:col-span-7 xl:col-span-6 lg:mt-0 xl:mt-12">
-            <motion.div
+            <m.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -121,7 +121,7 @@ export default function Hero() {
                   Melbourne&apos;s Own
                 </span>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

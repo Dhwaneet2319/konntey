@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import MotionProvider from "@/components/MotionProvider";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -309,7 +310,9 @@ export default function RootLayout({
         <link rel="preload" href="/images/before-after.webp" as="image" type="image/webp" />
       </head>
       <body className="font-body">
-        {children}
+        <MotionProvider>
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

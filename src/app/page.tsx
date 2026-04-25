@@ -6,7 +6,6 @@ import About from "@/components/About";
 import Careers from "@/components/Careers";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import Preloader from "@/components/Preloader";
 import StatsCounter from "@/components/StatsCounter";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import ProjectGallery from "@/components/ProjectGallery";
@@ -61,7 +60,6 @@ const remainingServices = [
 export default function HomePage() {
   return (
     <div className="bg-white text-navy font-body selection:bg-gold-bright selection:text-navy hide-scrollbar">
-      <Preloader />
       <NavBar />
       <WhatsAppButton />
 

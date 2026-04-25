@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import CircleArrow from "@/components/CircleArrow";
 
@@ -48,7 +48,7 @@ export default function ServiceBlock({
               imageLeft ? "lg:order-1" : "lg:order-2"
             }`}
           >
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -77,7 +77,7 @@ export default function ServiceBlock({
                   }`}
                 />
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           <div
@@ -85,7 +85,7 @@ export default function ServiceBlock({
               imageLeft ? "lg:order-2 lg:pl-12" : "lg:order-1 lg:pr-12"
             }`}
           >
-            <motion.div
+            <m.div
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -107,16 +107,16 @@ export default function ServiceBlock({
                   </span>
                 ))}
               </h2>
-              <motion.div
+              <m.div
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="h-[2px] w-24 origin-left bg-navy/20"
               />
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -138,7 +138,7 @@ export default function ServiceBlock({
                   <CircleArrow className="transition-transform duration-300 group-hover:translate-x-2" />
                 </a>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

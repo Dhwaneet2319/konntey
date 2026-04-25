@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const steps = [
   {
@@ -33,7 +33,7 @@ export default function ProcessStrip() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -46,13 +46,13 @@ export default function ProcessStrip() {
           <h2 className="mt-4 font-display text-[clamp(3.5rem,6vw,5.5rem)] font-black uppercase leading-display tracking-tightest text-navy">
             THE KONNTEY <br className="hidden sm:block" /> WAY
           </h2>
-        </motion.div>
+        </m.div>
 
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 relative group">
           <div className="hidden lg:block absolute top-[28px] left-[10%] right-[10%] h-[1px] bg-navy/10 z-0" />
           
           {steps.map((step, index) => (
-            <motion.div
+            <m.div
               key={step.num}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -69,7 +69,7 @@ export default function ProcessStrip() {
               <p className="mt-4 font-body text-[15px] leading-relaxed text-navy/65 max-w-sm">
                 {step.desc}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

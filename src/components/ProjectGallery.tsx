@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const categories = [
@@ -23,7 +23,7 @@ export default function ProjectGallery() {
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-          <motion.div
+          <m.div
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -39,7 +39,7 @@ export default function ProjectGallery() {
               STANDARD.
             </h2>
 
-            <motion.div
+            <m.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -73,11 +73,11 @@ export default function ProjectGallery() {
                 <ArrowRight size={16} strokeWidth={2.25} className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </div>
-          </motion.div>
+          </m.div>
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {categories.map((cat, i) => (
-              <motion.div
+              <m.div
                 key={cat.label}
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -100,7 +100,7 @@ export default function ProjectGallery() {
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold-bright" />
                   Now Booking
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

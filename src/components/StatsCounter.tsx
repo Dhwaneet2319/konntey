@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 
 function AnimatedCounter({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -43,7 +43,7 @@ export default function StatsCounter() {
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
           {stats.map((stat, index) => (
-            <motion.div
+            <m.div
               key={stat.label}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +58,7 @@ export default function StatsCounter() {
               <div className="mt-4 font-body text-[14px] font-semibold uppercase tracking-kicker text-navy/60">
                 {stat.label}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

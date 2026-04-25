@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
@@ -30,7 +30,7 @@ const faqs = [
 function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false);
   return (
-    <motion.div
+    <m.div
       initial={{ y: 30, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
@@ -44,17 +44,17 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
         <span className="font-display text-[18px] sm:text-[22px] font-bold uppercase tracking-tight text-navy pr-4">
           {q}
         </span>
-        <motion.div
+        <m.div
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.3 }}
           className="shrink-0 text-gold-bright"
         >
           <ChevronDown size={24} />
-        </motion.div>
+        </m.div>
       </button>
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -64,10 +64,10 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             <p className="pb-6 font-body text-[16px] leading-[1.8] text-navy/65 max-w-3xl">
               {a}
             </p>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -77,7 +77,7 @@ export default function FAQ() {
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <motion.div
+            <m.div
               initial={{ y: 40, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -92,7 +92,7 @@ export default function FAQ() {
               <p className="mt-6 font-body text-[16px] leading-[1.8] text-navy/65">
                 Everything you need to know about renovation costs, timelines, and working with Konntey in Melbourne.
               </p>
-            </motion.div>
+            </m.div>
           </div>
           <div className="lg:col-span-8">
             {faqs.map((faq, i) => (
