@@ -113,7 +113,7 @@ export default function BeforeAfterSlider({
               }
             >
               {!isCombinedFallback && afterSrc && (
-                <Image src={afterSrc} alt={afterAlt} fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 1024px" />
+                <Image src={afterSrc} alt={afterAlt} fill className="object-cover object-center pointer-events-none" sizes="(max-width: 1024px) 100vw, 1024px" draggable={false} />
               )}
               <div className="absolute bottom-6 right-6 z-10 border border-gold-bright bg-navy px-4 py-2 text-[12px] font-black uppercase tracking-button text-gold-bright">
                 AFTER
@@ -133,7 +133,7 @@ export default function BeforeAfterSlider({
               }}
             >
               {!isCombinedFallback && beforeSrc && (
-                <Image src={beforeSrc} alt={beforeAlt} fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 1024px" />
+                <Image src={beforeSrc} alt={beforeAlt} fill className="object-cover object-center pointer-events-none" sizes="(max-width: 1024px) 100vw, 1024px" draggable={false} />
               )}
               <div className="absolute bottom-6 left-6 z-10 border border-white/50 bg-black/50 px-4 py-2 text-[12px] font-black uppercase tracking-button text-white backdrop-blur-md">
                 BEFORE
