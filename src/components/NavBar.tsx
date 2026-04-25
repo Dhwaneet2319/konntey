@@ -14,7 +14,7 @@ const navLinks = [
     children: [
       { label: "Extensions & New Builds", href: "/services/extensions" },
       { label: "Kitchen Renovations", href: "/services/kitchens" },
-      { label: "Bathroom Renovations", href: "/services/bathrooms" },
+      { label: "Bathroom Renovations", href: "/bathroom-renovations-melbourne" },
       { label: "Decks & Pergolas", href: "/services/outdoor" },
       { label: "Interior Finishing", href: "/services/interior" },
       { label: "Vastu & Feng Shui", href: "/services/vastu" },
@@ -31,11 +31,13 @@ function smoothScrollTo(hash: string) {
   el?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-export default function NavBar() {
+export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+
+  const isDark = theme === "dark" && !scrolled && !mobileOpen;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -78,13 +80,13 @@ export default function NavBar() {
               alt="Konntey Home & Renovations logo"
               width={56}
               height={56}
-              className={`h-11 w-auto sm:h-14 transition-all duration-300 group-hover:scale-105 ${mobileOpen ? "brightness-0 invert" : ""}`}
+              className={`h-11 w-auto sm:h-14 transition-all duration-300 group-hover:scale-105 ${mobileOpen || isDark ? "brightness-0 invert" : ""}`}
             />
             <div className="flex flex-col leading-none">
               <m.span
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className={`font-display text-[26px] sm:text-[32px] font-black tracking-tighter transition-colors duration-300 ${mobileOpen ? "text-white" : "text-navy"}`}
+                className={`font-display text-[26px] sm:text-[32px] font-black tracking-tighter transition-colors duration-300 ${mobileOpen || isDark ? "text-white" : "text-navy"}`}
               >
                 KONNTEY
               </m.span>
@@ -107,7 +109,7 @@ export default function NavBar() {
                     <Link
                       href={item.href}
                       onClick={(e) => handleLinkClick(e, item.href)}
-                      className="group/btn relative font-body text-[13px] font-medium tracking-[1px] text-navy/80 uppercase flex items-center gap-1.5"
+                      className={`group/btn relative font-body text-[13px] font-medium tracking-[1px] uppercase flex items-center gap-1.5 transition-colors duration-300 ${isDark ? "text-white/80" : "text-navy/80"}`}
                     >
                       <span className="relative z-10 transition-colors duration-300 group-hover/btn:text-gold-bright">
                         {item.label}
@@ -140,7 +142,7 @@ export default function NavBar() {
                   <Link
                     href={item.href}
                     onClick={(e) => handleLinkClick(e, item.href)}
-                    className="group/btn relative font-body text-[13px] font-medium tracking-[1px] text-navy/80 uppercase"
+                    className={`group/btn relative font-body text-[13px] font-medium tracking-[1px] uppercase transition-colors duration-300 ${isDark ? "text-white/80" : "text-navy/80"}`}
                   >
                     <span className="relative z-10 transition-colors duration-300 group-hover/btn:text-gold-bright">
                       {item.label}
@@ -172,17 +174,17 @@ export default function NavBar() {
               <m.span
                 animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className={`block h-[2px] w-8 ${mobileOpen ? "bg-white" : "bg-navy"}`}
+                className={`block h-[2px] w-8 ${mobileOpen || isDark ? "bg-white" : "bg-navy"}`}
               />
               <m.span
                 animate={mobileOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
                 transition={{ duration: 0.2 }}
-                className={`block h-[2px] w-8 ${mobileOpen ? "bg-white" : "bg-navy"}`}
+                className={`block h-[2px] w-8 ${mobileOpen || isDark ? "bg-white" : "bg-navy"}`}
               />
               <m.span
                 animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className={`block h-[2px] w-8 ${mobileOpen ? "bg-white" : "bg-navy"}`}
+                className={`block h-[2px] w-8 ${mobileOpen || isDark ? "bg-white" : "bg-navy"}`}
               />
             </div>
           </button>
