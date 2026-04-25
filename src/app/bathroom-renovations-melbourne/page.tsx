@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Script from "next/script";
 import { Phone } from "lucide-react";
+import Image from "next/image";
 
 const bathroomTypes = [
   { title: "Main Bathroom", desc: "Full gut and rebuild, new layout if needed" },
@@ -97,6 +98,7 @@ export default function BathroomRenovationsPage() {
       <main className="flex-grow">
         {/* Hero */}
         <section className="relative pt-[150px] pb-20 bg-navy text-white overflow-hidden">
+          <Image src="/images/bathroom/hero.webp" alt="Western Melbourne Bathroom Renovation" fill priority sizes="100vw" className="object-cover object-center opacity-40 mix-blend-overlay" />
           <div className="grain-overlay" />
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 relative z-10">
             <m.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
@@ -153,6 +155,28 @@ export default function BathroomRenovationsPage() {
           </div>
         </section>
 
+        {/* Project Gallery */}
+        <section className="py-20 sm:py-28 bg-white">
+          <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">OUR WORK</div>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Project Gallery</h2>
+            </m.div>
+            <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
+              {[
+                { src: "/images/bathroom/shower.webp", alt: "Modern walk-in shower" },
+                { src: "/images/bathroom/vanity.webp", alt: "Custom bathroom vanity" },
+                { src: "/images/bathroom/small-ensuite.webp", alt: "Small ensuite renovation" },
+                { src: "/images/bathroom/hero.webp", alt: "Wide shot bathroom renovation" }
+              ].map((img, i) => (
+                <m.div key={img.src} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="relative aspect-square overflow-hidden bg-navy/5">
+                  <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
+                </m.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Process */}
         <section className="py-20 sm:py-28 bg-navy text-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
@@ -160,20 +184,30 @@ export default function BathroomRenovationsPage() {
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">HOW IT WORKS</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Our Renovation Process</h2>
             </m.div>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {processSteps.map((ps, i) => (
-                <m.div key={ps.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-6">
-                  <div className="font-display text-[36px] font-black text-gold-bright leading-none">{ps.step}</div>
-                  <h3 className="mt-3 font-display text-[16px] font-black uppercase tracking-button text-white">{ps.title}</h3>
-                  <p className="mt-2 font-body text-[14px] leading-[1.7] text-white/60">{ps.desc}</p>
-                </m.div>
-              ))}
+            <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:items-start">
+              <div className="grid gap-6 sm:grid-cols-2">
+                {processSteps.map((ps, i) => (
+                  <m.div key={ps.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-6">
+                    <div className="font-display text-[36px] font-black text-gold-bright leading-none">{ps.step}</div>
+                    <h3 className="mt-3 font-display text-[16px] font-black uppercase tracking-button text-white">{ps.title}</h3>
+                    <p className="mt-2 font-body text-[14px] leading-[1.7] text-white/60">{ps.desc}</p>
+                  </m.div>
+                ))}
+              </div>
+              <m.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="relative h-[400px] lg:h-full min-h-[400px] w-full overflow-hidden border border-white/10">
+                <Image src="/images/bathroom/tiler-working.webp" alt="Tiler working on bathroom renovation" fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 50vw" />
+              </m.div>
             </div>
           </div>
         </section>
 
         {/* BeforeAfterSlider */}
-        <BeforeAfterSlider />
+        <BeforeAfterSlider 
+          beforeSrc="/images/bathroom/before.webp"
+          afterSrc="/images/bathroom/after.webp"
+          title="Real Transformation"
+          subtitle="See the difference a professional western Melbourne renovation makes. Drag the slider to compare the outdated original with the premium Konntey finish."
+        />
 
         {/* Compliance */}
         <section className="py-20 sm:py-28 bg-white">
