@@ -2,14 +2,15 @@
 
 import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const categories = [
-  { label: "Extensions & New Builds", icon: "01" },
-  { label: "Vastu & Feng Shui", icon: "02" },
-  { label: "Kitchen Renovations", icon: "03" },
-  { label: "Bathroom Renovations", icon: "04" },
-  { label: "Decks & Outdoor Living", icon: "05" },
-  { label: "Interior Finishing", icon: "06" },
+  { label: "Extensions & New Builds", icon: "01", href: "/services/extensions" },
+  { label: "Vastu & Feng Shui", icon: "02", href: "/services/vastu" },
+  { label: "Kitchen Renovations", icon: "03", href: "/kitchen-renovations-melbourne" },
+  { label: "Bathroom Renovations", icon: "04", href: "/bathroom-renovations-melbourne" },
+  { label: "Decks & Outdoor Living", icon: "05", href: "/services/outdoor" },
+  { label: "Interior Finishing", icon: "06", href: "/interior-painting-melbourne" },
 ];
 
 export default function ProjectGallery() {
@@ -89,14 +90,15 @@ export default function ProjectGallery() {
                 }}
                 className="group relative border border-navy/[0.08] bg-white p-6 transition-all duration-500 hover:border-gold-bright/30 hover:shadow-sm sm:p-8"
               >
+                <Link prefetch={true} href={cat.href} className="absolute inset-0 z-20" aria-label={cat.label} />
                 <span className="absolute top-0 left-0 h-[2px] w-0 bg-gold-bright transition-all duration-500 ease-out group-hover:w-full" />
-                <div className="font-display text-[clamp(2rem,4vw,3rem)] font-black leading-none text-gold-bright/20 transition-colors duration-500 group-hover:text-gold-bright/40">
+                <div className="relative z-10 font-display text-[clamp(2rem,4vw,3rem)] font-black leading-none text-gold-bright/20 transition-colors duration-500 group-hover:text-gold-bright/40">
                   {cat.icon}
                 </div>
-                <div className="mt-4 font-display text-[14px] font-black uppercase tracking-button leading-tight text-navy/80 transition-colors duration-300 group-hover:text-navy sm:text-[16px]">
+                <div className="relative z-10 mt-4 font-display text-[14px] font-black uppercase tracking-button leading-tight text-navy/80 transition-colors duration-300 group-hover:text-navy sm:text-[16px]">
                   {cat.label}
                 </div>
-                <div className="mt-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-kicker text-gold-bright">
+                <div className="relative z-10 mt-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-kicker text-gold-bright">
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold-bright" />
                   Now Booking
                 </div>
