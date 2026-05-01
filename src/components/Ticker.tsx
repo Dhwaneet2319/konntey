@@ -1,5 +1,3 @@
-"use client";
-
 interface TickerProps {
   dark?: boolean;
   text: string;

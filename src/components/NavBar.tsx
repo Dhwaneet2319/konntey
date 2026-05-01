@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,7 +13,7 @@ const navLinks = [
     href: "/#services",
     children: [
       { label: "Extensions & New Builds", href: "/services/extensions" },
-      { label: "Kitchen Renovations", href: "/services/kitchens" },
+      { label: "Kitchen Renovations", href: "/kitchen-renovations-melbourne" },
       { label: "Bathroom Renovations", href: "/bathroom-renovations-melbourne" },
       { label: "Decks & Pergolas", href: "/services/outdoor" },
       { label: "Interior Finishing", href: "/services/interior" },
@@ -35,13 +35,24 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const scrollTicking = useRef(false);
   const pathname = usePathname();
 
   const isDark = theme === "dark" && !scrolled && !mobileOpen;
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      if (scrollTicking.current) return;
+
+      scrollTicking.current = true;
+      window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 50);
+        scrollTicking.current = false;
+      });
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -127,6 +138,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
                           <Link
                             key={child.label}
                             href={child.href}
+                            prefetch={false}
                             className="font-body text-[12px] font-semibold uppercase tracking-[1px] text-navy/70 p-3 hover:bg-off-white hover:text-gold-bright transition-colors text-left flex items-center justify-between group/link"
                           >
                             <span>{child.label}</span>
@@ -241,6 +253,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
                                 <Link
                                   key={child.label}
                                   href={child.href}
+                                  prefetch={false}
                                   onClick={() => setMobileOpen(false)}
                                   className="font-display text-[18px] font-bold uppercase tracking-button text-white/70 hover:text-gold-bright"
                                 >

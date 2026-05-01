@@ -307,7 +307,6 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
-        <link rel="preload" href="/images/before-after.webp" as="image" type="image/webp" />
       </head>
       <body className="font-body">
         <MotionProvider>

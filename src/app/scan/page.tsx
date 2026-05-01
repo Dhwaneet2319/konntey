@@ -115,7 +115,7 @@ export default function ScanLandingPage() {
               Get a Free Quote
             </a>
             <Link 
-              prefetch={true}
+              prefetch={false}
               href="/#contact" 
               className="w-full border-2 border-white/20 bg-transparent text-white py-4 font-display text-[16px] font-black uppercase tracking-button text-center rounded-lg hover:border-gold-bright hover:text-gold-bright transition-colors"
             >

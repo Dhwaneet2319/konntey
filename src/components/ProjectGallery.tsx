@@ -90,7 +90,7 @@ export default function ProjectGallery() {
                 }}
                 className="group relative border border-navy/[0.08] bg-white p-6 transition-all duration-500 hover:border-gold-bright/30 hover:shadow-sm sm:p-8"
               >
-                <Link prefetch={true} href={cat.href} className="absolute inset-0 z-20" aria-label={cat.label} />
+                <Link prefetch={false} href={cat.href} className="absolute inset-0 z-20" aria-label={cat.label} />
                 <span className="absolute top-0 left-0 h-[2px] w-0 bg-gold-bright transition-all duration-500 ease-out group-hover:w-full" />
                 <div className="relative z-10 font-display text-[clamp(2rem,4vw,3rem)] font-black leading-none text-gold-bright/20 transition-colors duration-500 group-hover:text-gold-bright/40">
                   {cat.icon}
