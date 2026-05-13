@@ -2,7 +2,6 @@
 
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -11,82 +10,70 @@ import Script from "next/script";
 import { Phone } from "lucide-react";
 import Image from "next/image";
 
-const kitchenTypes = [
-  { title: "Full kitchen renovation", desc: "Complete gut and rebuild, new layout, all new fixtures" },
-  { title: "Cabinet & benchtop refresh", desc: "New doors, benchtop, and splashback over existing structure" },
-  { title: "Open-plan conversion", desc: "Remove walls, extend into living/dining, island bench addition" },
-  { title: "Butler's pantry addition", desc: "Secondary prep space, custom cabinetry, additional sink" },
-  { title: "Small kitchen renovation", desc: "Space-maximising layouts for townhouses and units common in Point Cook and Wyndham Vale estates" },
+const extensionTypes = [
+  { title: "Ground Floor Extension", desc: "Expand your living space outward — open-plan living, extra bedrooms, or larger kitchen areas" },
+  { title: "Second Storey Addition", desc: "Build up when you can't build out. Full second storey additions with minimal disruption" },
+  { title: "Granny Flat / DPU", desc: "Dependent person's unit or rental income — fully self-contained, council-approved builds" },
+  { title: "Knockdown Rebuild", desc: "Start fresh on your existing block with a brand new custom-designed home" },
+  { title: "Garage Conversion", desc: "Transform an underused garage into a functional living space, home office, or studio" },
 ];
 
 const processSteps = [
-  { step: "01", title: "Free consultation", desc: "Site visit, measure up, discuss layout and brief" },
-  { step: "02", title: "Design & quote", desc: "Itemised fixed-price quote with no hidden costs" },
-  { step: "03", title: "Demolition", desc: "Full strip-out of existing cabinetry, benchtops, and appliances" },
-  { step: "04", title: "Structural work", desc: "Wall removal, electrical and plumbing rough-in if required" },
-  { step: "05", title: "Cabinet installation", desc: "Carcasses, doors, drawers, and hardware fitted" },
-  { step: "06", title: "Benchtop & splashback", desc: "Stone, laminate, or tile to your selection" },
-  { step: "07", title: "Appliance fit-off", desc: "Oven, cooktop, rangehood, dishwasher connected" },
-  { step: "08", title: "Finishing & handover", desc: "Full clean, walkthrough, and handover" },
+  { step: "01", title: "Free consultation", desc: "Site visit, discuss your vision, assess feasibility" },
+  { step: "02", title: "Design & permits", desc: "Architectural plans, council submissions, and fixed-price quote" },
+  { step: "03", title: "Site preparation", desc: "Demolition if needed, excavation, and foundation work" },
+  { step: "04", title: "Structural frame", desc: "Timber or steel frame erected, roofing installed" },
+  { step: "05", title: "Lock-up stage", desc: "External cladding, windows, doors — weather-tight" },
+  { step: "06", title: "Internal fit-out", desc: "Plumbing, electrical, plastering, flooring, painting" },
+  { step: "07", title: "Finishing & fixtures", desc: "Kitchen, bathroom, cabinetry, and final touches" },
+  { step: "08", title: "Handover & warranty", desc: "Final inspection, compliance certificate, full walkthrough" },
 ];
 
 const pricingRows = [
-  { scope: "Cabinet & benchtop refresh", range: "$15,000 – $25,000" },
-  { scope: "Full kitchen renovation", range: "$25,000 – $45,000" },
-  { scope: "Premium open-plan redesign", range: "$45,000 – $80,000+" },
+  { scope: "Ground floor extension", range: "$1,800 – $3,000/sqm" },
+  { scope: "Second storey addition", range: "$2,500 – $4,500/sqm" },
+  { scope: "Granny flat (60sqm)", range: "$120,000 – $180,000" },
+  { scope: "Knockdown rebuild", range: "$350,000 – $600,000+" },
 ];
 
 const testimonials = [
-  { quote: "Konntey did our kitchen in Hoppers Crossing. New cabinets, stone benchtop, the lot. Finished on time and exactly on budget. Really happy with the result.", author: "David K.", location: "Hoppers Crossing" },
-  { quote: "We had our Tarneit kitchen opened up into the dining room. The team handled the wall removal, new island bench, everything. Smooth process start to finish.", author: "Anika P.", location: "Tarneit" },
-  { quote: "Finally got the kitchen we wanted after years of putting it off. Fixed price meant no stress about blowouts. Would use Konntey again for the bathroom next.", author: "Steve M.", location: "Werribee" },
+  { quote: "Konntey added a second storey to our Tarneit home. They handled all the council approvals and the build was completed on schedule. Our home feels brand new.", author: "Raj P.", location: "Tarneit" },
+  { quote: "We needed more space for our growing family. Konntey extended our ground floor with a new master suite and open-plan living. Couldn't be happier.", author: "Sarah L.", location: "Point Cook" },
+  { quote: "Built a granny flat in our backyard in Werribee. The team managed everything from permits to final handover. Professional and fair pricing.", author: "Tony M.", location: "Werribee" },
 ];
 
 const faqs = [
-  { q: "Do I need a building permit for a kitchen renovation?", a: "Most kitchen renovations — new cabinets, benchtops, splashbacks, and appliance replacements — don't require a building permit. However if you're removing walls, relocating plumbing, or doing electrical work beyond standard connections, a permit may be required. Wyndham City, Maribyrnong, and Brimbank councils each have slightly different thresholds. We assess permit requirements as part of every quote at no extra cost." },
-  { q: "How long does a kitchen renovation take?", a: "A standard kitchen renovation takes 2–3 weeks from demolition to handover. Open-plan conversions involving structural work can take 3–5 weeks. The biggest cause of delays is late fixture or appliance delivery — we recommend locking in all selections before works begin." },
-  { q: "Can I live at home during the renovation?", a: "Yes, most clients stay home during a kitchen renovation. You'll be without a functioning kitchen for 2–3 weeks so we recommend setting up a temporary meal prep area. We keep the site clean and contained daily." },
-  { q: "What's included in your fixed-price quote?", a: "Labour, project management, cabinet supply and installation, benchtop fabrication and installation, splashback tiling, appliance connection, and rubbish removal. Appliances themselves can be supplied by us or by you — we'll confirm at quote stage." },
-  { q: "Do you renovate kitchens in new estates like Tarneit and Point Cook?", a: "Yes. We regularly work in Wyndham Vale, Tarneit, Point Cook, and surrounding Wyndham estates. Builder-grade kitchens from the early 2000s in these areas are now prime for a full upgrade. We understand the standard layouts, plumbing configurations, and Wyndham City Council requirements common in these estates." },
-  { q: "What's the payment schedule?", a: "Staged milestone payments: deposit on contract signing, progress payment after cabinet installation, and final payment on handover. No large upfront lump sums." },
-  { q: "How do I get started?", a: "Request a free quote online or call us. We'll arrange a site visit, take measurements, and provide a fixed-price itemised quote within 48 hours." },
+  { q: "Do I need a building permit for a home extension?", a: "Yes — all home extensions in Victoria require a building permit. Most also require a planning permit depending on your overlay zones, setback requirements, and the scope of work. We handle all permit applications as part of our service — council liaison, documentation, and submissions are included in your fixed-price quote." },
+  { q: "How long does a home extension take?", a: "A standard ground floor extension takes 12–16 weeks from slab to handover. Second storey additions typically run 16–24 weeks. Knockdown rebuilds are 6–9 months. The biggest variable is council permit approval times — Wyndham and Casey councils currently run 8–12 weeks for planning permits." },
+  { q: "Can I live at home during the extension?", a: "For ground floor extensions, yes — most clients stay in the home with appropriate dust and noise management. For second storey additions, you can usually remain during the early stages but may need to relocate for 2–4 weeks during roof removal and structural work. We'll advise on a case-by-case basis." },
+  { q: "How much does a home extension cost per square metre?", a: "Ground floor extensions typically cost $1,800–$3,000/sqm depending on finishes. Second storeys range from $2,500–$4,500/sqm due to additional structural requirements. These are guide prices — every project is quoted individually with transparent line-item pricing." },
+  { q: "Do you handle council approvals?", a: "Yes. We manage the entire permit process including architectural drawings, engineering, energy ratings, and council submissions. We work regularly with Wyndham City, Casey, Hume, and Brimbank councils and understand their specific requirements." },
+  { q: "What's included in your fixed-price quote?", a: "Everything from demolition to handover: structural engineering, council permits, all trades (framing, plumbing, electrical, plastering, tiling, painting), project management, site supervision, and rubbish removal. Fixtures and fittings are selected by you within agreed allowances." },
 ];
 
-export default function KitchenRenovationsPage() {
+export default function HomeExtensionsPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Kitchen Renovations Western Melbourne",
+    name: "Home Extensions Melbourne",
     provider: {
       "@type": "HomeAndConstructionBusiness",
       "@id": "https://www.konnteyhomerenovations.com.au/#organization",
       name: "Konntey Home & Renovations",
       url: "https://www.konnteyhomerenovations.com.au",
       telephone: "+61493191798",
-      priceRange: "$$",
-      areaServed: [
-        { "@type": "City", name: "Tarneit" },
-        { "@type": "City", name: "Point Cook" },
-        { "@type": "City", name: "Werribee" },
-        { "@type": "City", name: "Footscray" },
-        { "@type": "City", name: "Hoppers Crossing" },
-        { "@type": "City", name: "Sunshine" },
-        { "@type": "City", name: "Wyndham Vale" },
-      ],
     },
-    serviceType: "Kitchen Renovation",
+    serviceType: "Home Extension",
     areaServed: { "@type": "City", name: "Melbourne" },
-    description: "Kitchen renovations across Melbourne's western suburbs. BPC registered, fixed-price quotes, full project management. From cabinet refreshes to full open-plan redesigns.",
+    description: "Home extensions across Melbourne. Second storeys, granny flats, knockdown rebuilds. BPC registered, council approvals handled, fixed-price quotes.",
     offers: {
       "@type": "AggregateOffer",
-      lowPrice: "15000",
-      highPrice: "80000",
+      lowPrice: "80000",
+      highPrice: "600000",
       priceCurrency: "AUD",
-      offerCount: "3",
     },
-    image: "https://www.konnteyhomerenovations.com.au/images/kitchen/hero.webp",
   };
 
   const faqSchema = {
@@ -109,16 +96,16 @@ export default function KitchenRenovationsPage() {
       <main className="flex-grow">
         {/* Hero */}
         <section className="relative pt-[150px] pb-20 bg-navy text-white overflow-hidden">
-          <Image src="/images/kitchen/hero.webp" alt="Western Melbourne Kitchen Renovation" fill priority sizes="100vw" className="object-cover object-center opacity-40 mix-blend-overlay" />
+          <Image src="/images/extension.webp" alt="Home extension builders Melbourne" fill priority sizes="100vw" className="object-cover object-center opacity-40 mix-blend-overlay" />
           <div className="grain-overlay" />
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 relative z-10">
             <m.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">KITCHEN RENOVATIONS</div>
+              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">HOME EXTENSIONS</div>
               <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-5xl">
-                Kitchen Renovations for Western Melbourne Homes
+                Home Extensions in Melbourne — <span className="text-gold-bright">From Ground Floor to Second Storey</span>
               </h1>
               <p className="mt-8 font-body text-[17px] leading-[1.8] text-white/80 max-w-3xl">
-                Konntey Home &amp; Renovations delivers complete kitchen renovations across Melbourne&apos;s western suburbs — from cabinet replacements to full open-plan rebuilds. BPC registered, fixed-price quotes, and no subcontractors. We serve homeowners across Tarneit, Werribee, Point Cook, Footscray, Hoppers Crossing, and Sunshine.
+                Konntey Home &amp; Renovations delivers professional home extensions across Melbourne — from single-room additions to full second storey builds and knockdown rebuilds. BPC registered, council approvals handled, and fixed-price contracts on every project. Serving Tarneit, Point Cook, Werribee, Hoppers Crossing, Dandenong &amp; beyond.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link prefetch={true} href="/quote" className="inline-flex bg-gold-bright px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-navy hover:-translate-y-0.5 transition-transform">
@@ -139,49 +126,27 @@ export default function KitchenRenovationsPage() {
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">PRICING</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-4xl">
-                How much does a kitchen renovation cost in Melbourne&apos;s west?
+                How much does a home extension cost in Melbourne?
               </h2>
               <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70 max-w-3xl">
-                Most western Melbourne kitchen renovations cost between $15,000 and $50,000 depending on size, layout changes, and fixture selections. A basic cabinet and benchtop refresh starts from $15,000–$25,000. A mid-range full renovation runs $25,000–$45,000. A premium open-plan redesign with island bench and butler&apos;s pantry typically sits between $45,000–$80,000+. All quotes are fixed-price — no variations, no surprises.
+                Home extension costs in Melbourne vary from $1,800 to $4,500+ per square metre depending on the type of extension, structural complexity, and finishes. A standard ground floor extension typically starts around $150,000–$250,000 for 50–80sqm. Second storey additions run higher due to structural engineering requirements. All our quotes are fixed-price — no cost blowouts.
               </p>
             </m.div>
           </div>
         </section>
 
-        {/* Kitchen Types */}
+        {/* Extension Types */}
         <section className="py-20 sm:py-28 bg-off-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">WHAT WE DO</div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Kitchen Types We Renovate</h2>
+              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">WHAT WE BUILD</div>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Extension Types</h2>
             </m.div>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-              {kitchenTypes.map((kt, i) => (
-                <m.div key={kt.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="border border-navy/8 bg-white p-8">
-                  <h3 className="font-display text-[22px] font-black uppercase tracking-tighter text-navy">{kt.title}</h3>
-                  <p className="mt-3 font-body text-[15px] leading-[1.8] text-navy/70">{kt.desc}</p>
-                </m.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Project Gallery */}
-        <section className="py-20 sm:py-28 bg-white">
-          <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">OUR WORK</div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Project Gallery</h2>
-            </m.div>
-            <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
-              {[
-                { src: "/images/kitchen/cabinets.webp", alt: "Custom kitchen cabinets" },
-                { src: "/images/kitchen/benchtop.webp", alt: "Stone benchtop installation" },
-                { src: "/images/kitchen/open-plan.webp", alt: "Open-plan kitchen conversion" },
-                { src: "/images/kitchen/splashback.webp", alt: "Kitchen splashback tiling" }
-              ].map((img, i) => (
-                <m.div key={img.src} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="relative aspect-square overflow-hidden bg-navy/5">
-                  <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
+              {extensionTypes.map((et, i) => (
+                <m.div key={et.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="border border-navy/8 bg-white p-8">
+                  <h3 className="font-display text-[22px] font-black uppercase tracking-tighter text-navy">{et.title}</h3>
+                  <p className="mt-3 font-body text-[15px] leading-[1.8] text-navy/70">{et.desc}</p>
                 </m.div>
               ))}
             </div>
@@ -193,32 +158,19 @@ export default function KitchenRenovationsPage() {
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">HOW IT WORKS</div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Our Renovation Process</h2>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Our Build Process</h2>
             </m.div>
-            <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:items-start">
-              <div className="grid gap-6 sm:grid-cols-2">
-                {processSteps.map((ps, i) => (
-                  <m.div key={ps.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-6">
-                    <div className="font-display text-[36px] font-black text-gold-bright leading-none">{ps.step}</div>
-                    <h3 className="mt-3 font-display text-[16px] font-black uppercase tracking-button text-white">{ps.title}</h3>
-                    <p className="mt-2 font-body text-[14px] leading-[1.7] text-white/60">{ps.desc}</p>
-                  </m.div>
-                ))}
-              </div>
-              <m.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="relative h-[400px] lg:h-full min-h-[400px] w-full overflow-hidden border border-white/10">
-                <Image src="/images/kitchen/tiler-working.webp" alt="Tiler working on kitchen renovation" fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 50vw" />
-              </m.div>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {processSteps.map((ps, i) => (
+                <m.div key={ps.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-6">
+                  <div className="font-display text-[36px] font-black text-gold-bright leading-none">{ps.step}</div>
+                  <h3 className="mt-3 font-display text-[16px] font-black uppercase tracking-button text-white">{ps.title}</h3>
+                  <p className="mt-2 font-body text-[14px] leading-[1.7] text-white/60">{ps.desc}</p>
+                </m.div>
+              ))}
             </div>
           </div>
         </section>
-
-        {/* BeforeAfterSlider */}
-        <BeforeAfterSlider 
-          beforeSrc="/images/kitchen/before.webp"
-          afterSrc="/images/kitchen/after.webp"
-          title="Real Transformation"
-          subtitle="See the difference a professional western Melbourne renovation makes. Drag the slider to compare the outdated original with the premium Konntey finish."
-        />
 
         {/* Pricing Table */}
         <section className="py-20 sm:py-28 bg-off-white">
@@ -241,7 +193,7 @@ export default function KitchenRenovationsPage() {
                 ))}
               </div>
               <p className="mt-6 font-body text-[14px] leading-[1.7] text-navy/60">
-                Prices vary based on cabinet material, benchtop selection, appliance grade, and whether structural or plumbing work is required. Fixed-price contract on every job.
+                Prices vary based on site conditions, structural requirements, material selections, and council overlay zones. All quotes are fixed-price with transparent line-item breakdowns.
               </p>
             </m.div>
           </div>
@@ -252,7 +204,7 @@ export default function KitchenRenovationsPage() {
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">TESTIMONIALS</div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">What Our Western Melbourne Clients Say</h2>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">What Our Clients Say</h2>
             </m.div>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {testimonials.map((t, i) => (
@@ -299,10 +251,10 @@ export default function KitchenRenovationsPage() {
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
-                Ready for a new kitchen?
+                Ready to extend your home?
               </h2>
               <p className="mt-6 font-body text-[17px] leading-[1.8] text-navy/80 max-w-2xl mx-auto">
-                Get a free fixed-price quote from western Melbourne&apos;s BPC registered renovation team.
+                Get a free, fixed-price quote from Melbourne&apos;s BPC registered extension builders.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <Link prefetch={true} href="/quote" className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-gold-bright hover:-translate-y-0.5 transition-transform">
@@ -310,7 +262,7 @@ export default function KitchenRenovationsPage() {
                 </Link>
                 <a href="tel:0493191798" className="inline-flex items-center gap-2 border-2 border-navy px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-navy hover:bg-navy hover:text-gold-bright transition-colors">
                   <Phone size={15} strokeWidth={2.25} />
-                  <span>Call us for a same-day response.</span>
+                  <span>Call us directly</span>
                 </a>
               </div>
             </m.div>
@@ -321,8 +273,8 @@ export default function KitchenRenovationsPage() {
         <section className="py-12 bg-off-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 flex flex-wrap gap-4 font-body text-[13px] uppercase tracking-kicker text-navy/50">
             <span>Related services:</span>
+            <Link prefetch={false} href="/kitchen-renovations-melbourne" className="text-gold-bright hover:underline">Kitchen Renovations →</Link>
             <Link prefetch={false} href="/bathroom-renovations-melbourne" className="text-gold-bright hover:underline">Bathroom Renovations →</Link>
-            <Link prefetch={false} href="/home-extensions-melbourne" className="text-gold-bright hover:underline">Home Extensions →</Link>
             <Link prefetch={false} href="/decks-pergolas-melbourne" className="text-gold-bright hover:underline">Decks & Pergolas →</Link>
             <Link prefetch={false} href="/quote" className="text-gold-bright hover:underline">Get a Quote →</Link>
           </div>

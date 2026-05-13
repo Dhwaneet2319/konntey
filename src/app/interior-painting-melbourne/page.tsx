@@ -2,7 +2,6 @@
 
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -11,82 +10,72 @@ import Script from "next/script";
 import { Phone } from "lucide-react";
 import Image from "next/image";
 
-const kitchenTypes = [
-  { title: "Full kitchen renovation", desc: "Complete gut and rebuild, new layout, all new fixtures" },
-  { title: "Cabinet & benchtop refresh", desc: "New doors, benchtop, and splashback over existing structure" },
-  { title: "Open-plan conversion", desc: "Remove walls, extend into living/dining, island bench addition" },
-  { title: "Butler's pantry addition", desc: "Secondary prep space, custom cabinetry, additional sink" },
-  { title: "Small kitchen renovation", desc: "Space-maximising layouts for townhouses and units common in Point Cook and Wyndham Vale estates" },
+const serviceTypes = [
+  { title: "Full Interior Painting", desc: "Walls, ceilings, trims, doors — complete interior refresh for homes and renovations" },
+  { title: "Exterior Painting", desc: "Weatherboard, render, brick — prep, prime, and two-coat finish built to last" },
+  { title: "Feature Walls & Accents", desc: "Statement walls, two-tone designs, dark moody colours done right" },
+  { title: "Renovation Painting", desc: "End-to-end painting as part of a kitchen, bathroom, or full home renovation" },
+  { title: "Ceiling & Cornice", desc: "Flat white ceilings, cornice painting, and plaster repair before painting" },
+  { title: "Cabinet & Joinery Painting", desc: "Spray-finished kitchen cabinets, built-in wardrobes, and timber joinery" },
 ];
 
 const processSteps = [
-  { step: "01", title: "Free consultation", desc: "Site visit, measure up, discuss layout and brief" },
-  { step: "02", title: "Design & quote", desc: "Itemised fixed-price quote with no hidden costs" },
-  { step: "03", title: "Demolition", desc: "Full strip-out of existing cabinetry, benchtops, and appliances" },
-  { step: "04", title: "Structural work", desc: "Wall removal, electrical and plumbing rough-in if required" },
-  { step: "05", title: "Cabinet installation", desc: "Carcasses, doors, drawers, and hardware fitted" },
-  { step: "06", title: "Benchtop & splashback", desc: "Stone, laminate, or tile to your selection" },
-  { step: "07", title: "Appliance fit-off", desc: "Oven, cooktop, rangehood, dishwasher connected" },
-  { step: "08", title: "Finishing & handover", desc: "Full clean, walkthrough, and handover" },
+  { step: "01", title: "Free quote", desc: "On-site inspection, measure up, discuss colours and finishes" },
+  { step: "02", title: "Colour consultation", desc: "Help selecting the right colours for your space and lighting" },
+  { step: "03", title: "Surface preparation", desc: "Fill holes, sand, caulk gaps, mask edges — prep is everything" },
+  { step: "04", title: "Prime", desc: "Primer coat on all new surfaces, stain-block where needed" },
+  { step: "05", title: "First coat", desc: "Even application with premium paints (Dulux, Taubmans)" },
+  { step: "06", title: "Second coat", desc: "Full coverage second coat for a flawless, durable finish" },
+  { step: "07", title: "Detail work", desc: "Cut-in edges, trim, doors, and touch-ups" },
+  { step: "08", title: "Handover", desc: "Final inspection, clean up, and leftover paint for touch-ups" },
 ];
 
 const pricingRows = [
-  { scope: "Cabinet & benchtop refresh", range: "$15,000 – $25,000" },
-  { scope: "Full kitchen renovation", range: "$25,000 – $45,000" },
-  { scope: "Premium open-plan redesign", range: "$45,000 – $80,000+" },
+  { scope: "Single room (walls + ceiling)", range: "$400 – $800" },
+  { scope: "Full house interior (3-bed)", range: "$4,000 – $8,000" },
+  { scope: "Full house interior (4-bed)", range: "$6,000 – $12,000" },
+  { scope: "Exterior (single storey)", range: "$4,000 – $10,000" },
+  { scope: "Exterior (double storey)", range: "$8,000 – $18,000" },
 ];
 
 const testimonials = [
-  { quote: "Konntey did our kitchen in Hoppers Crossing. New cabinets, stone benchtop, the lot. Finished on time and exactly on budget. Really happy with the result.", author: "David K.", location: "Hoppers Crossing" },
-  { quote: "We had our Tarneit kitchen opened up into the dining room. The team handled the wall removal, new island bench, everything. Smooth process start to finish.", author: "Anika P.", location: "Tarneit" },
-  { quote: "Finally got the kitchen we wanted after years of putting it off. Fixed price meant no stress about blowouts. Would use Konntey again for the bathroom next.", author: "Steve M.", location: "Werribee" },
+  { quote: "Konntey painted our entire 4-bedroom home in Tarneit. Sharp lines, no mess, and they even helped us pick the perfect grey for the living room. Couldn't be happier.", author: "Neha R.", location: "Tarneit" },
+  { quote: "Had the exterior of our weatherboard house repainted in Werribee. The prep work was meticulous — filled every crack and gap. Looks brand new.", author: "John B.", location: "Werribee" },
+  { quote: "We used Konntey for all the painting on our kitchen renovation. Spray-finished the cabinets and they look like a factory finish. Very professional.", author: "Karen T.", location: "Point Cook" },
 ];
 
 const faqs = [
-  { q: "Do I need a building permit for a kitchen renovation?", a: "Most kitchen renovations — new cabinets, benchtops, splashbacks, and appliance replacements — don't require a building permit. However if you're removing walls, relocating plumbing, or doing electrical work beyond standard connections, a permit may be required. Wyndham City, Maribyrnong, and Brimbank councils each have slightly different thresholds. We assess permit requirements as part of every quote at no extra cost." },
-  { q: "How long does a kitchen renovation take?", a: "A standard kitchen renovation takes 2–3 weeks from demolition to handover. Open-plan conversions involving structural work can take 3–5 weeks. The biggest cause of delays is late fixture or appliance delivery — we recommend locking in all selections before works begin." },
-  { q: "Can I live at home during the renovation?", a: "Yes, most clients stay home during a kitchen renovation. You'll be without a functioning kitchen for 2–3 weeks so we recommend setting up a temporary meal prep area. We keep the site clean and contained daily." },
-  { q: "What's included in your fixed-price quote?", a: "Labour, project management, cabinet supply and installation, benchtop fabrication and installation, splashback tiling, appliance connection, and rubbish removal. Appliances themselves can be supplied by us or by you — we'll confirm at quote stage." },
-  { q: "Do you renovate kitchens in new estates like Tarneit and Point Cook?", a: "Yes. We regularly work in Wyndham Vale, Tarneit, Point Cook, and surrounding Wyndham estates. Builder-grade kitchens from the early 2000s in these areas are now prime for a full upgrade. We understand the standard layouts, plumbing configurations, and Wyndham City Council requirements common in these estates." },
-  { q: "What's the payment schedule?", a: "Staged milestone payments: deposit on contract signing, progress payment after cabinet installation, and final payment on handover. No large upfront lump sums." },
-  { q: "How do I get started?", a: "Request a free quote online or call us. We'll arrange a site visit, take measurements, and provide a fixed-price itemised quote within 48 hours." },
+  { q: "How much does it cost to paint a house interior in Melbourne?", a: "A full interior repaint for a standard 3-bedroom home in Melbourne typically costs $4,000–$8,000 depending on ceiling height, number of rooms, surface condition, and paint quality. Larger 4–5 bedroom homes with high ceilings and feature walls range from $8,000–$15,000. We provide fixed-price quotes after an on-site inspection." },
+  { q: "How long does interior painting take?", a: "A standard 3-bedroom house takes 3–5 days for a full interior repaint including prep. Larger homes or those requiring extensive plaster repair may take 5–8 days. We work room by room so you can still live in the house during painting." },
+  { q: "Do you supply the paint?", a: "Yes — we supply premium paint (Dulux or Taubmans) as part of our fixed-price quote. We use Wash & Wear for walls, ceiling flat for ceilings, and semi-gloss for trims. If you have a specific brand or colour preference, just let us know." },
+  { q: "Do you do colour consultation?", a: "Yes — free colour advice is included with every painting quote. We can help you choose colours that work with your lighting, flooring, and furniture. For more complex colour schemes, we can arrange a Dulux colour consultant visit." },
+  { q: "What preparation do you do before painting?", a: "Proper prep is 80% of a good paint job. We fill nail holes, sand surfaces, caulk gaps between trims and walls, remove flaking paint, spot-prime stains, and mask all edges. We never paint over poor surfaces." },
+  { q: "Do you paint exteriors too?", a: "Yes. We paint all exterior surfaces including weatherboard, render, brick, fascia, gutters, and window frames. We use exterior-grade paints rated for Melbourne's UV and weather conditions." },
 ];
 
-export default function KitchenRenovationsPage() {
+export default function PaintingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Kitchen Renovations Western Melbourne",
+    name: "Interior & Exterior Painting Melbourne",
     provider: {
       "@type": "HomeAndConstructionBusiness",
       "@id": "https://www.konnteyhomerenovations.com.au/#organization",
       name: "Konntey Home & Renovations",
       url: "https://www.konnteyhomerenovations.com.au",
       telephone: "+61493191798",
-      priceRange: "$$",
-      areaServed: [
-        { "@type": "City", name: "Tarneit" },
-        { "@type": "City", name: "Point Cook" },
-        { "@type": "City", name: "Werribee" },
-        { "@type": "City", name: "Footscray" },
-        { "@type": "City", name: "Hoppers Crossing" },
-        { "@type": "City", name: "Sunshine" },
-        { "@type": "City", name: "Wyndham Vale" },
-      ],
     },
-    serviceType: "Kitchen Renovation",
+    serviceType: "House Painting",
     areaServed: { "@type": "City", name: "Melbourne" },
-    description: "Kitchen renovations across Melbourne's western suburbs. BPC registered, fixed-price quotes, full project management. From cabinet refreshes to full open-plan redesigns.",
+    description: "Professional interior and exterior painting across Melbourne. Sharp lines, clean finishes. Fixed-price quotes with colour consultation included.",
     offers: {
       "@type": "AggregateOffer",
-      lowPrice: "15000",
-      highPrice: "80000",
+      lowPrice: "400",
+      highPrice: "18000",
       priceCurrency: "AUD",
-      offerCount: "3",
     },
-    image: "https://www.konnteyhomerenovations.com.au/images/kitchen/hero.webp",
   };
 
   const faqSchema = {
@@ -109,16 +98,16 @@ export default function KitchenRenovationsPage() {
       <main className="flex-grow">
         {/* Hero */}
         <section className="relative pt-[150px] pb-20 bg-navy text-white overflow-hidden">
-          <Image src="/images/kitchen/hero.webp" alt="Western Melbourne Kitchen Renovation" fill priority sizes="100vw" className="object-cover object-center opacity-40 mix-blend-overlay" />
+          <Image src="/images/interior.webp" alt="Professional interior painting Melbourne" fill priority sizes="100vw" className="object-cover object-center opacity-40 mix-blend-overlay" />
           <div className="grain-overlay" />
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 relative z-10">
             <m.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">KITCHEN RENOVATIONS</div>
+              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">PAINTING SERVICES</div>
               <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-5xl">
-                Kitchen Renovations for Western Melbourne Homes
+                Interior & Exterior Painting in Melbourne — <span className="text-gold-bright">Sharp Lines, Clean Finishes</span>
               </h1>
               <p className="mt-8 font-body text-[17px] leading-[1.8] text-white/80 max-w-3xl">
-                Konntey Home &amp; Renovations delivers complete kitchen renovations across Melbourne&apos;s western suburbs — from cabinet replacements to full open-plan rebuilds. BPC registered, fixed-price quotes, and no subcontractors. We serve homeowners across Tarneit, Werribee, Point Cook, Footscray, Hoppers Crossing, and Sunshine.
+                Konntey Home &amp; Renovations delivers professional painting services across Melbourne — from single feature walls to full interior and exterior repaints. Premium paints, meticulous preparation, and colour consultation included. Serving Tarneit, Point Cook, Werribee, Hoppers Crossing &amp; all suburbs.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link prefetch={true} href="/quote" className="inline-flex bg-gold-bright px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-navy hover:-translate-y-0.5 transition-transform">
@@ -139,49 +128,27 @@ export default function KitchenRenovationsPage() {
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">PRICING</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-4xl">
-                How much does a kitchen renovation cost in Melbourne&apos;s west?
+                How much does house painting cost in Melbourne?
               </h2>
               <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70 max-w-3xl">
-                Most western Melbourne kitchen renovations cost between $15,000 and $50,000 depending on size, layout changes, and fixture selections. A basic cabinet and benchtop refresh starts from $15,000–$25,000. A mid-range full renovation runs $25,000–$45,000. A premium open-plan redesign with island bench and butler&apos;s pantry typically sits between $45,000–$80,000+. All quotes are fixed-price — no variations, no surprises.
+                Interior painting in Melbourne costs $15–$35 per square metre depending on surface condition and paint quality. A full 3-bedroom home interior runs $4,000–$8,000 including ceilings, walls, and trims. Exterior repaints start from $4,000 for a single storey. All our quotes are fixed-price — no hourly rates, no surprises.
               </p>
             </m.div>
           </div>
         </section>
 
-        {/* Kitchen Types */}
+        {/* Service Types */}
         <section className="py-20 sm:py-28 bg-off-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">WHAT WE DO</div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Kitchen Types We Renovate</h2>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Our Painting Services</h2>
             </m.div>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-              {kitchenTypes.map((kt, i) => (
-                <m.div key={kt.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="border border-navy/8 bg-white p-8">
-                  <h3 className="font-display text-[22px] font-black uppercase tracking-tighter text-navy">{kt.title}</h3>
-                  <p className="mt-3 font-body text-[15px] leading-[1.8] text-navy/70">{kt.desc}</p>
-                </m.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Project Gallery */}
-        <section className="py-20 sm:py-28 bg-white">
-          <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">OUR WORK</div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Project Gallery</h2>
-            </m.div>
-            <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
-              {[
-                { src: "/images/kitchen/cabinets.webp", alt: "Custom kitchen cabinets" },
-                { src: "/images/kitchen/benchtop.webp", alt: "Stone benchtop installation" },
-                { src: "/images/kitchen/open-plan.webp", alt: "Open-plan kitchen conversion" },
-                { src: "/images/kitchen/splashback.webp", alt: "Kitchen splashback tiling" }
-              ].map((img, i) => (
-                <m.div key={img.src} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="relative aspect-square overflow-hidden bg-navy/5">
-                  <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
+              {serviceTypes.map((st, i) => (
+                <m.div key={st.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="border border-navy/8 bg-white p-8">
+                  <h3 className="font-display text-[22px] font-black uppercase tracking-tighter text-navy">{st.title}</h3>
+                  <p className="mt-3 font-body text-[15px] leading-[1.8] text-navy/70">{st.desc}</p>
                 </m.div>
               ))}
             </div>
@@ -193,32 +160,19 @@ export default function KitchenRenovationsPage() {
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">HOW IT WORKS</div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Our Renovation Process</h2>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Our Painting Process</h2>
             </m.div>
-            <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:items-start">
-              <div className="grid gap-6 sm:grid-cols-2">
-                {processSteps.map((ps, i) => (
-                  <m.div key={ps.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-6">
-                    <div className="font-display text-[36px] font-black text-gold-bright leading-none">{ps.step}</div>
-                    <h3 className="mt-3 font-display text-[16px] font-black uppercase tracking-button text-white">{ps.title}</h3>
-                    <p className="mt-2 font-body text-[14px] leading-[1.7] text-white/60">{ps.desc}</p>
-                  </m.div>
-                ))}
-              </div>
-              <m.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="relative h-[400px] lg:h-full min-h-[400px] w-full overflow-hidden border border-white/10">
-                <Image src="/images/kitchen/tiler-working.webp" alt="Tiler working on kitchen renovation" fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 50vw" />
-              </m.div>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {processSteps.map((ps, i) => (
+                <m.div key={ps.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-6">
+                  <div className="font-display text-[36px] font-black text-gold-bright leading-none">{ps.step}</div>
+                  <h3 className="mt-3 font-display text-[16px] font-black uppercase tracking-button text-white">{ps.title}</h3>
+                  <p className="mt-2 font-body text-[14px] leading-[1.7] text-white/60">{ps.desc}</p>
+                </m.div>
+              ))}
             </div>
           </div>
         </section>
-
-        {/* BeforeAfterSlider */}
-        <BeforeAfterSlider 
-          beforeSrc="/images/kitchen/before.webp"
-          afterSrc="/images/kitchen/after.webp"
-          title="Real Transformation"
-          subtitle="See the difference a professional western Melbourne renovation makes. Drag the slider to compare the outdated original with the premium Konntey finish."
-        />
 
         {/* Pricing Table */}
         <section className="py-20 sm:py-28 bg-off-white">
@@ -241,7 +195,7 @@ export default function KitchenRenovationsPage() {
                 ))}
               </div>
               <p className="mt-6 font-body text-[14px] leading-[1.7] text-navy/60">
-                Prices vary based on cabinet material, benchtop selection, appliance grade, and whether structural or plumbing work is required. Fixed-price contract on every job.
+                Prices depend on ceiling height, surface condition, number of colours, and access difficulty. All quotes include premium paint, all prep work, and cleanup.
               </p>
             </m.div>
           </div>
@@ -252,7 +206,7 @@ export default function KitchenRenovationsPage() {
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">TESTIMONIALS</div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">What Our Western Melbourne Clients Say</h2>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">What Our Clients Say</h2>
             </m.div>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {testimonials.map((t, i) => (
@@ -299,10 +253,10 @@ export default function KitchenRenovationsPage() {
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
             <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
-                Ready for a new kitchen?
+                Ready for a fresh finish?
               </h2>
               <p className="mt-6 font-body text-[17px] leading-[1.8] text-navy/80 max-w-2xl mx-auto">
-                Get a free fixed-price quote from western Melbourne&apos;s BPC registered renovation team.
+                Get a free, fixed-price painting quote from Melbourne&apos;s professional renovation painters.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <Link prefetch={true} href="/quote" className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-gold-bright hover:-translate-y-0.5 transition-transform">
@@ -310,7 +264,7 @@ export default function KitchenRenovationsPage() {
                 </Link>
                 <a href="tel:0493191798" className="inline-flex items-center gap-2 border-2 border-navy px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-navy hover:bg-navy hover:text-gold-bright transition-colors">
                   <Phone size={15} strokeWidth={2.25} />
-                  <span>Call us for a same-day response.</span>
+                  <span>Call us directly</span>
                 </a>
               </div>
             </m.div>
@@ -321,9 +275,9 @@ export default function KitchenRenovationsPage() {
         <section className="py-12 bg-off-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 flex flex-wrap gap-4 font-body text-[13px] uppercase tracking-kicker text-navy/50">
             <span>Related services:</span>
+            <Link prefetch={false} href="/kitchen-renovations-melbourne" className="text-gold-bright hover:underline">Kitchen Renovations →</Link>
             <Link prefetch={false} href="/bathroom-renovations-melbourne" className="text-gold-bright hover:underline">Bathroom Renovations →</Link>
             <Link prefetch={false} href="/home-extensions-melbourne" className="text-gold-bright hover:underline">Home Extensions →</Link>
-            <Link prefetch={false} href="/decks-pergolas-melbourne" className="text-gold-bright hover:underline">Decks & Pergolas →</Link>
             <Link prefetch={false} href="/quote" className="text-gold-bright hover:underline">Get a Quote →</Link>
           </div>
         </section>
