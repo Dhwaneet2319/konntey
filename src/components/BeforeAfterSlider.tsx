@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { m } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -25,24 +25,41 @@ export default function BeforeAfterSlider({
   subtitle = "Slide to reveal the difference between an outdated space and a premium Konntey execution. We turn potential into reality.",
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
 
-  const handleMove = (clientX: number) => {
+  // Use RAF-throttled updates for smooth 60fps slider movement
+  const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    const percentage = (x / rect.width) * 100;
-    setSliderPosition(percentage);
-  };
+    if (rafRef.current) return; // skip if RAF already scheduled
+    
+    rafRef.current = requestAnimationFrame(() => {
+      if (!containerRef.current) { rafRef.current = null; return; }
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      const percentage = (x / rect.width) * 100;
+      setSliderPosition(percentage);
+      rafRef.current = null;
+    });
+  }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (isDragging) handleMove(e.clientX);
-  };
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (isDraggingRef.current) handleMove(e.clientX);
+  }, [handleMove]);
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (isDragging) handleMove(e.touches[0].clientX);
-  };
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (isDraggingRef.current) handleMove(e.touches[0].clientX);
+  }, [handleMove]);
+
+  const startDrag = useCallback((clientX: number) => {
+    isDraggingRef.current = true;
+    handleMove(clientX);
+  }, [handleMove]);
+
+  const stopDrag = useCallback(() => {
+    isDraggingRef.current = false;
+  }, []);
 
   const isCombinedFallback = !beforeSrc || !afterSrc;
 
@@ -86,17 +103,15 @@ export default function BeforeAfterSlider({
             ref={containerRef}
             className="bracket-corners bracket-corners-extra relative h-[400px] w-full select-none overflow-hidden touch-none sm:h-[500px] lg:h-[700px] cursor-ew-resize parent-group"
             onMouseMove={handleMouseMove}
-            onMouseUp={() => setIsDragging(false)}
-            onMouseLeave={() => setIsDragging(false)}
+            onMouseUp={stopDrag}
+            onMouseLeave={stopDrag}
             onTouchMove={handleTouchMove}
-            onTouchEnd={() => setIsDragging(false)}
+            onTouchEnd={stopDrag}
             onMouseDown={(e) => {
-              setIsDragging(true);
-              handleMove(e.clientX);
+              startDrag(e.clientX);
             }}
             onTouchStart={(e) => {
-              setIsDragging(true);
-              handleMove(e.touches[0].clientX);
+              startDrag(e.touches[0].clientX);
             }}
           >
             {/* After Image — right half of composite */}

@@ -1,21 +1,24 @@
+import dynamic from "next/dynamic";
 import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import ServiceBlock from "@/components/ServiceBlock";
-import About from "@/components/About";
-import Careers from "@/components/Careers";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import StatsCounter from "@/components/StatsCounter";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
-import ProjectGallery from "@/components/ProjectGallery";
-import ProcessStrip from "@/components/ProcessStrip";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
-import MoreServices from "@/components/MoreServices";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import CtaBanner from "@/components/CtaBanner";
-import VastuSection from "@/components/VastuSection";
+
+// Dynamic imports for below-fold components — reduces initial JS bundle significantly
+const About = dynamic(() => import("@/components/About"));
+const Careers = dynamic(() => import("@/components/Careers"));
+const Contact = dynamic(() => import("@/components/Contact"));
+const StatsCounter = dynamic(() => import("@/components/StatsCounter"));
+const BeforeAfterSlider = dynamic(() => import("@/components/BeforeAfterSlider"));
+const ProjectGallery = dynamic(() => import("@/components/ProjectGallery"));
+const ProcessStrip = dynamic(() => import("@/components/ProcessStrip"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const MoreServices = dynamic(() => import("@/components/MoreServices"));
+const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"), { ssr: false });
+const CtaBanner = dynamic(() => import("@/components/CtaBanner"));
+const VastuSection = dynamic(() => import("@/components/VastuSection"));
 
 const heroService = {
   kicker: "BUILDING & EXTENSIONS",
