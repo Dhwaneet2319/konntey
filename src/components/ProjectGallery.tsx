@@ -5,11 +5,11 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const categories = [
-  { label: "Extensions & New Builds", icon: "01", href: "/services/extensions" },
-  { label: "Vastu & Feng Shui", icon: "02", href: "/services/vastu" },
+  { label: "Extensions & New Builds", icon: "01", href: "/home-extensions-melbourne" },
+  { label: "Vastu & Feng Shui", icon: "02", href: "/vastu-renovations-melbourne" },
   { label: "Kitchen Renovations", icon: "03", href: "/kitchen-renovations-melbourne" },
   { label: "Bathroom Renovations", icon: "04", href: "/bathroom-renovations-melbourne" },
-  { label: "Decks & Outdoor Living", icon: "05", href: "/services/outdoor" },
+  { label: "Decks & Outdoor Living", icon: "05", href: "/decks-pergolas-melbourne" },
   { label: "Interior Finishing", icon: "06", href: "/interior-painting-melbourne" },
 ];
 

@@ -336,6 +336,7 @@ export default function BathroomRenovationsPage() {
             <span>Related services:</span>
             <Link prefetch={false} href="/kitchen-renovations-melbourne" className="text-gold-bright hover:underline">Kitchen Renovations →</Link>
             <Link prefetch={false} href="/interior-painting-melbourne" className="text-gold-bright hover:underline">Interior Painting →</Link>
+            <Link prefetch={false} href="/home-extensions-melbourne" className="text-gold-bright hover:underline">Home Extensions →</Link>
             <Link prefetch={false} href="/quote" className="text-gold-bright hover:underline">Get a Quote →</Link>
           </div>
         </section>
