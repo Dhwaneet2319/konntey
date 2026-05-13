@@ -36,20 +36,47 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const suburb = suburbs[slug];
   if (!suburb) return {};
 
+  const title = `Home Renovations ${suburb.name} | Kitchen & Bathroom Renovation Builders`;
+  const description = `Professional renovation builders in ${suburb.name}, Melbourne. Kitchen renovations, bathroom renovations, home extensions, decks & painting. BPC registered, fixed-price quotes. Also serving ${suburb.nearby.slice(0, 3).join(", ")}. Free quote today.`;
+
   return {
-    title: `Renovation Builders in ${suburb.name} Melbourne`,
-    description: `Looking for professional renovation builders in ${suburb.name}? Konntey delivers home extensions, kitchen & bathroom renovations, and new builds across ${suburb.name} and surrounding Melbourne suburbs. Get a free quote today.`,
+    title,
+    description,
     alternates: {
       canonical: `/renovations/${slug}`,
     },
     openGraph: {
-      title: `Renovation Builders in ${suburb.name} Melbourne | Konntey H&R`,
-      description: `Looking for professional renovation builders in ${suburb.name}? Konntey delivers home extensions, kitchen & bathroom renovations, and new builds across ${suburb.name} and surrounding Melbourne suburbs. Get a free quote today.`,
+      title: `Home Renovations ${suburb.name} Melbourne | Konntey H&R`,
+      description,
       url: `https://www.konnteyhomerenovations.com.au/renovations/${slug}`,
       siteName: "Konntey Home & Renovations",
       locale: "en_AU",
       type: "website",
+      images: [
+        {
+          url: "/images/hero_main.webp",
+          width: 1200,
+          height: 630,
+          alt: `Professional renovation builders servicing ${suburb.name} Melbourne`,
+        },
+      ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `Renovation Builders ${suburb.name} | Konntey H&R`,
+      description: `Professional renovation builders in ${suburb.name}. Kitchen, bathroom, extensions & more. Free quote.`,
+      images: ["/images/hero_main.webp"],
+    },
+    keywords: [
+      `renovation ${suburb.name}`,
+      `kitchen renovation ${suburb.name}`,
+      `bathroom renovation ${suburb.name}`,
+      `home extension ${suburb.name}`,
+      `builder ${suburb.name}`,
+      `renovation company ${suburb.name}`,
+      `deck builder ${suburb.name}`,
+      `home renovations ${suburb.name} Melbourne`,
+    ],
   };
 }
 
@@ -85,11 +112,34 @@ export default function SuburbPage({ params }: Props) {
     serviceType: "Home Renovation",
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.konnteyhomerenovations.com.au",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: `Renovations ${suburb.name}`,
+        item: `https://www.konnteyhomerenovations.com.au/renovations/${slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="bg-navy text-white font-body min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(suburbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Hero */}
       <section className="relative py-32 sm:py-44 px-4 sm:px-6 lg:px-8">
