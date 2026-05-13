@@ -375,11 +375,6 @@ img {
   }
 }
 
-/* Contain paint for sections to reduce compositor work */
-section {
-  contain: layout style;
-}
-
 /* Optimize font rendering for headings */
 .font-display {
   text-rendering: optimizeSpeed;
