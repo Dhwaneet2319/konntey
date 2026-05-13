@@ -5,7 +5,14 @@ import { ArrowLeft } from "lucide-react";
 export const metadata: Metadata = {
   title: "Privacy Policy | Konntey Home & Renovations",
   description:
-    "Read the privacy policy for Konntey Home & Renovations, Melbourne VIC.",
+    "Read the privacy policy for Konntey Home & Renovations, Melbourne VIC. Learn how we handle your personal information in accordance with Australian Privacy Principles.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function PrivacyPage() {

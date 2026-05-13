@@ -67,15 +67,33 @@ export default function BathroomRenovationsPage() {
     "@type": "Service",
     name: "Bathroom Renovations Western Melbourne",
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "HomeAndConstructionBusiness",
+      "@id": "https://www.konnteyhomerenovations.com.au/#organization",
       name: "Konntey Home & Renovations",
-      url: "https://konnteyhomerenovations.com.au",
-      telephone: "0493 191 798",
-      areaServed: ["Tarneit", "Point Cook", "Werribee", "Footscray", "Hoppers Crossing", "Williamstown", "Wyndham Vale"],
+      url: "https://www.konnteyhomerenovations.com.au",
+      telephone: "+61493191798",
+      priceRange: "$$",
+      areaServed: [
+        { "@type": "City", name: "Tarneit" },
+        { "@type": "City", name: "Point Cook" },
+        { "@type": "City", name: "Werribee" },
+        { "@type": "City", name: "Footscray" },
+        { "@type": "City", name: "Hoppers Crossing" },
+        { "@type": "City", name: "Williamstown" },
+        { "@type": "City", name: "Wyndham Vale" },
+      ],
     },
     serviceType: "Bathroom Renovation",
     areaServed: { "@type": "City", name: "Melbourne" },
-    description: "Bathroom renovations across Melbourne's western suburbs. BPC registered, AS/NZS 3740 certified waterproofing, fixed-price quotes.",
+    description: "Bathroom renovations across Melbourne's western suburbs. BPC registered, AS/NZS 3740 certified waterproofing, fixed-price quotes. From small ensuite refreshes to full luxury bathroom rebuilds.",
+    offers: {
+      "@type": "AggregateOffer",
+      lowPrice: "10000",
+      highPrice: "45000",
+      priceCurrency: "AUD",
+      offerCount: "3",
+    },
+    image: "https://www.konnteyhomerenovations.com.au/images/bathroom/hero.webp",
   };
 
   const faqSchema = {

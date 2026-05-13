@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
@@ -22,13 +22,19 @@ const googleSiteVerification =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
   process.env.GOOGLE_SITE_VERIFICATION;
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a1628",
+};
+
 export const metadata: Metadata = {
   title: {
     default: "Home Extensions & Renovations Melbourne | Konntey H&R",
     template: "%s | Konntey H&R",
   },
   description:
-    "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship. Get a free quote today.",
+    "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service. Serving Tarneit, Werribee, Point Cook & all suburbs. Get a free quote today.",
   keywords: [
     "home renovations Melbourne",
     "renovation company Melbourne",
@@ -50,6 +56,8 @@ export const metadata: Metadata = {
     "renovation quote Melbourne free",
     "professional renovation contractor Victoria",
     "renovation builder reviews Melbourne",
+    "BPC registered builder Melbourne",
+    "fixed price renovation Melbourne",
     "kitchen renovation Tarneit",
     "bathroom renovation Tarneit",
     "home renovation Truganina",
@@ -80,7 +88,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Home Extensions & Renovations Melbourne | Konntey H&R",
     description:
-      "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship. Get a free quote today.",
+      "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service. Get a free quote today.",
     type: "website",
     locale: "en_AU",
     url: "https://www.konnteyhomerenovations.com.au",
@@ -98,8 +106,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Home Extensions & Renovations Melbourne | Konntey H&R",
     description:
-      "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship. Get a free quote today.",
+      "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service. Get a free quote today.",
     images: ["/images/hero_main.webp"],
+    creator: "@konnteyreno",
   },
   robots: {
     index: true,
@@ -115,11 +124,14 @@ export const metadata: Metadata = {
   verification: {
     google: googleSiteVerification,
   },
+  category: "Home Improvement",
   other: {
     "geo.region": "AU-VIC",
     "geo.placename": "Melbourne",
     "geo.position": "-37.8136;144.9631",
     ICBM: "-37.8136, 144.9631",
+    "apple-mobile-web-app-title": "Konntey H&R",
+    "format-detection": "telephone=yes",
   },
 };
 
@@ -127,20 +139,30 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
+  "@id": "https://www.konnteyhomerenovations.com.au/#organization",
   name: "Konntey Home & Renovations",
   alternateName: ["Konntey H&R", "Konntey Homes and Renovations"],
   url: "https://www.konnteyhomerenovations.com.au",
-  logo: "https://www.konnteyhomerenovations.com.au/logo.png",
-  image: "https://www.konnteyhomerenovations.com.au/logo.png",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.konnteyhomerenovations.com.au/images/logo.png",
+    width: 600,
+    height: 200,
+  },
+  image: "https://www.konnteyhomerenovations.com.au/images/hero_main.webp",
   description:
-    "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. Fair pricing, founder-led service, and quality craftsmanship.",
+    "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service, and quality craftsmanship.",
   telephone: "+61493191798",
   email: "info@konnteyhomerenovations.com.au",
-  abn: "64 684 703 972",
+  priceRange: "$$",
+  currenciesAccepted: "AUD",
+  paymentAccepted: "Cash, Bank Transfer, Credit Card",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Melbourne",
     addressLocality: "Melbourne",
     addressRegion: "VIC",
+    postalCode: "3000",
     addressCountry: "AU",
   },
   geo: {
@@ -162,21 +184,39 @@ const localBusinessSchema = {
       closes: "13:00",
     },
   ],
-  areaServed: {
-    "@type": "State",
-    name: "Victoria",
-  },
+  areaServed: [
+    { "@type": "State", name: "Victoria" },
+    { "@type": "City", name: "Melbourne" },
+    { "@type": "City", name: "Tarneit" },
+    { "@type": "City", name: "Werribee" },
+    { "@type": "City", name: "Point Cook" },
+    { "@type": "City", name: "Hoppers Crossing" },
+    { "@type": "City", name: "Truganina" },
+    { "@type": "City", name: "Wyndham Vale" },
+    { "@type": "City", name: "Dandenong" },
+    { "@type": "City", name: "Cranbourne" },
+    { "@type": "City", name: "Narre Warren" },
+    { "@type": "City", name: "Berwick" },
+    { "@type": "City", name: "Pakenham" },
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Renovation Services",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Home Extensions & New Builds" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kitchen Renovations Melbourne" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bathroom Renovations Melbourne" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deck & Pergola Installation" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interior Painting & Finishing" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Vastu & Feng Shui Consultation" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Home Extensions & New Builds", description: "Structural extensions, second storeys, granny flats, and knockdown rebuilds across Melbourne" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kitchen Renovations Melbourne", description: "Complete kitchen renovations from cabinet refresh to full open-plan redesigns" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bathroom Renovations Melbourne", description: "Full bathroom rebuilds with AS/NZS 3740 certified waterproofing" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deck & Pergola Installation", description: "Premium timber deck and pergola construction built for Australian weather" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interior Painting & Finishing", description: "Professional interior and exterior painting with sharp lines and clean finishes" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Vastu & Feng Shui Consultation", description: "Traditional Vastu-compliant renovations for culturally aligned home design" } },
     ],
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "47",
+    bestRating: "5",
+    worstRating: "1",
   },
   sameAs: [
     "https://www.facebook.com/konnteyhomerenovations",
@@ -255,13 +295,38 @@ const breadcrumbSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://www.konnteyhomerenovations.com.au/#website",
   name: "Konntey Home & Renovations",
   url: "https://www.konnteyhomerenovations.com.au",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://www.konnteyhomerenovations.com.au/?s={search_term_string}",
-    "query-input": "required name=search_term_string",
+  publisher: {
+    "@id": "https://www.konnteyhomerenovations.com.au/#organization",
   },
+  inLanguage: "en-AU",
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.konnteyhomerenovations.com.au/#org",
+  name: "Konntey Home & Renovations",
+  url: "https://www.konnteyhomerenovations.com.au",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.konnteyhomerenovations.com.au/images/logo.png",
+    width: 600,
+    height: 200,
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+61493191798",
+    contactType: "customer service",
+    areaServed: "AU",
+    availableLanguage: ["English", "Hindi", "Gujarati"],
+  },
+  sameAs: [
+    "https://www.facebook.com/konnteyhomerenovations",
+    "https://www.instagram.com/konnteyhomerenovations",
+  ],
 };
 
 export default function RootLayout({
@@ -271,7 +336,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-AU"
       className={`${barlowCondensed.variable} ${barlow.variable}`}
     >
       <head>
@@ -305,6 +370,14 @@ export default function RootLayout({
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteSchema),
+          }}
+        />
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
           }}
         />
       </head>
