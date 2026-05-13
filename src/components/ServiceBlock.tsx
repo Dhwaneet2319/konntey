@@ -56,12 +56,13 @@ export default function ServiceBlock({
               className="parent-group relative w-full"
             >
               <div className="bracket-corners bracket-corners-extra relative overflow-hidden border border-navy/10 p-1">
-                <div className="relative h-[380px] w-full overflow-hidden sm:h-[500px] lg:h-[700px]">
+                <div className="relative h-[380px] w-full overflow-hidden sm:h-[500px] lg:h-[700px] contain-paint">
                   <Image
                     src={image}
                     alt={imageAlt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
+                    loading="lazy"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                 </div>

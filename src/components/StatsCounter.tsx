@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import { m, useInView } from "framer-motion";
 
-function AnimatedCounter({ value }: { value: number }) {
+const AnimatedCounter = memo(function AnimatedCounter({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [displayValue, setDisplayValue] = useState(0);
@@ -13,12 +13,13 @@ function AnimatedCounter({ value }: { value: number }) {
 
     let raf: number;
     let start: number | null = null;
-    const duration = 1400;
+    const duration = 1200; // slightly faster for snappier feel
 
     const step = (ts: number) => {
       if (!start) start = ts;
       const progress = Math.min((ts - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
+      // Use easeOutExpo for snappier animation
+      const eased = 1 - Math.pow(2, -10 * progress);
       setDisplayValue(Math.floor(eased * value));
       if (progress < 1) raf = requestAnimationFrame(step);
     };
@@ -28,7 +29,7 @@ function AnimatedCounter({ value }: { value: number }) {
   }, [isInView, value]);
 
   return <span ref={ref}>{displayValue}</span>;
-}
+});
 
 const stats = [
   { value: 24, suffix: "hr", label: "Quote Response Time" },
@@ -48,7 +49,7 @@ export default function StatsCounter() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center justify-center text-center sm:items-start sm:text-left"
             >
               <div className="font-display text-[clamp(3.5rem,7vw,5rem)] font-black uppercase leading-none tracking-tighter text-gold-bright">
