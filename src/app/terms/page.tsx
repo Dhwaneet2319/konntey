@@ -5,7 +5,14 @@ import { ArrowLeft } from "lucide-react";
 export const metadata: Metadata = {
   title: "Terms & Conditions | Konntey Home & Renovations",
   description:
-    "Read the terms and conditions for Konntey Home & Renovations, Melbourne VIC.",
+    "Read the terms and conditions for Konntey Home & Renovations, Melbourne VIC. Information about our renovation services, quotes, liability, and your rights under Australian Consumer Law.",
+  alternates: {
+    canonical: "/terms",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function TermsPage() {
