@@ -70,12 +70,12 @@ export default function Footer() {
               Our Services
             </div>
             <ul className="space-y-2 font-body text-[14px] text-white/75">
-              <li>Home Extensions & New Builds</li>
-              <li>Vastu & Feng Shui Consultation</li>
-              <li>Kitchen Renovation Melbourne</li>
-              <li>Bathroom Renovation Melbourne</li>
-              <li>Deck & Pergola Installation</li>
-              <li>Interior Painting & Finishing</li>
+              <li><Link href="/home-extensions-melbourne" className="transition-colors hover:text-gold-bright">Home Extensions & New Builds</Link></li>
+              <li><Link href="/vastu-renovations-melbourne" className="transition-colors hover:text-gold-bright">Vastu & Feng Shui Consultation</Link></li>
+              <li><Link href="/kitchen-renovations-melbourne" className="transition-colors hover:text-gold-bright">Kitchen Renovation Melbourne</Link></li>
+              <li><Link href="/bathroom-renovations-melbourne" className="transition-colors hover:text-gold-bright">Bathroom Renovation Melbourne</Link></li>
+              <li><Link href="/decks-pergolas-melbourne" className="transition-colors hover:text-gold-bright">Deck & Pergola Installation</Link></li>
+              <li><Link href="/interior-painting-melbourne" className="transition-colors hover:text-gold-bright">Interior Painting & Finishing</Link></li>
             </ul>
           </div>
 
