@@ -25,6 +25,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Decks & Pergolas Melbourne | Timber Deck Builders | Konntey H&R",
+    description:
+      "Premium deck and pergola builders. Merbau, spotted gum & composite. Fixed-price quotes across Melbourne.",
+    images: ["/images/outdoor.webp"],
+  },
   keywords: [
     "deck builder Melbourne",
     "pergola builder Melbourne",

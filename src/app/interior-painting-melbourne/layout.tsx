@@ -25,6 +25,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Interior & Exterior Painting Melbourne | Konntey H&R",
+    description:
+      "Professional residential painting across Melbourne. Interior, exterior, feature walls. Fixed-price quotes.",
+    images: ["/images/interior.webp"],
+  },
   keywords: [
     "interior painter Melbourne",
     "house painter Melbourne",
