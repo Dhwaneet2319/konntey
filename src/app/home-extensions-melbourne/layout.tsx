@@ -25,6 +25,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Home Extensions Melbourne | Second Storey & Granny Flats | Konntey H&R",
+    description:
+      "Home extensions from $1,800/sqm. Second storeys, granny flats, knockdown rebuilds. Fixed-price quotes.",
+    images: ["/images/extension.webp"],
+  },
   keywords: [
     "home extension Melbourne",
     "home extension western Melbourne",

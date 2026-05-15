@@ -25,6 +25,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vastu Compliant Renovations Melbourne | Konntey H&R",
+    description:
+      "Vastu Shastra aligned home renovations. Indian-owned, culturally respectful. Serving all Melbourne suburbs.",
+    images: ["/images/hero_main.webp"],
+  },
   keywords: [
     "vastu renovation Melbourne",
     "vastu compliant home Melbourne",
