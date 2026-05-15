@@ -311,6 +311,7 @@ body {
   will-change: transform, opacity;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* GPU-accelerate ticker for silky smooth scrolling */
@@ -321,22 +322,15 @@ body {
   transform: translateZ(0);
 }
 
-/* GPU-accelerate corner transitions */
-.corner-cut,
-.bracket-corners::before,
-.bracket-corners::after,
-.bracket-corners-extra::before,
-.bracket-corners-extra::after {
-  will-change: auto;
+/* Promote layers for corner transitions */
+.corner-cut {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
-/* Reduce paint on hover — use transform instead of layout */
-.parent-group:hover .corner-cut,
-.parent-group:hover .bracket-corners::before,
-.parent-group:hover .bracket-corners::after {
-  will-change: transform;
+/* Promote hover targets to own layer to avoid repaints */
+.parent-group {
+  isolation: isolate;
 }
 
 /* WhatsApp button fade-in via CSS (no JS spring needed) */
@@ -352,18 +346,31 @@ body {
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 2s both;
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 2s both;
 }
 
-/* Optimize images — prevent layout shift */
+/* Optimize images — skip offscreen rendering + prevent CLS */
 img {
   content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
 }
+
+/* Contain paint utility for image containers */
+.contain-paint {
+  contain: paint;
+}
+
+/* Optimize font rendering for headings */
+.font-display {
+  text-rendering: optimizeSpeed;
+}
+
+/* ===== LOW-END DEVICE OPTIMIZATIONS ===== */
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   .ticker-track {
-    animation-duration: 120s;
+    animation: none;
   }
   
   *,
@@ -372,16 +379,48 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Optimize font rendering for headings */
-.font-display {
-  text-rendering: optimizeSpeed;
+/* Reduce complexity on devices with limited memory/GPU */
+@media (max-width: 768px) {
+  /* Disable hover scale effects on mobile (saves GPU compositing) */
+  .parent-group:hover .corner-cut-tl,
+  .parent-group:hover .corner-cut-br {
+    border-left-width: 60px !important;
+    border-bottom-width: 80px !important;
+    border-right-width: 60px !important;
+    border-top-width: 80px !important;
+  }
+  
+  /* Reduce backdrop-blur intensity on mobile (very expensive on low-end) */
+  .glass,
+  .glass-light {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  
+  /* Simplify ticker animation for lower CPU usage */
+  .ticker-track {
+    animation-duration: 50s;
+  }
+  
+  /* Disable hover transforms on touch devices */
+  .group-hover\:scale-105 {
+    transform: none !important;
+  }
 }
 
+/* Force GPU compositing for smooth scrolling on all devices */
+main {
+  -webkit-overflow-scrolling: touch;
+}
 
-/* Contain paint utility for image containers */
-.contain-paint {
-  contain: paint;
+/* Prevent expensive paint on navbar scroll */
+.glass-light,
+.glass {
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }

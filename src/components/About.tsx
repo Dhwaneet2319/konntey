@@ -80,8 +80,8 @@ export default function About() {
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ 
-                    duration: 0.8, 
-                    delay: index * 0.15 + 0.1,
+                    duration: 0.6, 
+                    delay: index * 0.1 + 0.1,
                     ease: [0.16, 1, 0.3, 1] 
                   }}
                   className={`group relative border border-navy/8 bg-off-white p-8 transition-colors duration-500 hover:border-gold-bright/30 ${

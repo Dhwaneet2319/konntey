@@ -57,7 +57,7 @@ export default function ProcessStrip() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left"
             >
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-off-white border border-gold-bright font-display text-[20px] font-black text-gold-bright transition-transform duration-500 hover:scale-110 hover:bg-gold-bright hover:text-navy">

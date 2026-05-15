@@ -16,7 +16,7 @@ function MaskTitle({
       <m.div
         initial={{ y: "110%" }}
         animate={{ y: "0%" }}
-        transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       >
         {children}
       </m.div>
@@ -53,7 +53,7 @@ export default function Hero() {
             <m.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
               className="mt-8 max-w-md font-body text-[16px] leading-[1.7] text-navy/70"
             >
               Professional renovation builders in Melbourne delivering affordable kitchen renovations, 
@@ -64,7 +64,7 @@ export default function Hero() {
             <m.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
               className="mt-10"
             >
               <a
@@ -87,7 +87,7 @@ export default function Hero() {
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
+              transition={{ delay: 1, duration: 0.5 }}
               className="mt-12 md:hidden relative left-1/2 -ml-[50vw] w-[100vw]"
             >
               <Ticker text="Quality Work ◆ On Time ◆ Fair Pricing ◆ Melbourne Based ◆ Family Run ◆" />
@@ -96,9 +96,9 @@ export default function Hero() {
 
           <div className="relative mt-8 lg:col-span-7 xl:col-span-6 lg:mt-0 xl:mt-12">
             <m.div
-              initial={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.97, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="relative h-[65vh] min-h-[450px] w-full overflow-hidden border border-navy/10 parent-group"
             >
               <Image
@@ -108,6 +108,7 @@ export default function Hero() {
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover"
                 priority
+                fetchPriority="high"
               />
 
               <div className="corner-cut corner-cut-tl" />

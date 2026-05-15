@@ -75,9 +75,9 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
   return (
     <>
       <m.header
-        initial={{ y: "-100%" }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           mobileOpen ? "bg-navy" : scrolled ? "glass-light" : "bg-transparent"
         } ${

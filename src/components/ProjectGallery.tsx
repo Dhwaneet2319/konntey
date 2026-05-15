@@ -84,8 +84,8 @@ export default function ProjectGallery() {
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{
-                  duration: 0.5,
-                  delay: i * 0.08,
+                  duration: 0.4,
+                  delay: i * 0.06,
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 className="group relative border border-navy/[0.08] bg-white p-6 transition-all duration-500 hover:border-gold-bright/30 hover:shadow-sm sm:p-8"
