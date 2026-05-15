@@ -12,12 +12,12 @@ const navLinks = [
     label: "Services", 
     href: "/#services",
     children: [
-      { label: "Extensions & New Builds", href: "/services/extensions" },
+      { label: "Extensions & New Builds", href: "/home-extensions-melbourne" },
       { label: "Kitchen Renovations", href: "/kitchen-renovations-melbourne" },
       { label: "Bathroom Renovations", href: "/bathroom-renovations-melbourne" },
-      { label: "Decks & Pergolas", href: "/services/outdoor" },
-      { label: "Interior Finishing", href: "/services/interior" },
-      { label: "Vastu & Feng Shui", href: "/services/vastu" },
+      { label: "Decks & Pergolas", href: "/decks-pergolas-melbourne" },
+      { label: "Interior Painting", href: "/interior-painting-melbourne" },
+      { label: "Vastu & Feng Shui", href: "/vastu-renovations-melbourne" },
     ]
   },
   { label: "About", href: "/#about" },

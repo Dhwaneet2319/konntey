@@ -56,14 +56,20 @@ export default function VastuSection() {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-10"
+            className="mt-10 flex flex-wrap gap-4 items-center"
           >
             <a
-              href="#contact"
+              href="/vastu-renovations-melbourne"
               className="group inline-flex items-center gap-4 font-display text-[15px] font-black uppercase tracking-button text-navy transition-colors duration-300 hover:text-gold"
             >
-              <span>Discuss Your Project</span>
+              <span>Learn More About Vastu</span>
               <CircleArrow className="transition-transform duration-300 group-hover:translate-x-2" />
+            </a>
+            <a
+              href="#contact"
+              className="font-display text-[13px] font-bold uppercase tracking-button text-navy/50 transition-colors duration-300 hover:text-gold-bright"
+            >
+              Or Contact Us →
             </a>
           </m.div>
         </m.div>
