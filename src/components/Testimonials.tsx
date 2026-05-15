@@ -46,7 +46,7 @@ export default function Testimonials() {
               initial={{ y: 40, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="border border-navy/8 bg-white p-8 sm:p-10 hover:border-gold-bright/30 transition-colors duration-500"
             >
               <div className="font-display text-[clamp(3rem,5vw,4rem)] font-black leading-none text-gold-bright/20 mb-6">

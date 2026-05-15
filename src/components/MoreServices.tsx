@@ -39,10 +39,10 @@ export default function MoreServices() {
           {additionalServices.map((service, i) => (
             <m.div
               key={service}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              transition={{ duration: 0.3, delay: i * 0.03 }}
               className="border border-navy/15 px-5 py-3 font-display text-[14px] font-bold uppercase tracking-button text-navy transition-colors duration-300 hover:border-gold-bright hover:bg-navy hover:text-gold-bright sm:px-7 sm:py-4 sm:text-[16px]"
             >
               {service}

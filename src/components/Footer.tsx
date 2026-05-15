@@ -42,10 +42,10 @@ export default function Footer() {
 
       <div className="mx-auto max-w-[1600px] px-4 pt-12 pb-4 sm:px-6 lg:px-8 overflow-hidden">
         <m.h2
-          initial={{ y: "100%" }}
+          initial={{ y: "50%" }}
           whileInView={{ y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="font-display text-[clamp(5rem,21vw,18rem)] font-black uppercase leading-[0.8] tracking-[-4px] lg:tracking-[-10px] text-gold-bright mb-12 ml-[-0.04em]"
         >
           KONNTEY

@@ -49,10 +49,10 @@ export default function ServiceBlock({
             }`}
           >
             <m.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="parent-group relative w-full"
             >
               <div className="bracket-corners bracket-corners-extra relative overflow-hidden border border-navy/10 p-1">
@@ -86,10 +86,10 @@ export default function ServiceBlock({
             }`}
           >
             <m.div
-              initial={{ y: 50, opacity: 0 }}
+              initial={{ y: 40, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-4"
             >
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
@@ -117,10 +117,10 @@ export default function ServiceBlock({
             </m.div>
 
             <m.div
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               className="mt-10 lg:mt-16"
             >
               <p className="max-w-xl font-body text-[16px] xl:text-[18px] leading-[1.8] text-navy/70">
