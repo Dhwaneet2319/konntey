@@ -106,12 +106,12 @@ export default function Footer() {
               Company
             </div>
             <ul className="space-y-2 font-body text-[14px] text-white/75">
-              <li><a href="#hero" className="transition-colors hover:text-gold-bright">Home</a></li>
-              <li><a href="#services" className="transition-colors hover:text-gold-bright">Services</a></li>
-              <li><a href="#about" className="transition-colors hover:text-gold-bright">About Us</a></li>
-              <li><a href="#careers" className="transition-colors hover:text-gold-bright">Careers</a></li>
-              <li><a href="#contact" className="transition-colors hover:text-gold-bright">Contact</a></li>
-              <li><a href="/quote" className="transition-colors hover:text-gold-bright">Get a Quote</a></li>
+              <li><Link href="/" className="transition-colors hover:text-gold-bright">Home</Link></li>
+              <li><Link href="/#services" className="transition-colors hover:text-gold-bright">Services</Link></li>
+              <li><Link href="/#about" className="transition-colors hover:text-gold-bright">About Us</Link></li>
+              <li><Link href="/#careers" className="transition-colors hover:text-gold-bright">Careers</Link></li>
+              <li><Link href="/#contact" className="transition-colors hover:text-gold-bright">Contact</Link></li>
+              <li><Link href="/quote" className="transition-colors hover:text-gold-bright">Get a Quote</Link></li>
             </ul>
           </div>
         </div>
