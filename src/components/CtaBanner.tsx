@@ -38,7 +38,7 @@ export default function CtaBanner() {
             className="flex shrink-0 flex-col gap-4 sm:flex-row sm:items-center"
           >
             <a
-              href="#contact"
+              href="/#contact"
               className="group relative inline-flex overflow-hidden bg-navy px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-gold-bright"
             >
               <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-12">

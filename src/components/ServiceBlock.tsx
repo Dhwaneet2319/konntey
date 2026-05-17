@@ -131,7 +131,7 @@ export default function ServiceBlock({
               
               <div className="mt-10">
                 <a
-                  href="#contact"
+                  href="/#contact"
                   className="group inline-flex items-center gap-4 font-display text-[15px] font-black uppercase tracking-button text-navy transition-colors duration-300 hover:text-gold"
                 >
                   <span>Discuss Your Project</span>

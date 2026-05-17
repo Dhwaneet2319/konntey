@@ -56,7 +56,7 @@ export default function ProjectGallery() {
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <a
-                href="#contact"
+                href="/#contact"
                 className="group relative inline-flex items-center overflow-hidden bg-gold-bright px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-navy"
               >
                 <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-12">
@@ -67,7 +67,7 @@ export default function ProjectGallery() {
                 </span>
               </a>
               <a
-                href="#contact"
+                href="/#contact"
                 className="group inline-flex items-center gap-3 font-display text-[14px] font-black uppercase tracking-button text-navy/60 transition-colors duration-300 hover:text-gold-bright"
               >
                 <span>Or request a free quote</span>

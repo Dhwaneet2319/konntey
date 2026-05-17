@@ -1,28 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useForm, ValidationError } from "@formspree/react";
 
 const serviceOptions = [
-  "Kitchen & Bathroom",
-  "Extensions",
-  "Decks & Outdoor",
-  "Painting & Finishing",
+  "Kitchen Renovation",
+  "Bathroom Renovation",
+  "Home Extension",
+  "Decks & Pergolas",
+  "Interior Painting",
+  "Vastu Renovation",
   "Other",
 ];
 
 export default function QuotePage() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    console.log("Quote form submitted:", data);
-    setSubmitted(true);
-  };
+  const [state, handleSubmit] = useForm("xkopaqvd");
 
   return (
     <div className="min-h-screen bg-navy text-white">
@@ -67,7 +61,7 @@ export default function QuotePage() {
           </p>
         </m.div>
 
-        {submitted ? (
+        {state.succeeded ? (
           <m.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -97,55 +91,106 @@ export default function QuotePage() {
             className="mt-10 grid gap-5"
             onSubmit={handleSubmit}
           >
-            {["Name", "Phone", "Email"].map((label) => (
-              <label key={label} className="grid gap-2">
-                <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
-                  {label}
-                </span>
-                <input
-                  name={label.toLowerCase()}
-                  required={label !== "Phone"}
-                  type={
-                    label === "Email"
-                      ? "email"
-                      : label === "Phone"
-                      ? "tel"
-                      : "text"
-                  }
-                  className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-gold/50"
-                  placeholder={label}
-                />
-              </label>
-            ))}
+            <input type="hidden" name="_subject" value="New Quote Request from Konntey website" />
+            <input type="hidden" name="form_source" value="Quote Page" />
+
+            <label className="grid gap-2">
+              <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
+                Name
+              </span>
+              <input
+                id="name"
+                name="name"
+                required
+                type="text"
+                className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-gold/50"
+                placeholder="Your full name"
+              />
+              <ValidationError prefix="Name" field="name" errors={state.errors} className="font-body text-[12px] text-red-400" />
+            </label>
+
+            <label className="grid gap-2">
+              <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
+                Phone
+              </span>
+              <input
+                id="phone"
+                name="phone"
+                required
+                type="tel"
+                className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-gold/50"
+                placeholder="0493 191 798"
+              />
+              <ValidationError prefix="Phone" field="phone" errors={state.errors} className="font-body text-[12px] text-red-400" />
+            </label>
+
+            <label className="grid gap-2">
+              <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
+                Email
+              </span>
+              <input
+                id="email"
+                name="email"
+                required
+                type="email"
+                className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-gold/50"
+                placeholder="you@example.com"
+              />
+              <ValidationError prefix="Email" field="email" errors={state.errors} className="font-body text-[12px] text-red-400" />
+            </label>
+
             <label className="grid gap-2">
               <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
                 Service
               </span>
               <select
+                id="service"
                 name="service"
+                defaultValue=""
+                required
                 className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 focus:border-gold/50"
               >
+                <option value="" disabled>Select a service</option>
                 {serviceOptions.map((opt) => (
-                  <option key={opt}>{opt}</option>
+                  <option key={opt} value={opt}>{opt}</option>
                 ))}
               </select>
             </label>
+
+            <label className="grid gap-2">
+              <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
+                Suburb
+              </span>
+              <input
+                id="suburb"
+                name="suburb"
+                type="text"
+                className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-gold/50"
+                placeholder="Tarneit, Werribee, Point Cook..."
+              />
+            </label>
+
             <label className="grid gap-2">
               <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
                 Message
               </span>
               <textarea
+                id="message"
                 name="message"
                 rows={6}
+                required
                 className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-gold/50"
                 placeholder="Tell us about your project..."
               />
+              <ValidationError prefix="Message" field="message" errors={state.errors} className="font-body text-[12px] text-red-400" />
             </label>
+
             <button
               type="submit"
-              className="mt-2 inline-flex w-fit items-center justify-center bg-gold-bright px-8 py-4 font-display text-[15px] font-black uppercase tracking-button text-navy transition-all duration-150 hover:-translate-y-0.5 hover:bg-[#be9724]"
+              disabled={state.submitting}
+              className="mt-2 inline-flex w-fit items-center justify-center bg-gold-bright px-8 py-4 font-display text-[15px] font-black uppercase tracking-button text-navy transition-all duration-150 hover:-translate-y-0.5 hover:bg-[#be9724] disabled:opacity-60"
             >
-              Submit
+              {state.submitting ? "Sending..." : "Submit Request"}
             </button>
           </m.form>
         )}
