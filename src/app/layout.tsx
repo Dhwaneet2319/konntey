@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s | Konntey H&R",
   },
   description:
-    "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service. Serving Tarneit, Werribee, Point Cook & all suburbs. Get a free quote today.",
+    "Professional home extensions, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes. Serving Tarneit, Werribee, Point Cook & all suburbs.",
   keywords: [
     "home renovations Melbourne",
     "renovation company Melbourne",
@@ -211,13 +211,7 @@ const localBusinessSchema = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Vastu & Feng Shui Consultation", description: "Traditional Vastu-compliant renovations for culturally aligned home design" } },
     ],
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "47",
-    bestRating: "5",
-    worstRating: "1",
-  },
+
 };
 
 const faqSchema = {
@@ -275,18 +269,7 @@ const faqSchema = {
   ],
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://www.konnteyhomerenovations.com.au",
-    },
-  ],
-};
+
 
 const websiteSchema = {
   "@context": "https://schema.org",
@@ -348,14 +331,7 @@ export default function RootLayout({
             __html: JSON.stringify(faqSchema),
           }}
         />
-        <Script
-          id="breadcrumb-schema"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(breadcrumbSchema),
-          }}
-        />
+
         <Script
           id="website-schema"
           type="application/ld+json"

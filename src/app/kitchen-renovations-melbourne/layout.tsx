@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title:
     "Kitchen Renovations Western Melbourne | Custom Designs & Fixed Pricing | Konntey H&R",
   description:
-    "Kitchen renovations across Melbourne's western suburbs from $15,000. BPC registered, fixed-price quotes, full project management. From cabinet refresh to full open-plan redesign. Serving Tarneit, Werribee, Footscray, Point Cook, Hoppers Crossing & Sunshine.",
+    "Kitchen renovations from $15,000 across Melbourne's west. BPC registered, fixed-price quotes, full project management. Serving Tarneit, Werribee, Point Cook & more.",
   alternates: {
     canonical: "/kitchen-renovations-melbourne",
   },

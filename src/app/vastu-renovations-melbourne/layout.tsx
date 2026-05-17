@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title:
     "Vastu Compliant Renovations Melbourne | Vastu Home Design | Konntey H&R",
   description:
-    "Vastu Shastra compliant home renovations in Melbourne. Kitchen, bathroom & full home renovations aligned with Vastu principles. Indian-owned, culturally respectful. Serving Tarneit, Truganina, Point Cook, Werribee & all Melbourne suburbs.",
+    "Vastu Shastra compliant home renovations in Melbourne. Kitchen, bathroom & full home renovations aligned with Vastu principles. Indian-owned, culturally respectful.",
   alternates: {
     canonical: "/vastu-renovations-melbourne",
   },

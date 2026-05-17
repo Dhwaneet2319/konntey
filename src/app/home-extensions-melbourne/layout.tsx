@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title:
     "Home Extensions Melbourne | Second Storey & Granny Flats | Konntey H&R",
   description:
-    "Home extensions across Melbourne's western & southeastern suburbs. Second storeys, granny flats, knockdown rebuilds. BPC registered, council approvals handled, fixed-price quotes. Serving Tarneit, Werribee, Point Cook & more.",
+    "Home extensions from $1,800/sqm across Melbourne. Second storeys, granny flats, knockdown rebuilds. BPC registered, council approvals handled, fixed-price quotes.",
   alternates: {
     canonical: "/home-extensions-melbourne",
   },

@@ -140,8 +140,8 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="transition-colors duration-150 hover:text-gold-bright">Privacy</Link>
             <Link href="/terms" className="transition-colors duration-150 hover:text-gold-bright">Terms</Link>
-            <button onClick={handleSocialClick} className="transition-colors duration-150 hover:text-gold-bright">IG</button>
-            <button onClick={handleSocialClick} className="transition-colors duration-150 hover:text-gold-bright">FB</button>
+            <button onClick={handleSocialClick} className="transition-colors duration-150 hover:text-gold-bright" aria-label="Instagram">IG</button>
+            <button onClick={handleSocialClick} className="transition-colors duration-150 hover:text-gold-bright" aria-label="Facebook">FB</button>
           </div>
         </div>
 
