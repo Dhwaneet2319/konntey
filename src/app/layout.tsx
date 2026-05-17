@@ -218,10 +218,6 @@ const localBusinessSchema = {
     bestRating: "5",
     worstRating: "1",
   },
-  sameAs: [
-    "https://www.facebook.com/konnteyhomerenovations",
-    "https://www.instagram.com/konnteyhomerenovations",
-  ],
 };
 
 const faqSchema = {
@@ -323,10 +319,6 @@ const organizationSchema = {
     areaServed: "AU",
     availableLanguage: ["English", "Hindi", "Gujarati"],
   },
-  sameAs: [
-    "https://www.facebook.com/konnteyhomerenovations",
-    "https://www.instagram.com/konnteyhomerenovations",
-  ],
 };
 
 export default function RootLayout({

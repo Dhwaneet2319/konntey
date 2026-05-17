@@ -66,7 +66,7 @@ export default function VastuSection() {
               <CircleArrow className="transition-transform duration-300 group-hover:translate-x-2" />
             </a>
             <a
-              href="#contact"
+              href="/#contact"
               className="font-display text-[13px] font-bold uppercase tracking-button text-navy/50 transition-colors duration-300 hover:text-gold-bright"
             >
               Or Contact Us →

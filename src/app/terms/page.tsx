@@ -31,7 +31,7 @@ export default function TermsPage() {
           Terms of Service
         </h1>
         <p className="mt-4 font-body text-[14px] text-white/70">
-          Last updated: April 2026
+          Last updated: November 2025
         </p>
 
         <div className="mt-12 space-y-10 font-body text-[16px] leading-[1.8] text-white/90">

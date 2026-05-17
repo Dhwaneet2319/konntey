@@ -68,10 +68,12 @@ export default function Hero() {
               className="mt-10"
             >
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                  if (window.location.pathname === "/") {
+                    e.preventDefault();
+                    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                  }
                 }}
                 className="group relative inline-flex overflow-hidden bg-gold-bright px-8 py-5 font-display text-[16px] font-black uppercase tracking-button text-navy"
               >
