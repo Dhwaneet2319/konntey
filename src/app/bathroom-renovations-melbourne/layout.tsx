@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title:
     "Bathroom Renovations Western Melbourne | Waterproofing Certified Builder | Konntey H&R",
   description:
-    "Bathroom renovations across Melbourne's western suburbs from $10,000. BPC registered, AS/NZS 3740 certified waterproofing, fixed-price quotes. Serving Werribee, Tarneit, Point Cook, Footscray, Hoppers Crossing & Williamstown. Free quote within 48 hours.",
+    "Bathroom renovations from $10,000 across Melbourne's west. BPC registered, AS/NZS 3740 waterproofing certified, fixed-price quotes. Serving Werribee, Tarneit, Point Cook & more.",
   alternates: {
     canonical: "/bathroom-renovations-melbourne",
   },

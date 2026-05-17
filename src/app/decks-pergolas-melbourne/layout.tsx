@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title:
     "Decks & Pergolas Melbourne | Timber Deck Builders | Konntey H&R",
   description:
-    "Premium deck and pergola builders across Melbourne. Merbau, spotted gum & composite decking. Pergolas, carports, outdoor living areas. BPC registered, fixed-price quotes. Serving Tarneit, Werribee, Point Cook & all suburbs.",
+    "Premium deck and pergola builders in Melbourne. Merbau, spotted gum & composite decking. Pergolas, carports, outdoor living. BPC registered, fixed-price quotes.",
   alternates: {
     canonical: "/decks-pergolas-melbourne",
   },

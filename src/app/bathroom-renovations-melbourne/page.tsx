@@ -185,7 +185,7 @@ export default function BathroomRenovationsPage() {
                 { src: "/images/bathroom/shower.webp", alt: "Modern walk-in shower" },
                 { src: "/images/bathroom/vanity.webp", alt: "Custom bathroom vanity" },
                 { src: "/images/bathroom/small-ensuite.webp", alt: "Small ensuite renovation" },
-                { src: "/images/bathroom/hero.webp", alt: "Wide shot bathroom renovation" }
+                { src: "/images/bathroom/wide-shot.webp", alt: "Wide shot bathroom renovation" }
               ].map((img, i) => (
                 <m.div key={img.src} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="relative aspect-square overflow-hidden bg-navy/5">
                   <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
