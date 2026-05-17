@@ -233,6 +233,8 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
                         <button 
                           onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)} 
                           className="p-4 text-gold-bright"
+                          aria-label="Toggle services submenu"
+                          aria-expanded={openDropdown === item.label}
                         >
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className={`transition-transform duration-300 ${openDropdown === item.label ? "rotate-180" : ""}`}>
                             <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>

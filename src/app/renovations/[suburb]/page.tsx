@@ -165,7 +165,7 @@ export default function SuburbPage({ params }: Props) {
               Get a Free Quote in {suburb.name}
             </Link>
             <Link
-              href="/"
+              href="/#services"
               className="border-2 border-white/20 px-8 py-5 font-display text-[16px] font-black uppercase tracking-button text-white hover:border-gold-bright hover:text-gold-bright transition-colors"
             >
               View Our Work

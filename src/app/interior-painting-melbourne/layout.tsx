@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title:
     "Interior & Exterior Painting Melbourne | Professional Painters | Konntey H&R",
   description:
-    "Professional interior and exterior painters across Melbourne. Sharp lines, clean finishes, colour consultation included. Residential & renovation painting. Fixed-price quotes. Serving Tarneit, Werribee, Point Cook & all suburbs.",
+    "Professional interior and exterior painters in Melbourne. Sharp lines, clean finishes, colour consultation included. Fixed-price quotes across all suburbs.",
   alternates: {
     canonical: "/interior-painting-melbourne",
   },
