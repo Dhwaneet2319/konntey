@@ -15,11 +15,21 @@ const serviceOptions = [
   "Other",
 ];
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.konnteyhomerenovations.com.au" },
+    { "@type": "ListItem", position: 2, name: "Get a Free Quote", item: "https://www.konnteyhomerenovations.com.au/quote" },
+  ],
+};
+
 export default function QuotePage() {
   const [state, handleSubmit] = useForm("xkopaqvd");
 
   return (
     <div className="min-h-screen bg-navy text-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Simple nav header */}
       <m.header
         initial={{ y: -24, opacity: 0 }}

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "Home Extensions Melbourne | Second Storey & Granny Flats | Konntey H&R",
+  title: "Home Extensions Melbourne | Second Storeys",
   description:
-    "Home extensions from $1,800/sqm across Melbourne. Second storeys, granny flats, knockdown rebuilds. BPC registered, council approvals handled, fixed-price quotes.",
+    "Home extensions from $1,800/sqm across Melbourne. Second storeys, granny flats, knockdown rebuilds. BPC registered, council approvals, fixed-price quotes.",
   alternates: {
     canonical: "/home-extensions-melbourne",
   },

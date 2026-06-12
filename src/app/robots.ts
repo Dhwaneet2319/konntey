@@ -6,17 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/", "/scan"],
-      },
-      {
-        userAgent: "Googlebot",
-        allow: "/",
-        disallow: ["/api/", "/_next/", "/scan"],
-      },
-      {
-        userAgent: "Bingbot",
-        allow: "/",
-        disallow: ["/api/", "/_next/", "/scan"],
+        disallow: ["/api/", "/scan"],
       },
     ],
     sitemap: "https://www.konnteyhomerenovations.com.au/sitemap.xml",

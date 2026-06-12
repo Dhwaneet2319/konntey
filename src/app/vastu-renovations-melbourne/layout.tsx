@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "Vastu Compliant Renovations Melbourne | Vastu Home Design | Konntey H&R",
+  title: "Vastu Compliant Renovations Melbourne",
   description:
-    "Vastu Shastra compliant home renovations in Melbourne. Kitchen, bathroom & full home renovations aligned with Vastu principles. Indian-owned, culturally respectful.",
+    "Vastu Shastra compliant home renovations in Melbourne. Kitchen, bathroom & full home renovations aligned with Vastu principles. Indian-owned & operated.",
   alternates: {
     canonical: "/vastu-renovations-melbourne",
   },
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/hero_main.webp",
+        url: "/images/hero-main.webp",
         width: 1200,
         height: 630,
         alt: "Vastu compliant home renovation in Melbourne by Konntey H&R",
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
     title: "Vastu Compliant Renovations Melbourne | Konntey H&R",
     description:
       "Vastu Shastra aligned home renovations. Indian-owned, culturally respectful. Serving all Melbourne suburbs.",
-    images: ["/images/hero_main.webp"],
+    images: ["/images/hero-main.webp"],
   },
   keywords: [
     "vastu renovation Melbourne",

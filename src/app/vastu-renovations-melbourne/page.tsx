@@ -6,7 +6,6 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import Script from "next/script";
 import { Phone } from "lucide-react";
 import Image from "next/image";
 
@@ -83,17 +82,27 @@ export default function VastuPage() {
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.konnteyhomerenovations.com.au" },
+      { "@type": "ListItem", position: 2, name: "Vastu Renovations Melbourne", item: "https://www.konnteyhomerenovations.com.au/vastu-renovations-melbourne" },
+    ],
+  };
+
   return (
     <div className="bg-white text-navy font-body hide-scrollbar min-h-screen flex flex-col">
-      <Script id="vastu-service-schema" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <Script id="vastu-faq-schema" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <NavBar theme="dark" />
       <WhatsAppButton />
 
       <main className="flex-grow">
         {/* Hero */}
         <section className="relative pt-[150px] pb-20 bg-navy text-white overflow-hidden">
-          <Image src="/images/hero_main.webp" alt="Vastu compliant home renovation Melbourne" fill priority sizes="100vw" className="object-cover object-center opacity-30 mix-blend-overlay" />
+          <Image src="/images/hero-main.webp" alt="Vastu compliant home renovation Melbourne" fill priority sizes="100vw" className="object-cover object-center opacity-30 mix-blend-overlay" />
           <div className="grain-overlay" />
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 relative z-10">
             <m.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>

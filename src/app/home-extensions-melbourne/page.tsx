@@ -6,7 +6,6 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import Script from "next/script";
 import { Phone } from "lucide-react";
 import Image from "next/image";
 
@@ -86,10 +85,20 @@ export default function HomeExtensionsPage() {
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.konnteyhomerenovations.com.au" },
+      { "@type": "ListItem", position: 2, name: "Home Extensions Melbourne", item: "https://www.konnteyhomerenovations.com.au/home-extensions-melbourne" },
+    ],
+  };
+
   return (
     <div className="bg-white text-navy font-body hide-scrollbar min-h-screen flex flex-col">
-      <Script id="extensions-service-schema" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <Script id="extensions-faq-schema" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <NavBar theme="dark" />
       <WhatsAppButton />
 

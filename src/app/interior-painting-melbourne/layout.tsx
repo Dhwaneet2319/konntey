@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "Interior & Exterior Painting Melbourne | Professional Painters | Konntey H&R",
+  title: "Interior & Exterior Painting Melbourne",
   description:
     "Professional interior and exterior painters in Melbourne. Sharp lines, clean finishes, colour consultation included. Fixed-price quotes across all suburbs.",
   alternates: {

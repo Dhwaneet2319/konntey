@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "Bathroom Renovations Western Melbourne | Waterproofing Certified Builder | Konntey H&R",
+  title: "Bathroom Renovations Melbourne | Fixed-Price Quotes",
   description:
-    "Bathroom renovations from $10,000 across Melbourne's west. BPC registered, AS/NZS 3740 waterproofing certified, fixed-price quotes. Serving Werribee, Tarneit, Point Cook & more.",
+    "Bathroom renovations from $10,000 across Melbourne's west. BPC registered, AS/NZS 3740 certified waterproofing, fixed-price quotes. Serving all western suburbs.",
   alternates: {
     canonical: "/bathroom-renovations-melbourne",
   },

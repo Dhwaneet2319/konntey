@@ -16,7 +16,7 @@ const serviceAreas = [
 export default function Footer() {
   const [toast, setToast] = useState(false);
 
-  const handleSocialClick = (e: React.MouseEvent) => {
+  const handleFbClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setToast(true);
     setTimeout(() => setToast(false), 2500);
@@ -140,8 +140,8 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="transition-colors duration-150 hover:text-gold-bright">Privacy</Link>
             <Link href="/terms" className="transition-colors duration-150 hover:text-gold-bright">Terms</Link>
-            <button onClick={handleSocialClick} className="transition-colors duration-150 hover:text-gold-bright" aria-label="Instagram">IG</button>
-            <button onClick={handleSocialClick} className="transition-colors duration-150 hover:text-gold-bright" aria-label="Facebook">FB</button>
+            <a href="https://www.instagram.com/konntey/" target="_blank" rel="noopener noreferrer" className="transition-colors duration-150 hover:text-gold-bright" aria-label="Konntey on Instagram">IG</a>
+            <button onClick={handleFbClick} className="transition-colors duration-150 hover:text-gold-bright" aria-label="Facebook">FB</button>
           </div>
         </div>
 

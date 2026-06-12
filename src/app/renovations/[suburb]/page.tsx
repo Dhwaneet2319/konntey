@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const suburb = suburbs[slug];
   if (!suburb) return {};
 
-  const title = `Home Renovations ${suburb.name} | Kitchen & Bathroom Renovation Builders`;
-  const description = `Professional renovation builders in ${suburb.name}, Melbourne. Kitchen renovations, bathroom renovations, home extensions, decks & painting. BPC registered, fixed-price quotes. Also serving ${suburb.nearby.slice(0, 3).join(", ")}. Free quote today.`;
+  const title = `Home Renovations ${suburb.name}`;
+  const description = `Professional renovation builders in ${suburb.name}. Kitchen & bathroom renovations, home extensions, decks & painting. Fixed-price quotes, free consultations.`;
 
   return {
     title,
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: "/images/hero_main.webp",
+          url: "/images/hero-main.webp",
           width: 1200,
           height: 630,
           alt: `Professional renovation builders servicing ${suburb.name} Melbourne`,
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `Renovation Builders ${suburb.name} | Konntey H&R`,
       description: `Professional renovation builders in ${suburb.name}. Kitchen, bathroom, extensions & more. Free quote.`,
-      images: ["/images/hero_main.webp"],
+      images: ["/images/hero-main.webp"],
     },
     keywords: [
       `renovation ${suburb.name}`,

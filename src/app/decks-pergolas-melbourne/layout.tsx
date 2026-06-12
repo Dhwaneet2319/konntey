@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "Decks & Pergolas Melbourne | Timber Deck Builders | Konntey H&R",
+  title: "Deck & Pergola Builders Melbourne",
   description:
-    "Premium deck and pergola builders in Melbourne. Merbau, spotted gum & composite decking. Pergolas, carports, outdoor living. BPC registered, fixed-price quotes.",
+    "Premium deck and pergola builders in Melbourne. Merbau, spotted gum & composite decking. Carports & outdoor living. BPC registered, fixed-price quotes.",
   alternates: {
     canonical: "/decks-pergolas-melbourne",
   },

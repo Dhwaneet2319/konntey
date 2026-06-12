@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 import MotionProvider from "@/components/MotionProvider";
 
 const barlowCondensed = Barlow_Condensed({
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Konntey H&R",
   },
   description:
-    "Professional home extensions, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes. Serving Tarneit, Werribee, Point Cook & all suburbs.",
+    "Professional home extensions, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes. Serving Tarneit, Werribee & Point Cook.",
   keywords: [
     "home renovations Melbourne",
     "renovation company Melbourne",
@@ -95,7 +94,7 @@ export const metadata: Metadata = {
     siteName: "Konntey Home & Renovations",
     images: [
       {
-        url: "/images/hero_main.webp",
+        url: "/images/hero-main.webp",
         width: 1200,
         height: 630,
         alt: "Konntey Home & Renovations — Professional renovation builders in Melbourne",
@@ -107,7 +106,7 @@ export const metadata: Metadata = {
     title: "Home Extensions & Renovations Melbourne | Konntey H&R",
     description:
       "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service. Get a free quote today.",
-    images: ["/images/hero_main.webp"],
+    images: ["/images/hero-main.webp"],
     creator: "@konnteyreno",
   },
   robots: {
@@ -149,7 +148,7 @@ const localBusinessSchema = {
     width: 600,
     height: 200,
   },
-  image: "https://www.konnteyhomerenovations.com.au/images/hero_main.webp",
+  image: "https://www.konnteyhomerenovations.com.au/images/hero-main.webp",
   description:
     "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service, and quality craftsmanship.",
   telephone: "+61493191798",
@@ -174,8 +173,8 @@ const localBusinessSchema = {
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "07:00",
-      closes: "17:00",
+      opens: "09:00",
+      closes: "21:00",
     },
     {
       "@type": "OpeningHoursSpecification",
@@ -183,6 +182,16 @@ const localBusinessSchema = {
       opens: "09:00",
       closes: "13:00",
     },
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+61493191798",
+    contactType: "customer service",
+    areaServed: "AU",
+    availableLanguage: ["English", "Hindi", "Gujarati"],
+  },
+  sameAs: [
+    "https://www.instagram.com/konntey/",
   ],
   areaServed: [
     { "@type": "State", name: "Victoria" },
@@ -283,27 +292,6 @@ const websiteSchema = {
   inLanguage: "en-AU",
 };
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://www.konnteyhomerenovations.com.au/#org",
-  name: "Konntey Home & Renovations",
-  url: "https://www.konnteyhomerenovations.com.au",
-  logo: {
-    "@type": "ImageObject",
-    url: "https://www.konnteyhomerenovations.com.au/images/logo.png",
-    width: 600,
-    height: 200,
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+61493191798",
-    contactType: "customer service",
-    areaServed: "AU",
-    availableLanguage: ["English", "Hindi", "Gujarati"],
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -315,37 +303,22 @@ export default function RootLayout({
       className={`${barlowCondensed.variable} ${barlow.variable}`}
     >
       <head>
-        <Script
-          id="local-business-schema"
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
-        <Script
-          id="faq-schema"
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(faqSchema),
           }}
         />
-
-        <Script
-          id="website-schema"
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteSchema),
-          }}
-        />
-        <Script
-          id="organization-schema"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
           }}
         />
       </head>

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "Kitchen Renovations Western Melbourne | Custom Designs & Fixed Pricing | Konntey H&R",
+  title: "Kitchen Renovations Melbourne | Fixed-Price Quotes",
   description:
-    "Kitchen renovations from $15,000 across Melbourne's west. BPC registered, fixed-price quotes, full project management. Serving Tarneit, Werribee, Point Cook & more.",
+    "Kitchen renovations from $15,000 across Melbourne's west. BPC registered, fixed-price quotes, full project management. Serving Tarneit, Werribee & Point Cook.",
   alternates: {
     canonical: "/kitchen-renovations-melbourne",
   },

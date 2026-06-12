@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Konntey Home & Renovations",
+  title: "Privacy Policy",
   description:
-    "Read the privacy policy for Konntey Home & Renovations, Melbourne VIC. Learn how we handle your personal information in accordance with Australian Privacy Principles.",
+    "Privacy policy for Konntey Home & Renovations, Melbourne. How we handle your personal information under the Australian Privacy Principles.",
   alternates: {
     canonical: "/privacy",
   },

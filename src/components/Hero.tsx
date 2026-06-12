@@ -104,7 +104,7 @@ export default function Hero() {
               className="relative h-[65vh] min-h-[450px] w-full overflow-hidden border border-navy/10 parent-group"
             >
               <Image
-                src="/images/hero_main.webp"
+                src="/images/hero-main.webp"
                 alt="Premium home renovation by Konntey — professional builders Melbourne"
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
