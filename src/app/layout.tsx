@@ -193,6 +193,8 @@ const localBusinessSchema = {
   sameAs: [
     "https://www.instagram.com/konntey/",
   ],
+  hasMap:
+    "https://www.google.com/maps/search/?api=1&query=Konntey%20Home%20%26%20Renovations%20Melbourne",
   areaServed: [
     { "@type": "State", name: "Victoria" },
     { "@type": "City", name: "Melbourne" },

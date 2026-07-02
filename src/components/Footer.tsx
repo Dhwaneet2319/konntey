@@ -6,6 +6,10 @@ import Link from "next/link";
 import { Clock } from "lucide-react";
 import StarBorder from "./StarBorder";
 
+// Swap for the official GBP review short link (g.page/r/.../review) when available
+const GOOGLE_REVIEW_URL =
+  "https://www.google.com/maps/search/?api=1&query=Konntey%20Home%20%26%20Renovations%20Melbourne";
+
 const serviceAreas = [
   "Tarneit", "Truganina", "Werribee", "Hoppers Crossing", "Point Cook",
   "Wyndham Vale", "Manor Lakes", "Williams Landing", "Laverton",
@@ -138,6 +142,15 @@ export default function Footer() {
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-[13px] text-white/70 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} Konntey Home & Renovations. Melbourne, VIC.</span>
           <div className="flex items-center gap-4">
+            <a
+              href={GOOGLE_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-bright transition-colors duration-150 hover:text-white"
+              aria-label="Review Konntey on Google"
+            >
+              ★ Review us on Google
+            </a>
             <Link href="/privacy" className="transition-colors duration-150 hover:text-gold-bright">Privacy</Link>
             <Link href="/terms" className="transition-colors duration-150 hover:text-gold-bright">Terms</Link>
             <a href="https://www.instagram.com/konntey/" target="_blank" rel="noopener noreferrer" className="transition-colors duration-150 hover:text-gold-bright" aria-label="Konntey on Instagram">IG</a>
