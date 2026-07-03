@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import FloatingActions from "@/components/chat/FloatingActions";
 
 type SuburbInfo = {
   name: string;
@@ -456,7 +456,7 @@ export default function SuburbPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <NavBar theme="dark" />
-      <WhatsAppButton />
+      <FloatingActions />
       <main className="flex-grow">
         {/* Breadcrumb — mirrors BreadcrumbList JSON-LD above */}
         <nav aria-label="Breadcrumb" className="border-b border-white/10 px-4 sm:px-6 lg:px-8 pt-[110px]">

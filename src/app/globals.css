@@ -305,9 +305,16 @@ body {
 
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
 
-/* GPU-accelerate all framer-motion animated elements */
-[style*="transform"],
-[style*="opacity"] {
+/*
+ * Previously every element with an inline transform/opacity (i.e. every
+ * framer-motion node) was permanently promoted to its own compositor layer via
+ * a broad [style*="transform"] rule. That bloats memory and can hurt scrolling.
+ * framer-motion already toggles will-change for the duration of each animation,
+ * so we only keep explicit GPU hints on the few always-animating elements below.
+ */
+
+/* Opt-in GPU promotion for genuinely hot elements */
+.gpu-layer {
   will-change: transform, opacity;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;

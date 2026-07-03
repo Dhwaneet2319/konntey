@@ -11,12 +11,14 @@ function MaskTitle({
   children: React.ReactNode;
   delay?: number;
 }) {
+  // Opacity-only reveal: the H1 is the LCP element, so we keep it in its final
+  // position from first paint (no off-screen translate) and just fade it in.
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative">
       <m.div
-        initial={{ y: "110%" }}
-        animate={{ y: "0%" }}
-        transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
       >
         {children}
       </m.div>

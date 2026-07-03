@@ -1,12 +1,11 @@
-"use client";
-
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import { m, AnimatePresence } from "framer-motion";
+import FloatingActions from "@/components/chat/FloatingActions";
+import Reveal from "@/components/Reveal";
+import ServiceFaq from "@/components/ServiceFaq";
+import ServiceAreasStrip from "@/components/ServiceAreasStrip";
 import Link from "next/link";
-import { useState } from "react";
 import { Phone } from "lucide-react";
 import Image from "next/image";
 
@@ -59,7 +58,6 @@ const faqs = [
 ];
 
 export default function BathroomRenovationsPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -120,7 +118,7 @@ export default function BathroomRenovationsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <NavBar theme="dark" />
-      <WhatsAppButton />
+      <FloatingActions />
 
       <main className="flex-grow">
         {/* Hero */}
@@ -128,7 +126,7 @@ export default function BathroomRenovationsPage() {
           <Image src="/images/bathroom/hero.webp" alt="Western Melbourne Bathroom Renovation" fill priority sizes="100vw" className="object-cover object-center opacity-40 mix-blend-overlay" />
           <div className="grain-overlay" />
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 relative z-10">
-            <m.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal mode="mount">
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">BATHROOM RENOVATIONS</div>
               <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-5xl">
                 Bathroom Renovations in Western Melbourne — <span className="text-gold-bright">From Ensuite to Full Remodel</span>
@@ -145,14 +143,14 @@ export default function BathroomRenovationsPage() {
                   <span>Call Us</span>
                 </a>
               </div>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
         {/* Cost Section */}
         <section className="py-20 sm:py-28 bg-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">PRICING</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-4xl">
                 How much does a bathroom renovation cost in Melbourne&apos;s west?
@@ -160,23 +158,23 @@ export default function BathroomRenovationsPage() {
               <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70 max-w-3xl">
                 Most western Melbourne bathroom renovations cost between $10,000 and $40,000 depending on size, fixtures, and scope. A small ensuite starts from $10,000–$15,000, a standard bathroom runs $15,000–$30,000, and a full premium remodel with freestanding bath and floor-to-ceiling tiling typically sits between $30,000–$45,000. Fixed-price quotes available — no surprises.
               </p>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
         {/* Bathroom Types */}
         <section className="py-20 sm:py-28 bg-off-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">WHAT WE DO</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Bathroom Types We Renovate</h2>
-            </m.div>
+            </Reveal>
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {bathroomTypes.map((bt, i) => (
-                <m.div key={bt.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="border border-navy/8 bg-white p-8">
+                <Reveal key={bt.title} y={20} duration={0.6} delay={i * 0.1} className="border border-navy/8 bg-white p-8">
                   <h3 className="font-display text-[22px] font-black uppercase tracking-tighter text-navy">{bt.title}</h3>
                   <p className="mt-3 font-body text-[15px] leading-[1.8] text-navy/70">{bt.desc}</p>
-                </m.div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -185,10 +183,10 @@ export default function BathroomRenovationsPage() {
         {/* Project Gallery */}
         <section className="py-20 sm:py-28 bg-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">OUR WORK</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Project Gallery</h2>
-            </m.div>
+            </Reveal>
             <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
               {[
                 { src: "/images/bathroom/shower.webp", alt: "Modern walk-in shower" },
@@ -196,9 +194,9 @@ export default function BathroomRenovationsPage() {
                 { src: "/images/bathroom/small-ensuite.webp", alt: "Small ensuite renovation" },
                 { src: "/images/bathroom/wide-shot.webp", alt: "Wide shot bathroom renovation" }
               ].map((img, i) => (
-                <m.div key={img.src} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="relative aspect-square overflow-hidden bg-navy/5">
+                <Reveal key={img.src} y={20} duration={0.6} delay={i * 0.1} className="relative aspect-square overflow-hidden bg-navy/5">
                   <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
-                </m.div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -207,23 +205,23 @@ export default function BathroomRenovationsPage() {
         {/* Process */}
         <section className="py-20 sm:py-28 bg-navy text-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">HOW IT WORKS</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Our Renovation Process</h2>
-            </m.div>
+            </Reveal>
             <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:items-start">
               <div className="grid gap-6 sm:grid-cols-2">
                 {processSteps.map((ps, i) => (
-                  <m.div key={ps.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-6">
+                  <Reveal key={ps.step} y={20} duration={0.6} delay={i * 0.08} className="border border-white/10 p-6">
                     <div className="font-display text-[36px] font-black text-gold-bright leading-none">{ps.step}</div>
                     <h3 className="mt-3 font-display text-[16px] font-black uppercase tracking-button text-white">{ps.title}</h3>
                     <p className="mt-2 font-body text-[14px] leading-[1.7] text-white/60">{ps.desc}</p>
-                  </m.div>
+                  </Reveal>
                 ))}
               </div>
-              <m.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="relative h-[400px] lg:h-full min-h-[400px] w-full overflow-hidden border border-white/10">
+              <Reveal x={30} y={0} className="relative h-[400px] lg:h-full min-h-[400px] w-full overflow-hidden border border-white/10">
                 <Image src="/images/bathroom/tiler-working.webp" alt="Tiler working on bathroom renovation" fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 50vw" />
-              </m.div>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -239,7 +237,7 @@ export default function BathroomRenovationsPage() {
         {/* Compliance */}
         <section className="py-20 sm:py-28 bg-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">COMPLIANCE</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-4xl">Compliance &amp; Waterproofing Certification</h2>
               <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70 max-w-3xl">
@@ -256,18 +254,18 @@ export default function BathroomRenovationsPage() {
               <p className="mt-8 font-body text-[15px] leading-[1.8] text-navy/60 italic">
                 Most homeowners don&apos;t know to ask for a waterproofing certificate — we provide it without being asked.
               </p>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
         {/* Pricing Table */}
         <section className="py-20 sm:py-28 bg-off-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">INVESTMENT</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Pricing Guide</h2>
-            </m.div>
-            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }} className="mt-12 max-w-2xl">
+            </Reveal>
+            <Reveal y={20} delay={0.15} className="mt-12 max-w-2xl">
               <div className="border border-navy/10 bg-white overflow-hidden">
                 <div className="grid grid-cols-2 bg-navy text-white font-display text-[13px] font-black uppercase tracking-button">
                   <div className="p-4 border-r border-white/10">Scope</div>
@@ -283,23 +281,23 @@ export default function BathroomRenovationsPage() {
               <p className="mt-6 font-body text-[14px] leading-[1.7] text-navy/60">
                 Prices vary based on tile format, fixture selection, layout changes, and whether plumbing relocation is required. All quotes are fixed-price — what we quote is what you pay.
               </p>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
         {/* Testimonials */}
         <section className="py-20 sm:py-28 bg-navy text-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">TESTIMONIALS</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">What Our Western Melbourne Clients Say</h2>
-            </m.div>
+            </Reveal>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {testimonials.map((t, i) => (
-                <m.div key={t.author} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-8">
+                <Reveal key={t.author} y={20} duration={0.6} delay={i * 0.1} className="border border-white/10 p-8">
                   <p className="font-body text-[15px] leading-[1.8] text-white/80 italic">&ldquo;{t.quote}&rdquo;</p>
                   <div className="mt-6 font-display text-[14px] font-black uppercase tracking-button text-gold-bright">— {t.author}, {t.location}</div>
-                </m.div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -308,36 +306,18 @@ export default function BathroomRenovationsPage() {
         {/* FAQ */}
         <section className="py-20 sm:py-28 bg-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">FAQ</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Frequently Asked Questions</h2>
-            </m.div>
-            <div className="mt-12 max-w-3xl space-y-4">
-              {faqs.map((faq, i) => (
-                <m.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.5, delay: i * 0.05 }} className="border border-navy/10">
-                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="flex w-full items-center justify-between p-6 text-left">
-                    <span className="font-display text-[16px] font-black uppercase tracking-tight text-navy pr-4">{faq.q}</span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" className={`shrink-0 transition-transform duration-300 text-gold-bright ${openFaq === i ? "rotate-180" : ""}`}>
-                      <path d="M5 8l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                  <AnimatePresence>
-                    {openFaq === i && (
-                      <m.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }} className="overflow-hidden">
-                        <div className="px-6 pb-6 font-body text-[15px] leading-[1.8] text-navy/70">{faq.a}</div>
-                      </m.div>
-                    )}
-                  </AnimatePresence>
-                </m.div>
-              ))}
-            </div>
+            </Reveal>
+            <ServiceFaq faqs={faqs} />
           </div>
         </section>
 
         {/* Final CTA */}
         <section className="py-20 sm:py-28 bg-gold-bright text-navy text-center">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
                 Ready to transform your bathroom?
               </h2>
@@ -353,7 +333,7 @@ export default function BathroomRenovationsPage() {
                   <span>Call us directly</span>
                 </a>
               </div>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
@@ -367,6 +347,8 @@ export default function BathroomRenovationsPage() {
             <Link prefetch={false} href="/quote" className="text-gold-bright hover:underline">Get a Quote →</Link>
           </div>
         </section>
+
+        <ServiceAreasStrip service="bathroom renovations" />
       </main>
 
       <Footer />

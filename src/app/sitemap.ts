@@ -1,34 +1,39 @@
 import { MetadataRoute } from "next";
-
-const suburbs = [
-  "tarneit", "truganina", "werribee", "hoppers-crossing", "point-cook",
-  "wyndham-vale", "manor-lakes", "williams-landing", "laverton",
-  "dandenong", "cranbourne", "frankston", "narre-warren",
-  "berwick", "springvale", "pakenham", "officer", "clyde", "melton",
-];
+import { suburbLinks } from "@/content/suburbs";
+import { guides } from "@/content/guides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.konnteyhomerenovations.com.au";
+  const now = new Date();
 
   const staticPages = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1 },
-    { url: `${baseUrl}/kitchen-renovations-melbourne`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/bathroom-renovations-melbourne`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/home-extensions-melbourne`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/decks-pergolas-melbourne`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/interior-painting-melbourne`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/vastu-renovations-melbourne`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${baseUrl}/quote`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.8 },
-    { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.2 },
-    { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.2 },
+    { url: baseUrl, lastModified: now, changeFrequency: "weekly" as const, priority: 1 },
+    { url: `${baseUrl}/kitchen-renovations-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${baseUrl}/bathroom-renovations-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${baseUrl}/home-extensions-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${baseUrl}/decks-pergolas-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${baseUrl}/interior-painting-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${baseUrl}/vastu-renovations-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${baseUrl}/renovations`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${baseUrl}/guides`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 },
+    { url: `${baseUrl}/quote`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 },
+    { url: `${baseUrl}/privacy`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.2 },
+    { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.2 },
   ];
 
-  const suburbPages = suburbs.map((suburb) => ({
-    url: `${baseUrl}/renovations/${suburb}`,
-    lastModified: new Date(),
+  const suburbPages = suburbLinks.map((suburb) => ({
+    url: `${baseUrl}/renovations/${suburb.slug}`,
+    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  return [...staticPages, ...suburbPages];
+  const guidePages = guides.map((guide) => ({
+    url: `${baseUrl}/guides/${guide.slug}`,
+    lastModified: new Date(guide.dateModified),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...suburbPages, ...guidePages];
 }

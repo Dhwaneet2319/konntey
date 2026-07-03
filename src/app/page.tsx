@@ -4,6 +4,21 @@ import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import ServiceBlock from "@/components/ServiceBlock";
 import Footer from "@/components/Footer";
+import AreasWeServe from "@/components/AreasWeServe";
+import { homeFaqs } from "@/content/homeFaqs";
+
+// FAQPage structured data — lives on the homepage only (not sitewide) and is
+// generated from the same source as the visible <FAQ /> accordion so the two
+// always match. Service and suburb pages carry their own page-specific FAQPage.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homeFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
 // Dynamic imports for below-fold components — reduces initial JS bundle significantly
 const About = dynamic(() => import("@/components/About"));
@@ -63,6 +78,10 @@ const remainingServices = [
 export default function HomePage() {
   return (
     <div className="bg-white text-navy font-body selection:bg-gold-bright selection:text-navy hide-scrollbar">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <NavBar />
       <WhatsAppButton />
 
@@ -128,6 +147,8 @@ export default function HomePage() {
         <About />
 
         <Testimonials />
+
+        <AreasWeServe />
 
         <CtaBanner />
 

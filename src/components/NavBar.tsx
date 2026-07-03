@@ -20,6 +20,7 @@ const navLinks = [
       { label: "Vastu & Feng Shui", href: "/vastu-renovations-melbourne" },
     ]
   },
+  { label: "Guides", href: "/guides" },
   { label: "About", href: "/#about" },
   { label: "Careers", href: "/#careers" },
   { label: "Contact", href: "/#contact" },

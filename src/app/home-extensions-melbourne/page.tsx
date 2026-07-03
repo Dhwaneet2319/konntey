@@ -1,11 +1,10 @@
-"use client";
-
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import { m, AnimatePresence } from "framer-motion";
+import FloatingActions from "@/components/chat/FloatingActions";
+import Reveal from "@/components/Reveal";
+import ServiceFaq from "@/components/ServiceFaq";
+import ServiceAreasStrip from "@/components/ServiceAreasStrip";
 import Link from "next/link";
-import { useState } from "react";
 import { Phone } from "lucide-react";
 import Image from "next/image";
 
@@ -51,7 +50,6 @@ const faqs = [
 ];
 
 export default function HomeExtensionsPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -100,7 +98,7 @@ export default function HomeExtensionsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <NavBar theme="dark" />
-      <WhatsAppButton />
+      <FloatingActions />
 
       <main className="flex-grow">
         {/* Hero */}
@@ -108,7 +106,7 @@ export default function HomeExtensionsPage() {
           <Image src="/images/extension.webp" alt="Home extension builders Melbourne" fill priority sizes="100vw" className="object-cover object-center opacity-40 mix-blend-overlay" />
           <div className="grain-overlay" />
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 relative z-10">
-            <m.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal mode="mount">
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">HOME EXTENSIONS</div>
               <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-5xl">
                 Home Extensions in Melbourne — <span className="text-gold-bright">From Ground Floor to Second Storey</span>
@@ -125,14 +123,14 @@ export default function HomeExtensionsPage() {
                   <span>Call Us</span>
                 </a>
               </div>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
         {/* Cost Section */}
         <section className="py-20 sm:py-28 bg-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">PRICING</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-4xl">
                 How much does a home extension cost in Melbourne?
@@ -140,23 +138,23 @@ export default function HomeExtensionsPage() {
               <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70 max-w-3xl">
                 Home extension costs in Melbourne vary from $1,800 to $4,500+ per square metre depending on the type of extension, structural complexity, and finishes. A standard ground floor extension typically starts around $150,000–$250,000 for 50–80sqm. Second storey additions run higher due to structural engineering requirements. All our quotes are fixed-price — no cost blowouts.
               </p>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
         {/* Extension Types */}
         <section className="py-20 sm:py-28 bg-off-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">WHAT WE BUILD</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Extension Types</h2>
-            </m.div>
+            </Reveal>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
               {extensionTypes.map((et, i) => (
-                <m.div key={et.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="border border-navy/8 bg-white p-8">
+                <Reveal key={et.title} y={20} duration={0.6} delay={i * 0.1} className="border border-navy/8 bg-white p-8">
                   <h3 className="font-display text-[22px] font-black uppercase tracking-tighter text-navy">{et.title}</h3>
                   <p className="mt-3 font-body text-[15px] leading-[1.8] text-navy/70">{et.desc}</p>
-                </m.div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -165,17 +163,17 @@ export default function HomeExtensionsPage() {
         {/* Process */}
         <section className="py-20 sm:py-28 bg-navy text-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">HOW IT WORKS</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Our Build Process</h2>
-            </m.div>
+            </Reveal>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {processSteps.map((ps, i) => (
-                <m.div key={ps.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-6">
+                <Reveal key={ps.step} y={20} duration={0.6} delay={i * 0.08} className="border border-white/10 p-6">
                   <div className="font-display text-[36px] font-black text-gold-bright leading-none">{ps.step}</div>
                   <h3 className="mt-3 font-display text-[16px] font-black uppercase tracking-button text-white">{ps.title}</h3>
                   <p className="mt-2 font-body text-[14px] leading-[1.7] text-white/60">{ps.desc}</p>
-                </m.div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -184,11 +182,11 @@ export default function HomeExtensionsPage() {
         {/* Pricing Table */}
         <section className="py-20 sm:py-28 bg-off-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">INVESTMENT</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Pricing Guide</h2>
-            </m.div>
-            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }} className="mt-12 max-w-2xl">
+            </Reveal>
+            <Reveal y={20} delay={0.15} className="mt-12 max-w-2xl">
               <div className="border border-navy/10 bg-white overflow-hidden">
                 <div className="grid grid-cols-2 bg-navy text-white font-display text-[13px] font-black uppercase tracking-button">
                   <div className="p-4 border-r border-white/10">Scope</div>
@@ -204,23 +202,23 @@ export default function HomeExtensionsPage() {
               <p className="mt-6 font-body text-[14px] leading-[1.7] text-navy/60">
                 Prices vary based on site conditions, structural requirements, material selections, and council overlay zones. All quotes are fixed-price with transparent line-item breakdowns.
               </p>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
         {/* Testimonials */}
         <section className="py-20 sm:py-28 bg-navy text-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">TESTIMONIALS</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">What Our Clients Say</h2>
-            </m.div>
+            </Reveal>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {testimonials.map((t, i) => (
-                <m.div key={t.author} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="border border-white/10 p-8">
+                <Reveal key={t.author} y={20} duration={0.6} delay={i * 0.1} className="border border-white/10 p-8">
                   <p className="font-body text-[15px] leading-[1.8] text-white/80 italic">&ldquo;{t.quote}&rdquo;</p>
                   <div className="mt-6 font-display text-[14px] font-black uppercase tracking-button text-gold-bright">— {t.author}, {t.location}</div>
-                </m.div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -229,36 +227,18 @@ export default function HomeExtensionsPage() {
         {/* FAQ */}
         <section className="py-20 sm:py-28 bg-white">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright mb-4">FAQ</div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9]">Frequently Asked Questions</h2>
-            </m.div>
-            <div className="mt-12 max-w-3xl space-y-4">
-              {faqs.map((faq, i) => (
-                <m.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.5, delay: i * 0.05 }} className="border border-navy/10">
-                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="flex w-full items-center justify-between p-6 text-left">
-                    <span className="font-display text-[16px] font-black uppercase tracking-tight text-navy pr-4">{faq.q}</span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" className={`shrink-0 transition-transform duration-300 text-gold-bright ${openFaq === i ? "rotate-180" : ""}`}>
-                      <path d="M5 8l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                  <AnimatePresence>
-                    {openFaq === i && (
-                      <m.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }} className="overflow-hidden">
-                        <div className="px-6 pb-6 font-body text-[15px] leading-[1.8] text-navy/70">{faq.a}</div>
-                      </m.div>
-                    )}
-                  </AnimatePresence>
-                </m.div>
-              ))}
-            </div>
+            </Reveal>
+            <ServiceFaq faqs={faqs} />
           </div>
         </section>
 
         {/* Final CTA */}
         <section className="py-20 sm:py-28 bg-gold-bright text-navy text-center">
           <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-            <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <Reveal>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
                 Ready to extend your home?
               </h2>
@@ -274,7 +254,7 @@ export default function HomeExtensionsPage() {
                   <span>Call us directly</span>
                 </a>
               </div>
-            </m.div>
+            </Reveal>
           </div>
         </section>
 
@@ -288,6 +268,8 @@ export default function HomeExtensionsPage() {
             <Link prefetch={false} href="/quote" className="text-gold-bright hover:underline">Get a Quote →</Link>
           </div>
         </section>
+
+        <ServiceAreasStrip service="home extensions" />
       </main>
 
       <Footer />

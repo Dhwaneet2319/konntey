@@ -13,6 +13,21 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  openGraph: {
+    title: "Privacy Policy | Konntey H&R",
+    description:
+      "How Konntey Home & Renovations handles your personal information under the Australian Privacy Principles.",
+    url: "https://www.konnteyhomerenovations.com.au/privacy",
+    siteName: "Konntey Home & Renovations",
+    locale: "en_AU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy | Konntey H&R",
+    description:
+      "How Konntey Home & Renovations handles your personal information under the Australian Privacy Principles.",
+  },
 };
 
 export default function PrivacyPage() {

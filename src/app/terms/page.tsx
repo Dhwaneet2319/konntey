@@ -13,6 +13,21 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  openGraph: {
+    title: "Terms & Conditions | Konntey H&R",
+    description:
+      "Terms for Konntey Home & Renovations — services, quotes, liability and your rights under Australian Consumer Law.",
+    url: "https://www.konnteyhomerenovations.com.au/terms",
+    siteName: "Konntey Home & Renovations",
+    locale: "en_AU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms & Conditions | Konntey H&R",
+    description:
+      "Terms for Konntey Home & Renovations — services, quotes, liability and your rights under Australian Consumer Law.",
+  },
 };
 
 export default function TermsPage() {

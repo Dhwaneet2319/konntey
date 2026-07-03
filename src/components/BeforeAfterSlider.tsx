@@ -115,20 +115,25 @@ export default function BeforeAfterSlider({
             }}
           >
             {/* After Image — right half of composite */}
-            <div
-              className="absolute inset-0"
-              style={
-                isCombinedFallback
-                  ? {
-                      backgroundImage: `url(${DEFAULT_COMBINED_IMAGE})`,
-                      backgroundSize: "200% 100%",
-                      backgroundPosition: "right center",
-                    }
-                  : {}
-              }
-            >
-              {!isCombinedFallback && afterSrc && (
-                <Image src={afterSrc} alt={afterAlt} fill className="object-cover object-center pointer-events-none" sizes="(max-width: 1024px) 100vw, 1024px" draggable={false} />
+            <div className="absolute inset-0 overflow-hidden">
+              {isCombinedFallback ? (
+                // Composite fallback: render the right half via next/image (AVIF/webp
+                // + srcset) instead of a raw CSS background. w-[200%] + object-fill
+                // reproduces the previous background-size:200% 100% / position:right.
+                <div className="absolute inset-y-0 right-0 w-[200%]">
+                  <Image
+                    src={DEFAULT_COMBINED_IMAGE}
+                    alt={afterAlt}
+                    fill
+                    className="object-fill pointer-events-none"
+                    sizes="(max-width: 1024px) 200vw, 2048px"
+                    draggable={false}
+                  />
+                </div>
+              ) : (
+                afterSrc && (
+                  <Image src={afterSrc} alt={afterAlt} fill className="object-cover object-center pointer-events-none" sizes="(max-width: 1024px) 100vw, 1024px" draggable={false} />
+                )
               )}
               <div className="absolute bottom-6 right-6 z-10 border border-gold-bright bg-navy px-4 py-2 text-[12px] font-black uppercase tracking-button text-gold-bright">
                 AFTER
@@ -138,17 +143,24 @@ export default function BeforeAfterSlider({
             {/* Before Image (Clipped overlay) — left half of composite */}
             <div
               className="absolute inset-0 border-r-2 border-gold-bright overflow-hidden"
-              style={{
-                clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
-                ...(isCombinedFallback && {
-                  backgroundImage: `url(${DEFAULT_COMBINED_IMAGE})`,
-                  backgroundSize: "200% 100%",
-                  backgroundPosition: "left center",
-                }),
-              }}
+              style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
-              {!isCombinedFallback && beforeSrc && (
-                <Image src={beforeSrc} alt={beforeAlt} fill className="object-cover object-center pointer-events-none" sizes="(max-width: 1024px) 100vw, 1024px" draggable={false} />
+              {isCombinedFallback ? (
+                // Composite fallback: left half via next/image (mirrors the after side).
+                <div className="absolute inset-y-0 left-0 w-[200%]">
+                  <Image
+                    src={DEFAULT_COMBINED_IMAGE}
+                    alt={beforeAlt}
+                    fill
+                    className="object-fill pointer-events-none"
+                    sizes="(max-width: 1024px) 200vw, 2048px"
+                    draggable={false}
+                  />
+                </div>
+              ) : (
+                beforeSrc && (
+                  <Image src={beforeSrc} alt={beforeAlt} fill className="object-cover object-center pointer-events-none" sizes="(max-width: 1024px) 100vw, 1024px" draggable={false} />
+                )
               )}
               <div className="absolute bottom-6 left-6 z-10 border border-white/50 bg-black/50 px-4 py-2 text-[12px] font-black uppercase tracking-button text-white backdrop-blur-md">
                 BEFORE

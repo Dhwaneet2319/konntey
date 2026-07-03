@@ -225,63 +225,6 @@ const localBusinessSchema = {
 
 };
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How much does a kitchen renovation cost in Melbourne?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Kitchen renovation costs in Melbourne typically range from $15,000 for a budget refresh to $60,000+ for a full luxury kitchen renovation. At Konntey, we provide free on-site quotes with transparent, itemized pricing so you know exactly what you're paying for. We service Tarneit, Truganina, Werribee, Point Cook and all western Melbourne suburbs.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much does a bathroom renovation cost in Melbourne?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "A small bathroom renovation in Melbourne typically costs between $10,000 and $25,000. Full luxury bathroom renovations can range from $25,000 to $50,000+. Konntey offers affordable bathroom renovation packages across Melbourne's west and southeast with no hidden fees.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much does a home extension cost in Melbourne?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Home extension costs in Melbourne vary from $1,800 to $4,500+ per square metre depending on complexity, materials and finishes. Konntey Home & Renovations provides free consultations and detailed quotes for home extensions across Hoppers Crossing, Point Cook, Wyndham Vale, Dandenong and surrounding suburbs.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Are you professional renovation builders in Melbourne?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Konntey Home & Renovations is a fully professional and insured renovation contractor in Victoria. We hold all required building licenses and carry comprehensive insurance for every project we undertake across Melbourne.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What suburbs in Melbourne do you service?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "We service all of Melbourne with a focus on western and southeastern suburbs including Tarneit, Truganina, Werribee, Hoppers Crossing, Point Cook, Wyndham Vale, Manor Lakes, Williams Landing, Dandenong, Cranbourne, Frankston, Narre Warren, Berwick, Springvale, Pakenham, Officer, Clyde and Melton.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do you offer free renovation quotes in Melbourne?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Absolutely. We offer 100% free, no-obligation on-site quotes for all renovation projects. We'll visit your property, discuss your vision, measure the space and provide a transparent, itemized quote within 48 hours. Call us or fill out our online form to book your free consultation.",
-      },
-    },
-  ],
-};
-
-
-
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -309,12 +252,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema),
           }}
         />
         <script
