@@ -20,6 +20,13 @@ export interface GuideLink {
   href: string;
 }
 
+export interface GuideAuthor {
+  /** Real person's name, supplied and approved by the owner. */
+  name: string;
+  /** e.g. "Founder, Konntey Home & Renovations". */
+  role: string;
+}
+
 export interface Guide {
   slug: string;
   /** Display H1 on the article page. */
@@ -34,6 +41,18 @@ export interface Guide {
   readMinutes: number;
   datePublished: string;
   dateModified: string;
+  /**
+   * OWNER TODO: byline shown as "Written by: [Name], [Role]". Omitted from
+   * the page and schema until a real author is supplied — never invented.
+   */
+  author?: GuideAuthor;
+  /**
+   * Official sources backing regulatory/permit/cost claims (council, VBA,
+   * Building and Plumbing Commission, consumer.vic.gov.au …). Rendered
+   * prominently when present; strongly recommended for every cost/permit
+   * guide.
+   */
+  sources?: GuideLink[];
   /** Opening paragraphs shown before the first sub-heading. */
   intro: string[];
   sections: GuideSection[];

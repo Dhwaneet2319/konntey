@@ -92,7 +92,7 @@ export default function ServiceBlock({
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-4"
             >
-              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
+              <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-deep">
                 {kicker}
               </div>
               <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-black uppercase leading-display tracking-tightest text-navy">

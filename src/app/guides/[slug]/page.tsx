@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight, ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ChevronRight, ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/chat/FloatingActions";
@@ -63,11 +63,19 @@ export default function GuideArticlePage({ params }: Props) {
     description: guide.description,
     datePublished: guide.datePublished,
     dateModified: guide.dateModified,
-    author: {
-      "@type": "Organization",
-      name: "Konntey Home & Renovations",
-      url: GUIDES_BASE_URL,
-    },
+    // A named Person author appears only when the owner supplies one;
+    // otherwise the organisation remains the factual author.
+    author: guide.author
+      ? {
+          "@type": "Person",
+          name: guide.author.name,
+          jobTitle: guide.author.role,
+        }
+      : {
+          "@type": "Organization",
+          name: "Konntey Home & Renovations",
+          url: GUIDES_BASE_URL,
+        },
     publisher: {
       "@id": `${GUIDES_BASE_URL}/#organization`,
     },
@@ -119,6 +127,22 @@ export default function GuideArticlePage({ params }: Props) {
               {guide.title}
             </h1>
 
+            {/* Editorial line — author appears only when supplied by the owner */}
+            <p className="mt-4 font-body text-[13px] leading-[1.6] text-white/60">
+              {guide.author && (
+                <>
+                  Written by: {guide.author.name}, {guide.author.role}
+                  {" · "}
+                </>
+              )}
+              Reviewed:{" "}
+              {new Date(guide.dateModified).toLocaleDateString("en-AU", {
+                month: "long",
+                year: "numeric",
+              })}
+              {" · "}Melbourne/Victoria guidance
+            </p>
+
             {/* Intro */}
             <div className="mt-8 space-y-5 font-body text-[18px] leading-[1.85] text-white/90">
               {guide.intro.map((p) => (
@@ -166,6 +190,30 @@ export default function GuideArticlePage({ params }: Props) {
                 ))}
               </ul>
             </div>
+
+            {/* Official sources — rendered when supplied for the guide */}
+            {guide.sources && guide.sources.length > 0 && (
+              <div className="mt-14 border border-white/10 bg-navy-light p-8">
+                <h2 className="font-display text-[16px] font-black uppercase tracking-button text-gold-bright">
+                  Official Sources
+                </h2>
+                <ul className="mt-5 space-y-3">
+                  {guide.sources.map((s) => (
+                    <li key={s.href}>
+                      <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-body text-[15px] text-white/85 transition-colors hover:text-gold-bright"
+                      >
+                        <span>{s.label}</span>
+                        <ExternalLink size={13} strokeWidth={2.25} className="shrink-0" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Related links */}
             <div className="mt-14 border-t border-white/10 pt-10">

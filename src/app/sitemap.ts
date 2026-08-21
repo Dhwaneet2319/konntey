@@ -1,6 +1,9 @@
 import { MetadataRoute } from "next";
 import { suburbLinks } from "@/content/suburbs";
 import { guides } from "@/content/guides";
+import { sitemapProjects, projectsHubLive } from "@/content/projects";
+import { isSuburbIndexable } from "@/content/localProof";
+import { credentialsPageIndexable } from "@/content/business";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.konnteyhomerenovations.com.au";
@@ -21,12 +24,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.2 },
   ];
 
-  const suburbPages = suburbLinks.map((suburb) => ({
-    url: `${baseUrl}/renovations/${suburb.slug}`,
+  // Projects hub enters the sitemap only once enough owner-approved case
+  // studies are published (it is noindexed until then).
+  const projectsHub = projectsHubLive()
+    ? [{ url: `${baseUrl}/projects`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 }]
+    : [];
+
+  // Individual projects: published AND seo.indexable only.
+  const projectPages = sitemapProjects().map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
+
+  // Credentials page: owner flips credentialsPageIndexable after reviewing
+  // every displayed fact.
+  const credentialsPage = credentialsPageIndexable
+    ? [{ url: `${baseUrl}/credentials-and-compliance`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.5 }]
+    : [];
+
+  // Existing suburb pages stay listed unless the owner explicitly sets a
+  // suburb to non-indexable in src/content/localProof.ts.
+  const suburbPages = suburbLinks
+    .filter((suburb) => isSuburbIndexable(suburb.slug))
+    .map((suburb) => ({
+      url: `${baseUrl}/renovations/${suburb.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
 
   const guidePages = guides.map((guide) => ({
     url: `${baseUrl}/guides/${guide.slug}`,
@@ -35,5 +62,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...suburbPages, ...guidePages];
+  return [
+    ...staticPages,
+    ...projectsHub,
+    ...projectPages,
+    ...credentialsPage,
+    ...suburbPages,
+    ...guidePages,
+  ];
 }

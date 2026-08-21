@@ -1,11 +1,27 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { m } from "framer-motion";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
+import { track } from "@/lib/analytics";
 
 function ContactForm() {
   const [state, handleSubmit] = useForm("xkopaqvd");
+  const startTracked = useRef(false);
+
+  const onFormInteract = () => {
+    if (startTracked.current) return;
+    startTracked.current = true;
+    track("quote_form_start", { page_type: "home" });
+  };
+
+  useEffect(() => {
+    if (state.succeeded) {
+      track("quote_form_submit", { page_type: "home" });
+    }
+  }, [state.succeeded]);
 
   if (state.succeeded) {
     return (
@@ -19,14 +35,15 @@ function ContactForm() {
           Request Received
         </h4>
         <p className="mt-3 max-w-sm font-body text-[16px] leading-[1.7] text-white/85">
-          Thanks for reaching out. We&apos;ll review your details and get back to you within 24 hours.
+          Thanks for reaching out. We&apos;ll review your details and get back
+          to you to arrange the next step.
         </p>
       </div>
     );
   }
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit}>
+    <form className="space-y-6" onSubmit={handleSubmit} onFocusCapture={onFormInteract}>
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
           <label htmlFor="name" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Full Name</label>
@@ -52,18 +69,25 @@ function ContactForm() {
         <ValidationError prefix="Message" field="message" errors={state.errors} className="font-body text-[12px] text-red-400" />
       </div>
 
-      <button
-        type="submit"
-        disabled={state.submitting}
-        className="group relative inline-flex w-full overflow-hidden bg-gold-bright px-10 py-5 font-display text-[16px] font-black uppercase tracking-button text-navy disabled:opacity-60 sm:w-auto"
-      >
-        <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-[150%]">
-          {state.submitting ? "Sending..." : "Submit Initial Request"}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <button
+          type="submit"
+          disabled={state.submitting}
+          className="group relative inline-flex w-full overflow-hidden bg-gold-bright px-10 py-5 font-display text-[16px] font-black uppercase tracking-button text-navy disabled:opacity-60 sm:w-auto"
+        >
+          <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-[150%]">
+            {state.submitting ? "Sending..." : "Submit Initial Request"}
+          </span>
+          <span className="absolute inset-x-0 top-[150%] z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-[150%]">
+            <span>Send to Konntey</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
+          </span>
+        </button>
+        <span className="font-body text-[13px] text-white/60">
+          <Link href="/privacy" className="text-gold-bright hover:underline">
+            Privacy policy
+          </Link>
         </span>
-        <span className="absolute inset-x-0 top-[150%] z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-[150%]">
-          <span>Send to Konntey</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
-        </span>
-      </button>
+      </div>
     </form>
   );
 }

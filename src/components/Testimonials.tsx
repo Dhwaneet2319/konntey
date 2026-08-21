@@ -28,7 +28,7 @@ export default function Testimonials() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-12"
         >
-          <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
+          <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-deep">
             WHY KONNTEY
           </div>
           <h2 className="mt-4 font-display text-[clamp(3.5rem,6vw,5.5rem)] font-black uppercase leading-[0.9] tracking-tightest text-navy">

@@ -2,8 +2,10 @@
 
 import { m } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Ticker from "@/components/Ticker";
+import TrustStrip from "@/components/TrustStrip";
 function MaskTitle({
   children,
   delay = 0,
@@ -35,7 +37,29 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-16">
           <div className="flex flex-col justify-center lg:col-span-5 xl:col-span-6">
-            <h1 className="flex flex-col gap-1 font-display text-[clamp(4.5rem,14.5vw,7rem)] md:text-[clamp(3.5rem,9vw,6.5rem)] xl:text-[8rem] font-black uppercase leading-[0.82] tracking-tighter text-navy">
+            {/* Eyebrow: exact business name + real base location */}
+            <m.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-deep"
+            >
+              Konntey Home &amp; Renovations · Melbourne, Victoria
+            </m.p>
+
+            {/* Real, visible H1 stating service + location */}
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h1 className="mt-3 font-display text-[clamp(1.25rem,3vw,1.6rem)] font-bold uppercase tracking-tighter leading-snug text-navy/85">
+                Home Renovations, Extensions &amp; Building Services in Melbourne
+              </h1>
+            </m.div>
+
+            {/* Brand tagline: visually dominant, deliberately not the H1 */}
+            <div className="mt-4 flex flex-col gap-1 font-display text-[clamp(4.5rem,14.5vw,7rem)] md:text-[clamp(3.5rem,9vw,6.5rem)] xl:text-[8rem] font-black uppercase leading-[0.82] tracking-tighter text-navy">
               <MaskTitle delay={0}>IT&apos;S YOUR</MaskTitle>
               <MaskTitle delay={0.1}>
                 <span className="relative inline-block text-gold-bright">
@@ -50,7 +74,7 @@ export default function Hero() {
               </MaskTitle>
               <MaskTitle delay={0.2}>WE BUILD</MaskTitle>
               <MaskTitle delay={0.3}>IT RIGHT.</MaskTitle>
-            </h1>
+            </div>
 
             <m.p
               initial={{ opacity: 0, y: 20 }}
@@ -58,16 +82,16 @@ export default function Hero() {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="mt-8 max-w-md font-body text-[16px] leading-[1.7] text-navy/70"
             >
-              Professional renovation builders in Melbourne delivering affordable kitchen renovations, 
-              bathroom renovations, home extensions & deck building. Quality craftsmanship servicing 
-              Melbourne and surrounding suburbs.
+              We design and build kitchen and bathroom renovations, home
+              extensions, decks and interior painting for homes across
+              Melbourne&apos;s west and southeast.
             </m.p>
 
             <m.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="mt-10"
+              className="mt-10 flex flex-wrap items-center gap-4"
             >
               <a
                 href="/#contact"
@@ -80,12 +104,27 @@ export default function Hero() {
                 className="group relative inline-flex overflow-hidden bg-gold-bright px-8 py-5 font-display text-[16px] font-black uppercase tracking-button text-navy"
               >
                 <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-12">
-                  Get a Free Quote
+                  Request a Free Quote
                 </span>
                 <span className="absolute inset-x-0 top-12 z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-12">
                   <span>Ready?</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
                 </span>
               </a>
+              <Link
+                href="/projects"
+                className="inline-flex border-2 border-navy/20 px-8 py-[18px] font-display text-[16px] font-black uppercase tracking-button text-navy transition-colors hover:border-gold hover:text-gold"
+              >
+                View Recent Projects
+              </Link>
+            </m.div>
+
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.5 }}
+              className="mt-6"
+            >
+              <TrustStrip theme="light" />
             </m.div>
 
             <m.div
