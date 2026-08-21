@@ -37,29 +37,32 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-[1600px] px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-16">
           <div className="flex flex-col justify-center lg:col-span-5 xl:col-span-6">
-            {/* Eyebrow: exact business name + real base location */}
-            <m.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-deep"
-            >
-              Konntey Home &amp; Renovations · Melbourne, Victoria
-            </m.p>
-
-            {/* Real, visible H1 stating service + location */}
+            {/* Eyebrow + H1 as one quiet, evenly weighted label lockup.
+                The H1 stays a real visible heading for SEO, but is styled to
+                sit under the eyebrow — the giant tagline below carries the
+                visual weight. */}
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5 }}
+              className="flex gap-4"
             >
-              <h1 className="mt-3 font-display text-[clamp(1.25rem,3vw,1.6rem)] font-bold uppercase tracking-tighter leading-snug text-navy/85">
-                Home Renovations, Extensions &amp; Building Services in Melbourne
-              </h1>
+              <span
+                aria-hidden="true"
+                className="mt-[5px] h-auto w-[3px] shrink-0 self-stretch bg-gold-bright"
+              />
+              <div>
+                <p className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-deep">
+                  Konntey Home &amp; Renovations · Melbourne, Victoria
+                </p>
+                <h1 className="mt-1.5 font-body text-[13px] font-medium uppercase tracking-[2px] leading-relaxed text-navy/60">
+                  Home Renovations, Extensions &amp; Building Services in Melbourne
+                </h1>
+              </div>
             </m.div>
 
             {/* Brand tagline: visually dominant, deliberately not the H1 */}
-            <div className="mt-4 flex flex-col gap-1 font-display text-[clamp(4.5rem,14.5vw,7rem)] md:text-[clamp(3.5rem,9vw,6.5rem)] xl:text-[8rem] font-black uppercase leading-[0.82] tracking-tighter text-navy">
+            <div className="mt-6 flex flex-col gap-1 font-display text-[clamp(4.5rem,14.5vw,7rem)] md:text-[clamp(3.5rem,9vw,6.5rem)] xl:text-[8rem] font-black uppercase leading-[0.82] tracking-tighter text-navy">
               <MaskTitle delay={0}>IT&apos;S YOUR</MaskTitle>
               <MaskTitle delay={0.1}>
                 <span className="relative inline-block text-gold-bright">
