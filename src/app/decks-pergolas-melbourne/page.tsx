@@ -4,6 +4,7 @@ import FloatingActions from "@/components/chat/FloatingActions";
 import Reveal from "@/components/Reveal";
 import ServiceFaq from "@/components/ServiceFaq";
 import ServiceAreasStrip from "@/components/ServiceAreasStrip";
+import RelatedContent from "@/components/RelatedContent";
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import Image from "next/image";
@@ -260,16 +261,20 @@ export default function DecksPage() {
           </div>
         </section>
 
-        {/* Internal Links */}
-        <section className="py-12 bg-off-white">
-          <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 flex flex-wrap gap-4 font-body text-[13px] uppercase tracking-kicker text-navy/50">
-            <span>Related services:</span>
-            <Link prefetch={false} href="/home-extensions-melbourne" className="text-gold-bright hover:underline">Home Extensions →</Link>
-            <Link prefetch={false} href="/interior-painting-melbourne" className="text-gold-bright hover:underline">Interior Painting →</Link>
-            <Link prefetch={false} href="/kitchen-renovations-melbourne" className="text-gold-bright hover:underline">Kitchen Renovations →</Link>
-            <Link prefetch={false} href="/quote" className="text-gold-bright hover:underline">Get a Quote →</Link>
-          </div>
-        </section>
+        {/* Related proof, guides and services */}
+        <RelatedContent
+          serviceRoute="/decks-pergolas-melbourne"
+          serviceName="Deck & Pergola Project"
+          relatedGuides={[
+            { label: "Do you need a permit to renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
+            { label: "How to choose a renovation builder in Melbourne", href: "/guides/how-to-choose-a-renovation-builder-melbourne" },
+          ]}
+          relatedServices={[
+            { label: "Home extensions", href: "/home-extensions-melbourne" },
+            { label: "Interior painting", href: "/interior-painting-melbourne" },
+            { label: "Kitchen renovations", href: "/kitchen-renovations-melbourne" },
+          ]}
+        />
 
         <ServiceAreasStrip service="decks and pergolas" />
       </main>

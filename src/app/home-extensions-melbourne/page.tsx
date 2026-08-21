@@ -4,6 +4,7 @@ import FloatingActions from "@/components/chat/FloatingActions";
 import Reveal from "@/components/Reveal";
 import ServiceFaq from "@/components/ServiceFaq";
 import ServiceAreasStrip from "@/components/ServiceAreasStrip";
+import RelatedContent from "@/components/RelatedContent";
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import Image from "next/image";
@@ -258,16 +259,21 @@ export default function HomeExtensionsPage() {
           </div>
         </section>
 
-        {/* Internal Links */}
-        <section className="py-12 bg-off-white">
-          <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 flex flex-wrap gap-4 font-body text-[13px] uppercase tracking-kicker text-navy/50">
-            <span>Related services:</span>
-            <Link prefetch={false} href="/kitchen-renovations-melbourne" className="text-gold-bright hover:underline">Kitchen Renovations →</Link>
-            <Link prefetch={false} href="/bathroom-renovations-melbourne" className="text-gold-bright hover:underline">Bathroom Renovations →</Link>
-            <Link prefetch={false} href="/decks-pergolas-melbourne" className="text-gold-bright hover:underline">Decks & Pergolas →</Link>
-            <Link prefetch={false} href="/quote" className="text-gold-bright hover:underline">Get a Quote →</Link>
-          </div>
-        </section>
+        {/* Related proof, guides and services */}
+        <RelatedContent
+          serviceRoute="/home-extensions-melbourne"
+          serviceName="Home Extension"
+          relatedGuides={[
+            { label: "Home extension vs moving house: which adds more value?", href: "/guides/home-extension-vs-moving-house" },
+            { label: "Do you need a permit to renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
+            { label: "How to choose a renovation builder in Melbourne", href: "/guides/how-to-choose-a-renovation-builder-melbourne" },
+          ]}
+          relatedServices={[
+            { label: "Kitchen renovations", href: "/kitchen-renovations-melbourne" },
+            { label: "Bathroom renovations", href: "/bathroom-renovations-melbourne" },
+            { label: "Decks & pergolas", href: "/decks-pergolas-melbourne" },
+          ]}
+        />
 
         <ServiceAreasStrip service="home extensions" />
       </main>

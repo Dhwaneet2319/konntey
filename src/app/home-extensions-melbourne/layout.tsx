@@ -31,20 +31,6 @@ export const metadata: Metadata = {
       "Home extensions from $1,800/sqm. Second storeys, granny flats, knockdown rebuilds. Fixed-price quotes.",
     images: ["/images/extension.webp"],
   },
-  keywords: [
-    "home extension Melbourne",
-    "home extension western Melbourne",
-    "second storey extension Melbourne",
-    "granny flat Melbourne",
-    "knockdown rebuild Melbourne",
-    "home extension cost Melbourne",
-    "home extension Tarneit",
-    "home extension Point Cook",
-    "home extension Werribee",
-    "house extension builders Melbourne",
-    "BPC registered builder Melbourne",
-    "council approved extensions",
-  ],
 };
 
 export default function ExtensionsLayout({

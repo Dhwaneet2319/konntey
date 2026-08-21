@@ -31,23 +31,6 @@ export const metadata: Metadata = {
       "Complete kitchen renovations from $15,000. BPC registered, fixed-price quotes, no subcontractors. Serving Melbourne's western suburbs.",
     images: ["/images/kitchen/hero.webp"],
   },
-  keywords: [
-    "kitchen renovation Melbourne",
-    "kitchen renovation western Melbourne",
-    "kitchen renovation Tarneit",
-    "kitchen renovation Werribee",
-    "kitchen renovation Point Cook",
-    "kitchen renovation Hoppers Crossing",
-    "kitchen renovation Wyndham Vale",
-    "kitchen renovation cost Melbourne",
-    "affordable kitchen renovation Melbourne",
-    "open plan kitchen renovation Melbourne",
-    "kitchen cabinet replacement Melbourne",
-    "stone benchtop installation Melbourne",
-    "BPC registered kitchen builder",
-    "fixed price kitchen renovation",
-    "kitchen remodel western suburbs",
-  ],
 };
 
 export default function KitchenLayout({

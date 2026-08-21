@@ -112,8 +112,10 @@ export default function Footer() {
             <ul className="space-y-2 font-body text-[14px] text-white/75">
               <li><Link href="/" className="transition-colors hover:text-gold-bright">Home</Link></li>
               <li><Link href="/#services" className="transition-colors hover:text-gold-bright">Services</Link></li>
+              <li><Link href="/projects" className="transition-colors hover:text-gold-bright">Completed Projects</Link></li>
               <li><Link href="/guides" className="transition-colors hover:text-gold-bright">Renovation Guides</Link></li>
               <li><Link href="/renovations" className="transition-colors hover:text-gold-bright">Areas We Serve</Link></li>
+              <li><Link href="/credentials-and-compliance" className="transition-colors hover:text-gold-bright">Credentials &amp; Compliance</Link></li>
               <li><Link href="/#about" className="transition-colors hover:text-gold-bright">About Us</Link></li>
               <li><Link href="/#careers" className="transition-colors hover:text-gold-bright">Careers</Link></li>
               <li><Link href="/#contact" className="transition-colors hover:text-gold-bright">Contact</Link></li>
@@ -123,16 +125,16 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8">
-          <div className="font-display text-[13px] font-black uppercase tracking-button text-white/40 mb-4">
+          <div className="font-display text-[13px] font-black uppercase tracking-button text-white/60 mb-4">
             Proudly Servicing Melbourne&apos;s West & Southeast
           </div>
-          <p className="font-body text-[13px] leading-relaxed text-white/30">
+          <p className="font-body text-[13px] leading-relaxed text-white/55">
             {serviceAreas.map((suburb, i) => {
               const slug = suburb.toLowerCase().replace(/\s+/g, "-");
               return (
                 <span key={suburb}>
                   <Link href={`/renovations/${slug}`} className="transition-colors duration-150 hover:text-gold-bright">
-                    {suburb} renovation builders
+                    {suburb}
                   </Link>
                   {i < serviceAreas.length - 1 ? " · " : ""}
                 </span>
@@ -144,19 +146,19 @@ export default function Footer() {
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-[13px] text-white/70 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} Konntey Home & Renovations. Melbourne, VIC.</span>
           <div className="flex items-center gap-4">
+            {/* Accessible names match visible labels — no aria-label overrides */}
             <a
               href={GOOGLE_REVIEW_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gold-bright transition-colors duration-150 hover:text-white"
-              aria-label="Review Konntey on Google"
             >
-              ★ Review us on Google
+              <span aria-hidden="true">★ </span>Review us on Google
             </a>
             <Link href="/privacy" className="transition-colors duration-150 hover:text-gold-bright">Privacy</Link>
             <Link href="/terms" className="transition-colors duration-150 hover:text-gold-bright">Terms</Link>
-            <a href="https://www.instagram.com/konntey/" target="_blank" rel="noopener noreferrer" className="transition-colors duration-150 hover:text-gold-bright" aria-label="Konntey on Instagram">IG</a>
-            <button onClick={handleFbClick} className="transition-colors duration-150 hover:text-gold-bright" aria-label="Facebook">FB</button>
+            <a href="https://www.instagram.com/konntey/" target="_blank" rel="noopener noreferrer" className="transition-colors duration-150 hover:text-gold-bright">Instagram</a>
+            <button onClick={handleFbClick} className="transition-colors duration-150 hover:text-gold-bright">Facebook</button>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
+import AnalyticsBridge from "@/components/AnalyticsBridge";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -34,52 +35,7 @@ export const metadata: Metadata = {
   },
   description:
     "Professional home extensions, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes. Serving Tarneit, Werribee & Point Cook.",
-  keywords: [
-    "home renovations Melbourne",
-    "renovation company Melbourne",
-    "kitchen renovation Melbourne",
-    "bathroom renovation Melbourne",
-    "home extension Melbourne",
-    "renovation builders Melbourne near me",
-    "professional renovator Melbourne",
-    "affordable kitchen renovation Melbourne",
-    "small bathroom renovation Melbourne cost",
-    "home extension builders Melbourne suburbs",
-    "deck builder Melbourne southeast",
-    "pergola installation Melbourne",
-    "interior painter Melbourne",
-    "full home renovation Melbourne quote",
-    "kitchen renovation Melbourne cost",
-    "bathroom reno Melbourne price",
-    "how much does a home extension cost Melbourne",
-    "renovation quote Melbourne free",
-    "professional renovation contractor Victoria",
-    "renovation builder reviews Melbourne",
-    "BPC registered builder Melbourne",
-    "fixed price renovation Melbourne",
-    "kitchen renovation Tarneit",
-    "bathroom renovation Tarneit",
-    "home renovation Truganina",
-    "renovation company Werribee",
-    "builder Hoppers Crossing",
-    "home extension Point Cook",
-    "renovation Wyndham Vale",
-    "renovations Manor Lakes",
-    "builder Williams Landing",
-    "renovation company Dandenong",
-    "kitchen renovation Cranbourne",
-    "bathroom renovation Frankston",
-    "home renovation Narre Warren",
-    "builder Springvale",
-    "renovations Berwick",
-    "renovation company Pakenham",
-    "builder Officer",
-    "renovations Clyde",
-    "renovation Melton",
-    "Konntey",
-    "Konntey Home and Renovations",
-    "Konntey renovations Melbourne",
-  ],
+  // Note: no `keywords` meta — Google does not use the keywords meta tag.
   metadataBase: new URL("https://www.konnteyhomerenovations.com.au"),
   alternates: {
     canonical: "/",
@@ -125,10 +81,11 @@ export const metadata: Metadata = {
   },
   category: "Home Improvement",
   other: {
+    // Removed geo.position/ICBM meta tags: they encoded Melbourne CBD
+    // coordinates that don't represent a real customer-facing location, and
+    // search engines don't use these tags.
     "geo.region": "AU-VIC",
     "geo.placename": "Melbourne",
-    "geo.position": "-37.8136;144.9631",
-    ICBM: "-37.8136, 144.9631",
     "apple-mobile-web-app-title": "Konntey H&R",
     "format-detection": "telephone=yes",
   },
@@ -262,6 +219,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body">
+        <AnalyticsBridge />
         <MotionProvider>
           {children}
         </MotionProvider>

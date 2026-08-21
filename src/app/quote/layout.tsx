@@ -31,15 +31,6 @@ export const metadata: Metadata = {
       "Free, no-obligation renovation quotes. Fixed-price within 48 hours. Kitchen, bathroom, extensions & more.",
     images: ["/images/hero-main.webp"],
   },
-  keywords: [
-    "free renovation quote Melbourne",
-    "renovation quote western Melbourne",
-    "kitchen renovation quote",
-    "bathroom renovation quote",
-    "home extension quote Melbourne",
-    "renovation cost estimate Melbourne",
-    "free building quote Melbourne",
-  ],
 };
 
 export default function QuoteLayout({

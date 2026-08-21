@@ -5,6 +5,8 @@ import { ArrowLeft, ChevronRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/chat/FloatingActions";
+import LocalProofBlock from "@/components/LocalProofBlock";
+import { getLocalProof, isSuburbIndexable } from "@/content/localProof";
 
 type SuburbInfo = {
   name: string;
@@ -302,27 +304,6 @@ const suburbs: Record<string, SuburbInfo> = {
   },
 };
 
-function buildFaqs(suburb: SuburbInfo) {
-  return [
-    {
-      q: `Do I need a building permit to renovate in ${suburb.name}?`,
-      a: `Cosmetic work like painting, new cabinetry and like-for-like fixture swaps generally doesn't need a permit. Structural changes, wall removals and most wet-area rebuilds in ${suburb.name} do — these go through ${suburb.council}. We assess permit requirements as part of every quote and manage the application for you at no extra cost.`,
-    },
-    {
-      q: `How much does a renovation cost in ${suburb.name}?`,
-      a: `As a guide: bathroom renovations run from $10,000 to $25,000, kitchen renovations from $15,000 to $45,000, and home extensions from $1,800 per square metre. Every ${suburb.name} quote we provide is fixed-price and itemised, so you know the full cost before any work starts.`,
-    },
-    {
-      q: `Which suburbs near ${suburb.name} do you service?`,
-      a: `From ${suburb.name} we also service ${suburb.nearby.join(", ")} and most of the surrounding area. We're a Melbourne-based team working across the city's west and southeast every day.`,
-    },
-    {
-      q: `How do I get started with a renovation in ${suburb.name}?`,
-      a: `Call 0493 191 798 or request a free quote online. We'll visit your ${suburb.name} home, measure up, talk through your plans and deliver a fixed-price itemised quote within 48 hours.`,
-    },
-  ];
-}
-
 type Props = { params: { suburb: string } };
 
 export async function generateStaticParams() {
@@ -343,6 +324,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `/renovations/${slug}`,
     },
+    // Owner-controlled per-suburb indexability (src/content/localProof.ts).
+    // Every existing page defaults to indexable; nothing is noindexed
+    // automatically. The robots key is only emitted when noindexing so
+    // indexable pages keep inheriting the sitewide robots directives.
+    ...(isSuburbIndexable(slug)
+      ? {}
+      : { robots: { index: false, follow: true } }),
     openGraph: {
       title: `Home Renovations ${suburb.name} Melbourne | Konntey H&R`,
       description,
@@ -365,16 +353,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: `Professional renovation builders in ${suburb.name}. Kitchen, bathroom, extensions & more. Free quote.`,
       images: ["/images/hero-main.webp"],
     },
-    keywords: [
-      `renovation ${suburb.name}`,
-      `kitchen renovation ${suburb.name}`,
-      `bathroom renovation ${suburb.name}`,
-      `home extension ${suburb.name}`,
-      `builder ${suburb.name}`,
-      `renovation company ${suburb.name}`,
-      `deck builder ${suburb.name}`,
-      `home renovations ${suburb.name} Melbourne`,
-    ],
   };
 }
 
@@ -383,14 +361,16 @@ export default function SuburbPage({ params }: Props) {
   const suburb = suburbs[slug];
   if (!suburb) notFound();
 
-  const faqs = buildFaqs(suburb);
+  // Suburb-specific FAQs come only from owner-approved local data — never
+  // from a shared template duplicated across every location page.
+  const localFaqs = getLocalProof(slug)?.localFaqs ?? [];
 
   const services = [
-    { name: `Kitchen Renovation ${suburb.name}`, href: "/kitchen-renovations-melbourne", desc: `Complete kitchen renovations in ${suburb.name}. From budget refreshes to full luxury transformations with premium materials.` },
-    { name: `Bathroom Renovation ${suburb.name}`, href: "/bathroom-renovations-melbourne", desc: `Affordable bathroom renovation and remodeling in ${suburb.name}. Modern designs, quality fixtures, and expert tiling.` },
-    { name: `Home Extension ${suburb.name}`, href: "/home-extensions-melbourne", desc: `Expand your living space with a professionally built home extension in ${suburb.name}. Professional builders, council-approved plans.` },
-    { name: `Deck & Pergola ${suburb.name}`, href: "/decks-pergolas-melbourne", desc: `Premium timber deck and pergola installation in ${suburb.name}. Built to withstand Australian weather.` },
-    { name: `Interior Painting ${suburb.name}`, href: "/interior-painting-melbourne", desc: `Professional interior and exterior painting services in ${suburb.name}. Sharp lines, clean finishes.` },
+    { name: "Kitchen renovations", href: "/kitchen-renovations-melbourne" },
+    { name: "Bathroom renovations", href: "/bathroom-renovations-melbourne" },
+    { name: "Home extensions", href: "/home-extensions-melbourne" },
+    { name: "Decks & pergolas", href: "/decks-pergolas-melbourne" },
+    { name: "Interior painting", href: "/interior-painting-melbourne" },
   ];
 
   const suburbSchema = {
@@ -431,15 +411,20 @@ export default function SuburbPage({ params }: Props) {
     ],
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  // FAQPage markup only when this suburb has its own visible, owner-approved
+  // FAQs — never generated from a sitewide template.
+  const faqSchema =
+    localFaqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: localFaqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }
+      : null;
 
   return (
     <div className="bg-navy text-white font-body min-h-screen flex flex-col">
@@ -451,10 +436,12 @@ export default function SuburbPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <NavBar theme="dark" />
       <FloatingActions />
       <main className="flex-grow">
@@ -483,10 +470,10 @@ export default function SuburbPage({ params }: Props) {
             <span className="text-gold-bright">{suburb.name.toUpperCase()}</span>
           </h1>
           <p className="mt-8 max-w-2xl font-body text-[18px] leading-[1.8] text-white/90">
-            Konntey Home & Renovations is {suburb.name}&apos;s professional renovation company. 
-            We deliver affordable kitchen renovations, bathroom renovations, home extensions, deck building 
-            and interior painting across {suburb.name} and nearby suburbs including{" "}
-            {suburb.nearby.join(", ")}. Professional, insured, and family-run.
+            Konntey Home &amp; Renovations builds kitchens, bathrooms,
+            extensions, decks and interior painting for homes in {suburb.name}{" "}
+            and the surrounding area, with a written fixed-price quote before
+            any work starts.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
@@ -544,100 +531,67 @@ export default function SuburbPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Services */}
+      {/* Local proof — renders only when owner-approved evidence exists */}
+      <LocalProofBlock suburbSlug={slug} />
+
+      {/* Curated service links — natural anchors to the canonical service pages */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[1600px]">
-          <h2 className="font-display text-[clamp(2.5rem,5vw,4rem)] font-black uppercase tracking-tightest text-white mb-12">
-            Our Services in <span className="text-gold-bright">{suburb.name}</span>
+          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-black uppercase tracking-tightest text-white mb-8">
+            What We Build in <span className="text-gold-bright">{suburb.name}</span>
           </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-wrap gap-3">
             {services.map((svc) => (
               <Link
-                key={svc.name}
+                key={svc.href}
                 href={svc.href}
-                className="group border border-white/10 p-8 hover:border-gold-bright/40 transition-colors"
+                className="border border-white/10 px-6 py-4 font-display text-[15px] font-bold uppercase tracking-button text-white/85 hover:border-gold-bright hover:text-gold-bright transition-colors"
               >
-                <h3 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
-                  {svc.name}
-                </h3>
-                <p className="mt-4 font-body text-[15px] leading-relaxed text-white/85">
-                  {svc.desc}
-                </p>
-                <span className="mt-5 inline-block font-display text-[13px] font-bold uppercase tracking-button text-white/60 group-hover:text-gold-bright transition-colors">
-                  Learn more →
-                </span>
+                {svc.name}
               </Link>
             ))}
           </div>
+          <p className="mt-8 max-w-2xl font-body text-[15px] leading-[1.8] text-white/75">
+            Pricing, process and detailed FAQs live on each service page. For
+            renovation cost guidance, see our{" "}
+            <Link href="/guides" className="text-gold-bright hover:underline">
+              Melbourne renovation guides
+            </Link>
+            .
+          </p>
+          <div className="mt-8">
+            <Link
+              href="/quote"
+              className="bg-gold-bright px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-navy inline-flex"
+            >
+              Get a Free Quote in {suburb.name}
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Why Choose Konntey */}
-      <section className="bg-navy-light py-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-[1600px]">
-          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-black uppercase tracking-tightest text-white mb-8">
-            Why Choose Konntey in <span className="text-gold-bright">{suburb.name}</span>?
-          </h2>
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div className="space-y-6 font-body text-[16px] leading-[1.8] text-white/90">
-              <p>
-                {suburb.name} homeowners deserve renovation builders who understand the local area.
-                Konntey Home &amp; Renovations is a professional and insured renovation company based in
-                Melbourne, servicing {suburb.name} and nearby suburbs including {suburb.nearby.join(", ")}.
-              </p>
-              <p>
-                Whether you need an affordable kitchen renovation, a complete bathroom remodel,
-                a home extension for your growing family, or a new deck and outdoor living space —
-                we deliver transparent pricing, clear communication, and quality craftsmanship
-                on every project in {suburb.name}.
-              </p>
-            </div>
-            <div className="space-y-4">
-              {[
-                "Free on-site consultation and quote",
-                "Professional and fully insured in Victoria",
-                "Transparent, fair price agreements",
-                "One dedicated point of contact throughout",
-                "Servicing " + suburb.name + " and all nearby suburbs",
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 bg-gold-bright" />
-                  <span className="font-body text-[15px] text-white/85">{item}</span>
+      {/* Suburb-specific FAQs — only when real, local questions exist */}
+      {localFaqs.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-navy-light">
+          <div className="mx-auto max-w-[1600px]">
+            <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-black uppercase tracking-tightest text-white mb-12">
+              {suburb.name} Renovation <span className="text-gold-bright">FAQs</span>
+            </h2>
+            <div className="grid gap-8 lg:grid-cols-2">
+              {localFaqs.map((faq) => (
+                <div key={faq.q} className="border border-white/10 p-8">
+                  <h3 className="font-display text-[18px] font-black uppercase tracking-button text-gold-bright">
+                    {faq.q}
+                  </h3>
+                  <p className="mt-4 font-body text-[15px] leading-[1.8] text-white/85">
+                    {faq.a}
+                  </p>
                 </div>
               ))}
-              <div className="mt-8">
-                <Link
-                  href="/#contact"
-                  className="bg-gold-bright px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-navy inline-flex"
-                >
-                  Get a Free Quote in {suburb.name}
-                </Link>
-              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-[1600px]">
-          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-black uppercase tracking-tightest text-white mb-12">
-            {suburb.name} Renovation <span className="text-gold-bright">FAQs</span>
-          </h2>
-          <div className="grid gap-8 lg:grid-cols-2">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="border border-white/10 p-8">
-                <h3 className="font-display text-[18px] font-black uppercase tracking-button text-gold-bright">
-                  {faq.q}
-                </h3>
-                <p className="mt-4 font-body text-[15px] leading-[1.8] text-white/85">
-                  {faq.a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Nearby suburbs internal links */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-white/10">

@@ -31,20 +31,6 @@ export const metadata: Metadata = {
       "Vastu Shastra aligned home renovations. Indian-owned, culturally respectful. Serving all Melbourne suburbs.",
     images: ["/images/hero-main.webp"],
   },
-  keywords: [
-    "vastu renovation Melbourne",
-    "vastu compliant home Melbourne",
-    "vastu kitchen renovation",
-    "vastu bathroom renovation",
-    "vastu home design Melbourne",
-    "vastu shastra builder Melbourne",
-    "Indian builder Melbourne",
-    "vastu house renovation Tarneit",
-    "vastu renovation Point Cook",
-    "vastu home Truganina",
-    "feng shui renovation Melbourne",
-    "vastu consultation Melbourne",
-  ],
 };
 
 export default function VastuLayout({

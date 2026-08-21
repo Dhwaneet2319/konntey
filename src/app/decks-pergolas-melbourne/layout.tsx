@@ -31,22 +31,6 @@ export const metadata: Metadata = {
       "Premium deck and pergola builders. Merbau, spotted gum & composite. Fixed-price quotes across Melbourne.",
     images: ["/images/outdoor.webp"],
   },
-  keywords: [
-    "deck builder Melbourne",
-    "pergola builder Melbourne",
-    "timber deck Melbourne",
-    "merbau deck Melbourne",
-    "composite decking Melbourne",
-    "pergola installation Melbourne",
-    "outdoor living Melbourne",
-    "deck builder Tarneit",
-    "pergola Werribee",
-    "deck builder Point Cook",
-    "carport builder Melbourne",
-    "alfresco Melbourne",
-    "deck cost Melbourne",
-    "spotted gum deck Melbourne",
-  ],
 };
 
 export default function DecksLayout({

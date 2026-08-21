@@ -31,23 +31,6 @@ export const metadata: Metadata = {
       "Complete bathroom renovations from $10,000. BPC registered, AS/NZS 3740 waterproofing certified. Fixed-price quotes across Melbourne's west.",
     images: ["/images/bathroom/hero.webp"],
   },
-  keywords: [
-    "bathroom renovation Melbourne",
-    "bathroom renovation western Melbourne",
-    "bathroom renovation Tarneit",
-    "bathroom renovation Werribee",
-    "bathroom renovation Point Cook",
-    "bathroom renovation Hoppers Crossing",
-    "bathroom renovation Wyndham Vale",
-    "bathroom renovation cost Melbourne",
-    "small bathroom renovation Melbourne",
-    "ensuite renovation Melbourne",
-    "waterproofing certified bathroom Melbourne",
-    "BPC registered bathroom builder",
-    "affordable bathroom renovation Melbourne",
-    "bathroom remodel western suburbs",
-    "fixed price bathroom renovation",
-  ],
 };
 
 export default function BathroomLayout({

@@ -31,20 +31,6 @@ export const metadata: Metadata = {
       "Professional residential painting across Melbourne. Interior, exterior, feature walls. Fixed-price quotes.",
     images: ["/images/interior.webp"],
   },
-  keywords: [
-    "interior painter Melbourne",
-    "house painter Melbourne",
-    "exterior painting Melbourne",
-    "residential painter Melbourne",
-    "interior painting Tarneit",
-    "house painting Werribee",
-    "painter Point Cook",
-    "painting cost Melbourne",
-    "feature wall painting",
-    "renovation painting Melbourne",
-    "professional painter western Melbourne",
-    "ceiling painting Melbourne",
-  ],
 };
 
 export default function PaintingLayout({

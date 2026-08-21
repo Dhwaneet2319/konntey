@@ -31,7 +31,7 @@ export default function ProjectGallery() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-xl"
           >
-            <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
+            <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-deep">
               PORTFOLIO
             </div>
             <h2 className="mt-4 font-display text-[clamp(3.5rem,8vw,7rem)] font-black uppercase leading-[0.85] tracking-tightest text-navy">
@@ -98,7 +98,7 @@ export default function ProjectGallery() {
                 <div className="relative z-10 mt-4 font-display text-[14px] font-black uppercase tracking-button leading-tight text-navy/80 transition-colors duration-300 group-hover:text-navy sm:text-[16px]">
                   {cat.label}
                 </div>
-                <div className="relative z-10 mt-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-kicker text-gold-bright">
+                <div className="relative z-10 mt-3 flex items-center gap-2 font-body text-[11px] uppercase tracking-kicker text-gold-deep">
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold-bright" />
                   Now Booking
                 </div>

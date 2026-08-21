@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
+import { track } from "@/lib/analytics";
 
 const serviceOptions = [
   "Kitchen Renovation",
@@ -13,6 +15,15 @@ const serviceOptions = [
   "Interior Painting",
   "Vastu Renovation",
   "Other",
+];
+
+const contactMethodOptions = ["Phone call", "WhatsApp", "Email"];
+
+const timingOptions = [
+  "As soon as possible",
+  "Within 1–3 months",
+  "In 3–6 months",
+  "Just researching for now",
 ];
 
 const breadcrumbSchema = {
@@ -26,6 +37,26 @@ const breadcrumbSchema = {
 
 export default function QuotePage() {
   const [state, handleSubmit] = useForm("xkopaqvd");
+  const [service, setService] = useState("");
+  const startTracked = useRef(false);
+
+  // First interaction with any field → quote_form_start (no PII, once only).
+  const onFormInteract = () => {
+    if (startTracked.current) return;
+    startTracked.current = true;
+    track("quote_form_start", { page_type: "quote" });
+  };
+
+  // Successful submission only → quote_form_submit. Only the selected
+  // service category is sent — never names, contact details or free text.
+  useEffect(() => {
+    if (state.succeeded) {
+      track("quote_form_submit", {
+        page_type: "quote",
+        service_context: service || undefined,
+      });
+    }
+  }, [state.succeeded, service]);
 
   return (
     <div className="min-h-screen bg-navy text-white">
@@ -83,8 +114,8 @@ export default function QuotePage() {
               Thank You
             </h2>
             <p className="mt-3 font-body text-[15px] leading-body text-white/90">
-              We&apos;ve received your request. A member of our team will be in
-              touch within 24 hours.
+              We&apos;ve received your request. A member of our team will
+              review your details and be in touch to arrange the next step.
             </p>
             <Link
               href="/"
@@ -100,6 +131,7 @@ export default function QuotePage() {
             transition={{ duration: 0.65, delay: 0.15, ease: "easeOut" }}
             className="mt-10 grid gap-5"
             onSubmit={handleSubmit}
+            onFocusCapture={onFormInteract}
           >
             <input type="hidden" name="_subject" value="New Quote Request from Konntey website" />
             <input type="hidden" name="form_source" value="Quote Page" />
@@ -156,7 +188,8 @@ export default function QuotePage() {
               <select
                 id="service"
                 name="service"
-                defaultValue=""
+                value={service}
+                onChange={(e) => setService(e.target.value)}
                 required
                 className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 focus:border-gold/50"
               >
@@ -169,7 +202,7 @@ export default function QuotePage() {
 
             <label className="grid gap-2">
               <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
-                Suburb
+                Suburb or postcode <span className="normal-case text-white/50">(optional)</span>
               </span>
               <input
                 id="suburb"
@@ -180,9 +213,45 @@ export default function QuotePage() {
               />
             </label>
 
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="grid gap-2">
+                <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
+                  Preferred contact method <span className="normal-case text-white/50">(optional)</span>
+                </span>
+                <select
+                  id="contact_method"
+                  name="contact_method"
+                  defaultValue=""
+                  className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 focus:border-gold/50"
+                >
+                  <option value="">No preference</option>
+                  {contactMethodOptions.map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="grid gap-2">
+                <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
+                  Project timing <span className="normal-case text-white/50">(optional)</span>
+                </span>
+                <select
+                  id="timing"
+                  name="timing"
+                  defaultValue=""
+                  className="border border-white/10 bg-navy-light px-4 py-4 font-body text-white outline-none transition-colors duration-200 focus:border-gold/50"
+                >
+                  <option value="">Not sure yet</option>
+                  {timingOptions.map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
+
             <label className="grid gap-2">
               <span className="font-body text-[11px] font-semibold uppercase tracking-kicker text-gold-bright">
-                Message
+                Project details
               </span>
               <textarea
                 id="message"
@@ -195,13 +264,21 @@ export default function QuotePage() {
               <ValidationError prefix="Message" field="message" errors={state.errors} className="font-body text-[12px] text-red-400" />
             </label>
 
-            <button
-              type="submit"
-              disabled={state.submitting}
-              className="mt-2 inline-flex w-fit items-center justify-center bg-gold-bright px-8 py-4 font-display text-[15px] font-black uppercase tracking-button text-navy transition-all duration-150 hover:-translate-y-0.5 hover:bg-[#be9724] disabled:opacity-60"
-            >
-              {state.submitting ? "Sending..." : "Submit Request"}
-            </button>
+            <div className="mt-2 flex flex-wrap items-center gap-5">
+              <button
+                type="submit"
+                disabled={state.submitting}
+                className="inline-flex w-fit items-center justify-center bg-gold-bright px-8 py-4 font-display text-[15px] font-black uppercase tracking-button text-navy transition-all duration-150 hover:-translate-y-0.5 hover:bg-[#be9724] disabled:opacity-60"
+              >
+                {state.submitting ? "Sending..." : "Submit Request"}
+              </button>
+              <span className="font-body text-[13px] text-white/60">
+                We only use your details to respond to this enquiry.{" "}
+                <Link href="/privacy" className="text-gold-bright hover:underline">
+                  Privacy policy
+                </Link>
+              </span>
+            </div>
           </m.form>
         )}
       </div>

@@ -5,6 +5,7 @@ import Ticker from "@/components/Ticker";
 import ServiceBlock from "@/components/ServiceBlock";
 import Footer from "@/components/Footer";
 import AreasWeServe from "@/components/AreasWeServe";
+import FeaturedProjects from "@/components/FeaturedProjects";
 import { homeFaqs } from "@/content/homeFaqs";
 
 // FAQPage structured data — lives on the homepage only (not sitewide) and is
@@ -106,23 +107,27 @@ export default function HomePage() {
 
           <div className="mt-8 grid grid-cols-2 gap-3">
             <div className="border border-navy/8 bg-off-white p-4 text-center">
-              <div className="font-display text-[22px] font-black text-gold-bright leading-none">10+</div>
+              <div className="font-display text-[22px] font-black text-gold-deep leading-none">10+</div>
               <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Years Trade Experience</div>
             </div>
             <div className="border border-navy/8 bg-off-white p-4 text-center">
-              <div className="font-display text-[22px] font-black text-gold-bright leading-none">✓</div>
+              <div className="font-display text-[22px] font-black text-gold-deep leading-none">✓</div>
               <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Council Approvals Handled</div>
             </div>
             <div className="border border-navy/8 bg-off-white p-4 text-center">
-              <div className="font-display text-[22px] font-black text-gold-bright leading-none">✓</div>
+              <div className="font-display text-[22px] font-black text-gold-deep leading-none">✓</div>
               <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Fair Price Contracts</div>
             </div>
             <div className="border border-navy/8 bg-off-white p-4 text-center">
-              <div className="font-display text-[22px] font-black text-gold-bright leading-none">✓</div>
+              <div className="font-display text-[22px] font-black text-gold-deep leading-none">✓</div>
               <div className="mt-1 font-display text-[11px] font-bold uppercase tracking-kicker text-navy/60">Founder-Led Every Build</div>
             </div>
           </div>
         </ServiceBlock>
+
+        {/* Proof-first section: real project cards when published case
+            studies exist; honest compact teaser otherwise. */}
+        <FeaturedProjects />
 
         <VastuSection />
 
