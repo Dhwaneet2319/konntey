@@ -1,0 +1,42 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Vastu Compliant Renovations Melbourne",
+  description:
+    "Vastu Shastra compliant home renovations in Melbourne. Kitchen, bathroom & full home renovations aligned with Vastu principles. Indian-owned & operated.",
+  alternates: {
+    canonical: "/vastu-renovations-melbourne",
+  },
+  openGraph: {
+    title: "Vastu Compliant Renovations Melbourne | Konntey H&R",
+    description:
+      "Vastu Shastra aligned home renovations across Melbourne. Kitchen placement, bathroom direction, entrance orientation — built with respect for tradition.",
+    url: "https://www.konnteyhomerenovations.com.au/vastu-renovations-melbourne",
+    siteName: "Konntey Home & Renovations",
+    locale: "en_AU",
+    type: "website",
+    images: [
+      {
+        url: "/images/hero-main.webp",
+        width: 1200,
+        height: 630,
+        alt: "Vastu compliant home renovation in Melbourne by Konntey H&R",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vastu Compliant Renovations Melbourne | Konntey H&R",
+    description:
+      "Vastu Shastra aligned home renovations. Indian-owned, culturally respectful. Serving all Melbourne suburbs.",
+    images: ["/images/hero-main.webp"],
+  },
+};
+
+export default function VastuLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}
