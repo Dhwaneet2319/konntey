@@ -56,8 +56,7 @@ export default function QuotePage() {
               Get a free renovation quote
             </h1>
             <p className="mt-5 max-w-md font-body text-[17px] leading-[1.7] text-navy/75">
-              Tell us about your project and we&apos;ll arrange a free site visit.{" "}
-              {responseNote}
+              Consultations are free and there&apos;s no obligation. {responseNote}
             </p>
             <p className="mt-4 font-body text-[16px] text-navy/75">
               Prefer to talk?{" "}

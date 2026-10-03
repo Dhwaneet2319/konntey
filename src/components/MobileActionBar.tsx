@@ -74,7 +74,11 @@ export default function MobileActionBar() {
     <div
       inert={!visible}
       data-placement="mobile_bar"
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-navy/10 bg-white/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-sm transition-transform duration-200 ease-brand lg:hidden ${
+      style={{
+        visibility: visible ? "visible" : "hidden",
+        transition: `transform 200ms var(--motion-ease), visibility 0s linear ${visible ? "0s" : "200ms"}`,
+      }}
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-navy/10 bg-white/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-sm lg:hidden ${
         visible ? "translate-y-0" : "translate-y-full"
       }`}
     >
