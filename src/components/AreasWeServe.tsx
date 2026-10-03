@@ -24,7 +24,7 @@ export default function AreasWeServe() {
               Renovation Builders <span className="text-gold-bright">Near You</span>
             </h2>
             <p className="mt-6 font-body text-[16px] leading-[1.8] text-navy/65 max-w-md">
-              Konntey works across Melbourne&apos;s west and southeast every week. Pick your suburb
+              Konntey services Melbourne&apos;s west and southeast. Pick your suburb
               for local pricing, permit guidance and project examples.
             </p>
             <Link

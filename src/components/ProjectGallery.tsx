@@ -49,9 +49,8 @@ export default function ProjectGallery() {
             />
 
             <p className="mt-8 font-body text-[17px] leading-[1.8] text-navy/70">
-              We&apos;re selective about the projects we take on across
-              Melbourne. Every job gets founder-led oversight,
-              priority scheduling, and the full Konntey standard from day one.
+              Tell us about your project and we&apos;ll arrange a free site
+              visit, talk through options and send a written, itemised quote.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">

@@ -356,10 +356,58 @@ body {
   animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 2s both;
 }
 
-/* Optimize images — skip offscreen rendering + prevent CLS */
-img {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 300px;
+/* ===== SCROLL REVEAL =====
+ * Server HTML is always visible. After hydration, RevealObserver marks only
+ * elements still below the viewport as "hidden", then "shown" on entry, so
+ * content never depends on JavaScript to appear. Timing mirrors
+ * src/lib/motion.ts.
+ */
+:root {
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-entrance: 450ms;
+  --motion-travel: 12px;
+}
+
+[data-reveal="rise"][data-reveal-state],
+[data-reveal="fade"][data-reveal-state],
+[data-reveal="group"][data-reveal-state] > * {
+  transition:
+    opacity var(--motion-entrance) var(--motion-ease) var(--reveal-delay, 0s),
+    transform var(--motion-entrance) var(--motion-ease) var(--reveal-delay, 0s);
+}
+
+[data-reveal="rise"][data-reveal-state="hidden"],
+[data-reveal="group"][data-reveal-state="hidden"] > * {
+  opacity: 0;
+  transform: translateY(var(--motion-travel));
+}
+
+[data-reveal="fade"][data-reveal-state="hidden"] {
+  opacity: 0;
+}
+
+[data-reveal="line"][data-reveal-state] {
+  transition: transform 600ms var(--motion-ease) var(--reveal-delay, 0s);
+}
+
+[data-reveal="line"][data-reveal-state="hidden"] {
+  transform: scaleX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal][data-reveal-state="hidden"],
+  [data-reveal="group"][data-reveal-state="hidden"] > * {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media print {
+  [data-reveal][data-reveal-state="hidden"],
+  [data-reveal="group"][data-reveal-state="hidden"] > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Contain paint utility for image containers */

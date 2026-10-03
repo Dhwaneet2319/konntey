@@ -25,8 +25,8 @@ export default function CtaBanner() {
               READY TO START YOUR RENOVATION?
             </h2>
             <p className="mt-4 font-body text-[16px] leading-[1.7] text-navy/70">
-              We&apos;ll respond within 24 hours to arrange a free, no-obligation
-              site visit, then give you an honest, written fixed-price quote.
+              We&apos;ll arrange a free, no-obligation site visit, then send you
+              a written, itemised quote.
             </p>
           </m.div>
 

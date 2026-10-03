@@ -110,7 +110,7 @@ export default function Contact() {
               REQUEST A <span className="text-gold-bright">QUOTATION</span>
             </h3>
             <p className="font-body text-[16px] leading-[1.8] text-white/85">
-              Fill out the form with your project details. We will review your requirements and get back to you within 24 hours to arrange an on-site consultation.
+              Fill out the form with your project details. We&apos;ll review your requirements and reply to arrange an on-site consultation.
             </p>
           </div>
           

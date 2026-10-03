@@ -9,11 +9,11 @@ const promises = [
   },
   {
     title: "Fair Price Quotes",
-    text: "Every project begins with a detailed, transparent scope of work. No hidden fees, no surprise invoices, no guesswork — the price we quote is the price you pay.",
+    text: "Every project begins with a detailed, written scope of work, and any variation is agreed in writing before it happens.",
   },
   {
-    title: "Professional & Insured",
-    text: "Fully registered, professional, and insured to Australian standards. Every build is backed by proper documentation, compliance checks, and a commitment to getting it right.",
+    title: "Permits & Paperwork",
+    text: "We tell you which permits and inspections your project needs and keep the documentation together for handover.",
   },
 ];
 

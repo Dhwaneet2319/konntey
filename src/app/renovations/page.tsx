@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/chat/FloatingActions";
 import { suburbLinks } from "@/content/suburbs";
+import { quoteKind } from "@/content/business";
 
 const BASE = "https://www.konnteyhomerenovations.com.au";
 
@@ -165,7 +166,7 @@ export default function RenovationsHubPage() {
               Can&apos;t see your suburb?
             </h2>
             <p className="mt-6 font-body text-[17px] leading-[1.8] text-navy/80 max-w-2xl mx-auto">
-              We service all of Melbourne. Get in touch for a free, fixed-price quote wherever you are.
+              We service Melbourne&apos;s west and southeast and can often help further afield. Get in touch for a free consultation and a {quoteKind}.
             </p>
             <div className="mt-10">
               <Link

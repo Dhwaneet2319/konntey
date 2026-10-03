@@ -15,7 +15,7 @@ import {
   serviceRoutes,
 } from "@/content/projects";
 import { suburbLinks } from "@/content/suburbs";
-import { BASE_URL } from "@/content/business";
+import { BASE_URL, quoteKind } from "@/content/business";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -362,7 +362,7 @@ export default async function ProjectPage({ params }: Props) {
             </h2>
             <p className="mx-auto mt-6 max-w-2xl font-body text-[17px] leading-[1.8] text-navy/80">
               Tell us about your project and we&apos;ll arrange a free on-site
-              consultation and a fixed-price written quote.
+              consultation and a {quoteKind}.
             </p>
             <div className="mt-10">
               <Link

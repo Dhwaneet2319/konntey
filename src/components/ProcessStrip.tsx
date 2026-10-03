@@ -16,7 +16,7 @@ const steps = [
   {
     num: "03",
     title: "The Build",
-    desc: "Our trusted tradespeople execute the work with precision. We maintain a clean site and keep you updated every step of the way.",
+    desc: "Our tradespeople carry out the work with precision. We maintain a clean site and keep you updated every step of the way.",
   },
   {
     num: "04",

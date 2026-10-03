@@ -5,10 +5,10 @@ import { m } from "framer-motion";
 // Static, truthful facts: none of these gain meaning from counting up, and a
 // count-up risked settling short of the real value.
 const stats = [
-  { value: "24hr", label: "Enquiry Response Time" },
+  { value: "Free", label: "Consultation" },
   { value: "4-Step", label: "Build Process" },
-  { value: "1:1", label: "Founder-Led Service" },
-  { value: "Itemised", label: "Written Fixed-Price Quotes", small: true },
+  { value: "1", label: "Point of Contact" },
+  { value: "Itemised", label: "Written Quotes", small: true },
 ];
 
 export default function StatsCounter() {

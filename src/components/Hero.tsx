@@ -94,7 +94,7 @@ export default function Hero() {
             </div>
 
             <div className="mt-12 md:hidden relative left-1/2 -ml-[50vw] w-[100vw]">
-              <Ticker text="Quality Work ◆ On Time ◆ Fair Pricing ◆ Melbourne Based ◆ Family Run ◆" />
+              <Ticker text="Quality Work ◆ Written Quotes ◆ Melbourne Based ◆" />
             </div>
           </div>
 

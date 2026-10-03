@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import FloatingActions from "@/components/chat/FloatingActions";
 import QuoteChecklist from "@/components/QuoteChecklist";
 import { guides, getGuide, GUIDES_BASE_URL } from "@/content/guides";
+import { quoteKind } from "@/content/business";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -288,7 +289,7 @@ export default async function GuideArticlePage({ params }: Props) {
               Ready to start your renovation?
             </h2>
             <p className="mt-6 font-body text-[17px] leading-[1.8] text-navy/80 max-w-2xl mx-auto">
-              Get a free, fixed-price quote from Melbourne&apos;s founder-led renovation team.
+              Book a free consultation and get a {quoteKind} for your project.
             </p>
             <div className="mt-10">
               <Link

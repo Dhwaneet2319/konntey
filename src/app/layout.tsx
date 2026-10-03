@@ -3,6 +3,12 @@ import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
 import AnalyticsBridge from "@/components/AnalyticsBridge";
+import RevealObserver from "@/components/RevealObserver";
+import { BASE_URL, business, isClaimApproved } from "@/content/business";
+import { siteImages } from "@/content/images";
+import { serviceList } from "@/content/services";
+import { suburbLinks } from "@/content/suburbs";
+import { ORGANIZATION_ID, SITE_SHORT_NAME, WEBSITE_ID, jsonLd, siteDescription } from "@/lib/seo";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -28,42 +34,33 @@ export const viewport: Viewport = {
   themeColor: "#0a1628",
 };
 
+const defaultSocial = siteImages.socialDefault;
+
+// Sitewide defaults only. There is deliberately no canonical here: each page
+// sets its own through pageMetadata() so nothing inherits the home canonical.
 export const metadata: Metadata = {
   title: {
-    default: "Home Extensions & Renovations Melbourne | Konntey H&R",
-    template: "%s | Konntey H&R",
+    default: "Home renovations & extensions in Melbourne | Konntey H&R",
+    template: `%s | ${SITE_SHORT_NAME}`,
   },
-  description:
-    "Professional home extensions, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes. Serving Tarneit, Werribee & Point Cook.",
-  // Note: no `keywords` meta — Google does not use the keywords meta tag.
-  metadataBase: new URL("https://www.konnteyhomerenovations.com.au"),
-  alternates: {
-    canonical: "/",
-  },
+  description: siteDescription,
+  metadataBase: new URL(BASE_URL),
   openGraph: {
-    title: "Home Extensions & Renovations Melbourne | Konntey H&R",
-    description:
-      "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service. Get a free quote today.",
     type: "website",
     locale: "en_AU",
-    url: "https://www.konnteyhomerenovations.com.au",
-    siteName: "Konntey Home & Renovations",
+    siteName: business.name,
     images: [
       {
-        url: "/images/hero-main.webp",
-        width: 1200,
-        height: 630,
-        alt: "Konntey Home & Renovations — Professional renovation builders in Melbourne",
+        url: defaultSocial.src,
+        width: defaultSocial.width,
+        height: defaultSocial.height,
+        alt: defaultSocial.alt,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Home Extensions & Renovations Melbourne | Konntey H&R",
-    description:
-      "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service. Get a free quote today.",
-    images: ["/images/hero-main.webp"],
-    creator: "@konnteyreno",
+    images: [defaultSocial.src],
   },
   robots: {
     index: true,
@@ -86,36 +83,33 @@ export const metadata: Metadata = {
     // search engines don't use these tags.
     "geo.region": "AU-VIC",
     "geo.placename": "Melbourne",
-    "apple-mobile-web-app-title": "Konntey H&R",
+    "apple-mobile-web-app-title": SITE_SHORT_NAME,
     "format-detection": "telephone=yes",
   },
 };
 
-// JSON-LD Structured Data
+// The one sitewide business entity; every other schema references it by @id.
+// Service-area business: no street address, postcode or geo coordinates are
+// published because there is no customer-facing premises. Saturday is "by
+// appointment" (see business.hours), so it has no fixed hours here.
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "@id": "https://www.konnteyhomerenovations.com.au/#organization",
-  name: "Konntey Home & Renovations",
-  alternateName: ["Konntey H&R", "Konntey Homes and Renovations"],
-  url: "https://www.konnteyhomerenovations.com.au",
+  "@id": ORGANIZATION_ID,
+  name: business.name,
+  alternateName: [SITE_SHORT_NAME, "Konntey Homes and Renovations"],
+  url: BASE_URL,
   logo: {
     "@type": "ImageObject",
-    url: "https://www.konnteyhomerenovations.com.au/images/logo.png",
-    width: 600,
-    height: 200,
+    url: `${BASE_URL}${siteImages.logo.src}`,
+    width: siteImages.logo.width,
+    height: siteImages.logo.height,
   },
-  image: "https://www.konnteyhomerenovations.com.au/images/hero-main.webp",
-  description:
-    "Professional home extensions, new builds, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes, founder-led service, and quality craftsmanship.",
-  telephone: "+61493191798",
-  email: "info@konnteyhomerenovations.com.au",
-  priceRange: "$$",
+  image: `${BASE_URL}${defaultSocial.src}`,
+  description: siteDescription,
+  telephone: business.phoneE164,
+  email: business.email,
   currenciesAccepted: "AUD",
-  paymentAccepted: "Cash, Bank Transfer, Credit Card",
-  // Service-area business: no street address, postcode or geo coordinates
-  // are published because there is no customer-facing premises. Saturday is
-  // "by appointment" (see business.hours), so it has no fixed hours here.
   address: {
     "@type": "PostalAddress",
     addressLocality: "Melbourne",
@@ -132,53 +126,38 @@ const localBusinessSchema = {
   ],
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+61493191798",
+    telephone: business.phoneE164,
     contactType: "customer service",
     areaServed: "AU",
-    availableLanguage: ["English", "Hindi", "Gujarati"],
+    availableLanguage: isClaimApproved("languages") ? ["English", "Hindi", "Gujarati"] : ["English"],
   },
-  sameAs: [
-    "https://www.instagram.com/konntey/",
-  ],
+  sameAs: ["https://www.instagram.com/konntey/"],
   areaServed: [
-    { "@type": "State", name: "Victoria" },
     { "@type": "City", name: "Melbourne" },
-    { "@type": "City", name: "Tarneit" },
-    { "@type": "City", name: "Werribee" },
-    { "@type": "City", name: "Point Cook" },
-    { "@type": "City", name: "Hoppers Crossing" },
-    { "@type": "City", name: "Truganina" },
-    { "@type": "City", name: "Wyndham Vale" },
-    { "@type": "City", name: "Dandenong" },
-    { "@type": "City", name: "Cranbourne" },
-    { "@type": "City", name: "Narre Warren" },
-    { "@type": "City", name: "Berwick" },
-    { "@type": "City", name: "Pakenham" },
+    ...suburbLinks.map((s) => ({ "@type": "Place", name: `${s.name}, VIC` })),
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Renovation Services",
-    itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Home Extensions & New Builds", description: "Structural extensions, second storeys, granny flats, and knockdown rebuilds across Melbourne" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kitchen Renovations Melbourne", description: "Complete kitchen renovations from cabinet refresh to full open-plan redesigns" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bathroom Renovations Melbourne", description: "Full bathroom rebuilds with AS 3740 certified waterproofing" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deck & Pergola Installation", description: "Premium timber deck and pergola construction built for Australian weather" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interior Painting & Finishing", description: "Professional interior and exterior painting with sharp lines and clean finishes" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Vastu & Feng Shui Consultation", description: "Traditional Vastu-compliant renovations for culturally aligned home design" } },
-    ],
+    name: "Renovation services",
+    itemListElement: serviceList.map((s) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: s.schemaName,
+        description: s.card.blurb,
+        url: `${BASE_URL}${s.route}`,
+      },
+    })),
   },
-
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://www.konnteyhomerenovations.com.au/#website",
-  name: "Konntey Home & Renovations",
-  url: "https://www.konnteyhomerenovations.com.au",
-  publisher: {
-    "@id": "https://www.konnteyhomerenovations.com.au/#organization",
-  },
+  "@id": WEBSITE_ID,
+  name: business.name,
+  url: BASE_URL,
+  publisher: { "@id": ORGANIZATION_ID },
   inLanguage: "en-AU",
 };
 
@@ -203,21 +182,12 @@ export default function RootLayout({
             }}
           />
         </noscript>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
-          }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(localBusinessSchema)} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(websiteSchema)} />
       </head>
       <body className="font-body">
         <AnalyticsBridge />
+        <RevealObserver />
         <MotionProvider>
           {children}
         </MotionProvider>

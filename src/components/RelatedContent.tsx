@@ -1,159 +1,71 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Container } from "@/components/ui";
 import { projectsForService, serviceLabels } from "@/content/projects";
+import type { RelatedLink } from "@/content/services";
 
-export interface RelatedLink {
-  label: string;
-  href: string;
+export type { RelatedLink };
+
+function LinkList({ title, links }: { title: string; links: RelatedLink[] }) {
+  return (
+    <div>
+      <h2 className="font-display text-[22px] font-bold text-navy">{title}</h2>
+      <ul className="mt-5 space-y-3">
+        {links.map((l) => (
+          <li key={l.href}>
+            <Link
+              href={l.href}
+              className="group inline-flex items-start gap-2 font-body text-[16px] text-navy/80 transition-colors duration-hover hover:text-gold-deep"
+            >
+              <ArrowRight
+                aria-hidden="true"
+                size={15}
+                strokeWidth={2.25}
+                className="mt-1 shrink-0 text-gold-deep transition-transform duration-hover ease-brand group-hover:translate-x-0.5"
+              />
+              <span>{l.label}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 /**
- * Contextual related-content module for service pages: real project proof
- * (when published projects exist for the service), relevant guides, genuinely
- * adjacent services and a concise link to the areas hub. Sections with no
- * content are omitted — never filled with generic keyword lists.
+ * Related projects (only when published case studies exist), guides and
+ * adjacent services. Empty groups are omitted.
  */
 export default function RelatedContent({
   serviceRoute,
-  serviceName,
+  projectNoun,
   relatedGuides = [],
   relatedServices = [],
-  areasServed = [],
 }: {
   serviceRoute: string;
-  serviceName: string;
+  projectNoun: string;
   relatedGuides?: RelatedLink[];
   relatedServices?: RelatedLink[];
-  /** A curated handful of relevant suburb links, not an exhaustive list. */
-  areasServed?: RelatedLink[];
 }) {
-  const projects = projectsForService(serviceRoute).slice(0, 4);
+  const projects = projectsForService(serviceRoute)
+    .slice(0, 4)
+    .map((p) => ({
+      href: `/projects/${p.slug}`,
+      label: `${p.suburb} ${serviceLabels[p.primaryService].toLowerCase()} case study`,
+    }));
 
-  const hasAnything =
-    projects.length > 0 ||
-    relatedGuides.length > 0 ||
-    relatedServices.length > 0 ||
-    areasServed.length > 0;
-  if (!hasAnything) return null;
+  if (projects.length + relatedGuides.length + relatedServices.length === 0) return null;
 
   return (
     <section
-      aria-label={`Related projects and guides for ${serviceName}`}
-      className="bg-off-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-navy/8"
+      aria-label={`Related projects and guides for ${projectNoun}`}
+      className="border-t border-navy/10 bg-white py-16 sm:py-20"
     >
-      <div className="mx-auto max-w-[1600px] grid gap-12 lg:grid-cols-3">
-        {projects.length > 0 && (
-          <div>
-            <h2 className="font-display text-[18px] font-black uppercase tracking-button text-navy">
-              Recent {serviceName} Projects
-            </h2>
-            <ul className="mt-6 space-y-3">
-              {projects.map((p) => (
-                <li key={p.slug}>
-                  <Link
-                    href={`/projects/${p.slug}`}
-                    className="group inline-flex items-center gap-2 font-body text-[15px] text-navy/80 transition-colors hover:text-gold-deep"
-                  >
-                    <ArrowRight
-                      size={14}
-                      strokeWidth={2.5}
-                      className="shrink-0 text-gold-deep"
-                    />
-                    <span>
-                      {p.suburb} {serviceLabels[p.primaryService].toLowerCase()}{" "}
-                      case study
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {relatedGuides.length > 0 && (
-          <div>
-            <h2 className="font-display text-[18px] font-black uppercase tracking-button text-navy">
-              Planning a {serviceName}?
-            </h2>
-            <ul className="mt-6 space-y-3">
-              {relatedGuides.map((g) => (
-                <li key={g.href}>
-                  <Link
-                    href={g.href}
-                    className="group inline-flex items-center gap-2 font-body text-[15px] text-navy/80 transition-colors hover:text-gold-deep"
-                  >
-                    <ArrowRight
-                      size={14}
-                      strokeWidth={2.5}
-                      className="shrink-0 text-gold-deep"
-                    />
-                    <span>{g.label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {(relatedServices.length > 0 || areasServed.length > 0) && (
-          <div className="space-y-10">
-            {relatedServices.length > 0 && (
-              <div>
-                <h2 className="font-display text-[18px] font-black uppercase tracking-button text-navy">
-                  Related Services
-                </h2>
-                <ul className="mt-6 space-y-3">
-                  {relatedServices.map((s) => (
-                    <li key={s.href}>
-                      <Link
-                        href={s.href}
-                        className="group inline-flex items-center gap-2 font-body text-[15px] text-navy/80 transition-colors hover:text-gold-deep"
-                      >
-                        <ArrowRight
-                          size={14}
-                          strokeWidth={2.5}
-                          className="shrink-0 text-gold-deep"
-                        />
-                        <span>{s.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {areasServed.length > 0 && (
-              <div>
-                <h2 className="font-display text-[18px] font-black uppercase tracking-button text-navy">
-                  Areas We Serve
-                </h2>
-                <ul className="mt-6 space-y-3">
-                  {areasServed.map((a) => (
-                    <li key={a.href}>
-                      <Link
-                        href={a.href}
-                        className="group inline-flex items-center gap-2 font-body text-[15px] text-navy/80 transition-colors hover:text-gold-deep"
-                      >
-                        <ArrowRight
-                          size={14}
-                          strokeWidth={2.5}
-                          className="shrink-0 text-gold-deep"
-                        />
-                        <span>{a.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/renovations"
-                  className="mt-4 inline-block font-body text-[14px] font-medium text-gold-deep hover:underline"
-                >
-                  All areas we serve →
-                </Link>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+      <Container className="grid gap-12 md:grid-cols-3">
+        {projects.length > 0 && <LinkList title={`Recent ${projectNoun} projects`} links={projects} />}
+        {relatedGuides.length > 0 && <LinkList title={`Planning a ${projectNoun}?`} links={relatedGuides} />}
+        {relatedServices.length > 0 && <LinkList title="Related services" links={relatedServices} />}
+      </Container>
     </section>
   );
 }

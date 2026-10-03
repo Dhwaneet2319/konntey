@@ -63,8 +63,8 @@ review it and set `credentialsPageIndexable = true`.
   field are hidden automatically.**
 - `insuranceStatement` — approved wording only; leave empty to hide.
 - `verifiedTrustPoints` — the homepage trust strip. Currently: ABN,
-  Melbourne-based, fixed-price written quotes. Only add claims (e.g. "BPC
-  registered", "insured") once wording is confirmed and documentable.
+  Melbourne-based, written itemised quotes. "BPC registered builder" and
+  "Insured" are added automatically once those claims are approved (section 5).
 
 ## 4. Guide authorship — `src/content/guides.ts`
 
@@ -109,32 +109,63 @@ Buttons link to `/quote?service=kitchen` (also `bathroom`, `extension`,
 pre-selects that choice. The mapping is `serviceFromParam` in
 `src/app/quote/page.tsx`; add to it if you add a service option.
 
-## 5. Claims that need your confirmation (currently published)
+## 5. Approved business facts — `claims` in `src/content/business.ts`
 
-These existing claims pre-date this upgrade and remain on the site. Please
-confirm exact current wording + evidence, or ask for them to be removed:
+Every credential, insurance, experience, staffing, price-range and timing
+claim lives in one `claims` object. Each entry has the exact statement, an
+`evidence` reference, `approvedWording`, a `neutralWording` fallback,
+`status` and `reviewedOn`. Copy, page metadata, social cards text, the web
+manifest and JSON-LD all read claims through `claimText()` /
+`isClaimApproved()`.
 
-- "BPC registered" (homepage/service metadata, service page copy, schema).
-  Add the registration record to `credentialRecords` so customers can check it.
-- "no subcontractors" (kitchen and decks page copy)
-- "10+ years trade experience" (homepage stat)
-- "Professional & Insured — VIC" (footer) and "Fully registered … insured"
-  (homepage "Why Konntey" card) — add `insuranceStatement` wording.
-- "Certified waterproofer" and "waterproofing certificate issued on
-  completion" (bathroom page) — confirm this applies to every job.
-- "Respond within 24 hours" and "quote typically within 48 hours of the site
-  visit" (homepage, CTA banner, service FAQs, quote metadata) — confirm your
-  real response and quoting times.
-- Indicative prices (kitchen $15k–$25k / $25k–$45k / $45k–$80k+; bathroom
-  $10k–$20k / $20k–$35k / $35k–$45k+) — now consistent across pages and
-  guides. Confirm the ranges and state whether they include GST, demolition,
-  disposal, appliances and permits.
-- `twitter.creator: "@konnteyreno"` in `src/app/layout.tsx` — delete if that
-  account doesn't exist.
+**All claims are currently `needs-evidence`, so the site shows the neutral
+wording (or nothing).** This replaces the earlier decision to keep these
+claims live; nothing about the claim itself has been judged untrue.
 
-The LocalBusiness schema no longer publishes a street address, postcode 3000,
-CBD coordinates or Saturday hours. If you open a customer-facing premises,
-add its real address there.
+To re-approve a claim:
+
+1. Put the proof location in `evidence` (e.g. "BPC register entry DB-U 12345,
+   checked 2026-10-10" or "Public liability policy schedule, Insurer X,
+   expires 2027-06-30").
+2. Set `reviewedOn` to today's date (YYYY-MM-DD).
+3. Check `approvedWording` says exactly what the evidence supports.
+4. Set `status: "approved"`, rebuild and redeploy.
+
+A claim with `status: "approved"` but an empty `evidence` or `reviewedOn`
+still renders as neutral. Review every approved claim at least yearly.
+
+| Claim id | What it unlocks |
+| --- | --- |
+| `bpcRegistration` | "BPC registered builder" in descriptions and trust points |
+| `insurance` | "Insured" trust point |
+| `waterproofingCertificate` | Certified applicator + certificate wording on the bathroom page |
+| `tradeExperience` | "10+ years of trade experience" |
+| `noSubcontractors` | "No subcontractors" |
+| `founderLed`, `familyRun`, `ownershipHeritage` | Team descriptors |
+| `languages` | "We speak Hindi and Gujarati" and `availableLanguage` in schema |
+| `fixedPriceQuotes` | "fixed-price" instead of "itemised" quote wording everywhere |
+| `responseTimes` | 24-hour reply / 48-hour quote promise |
+| `priceRanges` | "Typical Konntey project ranges" heading and price `offers` in schema |
+| `vastuProvider` | Whether Konntey assesses Vastu itself or works with your consultant |
+
+Also confirm the indicative price ranges (kitchen $15k–$25k / $25k–$45k /
+$45k–$80k+; bathroom $10k–$20k / $20k–$35k / $35k–$45k+) and whether they
+include GST, demolition, disposal, appliances and permits.
+
+The LocalBusiness schema publishes no street address, postcode, coordinates,
+payment methods, star ratings or Twitter handle. If you open a
+customer-facing premises, add its real address there.
+
+## 5a. Photo provenance — `src/content/images.ts`
+
+Every photo the site uses is registered with its real size, alt text and a
+`provenance` of `"konntey-project"` or `"unverified"`. All current photos are
+`"unverified"`, so galleries and before/after sliders are captioned as
+example images and never described as Konntey work. Change a photo to
+`"konntey-project"` only if it shows a job Konntey completed and you have the
+client's permission to publish it. Social share cards in
+`public/images/social/` are generated by `scripts/generate-social-images.mjs`
+(text and logo only, no photos).
 
 ## 6. Other inputs the site is ready for
 
@@ -148,7 +179,4 @@ add its real address there.
   — no IDs are hard-coded.
 - **Search Console:** verification already reads
   `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` from environment config.
-- **Photo provenance:** confirm the hero image and the kitchen/bathroom
-  before-and-after photos are Konntey's own jobs (and you have permission to
-  show them). The slider copy says "Real Transformation"; if a photo isn't
-  yours, replace it or change that wording.
+- **Photo provenance:** see section 5a.
