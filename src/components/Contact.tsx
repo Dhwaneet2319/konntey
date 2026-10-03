@@ -17,8 +17,8 @@ export default function Contact() {
             Tell us about your project
           </h2>
           <p className="mt-5 max-w-md font-body text-[17px] leading-[1.7] text-white/75">
-            We&apos;ll arrange a free site visit and send you a written, itemised quote.{" "}
-            {claimText("responseTimes")}
+            A few details about the job is all we need. Consultations are free and there&apos;s
+            no obligation. {claimText("responseTimes")}
           </p>
           <ul className="mt-8 space-y-4 font-body text-[16px]">
             <li>

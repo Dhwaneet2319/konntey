@@ -1,8 +1,4 @@
-"use client";
-
 import NavBar from "@/components/NavBar";
-
-import { m } from "framer-motion";
 import Link from "next/link";
 import { business } from "@/content/business";
 import { 
@@ -55,16 +51,12 @@ export default function ScanLandingPage() {
         
         {/* Hero Section */}
         <section className="w-full text-center mb-16 relative z-10">
-          <m.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div>
             <div className="font-display text-[32px] sm:text-[40px] font-black uppercase tracking-tightest leading-none text-white">
               KONNTEY
             </div>
             <div className="font-display text-[12px] sm:text-[14px] font-bold tracking-[2px] uppercase text-gold-bright mt-2 mb-6">
-              Homes &amp; Renovations
+              Home &amp; Renovations
             </div>
             
             <h1 className="font-display text-[24px] sm:text-[32px] font-black uppercase leading-[1.1] mb-4">
@@ -74,17 +66,12 @@ export default function ScanLandingPage() {
             <p className="font-body text-[15px] text-white/70 uppercase tracking-kicker">
               Serving Melbourne &amp; surrounds
             </p>
-          </m.div>
+          </div>
         </section>
 
         {/* Services Grid */}
         <section className="w-full mb-16 relative z-10">
-          <m.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="grid grid-cols-2 gap-4"
-          >
+          <div className="grid grid-cols-2 gap-4">
             {services.map((service, idx) => (
               <div 
                 key={idx} 
@@ -98,17 +85,12 @@ export default function ScanLandingPage() {
                 </span>
               </div>
             ))}
-          </m.div>
+          </div>
         </section>
 
         {/* CTA Section */}
         <section className="w-full flex flex-col gap-4 relative z-10">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="flex flex-col gap-4"
-          >
+          <div className="flex flex-col gap-4">
             <Link
               prefetch={false}
               href="/quote"
@@ -123,7 +105,7 @@ export default function ScanLandingPage() {
             >
               Call {business.phoneDisplay}
             </a>
-          </m.div>
+          </div>
         </section>
       </main>
 

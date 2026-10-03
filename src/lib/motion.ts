@@ -1,6 +1,6 @@
 /**
- * Motion tokens. CSS mirrors these as custom properties in globals.css
- * (--motion-*), so JS-driven (Motion) and CSS transitions feel the same.
+ * Motion tokens. globals.css (--motion-*) and tailwind.config.ts
+ * (duration-hover, duration-enter, ease-brand) mirror these values.
  */
 export const motion = {
   /** Hover / press feedback, seconds. */

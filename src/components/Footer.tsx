@@ -1,163 +1,129 @@
-"use client";
-
-import { useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Clock } from "lucide-react";
+import Image from "next/image";
 import StarBorder from "./StarBorder";
+import { Container } from "@/components/ui";
 import { business, googleMapsSearchUrl } from "@/content/business";
+import { serviceList } from "@/content/services";
+import { suburbLinks } from "@/content/suburbs";
 
-const serviceAreas = [
-  "Tarneit", "Truganina", "Werribee", "Hoppers Crossing", "Point Cook",
-  "Wyndham Vale", "Manor Lakes", "Williams Landing", "Laverton",
-  "Dandenong", "Cranbourne", "Frankston", "Narre Warren", "Berwick",
-  "Springvale", "Pakenham", "Officer", "Clyde", "Melton",
+const company = [
+  { label: "Our work", href: "/#work" },
+  { label: "About", href: "/#about" },
+  { label: "Renovation guides", href: "/guides" },
+  { label: "Areas we service", href: "/renovations" },
+  { label: "How we work", href: "/credentials-and-compliance" },
+  { label: "Careers", href: "/careers" },
 ];
 
+const headingCls = "font-body text-[13px] font-semibold uppercase tracking-[0.14em] text-gold-bright";
+const linkCls = "font-body text-[15px] text-white/75 transition-colors duration-hover hover:text-white";
+
 export default function Footer() {
-  const [toast, setToast] = useState(false);
-
-  const handleFbClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setToast(true);
-    setTimeout(() => setToast(false), 2500);
-  };
-
   return (
-    <footer className="border-t border-white/10 bg-navy-light relative text-white">
-      <AnimatePresence>
-        {toast && (
-          <m.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 border border-gold-bright/20 bg-navy px-6 py-3 shadow-lg shadow-black/30"
-          >
-            <span className="font-display text-[13px] font-bold uppercase tracking-button text-gold-bright">
-              Socials coming soon — stay tuned!
-            </span>
-          </m.div>
-        )}
-      </AnimatePresence>
-
-      <div className="mx-auto max-w-[1600px] px-4 pt-12 pb-4 sm:px-6 lg:px-8 overflow-hidden">
-        <m.h2
-          initial={{ y: "50%" }}
-          whileInView={{ y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[clamp(5rem,21vw,18rem)] font-black uppercase leading-[0.8] tracking-[-4px] lg:tracking-[-10px] text-gold-bright mb-12 ml-[-0.04em]"
-        >
-          KONNTEY
-        </m.h2>
-
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
-          <div>
-            <p className="font-body text-[14px] leading-relaxed text-white/75">
-              Kitchen and bathroom renovations, home extensions, decks and painting across Melbourne&apos;s west and southeast.
+    <footer className="border-t border-white/10 bg-navy text-white">
+      <Container className="pb-[calc(2rem+env(safe-area-inset-bottom))] pt-14 sm:pt-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-b border-white/10 pb-10 lg:grid-cols-[1.2fr_0.9fr_0.8fr_1.4fr] lg:gap-x-10">
+          <div className="col-span-2 lg:col-span-1">
+            <Link href="/" aria-label={`${business.name} home`} className="inline-flex items-center gap-3">
+              <Image
+                src="/images/logo.png"
+                alt=""
+                width={154}
+                height={112}
+                className="h-10 w-auto brightness-0 invert"
+              />
+              <span className="font-display text-[24px] font-bold leading-none">
+                Konntey
+                <span className="mt-1 block font-body text-[12px] font-medium text-gold-bright">
+                  Home &amp; Renovations
+                </span>
+              </span>
+            </Link>
+            <p className="mt-5 max-w-xs font-body text-[15px] leading-[1.65] text-white/70">
+              Kitchen and bathroom renovations, home extensions, decks and painting across{" "}
+              {business.serviceArea}.
             </p>
-            <div className="mt-2 font-body text-[12px] uppercase tracking-kicker text-white/70">
-              ABN 64 684 703 972
-            </div>
+            <Link
+              href="/quote"
+              className="mt-6 inline-flex min-h-[44px] items-center bg-gold-bright px-5 font-body text-[15px] font-semibold text-navy transition-colors duration-hover hover:bg-[#e0b847]"
+            >
+              Get a free quote
+            </Link>
           </div>
 
           <div>
-            <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4">
-              Our Services
-            </div>
-            <ul className="space-y-2 font-body text-[14px] text-white/75">
-              <li><Link href="/home-extensions-melbourne" className="transition-colors hover:text-gold-bright">Home Extensions & New Builds</Link></li>
-              <li><Link href="/vastu-renovations-melbourne" className="transition-colors hover:text-gold-bright">Vastu & Feng Shui Consultation</Link></li>
-              <li><Link href="/kitchen-renovations-melbourne" className="transition-colors hover:text-gold-bright">Kitchen Renovation Melbourne</Link></li>
-              <li><Link href="/bathroom-renovations-melbourne" className="transition-colors hover:text-gold-bright">Bathroom Renovation Melbourne</Link></li>
-              <li><Link href="/decks-pergolas-melbourne" className="transition-colors hover:text-gold-bright">Deck & Pergola Installation</Link></li>
-              <li><Link href="/interior-painting-melbourne" className="transition-colors hover:text-gold-bright">Interior Painting & Finishing</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4">
-              Contact Us
-            </div>
-            <ul className="space-y-2 font-body text-[14px] text-white/75">
-              <li>Melbourne, VIC</li>
-              <li>0493 191 798</li>
-              <li>info@konnteyhomerenovations.com.au</li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4 flex items-center justify-between xl:w-4/5">
-              <span>Working Hours</span>
-              <Clock size={16} />
-            </div>
-            <ul className="space-y-2 font-body text-[14px] text-white/75">
-              {business.hours.map((line) => (
-                <li key={line}>{line}</li>
+            <h2 className={headingCls}>Services</h2>
+            <ul className="mt-4 space-y-2.5">
+              {serviceList.map((s) => (
+                <li key={s.route}>
+                  <Link href={s.route} className={linkCls}>{s.name}</Link>
+                </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <div className="font-display text-[14px] font-black uppercase tracking-button text-gold-bright mb-4">
-              Company
-            </div>
-            <ul className="space-y-2 font-body text-[14px] text-white/75">
-              <li><Link href="/" className="transition-colors hover:text-gold-bright">Home</Link></li>
-              <li><Link href="/#services" className="transition-colors hover:text-gold-bright">Services</Link></li>
-              <li><Link href="/projects" className="transition-colors hover:text-gold-bright">Completed Projects</Link></li>
-              <li><Link href="/guides" className="transition-colors hover:text-gold-bright">Renovation Guides</Link></li>
-              <li><Link href="/renovations" className="transition-colors hover:text-gold-bright">Areas We Serve</Link></li>
-              <li><Link href="/credentials-and-compliance" className="transition-colors hover:text-gold-bright">Credentials &amp; Compliance</Link></li>
-              <li><Link href="/#about" className="transition-colors hover:text-gold-bright">About Us</Link></li>
-              <li><Link href="/careers" className="transition-colors hover:text-gold-bright">Careers</Link></li>
-              <li><Link href="/#contact" className="transition-colors hover:text-gold-bright">Contact</Link></li>
-              <li><Link href="/quote" className="transition-colors hover:text-gold-bright">Get a Quote</Link></li>
+            <h2 className={headingCls}>Company</h2>
+            <ul className="mt-4 space-y-2.5">
+              {company.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className={linkCls}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-2 lg:col-span-1">
+            <h2 className={headingCls}>Contact</h2>
+            <ul className="mt-4 space-y-2.5 font-body text-[15px] text-white/75">
+              <li>
+                <a href={`tel:${business.phoneE164}`} data-placement="footer" className={linkCls}>
+                  {business.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${business.email}`} className={`${linkCls} [overflow-wrap:anywhere]`}>{business.email}</a>
+              </li>
+              {business.hours.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+              <li>Melbourne, VIC · ABN {business.abn}</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8">
-          <div className="font-display text-[13px] font-black uppercase tracking-button text-white/60 mb-4">
-            Proudly Servicing Melbourne&apos;s West & Southeast
-          </div>
-          <p className="font-body text-[13px] leading-relaxed text-white/55">
-            {serviceAreas.map((suburb, i) => {
-              const slug = suburb.toLowerCase().replace(/\s+/g, "-");
-              return (
-                <span key={suburb}>
-                  <Link href={`/renovations/${slug}`} className="transition-colors duration-150 hover:text-gold-bright">
-                    {suburb}
-                  </Link>
-                  {i < serviceAreas.length - 1 ? " · " : ""}
-                </span>
-              );
-            })}
-          </p>
+        <div className="border-b border-white/10 py-8">
+          <h2 className={headingCls}>Areas we service</h2>
+          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+            {suburbLinks.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/renovations/${s.slug}`} className="font-body text-[14px] text-white/60 hover:text-white">
+                  {s.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-[13px] text-white/70 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Konntey Home & Renovations. Melbourne, VIC.</span>
-          <div className="flex items-center gap-4">
-            {/* Accessible names match visible labels — no aria-label overrides */}
-            <a
-              href={business.googleReviewUrl || googleMapsSearchUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gold-bright transition-colors duration-150 hover:text-white"
-            >
-              <span aria-hidden="true">★ </span>
-              {business.googleReviewUrl ? "Review us on Google" : "Find us on Google"}
-            </a>
-            <Link href="/privacy" className="transition-colors duration-150 hover:text-gold-bright">Privacy</Link>
-            <Link href="/terms" className="transition-colors duration-150 hover:text-gold-bright">Terms</Link>
-            <a href="https://www.instagram.com/konntey/" target="_blank" rel="noopener noreferrer" className="transition-colors duration-150 hover:text-gold-bright">Instagram</a>
-            <button onClick={handleFbClick} className="transition-colors duration-150 hover:text-gold-bright">Facebook</button>
-          </div>
+        <div className="flex flex-col gap-4 pt-6 font-body text-[14px] text-white/60 md:flex-row md:items-center md:justify-between">
+          <span>© {new Date().getFullYear()} {business.name}</span>
+          <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <li>
+              <a href={business.googleReviewUrl || googleMapsSearchUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                {business.googleReviewUrl ? "Review us on Google" : "Find us on Google"}
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/konntey/" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                Instagram
+              </a>
+            </li>
+            <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
+            <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
+          </ul>
         </div>
 
-        <div className="mt-6 flex justify-center pb-2">
+        <div className="mt-6 flex justify-center">
           <StarBorder
             as="a"
             href="https://dhwaneet.codes"
@@ -166,12 +132,12 @@ export default function Footer() {
             color="#d4a832"
             speed="5s"
             thickness={1}
-            className="scale-95 origin-bottom opacity-80 hover:opacity-100 transition-opacity"
+            className="origin-bottom scale-95 opacity-80 transition-opacity hover:opacity-100"
           >
             Built by dhwaneet
           </StarBorder>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

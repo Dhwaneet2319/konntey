@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Handyman & renovation services",
   description:
-    "Handyman and renovation services across Melbourne: carpentry, plumbing coordination, painting, fencing, landscaping and end-of-lease repairs. Request a free quote from Konntey Home & Renovations.",
+    "Handyman and renovation services across Melbourne: carpentry, painting, fencing, landscaping, general repairs and end-of-lease repairs. Request a free quote from Konntey Home & Renovations.",
   path: "/scan",
   noindex: true,
 });

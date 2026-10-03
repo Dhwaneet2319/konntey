@@ -91,7 +91,7 @@ export default function ServicePage({ service }: { service: ServiceContent }) {
                 <p className="mt-6 max-w-xl font-body text-[17px] leading-[1.7] text-white/80">
                   {service.hero.intro}
                 </p>
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div data-hero-ctas className="mt-8 flex flex-wrap gap-3">
                   <ButtonLink href={quoteHref}>{service.hero.ctaLabel}</ButtonLink>
                   <PhoneButton variant="outlineDark" label={`Call ${business.phoneDisplay}`} />
                 </div>

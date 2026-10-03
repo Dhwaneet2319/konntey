@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
-import MotionProvider from "@/components/MotionProvider";
 import AnalyticsBridge from "@/components/AnalyticsBridge";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 import RevealObserver from "@/components/RevealObserver";
+import MobileActionBar from "@/components/MobileActionBar";
 import { BASE_URL, business, isClaimApproved } from "@/content/business";
 import { siteImages } from "@/content/images";
 import { serviceList } from "@/content/services";
@@ -174,15 +174,6 @@ export default function RootLayout({
       className={`${barlowCondensed.variable} ${barlow.variable}`}
     >
       <head>
-        {/* Scroll reveals are server-rendered at opacity 0; without JS they
-            would never appear, so show them as-is. */}
-        <noscript>
-          <style
-            dangerouslySetInnerHTML={{
-              __html: '[style*="opacity:0"]{opacity:1!important;transform:none!important}',
-            }}
-          />
-        </noscript>
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(localBusinessSchema)} />
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(websiteSchema)} />
       </head>
@@ -190,9 +181,8 @@ export default function RootLayout({
         <AnalyticsScripts />
         <AnalyticsBridge />
         <RevealObserver />
-        <MotionProvider>
-          {children}
-        </MotionProvider>
+        {children}
+        <MobileActionBar />
       </body>
     </html>
   );

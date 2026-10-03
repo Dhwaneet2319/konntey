@@ -117,7 +117,7 @@ export default async function SuburbPage({ params }: Props) {
                 Kitchens, bathrooms, extensions, decks and painting for homes in{" "}
                 {suburb.name} and nearby suburbs, with a {quoteKind} before any work starts.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div data-hero-ctas className="mt-8 flex flex-wrap gap-3">
                 <ButtonLink href={quoteHref}>Get a free quote in {suburb.name}</ButtonLink>
                 <PhoneButton variant="outlineDark" label={`Call ${business.phoneDisplay}`} />
               </div>

@@ -1,4 +1,4 @@
-import { claimText, quoteKind } from "@/content/business";
+import { claimText } from "@/content/business";
 
 /**
  * Single source of truth for the homepage FAQ. The visible accordion and the
@@ -29,6 +29,6 @@ export const homeFaqs: HomeFaq[] = [
   },
   {
     q: "Do you offer free renovation quotes?",
-    a: `Yes. Consultations and quotes are free and there's no obligation. ${claimText("responseTimes")} You'll receive a ${quoteKind}. Before you compare quotes, our quote checklist shows what a complete renovation quote should include.`,
+    a: `Yes. Consultations and quotes are free and there's no obligation. ${claimText("responseTimes")} Before you compare quotes, our quote checklist shows what a complete renovation quote should include.`,
   },
 ];
