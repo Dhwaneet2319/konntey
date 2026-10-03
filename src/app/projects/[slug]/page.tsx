@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, ExternalLink } from "lucide-react";
 import NavBar from "@/components/NavBar";
+import { ButtonLink } from "@/components/ui";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/chat/FloatingActions";
 import ProjectImageGallery from "@/components/ProjectImageGallery";
@@ -127,7 +128,7 @@ export default async function ProjectPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <NavBar theme="dark" />
+      <NavBar />
       <FloatingActions />
       <ProjectViewPing
         projectSlug={project.slug}
@@ -135,7 +136,7 @@ export default async function ProjectPage({ params }: Props) {
         suburb={project.suburb}
       />
 
-      <main className="flex-grow">
+      <main id="main" className="flex-grow">
         {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"
@@ -183,7 +184,7 @@ export default async function ProjectPage({ params }: Props) {
             <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-deep">
               {serviceLabel} · {project.suburb}
             </div>
-            <h1 className="mt-4 font-display text-[clamp(2.25rem,6vw,4rem)] font-black uppercase leading-[0.9] tracking-tightest text-navy">
+            <h1 className="mt-4 font-display text-[clamp(2.25rem,6vw,4rem)] font-bold leading-[1.05] tracking-[-0.02em] text-navy">
               {project.title}
             </h1>
             <p className="mt-6 font-body text-[17px] leading-[1.85] text-navy/75">
@@ -218,7 +219,7 @@ export default async function ProjectPage({ params }: Props) {
                   <dt className="font-body text-[11px] font-semibold uppercase tracking-kicker text-navy/60">
                     {fact.label}
                   </dt>
-                  <dd className="mt-1.5 font-display text-[16px] font-black uppercase tracking-tighter text-navy">
+                  <dd className="mt-1.5 font-display text-[16px] font-bold text-navy">
                     {fact.value}
                   </dd>
                 </div>
@@ -228,8 +229,8 @@ export default async function ProjectPage({ params }: Props) {
             {/* Narrative */}
             <div className="mt-14 space-y-12">
               <section>
-                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-deep">
-                  The Brief
+                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold tracking-[-0.01em] text-gold-deep">
+                  The brief
                 </h2>
                 <p className="mt-5 font-body text-[16px] leading-[1.85] text-navy/80">
                   {project.challenge}
@@ -238,8 +239,8 @@ export default async function ProjectPage({ params }: Props) {
 
               {project.scope.length > 0 && (
                 <section>
-                  <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-deep">
-                    Scope of Work
+                  <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold tracking-[-0.01em] text-gold-deep">
+                    Scope of work
                   </h2>
                   <ul className="mt-6 space-y-3">
                     {project.scope.map((item) => (
@@ -256,8 +257,8 @@ export default async function ProjectPage({ params }: Props) {
               )}
 
               <section>
-                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-deep">
-                  What We Changed
+                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold tracking-[-0.01em] text-gold-deep">
+                  What we changed
                 </h2>
                 <p className="mt-5 font-body text-[16px] leading-[1.85] text-navy/80">
                   {project.solution}
@@ -265,8 +266,8 @@ export default async function ProjectPage({ params }: Props) {
               </section>
 
               <section>
-                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-deep">
-                  The Finished Result
+                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold tracking-[-0.01em] text-gold-deep">
+                  The finished result
                 </h2>
                 <p className="mt-5 font-body text-[16px] leading-[1.85] text-navy/80">
                   {project.outcome}
@@ -275,8 +276,8 @@ export default async function ProjectPage({ params }: Props) {
 
               {project.councilOrComplianceNote && (
                 <section>
-                  <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-deep">
-                    Planning Considerations
+                  <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold tracking-[-0.01em] text-gold-deep">
+                    Planning considerations
                   </h2>
                   <p className="mt-5 font-body text-[16px] leading-[1.85] text-navy/80">
                     {project.councilOrComplianceNote}
@@ -288,8 +289,8 @@ export default async function ProjectPage({ params }: Props) {
             {/* Gallery */}
             {gallery.length > 0 && (
               <section className="mt-14">
-                <h2 className="mb-6 font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-navy">
-                  Project Photos
+                <h2 className="mb-6 font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold tracking-[-0.01em] text-navy">
+                  Project photos
                 </h2>
                 <ProjectImageGallery images={gallery} projectSlug={project.slug} />
               </section>
@@ -301,7 +302,7 @@ export default async function ProjectPage({ params }: Props) {
                 <p className="font-body text-[17px] italic leading-[1.85] text-navy/85">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
-                <footer className="mt-5 flex flex-wrap items-center gap-4 font-display text-[14px] font-black uppercase tracking-button text-gold-deep">
+                <footer className="mt-5 flex flex-wrap items-center gap-4 font-display text-[14px] font-bold text-gold-deep">
                   <cite className="not-italic">
                     — {testimonial.firstNameOrInitial}, {testimonial.suburb}
                   </cite>
@@ -322,15 +323,15 @@ export default async function ProjectPage({ params }: Props) {
 
             {/* Related links */}
             <div className="mt-14 border-t border-navy/10 pt-10">
-              <h2 className="mb-5 font-display text-[16px] font-black uppercase tracking-button text-navy/60">
-                Keep Exploring
+              <h2 className="mb-5 font-display text-[16px] font-bold text-navy/60">
+                Keep exploring
               </h2>
               <div className="flex flex-col gap-3">
                 <Link
                   href={serviceRoute}
                   className="group inline-flex items-center justify-between border border-navy/10 px-6 py-4 transition-colors hover:border-gold/50"
                 >
-                  <span className="font-display text-[15px] font-bold uppercase tracking-button text-navy/85 transition-colors group-hover:text-gold-deep">
+                  <span className="font-display text-[15px] font-bold text-navy/85 transition-colors group-hover:text-gold-deep">
                     {serviceLabel}s in Melbourne
                   </span>
                   <ChevronRight size={16} className="shrink-0 text-gold-deep" />
@@ -340,7 +341,7 @@ export default async function ProjectPage({ params }: Props) {
                     href={`/renovations/${suburbPage.slug}`}
                     className="group inline-flex items-center justify-between border border-navy/10 px-6 py-4 transition-colors hover:border-gold/50"
                   >
-                    <span className="font-display text-[15px] font-bold uppercase tracking-button text-navy/85 transition-colors group-hover:text-gold-deep">
+                    <span className="font-display text-[15px] font-bold text-navy/85 transition-colors group-hover:text-gold-deep">
                       Renovations in {suburbPage.name}
                     </span>
                     <ChevronRight size={16} className="shrink-0 text-gold-deep" />
@@ -353,8 +354,8 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Quote CTA with project context */}
         <section className="bg-gold-bright px-4 py-16 text-center text-navy sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-[1600px]">
-            <h2 className="mx-auto max-w-3xl font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase leading-[0.9] tracking-tightest">
+          <div className="mx-auto max-w-[1216px]">
+            <h2 className="mx-auto max-w-3xl font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.02em]">
               Planning a similar {serviceLabel.toLowerCase()}?
             </h2>
             <p className="mx-auto mt-6 max-w-2xl font-body text-[17px] leading-[1.8] text-navy/80">
@@ -362,12 +363,12 @@ export default async function ProjectPage({ params }: Props) {
               consultation and a {quoteKind}.
             </p>
             <div className="mt-10">
-              <Link
-                href="/quote"
-                className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-gold-bright transition-transform hover:-translate-y-0.5"
+              <ButtonLink
+                variant="dark"
+                href={`/quote?service=${project.primaryService}&suburb=${encodeURIComponent(project.suburb)}`}
               >
-                Request a Free Quote →
-              </Link>
+                Get a free quote
+              </ButtonLink>
             </div>
           </div>
         </section>

@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-navy text-white">
+    <main id="main" className="min-h-screen bg-navy text-white">
       <div className="mx-auto max-w-3xl px-4 py-32 sm:px-6 lg:px-8">
         <Link
           href="/"
@@ -131,6 +131,6 @@ export default function PrivacyPage() {
           </section>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

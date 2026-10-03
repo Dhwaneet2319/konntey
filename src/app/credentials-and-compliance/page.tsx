@@ -52,7 +52,7 @@ export default function CredentialsPage() {
       <NavBar theme="dark" />
       <FloatingActions />
 
-      <main className="flex-grow">
+      <main id="main" className="flex-grow">
         {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"

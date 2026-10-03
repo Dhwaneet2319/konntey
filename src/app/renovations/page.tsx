@@ -51,10 +51,10 @@ export default function RenovationsHubPage() {
       <NavBar theme="dark" />
       <FloatingActions />
 
-      <main className="flex-grow">
+      <main id="main" className="flex-grow">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="border-b border-white/10 px-4 sm:px-6 lg:px-8 pt-[110px]">
-          <div className="mx-auto max-w-[1600px] pb-4">
+          <div className="mx-auto max-w-[1216px] pb-4">
             <ol className="flex flex-wrap items-center gap-2 font-body text-[13px] text-white/60">
               <li><Link href="/" className="transition-colors hover:text-gold-bright">Home</Link></li>
               <li aria-hidden="true" className="flex items-center"><ChevronRight size={14} className="text-white/30" /></li>
@@ -65,7 +65,7 @@ export default function RenovationsHubPage() {
 
         {/* Hero */}
         <section className="px-4 sm:px-6 lg:px-8 pt-16 pb-12 sm:pt-20 sm:pb-16">
-          <div className="mx-auto max-w-[1600px]">
+          <div className="mx-auto max-w-[1216px]">
             <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
               AREAS WE SERVICE
             </div>
@@ -83,7 +83,7 @@ export default function RenovationsHubPage() {
 
         {/* Suburb lists by region */}
         <section className="px-4 sm:px-6 lg:px-8 pb-20">
-          <div className="mx-auto max-w-[1600px] grid gap-12 lg:grid-cols-2">
+          <div className="mx-auto max-w-[1216px] grid gap-12 lg:grid-cols-2">
             {regions.map(({ title, region }) => (
               <div key={region}>
                 <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-black uppercase tracking-tightest leading-[0.9] text-white mb-8">
@@ -112,7 +112,7 @@ export default function RenovationsHubPage() {
 
         {/* Services cross-links */}
         <section className="bg-navy-light py-16 px-4 sm:px-6 lg:px-8 border-t border-white/10">
-          <div className="mx-auto max-w-[1600px]">
+          <div className="mx-auto max-w-[1216px]">
             <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-black uppercase tracking-tightest leading-[0.9] text-white mb-8">
               Explore Our <span className="text-gold-bright">Services</span>
             </h2>
@@ -139,7 +139,7 @@ export default function RenovationsHubPage() {
 
         {/* CTA */}
         <section className="bg-gold-bright text-navy py-16 px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mx-auto max-w-[1600px]">
+          <div className="mx-auto max-w-[1216px]">
             <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
               Can&apos;t see your suburb?
             </h2>

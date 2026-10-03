@@ -32,7 +32,7 @@ export default function LocalProofBlock({ suburbSlug }: { suburbSlug: string }) 
       aria-labelledby={`local-proof-${suburbSlug}`}
       className="bg-navy-light py-20 px-4 sm:px-6 lg:px-8 border-t border-white/10"
     >
-      <div className="mx-auto max-w-[1600px] space-y-16">
+      <div className="mx-auto max-w-[1216px] space-y-16">
         {featured.length > 0 && (
           <div>
             <h2

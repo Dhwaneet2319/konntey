@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Printer } from "lucide-react";
 import type { GuideChecklist } from "@/content/guides";
 
 // Counts unconfirmed scope items only — it deliberately never scores a quote
@@ -24,7 +24,7 @@ export default function QuoteChecklist({ checklist }: { checklist: GuideChecklis
     <section aria-labelledby="quote-checklist-heading" className="mt-14">
       <h2
         id="quote-checklist-heading"
-        className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest leading-[1] text-gold-bright"
+        className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold tracking-[-0.01em] leading-[1] text-gold-bright"
       >
         {checklist.heading}
       </h2>
@@ -41,15 +41,25 @@ export default function QuoteChecklist({ checklist }: { checklist: GuideChecklis
             </>
           )}
         </p>
-        {confirmed.size > 0 && (
+        <div className="flex items-center gap-5 print:hidden">
+          {confirmed.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setConfirmed(new Set())}
+              className="font-body text-[14px] font-semibold text-white/70 underline-offset-4 hover:text-gold-bright hover:underline"
+            >
+              Start again
+            </button>
+          )}
           <button
             type="button"
-            onClick={() => setConfirmed(new Set())}
-            className="font-body text-[13px] font-semibold uppercase tracking-button text-white/60 underline-offset-4 hover:text-gold-bright hover:underline"
+            onClick={() => window.print()}
+            className="inline-flex items-center gap-2 font-body text-[14px] font-semibold text-gold-bright underline-offset-4 hover:underline"
           >
-            Start again
+            <Printer aria-hidden="true" size={16} />
+            Print this checklist
           </button>
-        )}
+        </div>
       </div>
 
       <ul className="mt-4 divide-y divide-white/10 border border-white/10">
@@ -73,7 +83,7 @@ export default function QuoteChecklist({ checklist }: { checklist: GuideChecklis
                   {checked && <Check size={16} strokeWidth={3} />}
                 </span>
                 <span>
-                  <span className="block font-display text-[16px] font-bold uppercase tracking-button text-white">
+                  <span className="block font-display text-[16px] font-bold text-white">
                     {item.label}
                   </span>
                   <span className="mt-1 block font-body text-[15px] leading-[1.7] text-white/70">{item.ask}</span>
@@ -86,7 +96,7 @@ export default function QuoteChecklist({ checklist }: { checklist: GuideChecklis
 
       {checklist.example && (
         <div className="mt-12">
-          <h3 className="font-display text-[20px] font-black uppercase tracking-button text-white">
+          <h3 className="font-display text-[20px] font-bold text-white">
             {checklist.example.heading}
           </h3>
           <p className="mt-3 border-l-4 border-gold-bright pl-4 font-body text-[14px] leading-[1.7] text-white/70">
@@ -94,7 +104,7 @@ export default function QuoteChecklist({ checklist }: { checklist: GuideChecklis
           </p>
           <div className="mt-5 overflow-x-auto">
             <table className="w-full min-w-[480px] border border-white/10 text-left font-body text-[14px]">
-              <thead className="bg-white/5 font-display text-[12px] font-black uppercase tracking-button text-gold-bright">
+              <thead className="bg-white/5 font-display text-[12px] font-bold text-gold-bright">
                 <tr>
                   <th scope="col" className="p-3">Checklist item</th>
                   <th scope="col" className="p-3">Quote A</th>
@@ -115,14 +125,14 @@ export default function QuoteChecklist({ checklist }: { checklist: GuideChecklis
         </div>
       )}
 
-      <div className="mt-10 border border-white/10 p-6">
+      <div className="mt-10 border border-white/10 p-6 print:hidden">
         <p className="font-body text-[15px] leading-[1.7] text-white/80">
           Planning your own renovation? We&apos;re happy to talk through the scope
           with you and put every item on this list in writing.
         </p>
         <Link
           href="/quote"
-          className="mt-4 inline-flex bg-gold-bright px-6 py-3 font-display text-[14px] font-black uppercase tracking-button text-navy transition-transform hover:-translate-y-0.5"
+          className="mt-4 inline-flex min-h-[44px] items-center bg-gold-bright px-6 font-body text-[15px] font-semibold text-navy transition-colors duration-hover ease-brand hover:bg-[#e0b847]"
         >
           Discuss your project&apos;s scope
         </Link>

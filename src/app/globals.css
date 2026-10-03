@@ -154,14 +154,51 @@ h3 {
     transform: none !important;
   }
 
+  @page {
+    margin: 16mm;
+  }
+
   header.fixed,
   #mobile-menu,
   .wa-float,
-  [data-placement="mobile_bar"] {
+  [data-placement="mobile_bar"],
+  nav[aria-label="Breadcrumb"],
+  footer {
     display: none !important;
   }
 
-  body {
-    color: #000;
+  /* Dark sections print as plain black-on-white to save ink. */
+  body,
+  .bg-navy,
+  .bg-navy-light,
+  .bg-off-white {
+    background: #fff !important;
+  }
+
+  body,
+  [class*="text-white"],
+  [class*="text-gold"],
+  [class*="text-navy"] {
+    color: #000 !important;
+  }
+
+  [class*="border-white"],
+  [class*="border-gold"] {
+    border-color: #888 !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  li,
+  tr {
+    break-inside: avoid;
+  }
+
+  article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    overflow-wrap: anywhere;
   }
 }

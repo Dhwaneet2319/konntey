@@ -46,7 +46,7 @@ export default function ScanLandingPage() {
       <NavBar theme="dark" />
 
       {/* Main content wrapped in a mobile-first, centered container */}
-      <main className="flex-grow flex flex-col items-center w-full max-w-2xl mx-auto px-6 pt-[120px] pb-20 relative">
+      <main id="main" className="flex-grow flex flex-col items-center w-full max-w-2xl mx-auto px-6 pt-[120px] pb-20 relative">
         <div className="grain-overlay" />
         
         {/* Hero Section */}
