@@ -16,8 +16,8 @@ export default function ProjectViewPing({
   useEffect(() => {
     track("project_view", {
       project_slug: projectSlug,
-      service,
-      suburb,
+      service_context: service,
+      suburb_context: suburb,
     });
   }, [projectSlug, service, suburb]);
 

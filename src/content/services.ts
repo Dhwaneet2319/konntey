@@ -12,14 +12,9 @@ import {
   type ClaimId,
 } from "./business";
 import type { SiteImageKey } from "./images";
+import type { ServiceSlug } from "./taxonomy";
 
-export type ServiceSlug =
-  | "kitchen"
-  | "bathroom"
-  | "extension"
-  | "deck-pergola"
-  | "painting"
-  | "vastu";
+export type { ServiceSlug };
 
 export interface ServiceItem {
   title: string;

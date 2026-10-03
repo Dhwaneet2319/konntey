@@ -3,6 +3,7 @@ import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
 import AnalyticsBridge from "@/components/AnalyticsBridge";
+import AnalyticsScripts from "@/components/AnalyticsScripts";
 import RevealObserver from "@/components/RevealObserver";
 import { BASE_URL, business, isClaimApproved } from "@/content/business";
 import { siteImages } from "@/content/images";
@@ -186,6 +187,7 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(websiteSchema)} />
       </head>
       <body className="font-body">
+        <AnalyticsScripts />
         <AnalyticsBridge />
         <RevealObserver />
         <MotionProvider>

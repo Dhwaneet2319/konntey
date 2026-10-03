@@ -1,4 +1,5 @@
 import { quoteKind } from "@/content/business";
+import { suburbIndex } from "@/content/taxonomy";
 
 /**
  * Single source of truth for the suburb landing pages: the /renovations hub,
@@ -348,6 +349,10 @@ export const suburbProfiles: SuburbProfile[] = [
     ],
   },
 ];
+
+if (suburbProfiles.map((s) => s.slug).join() !== suburbIndex.map((s) => s.slug).join()) {
+  throw new Error("suburbProfiles and taxonomy.suburbIndex are out of sync");
+}
 
 export interface SuburbLink {
   name: string;

@@ -1,122 +1,49 @@
-"use client";
+import { Mail, Phone } from "lucide-react";
+import EnquiryForm from "@/components/EnquiryForm";
+import { Container, Kicker } from "@/components/ui";
+import { business, claimText } from "@/content/business";
 
-import { useEffect, useRef } from "react";
-import { m } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { useForm, ValidationError } from "@formspree/react";
-import { track } from "@/lib/analytics";
-
-function ContactForm() {
-  const [state, handleSubmit] = useForm("xkopaqvd");
-  const startTracked = useRef(false);
-
-  const onFormInteract = () => {
-    if (startTracked.current) return;
-    startTracked.current = true;
-    track("quote_form_start", { page_type: "home" });
-  };
-
-  useEffect(() => {
-    if (state.succeeded) {
-      track("quote_form_submit", { page_type: "home" });
-    }
-  }, [state.succeeded]);
-
-  if (state.succeeded) {
-    return (
-      <div role="status" className="flex flex-col items-center justify-center py-12 text-center">
-        <div className="flex h-16 w-16 items-center justify-center border-2 border-gold-bright">
-          <svg className="h-8 w-8 text-gold-bright" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h4 className="mt-6 font-display text-[24px] font-black uppercase tracking-button text-white">
-          Request Received
-        </h4>
-        <p className="mt-3 max-w-sm font-body text-[16px] leading-[1.7] text-white/85">
-          Thanks for reaching out. We&apos;ll review your details and get back
-          to you to arrange the next step.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form className="space-y-6" onSubmit={handleSubmit} onFocusCapture={onFormInteract}>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div className="space-y-2">
-          <label htmlFor="name" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Full Name</label>
-          <input type="text" id="name" name="name" required autoComplete="name" className="w-full border-b border-white/20 bg-transparent py-3 font-body text-white transition-colors focus:border-gold-bright focus:outline-none" placeholder="John Doe" />
-          <ValidationError prefix="Name" field="name" errors={state.errors} className="font-body text-[12px] text-red-400" />
-        </div>
-        <div className="space-y-2">
-          <label htmlFor="phone" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required autoComplete="tel" className="w-full border-b border-white/20 bg-transparent py-3 font-body text-white transition-colors focus:border-gold-bright focus:outline-none" placeholder="0493 191 798" />
-          <ValidationError prefix="Phone" field="phone" errors={state.errors} className="font-body text-[12px] text-red-400" />
-        </div>
-      </div>
-
-      <div className="space-y-2">
-        <label htmlFor="email" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Email Address</label>
-        <input type="email" id="email" name="email" required autoComplete="email" className="w-full border-b border-white/20 bg-transparent py-3 font-body text-white transition-colors focus:border-gold-bright focus:outline-none" placeholder="john@example.com" />
-        <ValidationError prefix="Email" field="email" errors={state.errors} className="font-body text-[12px] text-red-400" />
-      </div>
-
-      <div className="space-y-2">
-        <label htmlFor="message" className="font-body text-[12px] font-semibold uppercase tracking-kicker text-white/70">Project Details</label>
-        <textarea id="message" name="message" rows={3} required className="w-full border-b border-white/20 bg-transparent py-3 font-body text-white transition-colors focus:border-gold-bright focus:outline-none resize-none" placeholder="Tell us about your renovation..."></textarea>
-        <ValidationError prefix="Message" field="message" errors={state.errors} className="font-body text-[12px] text-red-400" />
-      </div>
-
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <button
-          type="submit"
-          disabled={state.submitting}
-          className="group relative inline-flex w-full overflow-hidden bg-gold-bright px-10 py-5 font-display text-[16px] font-black uppercase tracking-button text-navy disabled:opacity-60 sm:w-auto"
-        >
-          <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-[150%]">
-            {state.submitting ? "Sending..." : "Submit Initial Request"}
-          </span>
-          <span className="absolute inset-x-0 top-[150%] z-10 flex h-full items-center justify-center gap-1 transition-transform duration-300 group-hover:-translate-y-[150%]">
-            <span>Send to Konntey</span><ArrowRight size={16} strokeWidth={2.25} className="shrink-0" />
-          </span>
-        </button>
-        <span className="font-body text-[13px] text-white/60">
-          <Link href="/privacy" className="text-gold-bright hover:underline">
-            Privacy policy
-          </Link>
-        </span>
-      </div>
-    </form>
-  );
-}
-
+/** Homepage enquiry section: short intro, direct contact options, shared form. */
 export default function Contact() {
   return (
-    <section id="contact" className="relative bg-navy overflow-hidden text-white">
-      <div className="grain-overlay" />
-      
-      <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-16 sm:px-6 lg:px-8 lg:py-32">
-        <m.div
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-16 grid gap-12 lg:grid-cols-2 border border-white/10 bg-navy-light p-8 sm:p-12 lg:p-16"
-        >
-          <div className="max-w-xl space-y-4">
-            <h3 className="font-display text-[clamp(2rem,4vw,3rem)] font-black uppercase tracking-tightest text-white">
-              REQUEST A <span className="text-gold-bright">QUOTATION</span>
-            </h3>
-            <p className="font-body text-[16px] leading-[1.8] text-white/85">
-              Fill out the form with your project details. We&apos;ll review your requirements and reply to arrange an on-site consultation.
-            </p>
-          </div>
-          
-          <ContactForm />
-        </m.div>
-      </div>
+    <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-20 bg-navy py-16 text-white sm:py-24">
+      <Container className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+        <div>
+          <Kicker tone="dark">Free quote</Kicker>
+          <h2
+            id="contact-heading"
+            className="mt-4 font-display text-[clamp(1.875rem,3.4vw,2.75rem)] font-bold leading-[1.05] tracking-[-0.01em]"
+          >
+            Tell us about your project
+          </h2>
+          <p className="mt-5 max-w-md font-body text-[17px] leading-[1.7] text-white/75">
+            We&apos;ll arrange a free site visit and send you a written, itemised quote.{" "}
+            {claimText("responseTimes")}
+          </p>
+          <ul className="mt-8 space-y-4 font-body text-[16px]">
+            <li>
+              <a
+                href={`tel:${business.phoneE164}`}
+                data-placement="home_contact"
+                className="inline-flex items-center gap-3 font-semibold hover:text-gold-bright"
+              >
+                <Phone aria-hidden="true" size={18} className="text-gold-bright" />
+                {business.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${business.email}`} className="inline-flex items-center gap-3 break-all hover:text-gold-bright">
+                <Mail aria-hidden="true" size={18} className="shrink-0 text-gold-bright" />
+                {business.email}
+              </a>
+            </li>
+          </ul>
+          <p className="mt-6 font-body text-[14px] text-white/60">{business.hours.join(" · ")}</p>
+        </div>
+        <div className="bg-navy-light p-6 sm:p-8">
+          <EnquiryForm placement="home_contact" tone="dark" variant="compact" />
+        </div>
+      </Container>
     </section>
   );
 }
