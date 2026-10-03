@@ -57,7 +57,7 @@ export default function ServiceChooser() {
           })}
         </Reveal>
         {chooserServices.some((s) => siteImages[s.card.image].provenance !== "konntey-project") && (
-          <p className="mt-3 font-body text-[13px] text-navy/60">Photos are illustrative examples.</p>
+          <p className="mt-3 font-body text-[13px] text-navy/70">Photos are illustrative examples.</p>
         )}
         <div className="mt-8 flex flex-col gap-3 border-t border-navy/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-2xl font-body text-[16px] leading-[1.6] text-navy/75">

@@ -50,7 +50,7 @@ export default function ProjectImageGallery({
           className="object-cover"
           loading="lazy"
         />
-        <span className="absolute left-4 top-4 bg-navy/85 px-3 py-1.5 font-display text-[12px] font-black uppercase tracking-button text-gold-bright">
+        <span className="absolute left-4 top-4 bg-navy/85 px-3 py-1.5 font-display text-[12px] font-bold uppercase tracking-button text-gold-bright">
           {typeLabels[current.type]}
         </span>
         {images.length > 1 && (

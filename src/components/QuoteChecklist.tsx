@@ -36,7 +36,7 @@ export default function QuoteChecklist({ checklist }: { checklist: GuideChecklis
             <>All {total} items are confirmed in writing.</>
           ) : (
             <>
-              <strong className="font-display text-[18px] font-black text-gold-bright">{remaining}</strong>{" "}
+              <strong className="font-display text-[18px] font-bold text-gold-bright">{remaining}</strong>{" "}
               of {total} items not yet confirmed in writing
             </>
           )}

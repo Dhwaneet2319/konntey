@@ -249,7 +249,7 @@ export default async function GuideArticlePage({ params }: Props) {
             </div>
 
             {/* Disclaimer */}
-            <p className="mt-12 font-body text-[13px] leading-[1.7] text-white/40 italic">
+            <p className="mt-12 font-body text-[13px] leading-[1.7] text-white/60 italic">
               This guide is general information for Melbourne homeowners, not legal or financial
               advice. Costs are indicative and vary by project. Always confirm permit and
               compliance requirements with your council, a registered building surveyor, or the

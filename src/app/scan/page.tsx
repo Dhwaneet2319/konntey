@@ -52,14 +52,14 @@ export default function ScanLandingPage() {
         {/* Hero Section */}
         <section className="w-full text-center mb-16 relative z-10">
           <div>
-            <div className="font-display text-[32px] sm:text-[40px] font-black uppercase tracking-tightest leading-none text-white">
+            <div className="font-display text-[32px] sm:text-[40px] font-bold uppercase tracking-tightest leading-none text-white">
               KONNTEY
             </div>
             <div className="font-display text-[12px] sm:text-[14px] font-bold tracking-[2px] uppercase text-gold-bright mt-2 mb-6">
               Home &amp; Renovations
             </div>
             
-            <h1 className="font-display text-[24px] sm:text-[32px] font-black uppercase leading-[1.1] mb-4">
+            <h1 className="font-display text-[24px] sm:text-[32px] font-bold uppercase leading-[1.1] mb-4">
               Quality you can see. <br/>
               <span className="text-gold-bright">Service you can trust.</span>
             </h1>

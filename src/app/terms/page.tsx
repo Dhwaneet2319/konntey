@@ -22,7 +22,7 @@ export default function TermsPage() {
           <span>Back to Home</span>
         </Link>
 
-        <h1 className="mt-10 font-display text-[clamp(2.5rem,6vw,4rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
+        <h1 className="mt-10 font-display text-[clamp(2.5rem,6vw,4rem)] font-bold uppercase leading-[0.9] tracking-tightest text-white">
           Terms of Service
         </h1>
         <p className="mt-4 font-body text-[14px] text-white/70">
@@ -31,7 +31,7 @@ export default function TermsPage() {
 
         <div className="mt-12 space-y-10 font-body text-[16px] leading-[1.8] text-white/90">
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Agreement
             </h2>
             <p className="mt-4">
@@ -42,7 +42,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Services & Quotes
             </h2>
             <p className="mt-4">
@@ -55,7 +55,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Intellectual Property
             </h2>
             <p className="mt-4">
@@ -67,7 +67,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Limitation of Liability
             </h2>
             <p className="mt-4">
@@ -79,7 +79,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Australian Consumer Law
             </h2>
             <p className="mt-4">
@@ -91,7 +91,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               External Links
             </h2>
             <p className="mt-4">
@@ -102,7 +102,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Changes to These Terms
             </h2>
             <p className="mt-4">
@@ -112,7 +112,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Contact
             </h2>
             <p className="mt-4">

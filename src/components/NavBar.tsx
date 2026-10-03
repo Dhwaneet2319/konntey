@@ -165,7 +165,8 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
               alt=""
               width={154}
               height={112}
-              priority
+              loading="eager"
+              sizes="56px"
               className={`h-9 w-auto lg:h-10 ${mobileOpen || onDark ? "brightness-0 invert" : ""}`}
             />
             <span className="flex flex-col leading-none">

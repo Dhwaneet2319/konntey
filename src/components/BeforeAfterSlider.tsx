@@ -176,7 +176,7 @@ export default function BeforeAfterSlider({
       </div>
 
       {!verified && (
-        <figcaption className="mt-3 text-center font-body text-[13px] text-navy/60">
+        <figcaption className="mt-3 text-center font-body text-[13px] text-navy/70">
           Example images — not presented as a specific Konntey project.
         </figcaption>
       )}

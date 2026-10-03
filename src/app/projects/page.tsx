@@ -56,7 +56,7 @@ export default function ProjectsHubPage() {
           className="border-b border-navy/10 px-4 sm:px-6 lg:px-8 pt-[110px]"
         >
           <div className="mx-auto max-w-[1216px] pb-4">
-            <ol className="flex flex-wrap items-center gap-2 font-body text-[13px] text-navy/60">
+            <ol className="flex flex-wrap items-center gap-2 font-body text-[13px] text-navy/70">
               <li>
                 <Link href="/" className="transition-colors hover:text-gold-deep">
                   Home

@@ -102,7 +102,7 @@ export default function QuotePage() {
       </main>
 
       <footer className="border-t border-navy/10 py-6">
-        <Container className="flex flex-col gap-2 font-body text-[13px] text-navy/60 sm:flex-row sm:justify-between">
+        <Container className="flex flex-col gap-2 font-body text-[13px] text-navy/70 sm:flex-row sm:justify-between">
           <span>
             © {new Date().getFullYear()} {business.name} · ABN {business.abn}
           </span>

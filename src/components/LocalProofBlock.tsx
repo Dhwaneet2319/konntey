@@ -37,7 +37,7 @@ export default function LocalProofBlock({ suburbSlug }: { suburbSlug: string }) 
           <div>
             <h2
               id={`local-proof-${suburbSlug}`}
-              className="font-display text-[clamp(2rem,4vw,3rem)] font-black uppercase tracking-tightest text-white"
+              className="font-display text-[clamp(2rem,4vw,3rem)] font-bold uppercase tracking-tightest text-white"
             >
               Completed Projects in{" "}
               <span className="text-gold-bright">{proof.suburb}</span>
@@ -59,13 +59,13 @@ export default function LocalProofBlock({ suburbSlug }: { suburbSlug: string }) 
 
         {notes.length > 0 && (
           <div>
-            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-black uppercase tracking-tightest text-white">
+            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold uppercase tracking-tightest text-white">
               Planning &amp; Permit Considerations
             </h2>
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               {notes.map((note) => (
                 <div key={note.title} className="border border-white/10 p-8">
-                  <h3 className="font-display text-[17px] font-black uppercase tracking-button text-gold-bright">
+                  <h3 className="font-display text-[17px] font-bold uppercase tracking-button text-gold-bright">
                     {note.title}
                   </h3>
                   <p className="mt-4 font-body text-[15px] leading-[1.8] text-white/85">
@@ -97,7 +97,7 @@ export default function LocalProofBlock({ suburbSlug }: { suburbSlug: string }) 
 
         {testimonials.length > 0 && (
           <div>
-            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-black uppercase tracking-tightest text-white">
+            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold uppercase tracking-tightest text-white">
               Client Feedback from{" "}
               <span className="text-gold-bright">{proof.suburb}</span>
             </h2>
@@ -110,7 +110,7 @@ export default function LocalProofBlock({ suburbSlug }: { suburbSlug: string }) 
                   <p className="font-body text-[15px] italic leading-[1.8] text-white/85">
                     &ldquo;{t.quote}&rdquo;
                   </p>
-                  <footer className="mt-5 flex flex-wrap items-center gap-3 font-display text-[13px] font-black uppercase tracking-button text-gold-bright">
+                  <footer className="mt-5 flex flex-wrap items-center gap-3 font-display text-[13px] font-bold uppercase tracking-button text-gold-bright">
                     <cite className="not-italic">— {t.attribution}</cite>
                     {t.sourceUrl && (
                       <a
@@ -133,7 +133,7 @@ export default function LocalProofBlock({ suburbSlug }: { suburbSlug: string }) 
         <div>
           <Link
             href="/quote"
-            className="inline-flex bg-gold-bright px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-navy"
+            className="inline-flex bg-gold-bright px-8 py-5 font-display text-[15px] font-bold uppercase tracking-button text-navy"
           >
             Request a Free Quote in {proof.suburb}
           </Link>

@@ -143,7 +143,7 @@ export default async function ProjectPage({ params }: Props) {
           className="border-b border-navy/10 px-4 sm:px-6 lg:px-8 pt-[110px]"
         >
           <div className="mx-auto max-w-4xl pb-4">
-            <ol className="flex flex-wrap items-center gap-2 font-body text-[13px] text-navy/60">
+            <ol className="flex flex-wrap items-center gap-2 font-body text-[13px] text-navy/70">
               <li>
                 <Link href="/" className="transition-colors hover:text-gold-deep">
                   Home
@@ -205,7 +205,7 @@ export default async function ProjectPage({ params }: Props) {
                   />
                 </div>
                 {hero.caption && (
-                  <figcaption className="mt-3 font-body text-[14px] text-navy/60">
+                  <figcaption className="mt-3 font-body text-[14px] text-navy/70">
                     {hero.caption}
                   </figcaption>
                 )}
@@ -216,7 +216,7 @@ export default async function ProjectPage({ params }: Props) {
             <dl className="mt-10 grid grid-cols-2 gap-px border border-navy/10 bg-navy/10 sm:grid-cols-3">
               {facts.map((fact) => (
                 <div key={fact.label} className="bg-off-white p-5">
-                  <dt className="font-body text-[11px] font-semibold uppercase tracking-kicker text-navy/60">
+                  <dt className="font-body text-[11px] font-semibold uppercase tracking-kicker text-navy/70">
                     {fact.label}
                   </dt>
                   <dd className="mt-1.5 font-display text-[16px] font-bold text-navy">
@@ -311,7 +311,7 @@ export default async function ProjectPage({ params }: Props) {
                       href={testimonial.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 font-body text-[13px] font-medium normal-case tracking-normal text-navy/60 transition-colors hover:text-gold-deep"
+                      className="inline-flex items-center gap-1 font-body text-[13px] font-medium normal-case tracking-normal text-navy/70 transition-colors hover:text-gold-deep"
                     >
                       <span>View source</span>
                       <ExternalLink size={13} strokeWidth={2.25} />
@@ -323,7 +323,7 @@ export default async function ProjectPage({ params }: Props) {
 
             {/* Related links */}
             <div className="mt-14 border-t border-navy/10 pt-10">
-              <h2 className="mb-5 font-display text-[16px] font-bold text-navy/60">
+              <h2 className="mb-5 font-display text-[16px] font-bold text-navy/70">
                 Keep exploring
               </h2>
               <div className="flex flex-col gap-3">

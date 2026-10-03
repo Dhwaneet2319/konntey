@@ -34,7 +34,7 @@ export default function AboutSection() {
               ))}
             </ul>
           )}
-          <p className="mt-6 font-body text-[14px] text-navy/60">
+          <p className="mt-6 font-body text-[14px] text-navy/70">
             ABN {business.abn} ·{" "}
             <Link href="/credentials-and-compliance" className="underline underline-offset-4 hover:text-navy">
               How we work

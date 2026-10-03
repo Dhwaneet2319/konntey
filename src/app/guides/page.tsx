@@ -62,7 +62,7 @@ export default function GuidesIndexPage() {
             <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
               RENOVATION GUIDES
             </div>
-            <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] font-black uppercase leading-[0.85] tracking-tighter text-white">
+            <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] font-bold uppercase leading-[0.85] tracking-tighter text-white">
               Renovation Guides <br />
               <span className="text-gold-bright">Melbourne</span>
             </h1>
@@ -89,13 +89,13 @@ export default function GuidesIndexPage() {
                     <span className="text-white/25">•</span>
                     <span className="text-white/50">{g.readMinutes} min read</span>
                   </div>
-                  <h2 className="mt-5 font-display text-[24px] font-black uppercase leading-[1] tracking-tight text-white group-hover:text-gold-bright transition-colors">
+                  <h2 className="mt-5 font-display text-[24px] font-bold uppercase leading-[1] tracking-tight text-white group-hover:text-gold-bright transition-colors">
                     {g.title}
                   </h2>
                   <p className="mt-4 font-body text-[15px] leading-[1.7] text-white/70 flex-grow">
                     {g.excerpt}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 font-display text-[13px] font-black uppercase tracking-button text-white/60 group-hover:text-gold-bright transition-colors">
+                  <span className="mt-6 inline-flex items-center gap-2 font-display text-[13px] font-bold uppercase tracking-button text-white/60 group-hover:text-gold-bright transition-colors">
                     Read guide <ArrowRight size={15} strokeWidth={2.25} className="shrink-0 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
@@ -107,7 +107,7 @@ export default function GuidesIndexPage() {
         {/* CTA */}
         <section className="bg-gold-bright text-navy py-16 px-4 sm:px-6 lg:px-8 text-center">
           <div className="mx-auto max-w-[1216px]">
-            <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
+            <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
               Done reading? Let&apos;s talk about your project.
             </h2>
             <p className="mt-6 font-body text-[17px] leading-[1.8] text-navy/80 max-w-2xl mx-auto">
@@ -116,7 +116,7 @@ export default function GuidesIndexPage() {
             <div className="mt-10">
               <Link
                 href="/quote"
-                className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-gold-bright hover:-translate-y-0.5 transition-transform"
+                className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-bold uppercase tracking-button text-gold-bright hover:-translate-y-0.5 transition-transform"
               >
                 Get a Free Quote →
               </Link>

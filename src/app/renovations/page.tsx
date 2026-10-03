@@ -69,7 +69,7 @@ export default function RenovationsHubPage() {
             <div className="font-body text-[12px] font-semibold uppercase tracking-kicker text-gold-bright">
               AREAS WE SERVICE
             </div>
-            <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] font-black uppercase leading-[0.85] tracking-tighter text-white">
+            <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] font-bold uppercase leading-[0.85] tracking-tighter text-white">
               Renovation Builders <br />
               <span className="text-gold-bright">Across Melbourne</span>
             </h1>
@@ -86,7 +86,7 @@ export default function RenovationsHubPage() {
           <div className="mx-auto max-w-[1216px] grid gap-12 lg:grid-cols-2">
             {regions.map(({ title, region }) => (
               <div key={region}>
-                <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-black uppercase tracking-tightest leading-[0.9] text-white mb-8">
+                <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold uppercase tracking-tightest leading-[0.9] text-white mb-8">
                   {title}
                 </h2>
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -113,7 +113,7 @@ export default function RenovationsHubPage() {
         {/* Services cross-links */}
         <section className="bg-navy-light py-16 px-4 sm:px-6 lg:px-8 border-t border-white/10">
           <div className="mx-auto max-w-[1216px]">
-            <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-black uppercase tracking-tightest leading-[0.9] text-white mb-8">
+            <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold uppercase tracking-tightest leading-[0.9] text-white mb-8">
               Explore Our <span className="text-gold-bright">Services</span>
             </h2>
             <div className="flex flex-wrap gap-3">
@@ -140,7 +140,7 @@ export default function RenovationsHubPage() {
         {/* CTA */}
         <section className="bg-gold-bright text-navy py-16 px-4 sm:px-6 lg:px-8 text-center">
           <div className="mx-auto max-w-[1216px]">
-            <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
+            <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
               Can&apos;t see your suburb?
             </h2>
             <p className="mt-6 font-body text-[17px] leading-[1.8] text-navy/80 max-w-2xl mx-auto">
@@ -149,7 +149,7 @@ export default function RenovationsHubPage() {
             <div className="mt-10">
               <Link
                 href="/quote"
-                className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-gold-bright hover:-translate-y-0.5 transition-transform"
+                className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-bold uppercase tracking-button text-gold-bright hover:-translate-y-0.5 transition-transform"
               >
                 Get a Free Quote →
               </Link>

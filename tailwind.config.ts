@@ -18,7 +18,7 @@ const config: Config = {
           bright: "#d4a832",
           // Darker gold for small text on light backgrounds — passes WCAG AA
           // (≈4.9:1 on white) where `gold`/`gold-bright` fall short.
-          deep: "#8a6d1d",
+          deep: "#7a5f17",
         },
         "off-white": "#f5f3ee",
       },

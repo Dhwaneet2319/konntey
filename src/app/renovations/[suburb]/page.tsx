@@ -231,7 +231,7 @@ export default async function SuburbPage({ params }: Props) {
               ))}
             </ul>
             {nearbyOther.length > 0 && (
-              <p className="mt-4 font-body text-[14px] text-navy/60">
+              <p className="mt-4 font-body text-[14px] text-navy/70">
                 We also service {nearbyOther.join(", ")}.
               </p>
             )}

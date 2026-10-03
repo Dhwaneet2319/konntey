@@ -138,12 +138,12 @@ export default function EnquiryForm({
 
   const dark = tone === "dark";
   const labelCls = `font-body text-[14px] font-semibold ${dark ? "text-white" : "text-navy"}`;
-  const hintCls = `font-body text-[13px] ${dark ? "text-white/65" : "text-navy/60"}`;
+  const hintCls = `font-body text-[13px] ${dark ? "text-white/65" : "text-navy/70"}`;
   const errorCls = `font-body text-[13px] font-medium ${dark ? "text-[#ffb4a8]" : "text-[#b42318]"}`;
   const inputCls = (field?: Field) =>
     `w-full min-h-[48px] border px-4 py-3 font-body text-[16px] outline-none transition-[border-color,box-shadow] duration-hover focus:ring-2 disabled:opacity-60 ${
       dark
-        ? "bg-navy-light text-white placeholder:text-white/40 focus:border-gold-bright focus:ring-gold-bright/40"
+        ? "bg-navy-light text-white placeholder:text-white/60 focus:border-gold-bright focus:ring-gold-bright/40"
         : "bg-white text-navy placeholder:text-navy/40 focus:border-navy focus:ring-gold-bright/50"
     } ${
       field && errors[field]
@@ -268,6 +268,8 @@ export default function EnquiryForm({
   return (
     <form
       ref={formRef}
+      action={ENDPOINT}
+      method="post"
       noValidate
       onSubmit={onSubmit}
       onFocusCapture={onStart}

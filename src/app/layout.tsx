@@ -13,7 +13,7 @@ import { ORGANIZATION_ID, SITE_SHORT_NAME, WEBSITE_ID, jsonLd, siteDescription }
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  weight: ["700", "900"],
+  weight: ["700"],
   variable: "--font-barlow-condensed",
   display: "swap",
 });

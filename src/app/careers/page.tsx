@@ -74,7 +74,7 @@ export default function CareersPage() {
               <Mail aria-hidden="true" size={16} />
               Email {business.email}
             </a>
-            <p className="mt-6 font-body text-[14px] text-navy/60">
+            <p className="mt-6 font-body text-[14px] text-navy/70">
               Looking for a renovation quote instead?{" "}
               <Link href="/quote" className="font-semibold text-gold-deep underline-offset-4 hover:underline">
                 Request a free quote
