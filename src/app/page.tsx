@@ -32,7 +32,7 @@ const ProcessStrip = dynamic(() => import("@/components/ProcessStrip"));
 const Testimonials = dynamic(() => import("@/components/Testimonials"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const MoreServices = dynamic(() => import("@/components/MoreServices"));
-const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"), { ssr: false });
+import WhatsAppButton from "@/components/chat/FloatingActions";
 const CtaBanner = dynamic(() => import("@/components/CtaBanner"));
 const VastuSection = dynamic(() => import("@/components/VastuSection"));
 

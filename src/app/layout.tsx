@@ -190,6 +190,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-AU"
+      data-scroll-behavior="smooth"
       className={`${barlowCondensed.variable} ${barlow.variable}`}
     >
       <head>

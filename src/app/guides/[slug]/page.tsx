@@ -8,7 +8,9 @@ import FloatingActions from "@/components/chat/FloatingActions";
 import QuoteChecklist from "@/components/QuoteChecklist";
 import { guides, getGuide, GUIDES_BASE_URL } from "@/content/guides";
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = false;
 
 function formatMonth(date: string): string {
   return new Date(date).toLocaleDateString("en-AU", { month: "long", year: "numeric" });
@@ -18,8 +20,8 @@ export function generateStaticParams() {
   return guides.map((g) => ({ slug: g.slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const guide = getGuide(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const guide = getGuide((await params).slug);
   if (!guide) return {};
 
   const url = `${GUIDES_BASE_URL}/guides/${guide.slug}`;
@@ -55,8 +57,8 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function GuideArticlePage({ params }: Props) {
-  const guide = getGuide(params.slug);
+export default async function GuideArticlePage({ params }: Props) {
+  const guide = getGuide((await params).slug);
   if (!guide) notFound();
 
   const url = `${GUIDES_BASE_URL}/guides/${guide.slug}`;

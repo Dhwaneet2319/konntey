@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
+import { business } from "@/content/business";
 
 export default function Careers() {
   return (
@@ -34,7 +35,7 @@ export default function Careers() {
             </div>
 
             <a
-              href="/#contact"
+              href={`mailto:${business.email}?subject=${encodeURIComponent("Trade work enquiry")}`}
               className="group/btn relative inline-flex shrink-0 items-center justify-center overflow-hidden border-2 border-gold-bright bg-transparent px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-gold-bright transition-colors duration-300 hover:text-navy"
             >
               <span className="absolute inset-0 bg-gold-bright transition-transform duration-500 ease-out translate-y-full group-hover/btn:translate-y-0" />

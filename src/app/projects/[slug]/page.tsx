@@ -17,14 +17,16 @@ import {
 import { suburbLinks } from "@/content/suburbs";
 import { BASE_URL } from "@/content/business";
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return displayableProjects().map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const project = getProject(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const project = getProject((await params).slug);
   if (!project) return {};
 
   const indexable = project.status === "published" && project.seo.indexable;
@@ -48,8 +50,8 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function ProjectPage({ params }: Props) {
-  const project = getProject(params.slug);
+export default async function ProjectPage({ params }: Props) {
+  const project = getProject((await params).slug);
   if (!project) notFound();
 
   const hero =

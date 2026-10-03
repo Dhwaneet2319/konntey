@@ -58,6 +58,8 @@ export default function QuotePage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const fromService = serviceFromParam[params.get("service") ?? ""];
+    // The URL is only readable after hydration on this static page.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (fromService) setService(fromService);
     const fromSuburb = params.get("suburb");
     if (fromSuburb) setSuburb(fromSuburb.slice(0, 60));
