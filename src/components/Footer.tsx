@@ -111,7 +111,7 @@ export default function Footer() {
               <li><Link href="/renovations" className="transition-colors hover:text-gold-bright">Areas We Serve</Link></li>
               <li><Link href="/credentials-and-compliance" className="transition-colors hover:text-gold-bright">Credentials &amp; Compliance</Link></li>
               <li><Link href="/#about" className="transition-colors hover:text-gold-bright">About Us</Link></li>
-              <li><Link href="/#careers" className="transition-colors hover:text-gold-bright">Careers</Link></li>
+              <li><Link href="/careers" className="transition-colors hover:text-gold-bright">Careers</Link></li>
               <li><Link href="/#contact" className="transition-colors hover:text-gold-bright">Contact</Link></li>
               <li><Link href="/quote" className="transition-colors hover:text-gold-bright">Get a Quote</Link></li>
             </ul>

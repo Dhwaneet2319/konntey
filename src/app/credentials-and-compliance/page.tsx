@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight, ExternalLink } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -13,15 +14,15 @@ import {
   credentialsPageIndexable,
 } from "@/content/business";
 
-export const metadata: Metadata = {
-  title: "Credentials, Compliance & How We Work",
+// OWNER: page stays noindexed until every displayed fact is reviewed and
+// credentialsPageIndexable is set to true in src/content/business.ts.
+export const metadata: Metadata = pageMetadata({
+  title: "Credentials, compliance & how we work",
   description:
     "How Konntey Home & Renovations works: business details, our quoting and contract process, and compliance information for Melbourne renovation projects.",
-  alternates: { canonical: "/credentials-and-compliance" },
-  // OWNER: page stays noindexed until every displayed fact is reviewed and
-  // credentialsPageIndexable is set to true in src/content/business.ts.
-  robots: credentialsPageIndexable ? undefined : { index: false, follow: true },
-};
+  path: "/credentials-and-compliance",
+  noindex: !credentialsPageIndexable,
+});
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",

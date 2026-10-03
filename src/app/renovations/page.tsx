@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -9,35 +10,12 @@ import { quoteKind } from "@/content/business";
 
 const BASE = "https://www.konnteyhomerenovations.com.au";
 
-export const metadata: Metadata = {
-  title: "Renovation Builders Melbourne | Suburbs We Service",
+export const metadata: Metadata = pageMetadata({
+  title: "Suburbs we service in Melbourne's west & southeast",
   description:
-    "Konntey services renovation projects right across Melbourne's west and southeast. Find kitchen, bathroom, extension and deck builders in your suburb.",
-  alternates: { canonical: "/renovations" },
-  openGraph: {
-    title: "Suburbs We Service | Konntey Home & Renovations Melbourne",
-    description:
-      "Renovation builders across Melbourne's west and southeast — Tarneit, Werribee, Point Cook, Dandenong, Berwick and more. Find your suburb.",
-    url: `${BASE}/renovations`,
-    siteName: "Konntey Home & Renovations",
-    locale: "en_AU",
-    type: "website",
-    images: [
-      {
-        url: "/images/hero-main.webp",
-        width: 1200,
-        height: 630,
-        alt: "Konntey Home & Renovations — suburbs serviced across Melbourne",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Suburbs We Service | Konntey H&R Melbourne",
-    description: "Renovation builders across Melbourne's west and southeast. Find your suburb.",
-    images: ["/images/hero-main.webp"],
-  },
-};
+    "Konntey services renovation projects across Melbourne's west and southeast, from Tarneit and Point Cook to Dandenong and Berwick. Find local information for your suburb.",
+  path: "/renovations",
+});
 
 const regions: { title: string; region: "West" | "Southeast" }[] = [
   { title: "Melbourne's West", region: "West" },

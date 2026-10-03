@@ -8,6 +8,8 @@ import FloatingActions from "@/components/chat/FloatingActions";
 import QuoteChecklist from "@/components/QuoteChecklist";
 import { guides, getGuide, GUIDES_BASE_URL } from "@/content/guides";
 import { quoteKind } from "@/content/business";
+import type { SiteImageKey } from "@/content/images";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -25,37 +27,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const guide = getGuide((await params).slug);
   if (!guide) return {};
 
-  const url = `${GUIDES_BASE_URL}/guides/${guide.slug}`;
-
-  return {
+  return pageMetadata({
     title: guide.metaTitle,
+    socialTitle: guide.title,
     description: guide.description,
-    alternates: { canonical: `/guides/${guide.slug}` },
-    openGraph: {
-      title: `${guide.title} | Konntey H&R`,
-      description: guide.description,
-      url,
-      siteName: "Konntey Home & Renovations",
-      locale: "en_AU",
-      type: "article",
-      publishedTime: guide.datePublished,
-      modifiedTime: guide.dateModified,
-      images: [
-        {
-          url: "/images/hero-main.webp",
-          width: 1200,
-          height: 630,
-          alt: guide.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${guide.title} | Konntey H&R`,
-      description: guide.description,
-      images: ["/images/hero-main.webp"],
-    },
-  };
+    path: `/guides/${guide.slug}`,
+    image: guideSocialImage(guide.slug),
+    article: { publishedTime: guide.datePublished, modifiedTime: guide.dateModified },
+  });
+}
+
+function guideSocialImage(slug: string): SiteImageKey {
+  if (slug.includes("kitchen")) return "socialKitchen";
+  if (slug.includes("bathroom")) return "socialBathroom";
+  if (slug.includes("extension")) return "socialExtensions";
+  return "socialDefault";
 }
 
 export default async function GuideArticlePage({ params }: Props) {

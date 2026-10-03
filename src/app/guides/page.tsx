@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -7,38 +8,12 @@ import FloatingActions from "@/components/chat/FloatingActions";
 import { guides, GUIDES_BASE_URL } from "@/content/guides";
 import { quoteKind } from "@/content/business";
 
-export const metadata: Metadata = {
-  title: "Renovation Guides Melbourne | Costs, Permits & Advice",
+export const metadata: Metadata = pageMetadata({
+  title: "Renovation guides for Melbourne: costs, permits & advice",
   description:
-    "Practical renovation guides for Melbourne homeowners — kitchen and bathroom cost breakdowns, Victorian permit rules, and how to choose a builder. Free, no fluff.",
-  alternates: {
-    canonical: "/guides",
-  },
-  openGraph: {
-    title: "Renovation Guides Melbourne | Konntey H&R",
-    description:
-      "Kitchen and bathroom cost guides, Victorian permit rules, extension vs moving comparisons, and how to choose a renovation builder in Melbourne.",
-    url: `${GUIDES_BASE_URL}/guides`,
-    siteName: "Konntey Home & Renovations",
-    locale: "en_AU",
-    type: "website",
-    images: [
-      {
-        url: "/images/hero-main.webp",
-        width: 1200,
-        height: 630,
-        alt: "Konntey Home & Renovations — Melbourne renovation guides",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Renovation Guides Melbourne | Konntey H&R",
-    description:
-      "Kitchen & bathroom cost guides, Victorian permit rules, and how to choose a builder in Melbourne.",
-    images: ["/images/hero-main.webp"],
-  },
-};
+    "Practical renovation guides for Melbourne homeowners: kitchen and bathroom cost breakdowns, Victorian permit rules, a quote comparison checklist and how to choose a builder.",
+  path: "/guides",
+});
 
 const itemListSchema = {
   "@context": "https://schema.org",

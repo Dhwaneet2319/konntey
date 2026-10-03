@@ -16,6 +16,7 @@ import {
 } from "@/content/projects";
 import { suburbLinks } from "@/content/suburbs";
 import { BASE_URL, quoteKind } from "@/content/business";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -31,22 +32,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const indexable = project.status === "published" && project.seo.indexable;
 
-  return {
+  const meta = pageMetadata({
     title: project.seo.title,
     description: project.seo.description,
-    alternates: { canonical: `/projects/${project.slug}` },
-    ...(indexable ? {} : { robots: { index: false, follow: true } }),
-    openGraph: {
-      title: project.seo.title,
-      description: project.seo.description,
-      url: `${BASE_URL}/projects/${project.slug}`,
-      siteName: "Konntey Home & Renovations",
-      locale: "en_AU",
-      type: "article",
-      images: project.images[0]
-        ? [{ url: project.images[0].src, alt: project.images[0].alt }]
-        : undefined,
-    },
+    path: `/projects/${project.slug}`,
+    noindex: !indexable,
+  });
+  const photo = project.images[0];
+  if (!photo) return meta;
+  return {
+    ...meta,
+    openGraph: { ...meta.openGraph, images: [{ url: photo.src, alt: photo.alt }] },
+    twitter: { ...meta.twitter, images: [photo.src] },
   };
 }
 

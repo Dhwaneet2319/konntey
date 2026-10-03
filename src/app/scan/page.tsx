@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 
 import { m } from "framer-motion";
 import Link from "next/link";
+import { business } from "@/content/business";
 import { 
   Hammer, 
   Wrench, 
@@ -108,19 +109,20 @@ export default function ScanLandingPage() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="flex flex-col gap-4"
           >
-            <a 
-              href="tel:0493191798" 
-              className="w-full bg-gold-bright text-navy py-4 font-display text-[16px] font-black uppercase tracking-button text-center rounded-lg hover:bg-white transition-colors shadow-lg shadow-gold-bright/20"
-            >
-              Get a Free Quote
-            </a>
-            <Link 
+            <Link
               prefetch={false}
               href="/quote"
-              className="w-full border-2 border-white/20 bg-transparent text-white py-4 font-display text-[16px] font-black uppercase tracking-button text-center rounded-lg hover:border-gold-bright hover:text-gold-bright transition-colors"
+              className="w-full bg-gold-bright text-navy py-4 font-body text-[16px] font-semibold text-center rounded-lg hover:bg-white transition-colors shadow-lg shadow-gold-bright/20"
             >
-              Send us a Message
+              Get a free quote
             </Link>
+            <a
+              href={`tel:${business.phoneE164}`}
+              data-placement="scan"
+              className="w-full border-2 border-white/20 bg-transparent text-white py-4 font-body text-[16px] font-semibold text-center rounded-lg hover:border-gold-bright hover:text-gold-bright transition-colors"
+            >
+              Call {business.phoneDisplay}
+            </a>
           </m.div>
         </section>
       </main>

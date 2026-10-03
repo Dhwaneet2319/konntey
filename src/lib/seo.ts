@@ -34,6 +34,9 @@ interface PageMetaInput {
   /** Use the title as-is, without the site template. */
   absoluteTitle?: boolean;
   noindex?: boolean;
+  /** Social title when it should differ from the page title. */
+  socialTitle?: string;
+  article?: { publishedTime: string; modifiedTime: string };
 }
 
 /**
@@ -47,23 +50,28 @@ export function pageMetadata({
   image = "socialDefault",
   absoluteTitle = false,
   noindex = false,
+  socialTitle: socialTitleInput,
+  article,
 }: PageMetaInput): Metadata {
   const img = siteImages[image];
-  const socialTitle = absoluteTitle ? title : `${title} | ${SITE_SHORT_NAME}`;
+  const baseSocial = socialTitleInput ?? title;
+  const socialTitle = absoluteTitle ? baseSocial : `${baseSocial} | ${SITE_SHORT_NAME}`;
+  const common = {
+    title: socialTitle,
+    description,
+    url: path === "/" ? BASE_URL : `${BASE_URL}${path}`,
+    siteName: business.name,
+    locale: "en_AU",
+    images: [{ url: img.src, width: img.width, height: img.height, alt: img.alt }],
+  };
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: path },
     ...(noindex ? { robots: { index: false, follow: true } } : {}),
-    openGraph: {
-      title: socialTitle,
-      description,
-      url: path === "/" ? BASE_URL : `${BASE_URL}${path}`,
-      siteName: business.name,
-      locale: "en_AU",
-      type: "website",
-      images: [{ url: img.src, width: img.width, height: img.height, alt: img.alt }],
-    },
+    openGraph: article
+      ? { ...common, type: "article", ...article }
+      : { ...common, type: "website" },
     twitter: {
       card: "summary_large_image",
       title: socialTitle,

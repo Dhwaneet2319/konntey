@@ -1,34 +1,14 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions",
+export const metadata: Metadata = pageMetadata({
+  title: "Terms & conditions",
   description:
-    "Terms and conditions for Konntey Home & Renovations, Melbourne. Our renovation services, quotes, liability and your rights under Australian Consumer Law.",
-  alternates: {
-    canonical: "/terms",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title: "Terms & Conditions | Konntey H&R",
-    description:
-      "Terms for Konntey Home & Renovations — services, quotes, liability and your rights under Australian Consumer Law.",
-    url: "https://www.konnteyhomerenovations.com.au/terms",
-    siteName: "Konntey Home & Renovations",
-    locale: "en_AU",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Terms & Conditions | Konntey H&R",
-    description:
-      "Terms for Konntey Home & Renovations — services, quotes, liability and your rights under Australian Consumer Law.",
-  },
-};
+    "Terms and conditions for Konntey Home & Renovations, Melbourne: our renovation services, quotes, liability and your rights under Australian Consumer Law.",
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (

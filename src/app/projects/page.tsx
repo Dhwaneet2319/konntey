@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -14,24 +15,15 @@ import { BASE_URL } from "@/content/business";
 
 const hubLive = projectsHubLive();
 
-export const metadata: Metadata = {
-  title: "Completed Renovation Projects Melbourne",
+// The hub stays out of the index until enough owner-approved case studies
+// are published to make it genuinely useful.
+export const metadata: Metadata = pageMetadata({
+  title: "Completed renovation projects in Melbourne",
   description:
-    "Browse completed, real renovation projects by Konntey Home & Renovations across Melbourne — kitchens, bathrooms, extensions, decks and painting, with genuine photos and outcomes.",
-  alternates: { canonical: "/projects" },
-  // The hub stays out of the index until enough owner-approved case studies
-  // are published to make it genuinely useful.
-  ...(hubLive ? {} : { robots: { index: false, follow: true } }),
-  openGraph: {
-    title: "Completed Renovation Projects | Konntey Home & Renovations",
-    description:
-      "Real, completed renovation projects across Melbourne with genuine photos and factual outcomes.",
-    url: `${BASE_URL}/projects`,
-    siteName: "Konntey Home & Renovations",
-    locale: "en_AU",
-    type: "website",
-  },
-};
+    "Completed renovation projects by Konntey Home & Renovations across Melbourne: kitchens, bathrooms, extensions, decks and painting, with the client's permission and real photos.",
+  path: "/projects",
+  noindex: !hubLive,
+});
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",

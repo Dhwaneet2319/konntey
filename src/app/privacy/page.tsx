@@ -1,34 +1,14 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy policy",
   description:
     "Privacy policy for Konntey Home & Renovations, Melbourne. How we handle your personal information under the Australian Privacy Principles.",
-  alternates: {
-    canonical: "/privacy",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title: "Privacy Policy | Konntey H&R",
-    description:
-      "How Konntey Home & Renovations handles your personal information under the Australian Privacy Principles.",
-    url: "https://www.konnteyhomerenovations.com.au/privacy",
-    siteName: "Konntey Home & Renovations",
-    locale: "en_AU",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Privacy Policy | Konntey H&R",
-    description:
-      "How Konntey Home & Renovations handles your personal information under the Australian Privacy Principles.",
-  },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
