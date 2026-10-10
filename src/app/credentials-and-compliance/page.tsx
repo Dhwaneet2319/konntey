@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight, ExternalLink } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -13,15 +14,15 @@ import {
   credentialsPageIndexable,
 } from "@/content/business";
 
-export const metadata: Metadata = {
-  title: "Credentials, Compliance & How We Work",
+// OWNER: page stays noindexed until every displayed fact is reviewed and
+// credentialsPageIndexable is set to true in src/content/business.ts.
+export const metadata: Metadata = pageMetadata({
+  title: "Credentials, compliance & how we work",
   description:
     "How Konntey Home & Renovations works: business details, our quoting and contract process, and compliance information for Melbourne renovation projects.",
-  alternates: { canonical: "/credentials-and-compliance" },
-  // OWNER: page stays noindexed until every displayed fact is reviewed and
-  // credentialsPageIndexable is set to true in src/content/business.ts.
-  robots: credentialsPageIndexable ? undefined : { index: false, follow: true },
-};
+  path: "/credentials-and-compliance",
+  noindex: !credentialsPageIndexable,
+});
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -51,7 +52,7 @@ export default function CredentialsPage() {
       <NavBar theme="dark" />
       <FloatingActions />
 
-      <main className="flex-grow">
+      <main id="main" className="flex-grow">
         {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"
@@ -76,7 +77,7 @@ export default function CredentialsPage() {
 
         <section className="px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
           <div className="mx-auto max-w-4xl">
-            <h1 className="font-display text-[clamp(2.5rem,7vw,4.5rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
+            <h1 className="font-display text-[clamp(2.5rem,7vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-tightest text-white">
               Credentials, Compliance &amp;{" "}
               <span className="text-gold-bright">How We Work</span>
             </h1>
@@ -88,7 +89,7 @@ export default function CredentialsPage() {
 
             {/* Business details */}
             <section className="mt-14">
-              <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-bright">
+              <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold uppercase tracking-tightest text-gold-bright">
                 Business Details
               </h2>
               <dl className="mt-6 grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2">
@@ -128,13 +129,13 @@ export default function CredentialsPage() {
             {/* Registrations & licences — hidden until records are complete */}
             {credentials.length > 0 && (
               <section className="mt-14">
-                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-bright">
+                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold uppercase tracking-tightest text-gold-bright">
                   Registrations &amp; Licences
                 </h2>
                 <div className="mt-6 space-y-4">
                   {credentials.map((c) => (
                     <div key={c.id} className="border border-white/10 p-6">
-                      <h3 className="font-display text-[17px] font-black uppercase tracking-button text-white">
+                      <h3 className="font-display text-[17px] font-bold uppercase tracking-button text-white">
                         {c.label}
                       </h3>
                       <p className="mt-2 font-body text-[14px] text-white/80">
@@ -172,7 +173,7 @@ export default function CredentialsPage() {
             {/* Insurance — approved wording only */}
             {insuranceStatement && (
               <section className="mt-14">
-                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-bright">
+                <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold uppercase tracking-tightest text-gold-bright">
                   Insurance
                 </h2>
                 <p className="mt-5 font-body text-[16px] leading-[1.85] text-white/85">
@@ -183,7 +184,7 @@ export default function CredentialsPage() {
 
             {/* Process — factual description of how jobs actually run */}
             <section className="mt-14">
-              <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-bright">
+              <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold uppercase tracking-tightest text-gold-bright">
                 How Every Project Runs
               </h2>
               <ol className="mt-8 space-y-6">
@@ -191,12 +192,12 @@ export default function CredentialsPage() {
                   <li key={stage.step} className="flex gap-5">
                     <span
                       aria-hidden="true"
-                      className="font-display text-[28px] font-black leading-none text-gold-bright/40"
+                      className="font-display text-[28px] font-bold leading-none text-gold-bright/40"
                     >
                       0{i + 1}
                     </span>
                     <div>
-                      <h3 className="font-display text-[16px] font-black uppercase tracking-button text-white">
+                      <h3 className="font-display text-[16px] font-bold uppercase tracking-button text-white">
                         {stage.step}
                       </h3>
                       <p className="mt-1.5 font-body text-[15px] leading-[1.75] text-white/80">
@@ -210,7 +211,7 @@ export default function CredentialsPage() {
 
             {/* Official resources */}
             <section className="mt-14">
-              <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest text-gold-bright">
+              <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold uppercase tracking-tightest text-gold-bright">
                 Official Resources
               </h2>
               <p className="mt-5 font-body text-[15px] leading-[1.8] text-white/80">
@@ -251,7 +252,7 @@ export default function CredentialsPage() {
             <div className="mt-16">
               <Link
                 href="/quote"
-                className="inline-flex bg-gold-bright px-8 py-5 font-display text-[15px] font-black uppercase tracking-button text-navy"
+                className="inline-flex bg-gold-bright px-8 py-5 font-display text-[15px] font-bold uppercase tracking-button text-navy"
               >
                 Request a Free Quote
               </Link>

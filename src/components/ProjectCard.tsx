@@ -48,7 +48,7 @@ export default function ProjectCard({
           {serviceLabels[project.primaryService]} · {project.suburb}
         </div>
         <h3
-          className={`mt-3 font-display text-[20px] font-black uppercase tracking-tighter leading-tight ${
+          className={`mt-3 font-display text-[20px] font-bold uppercase tracking-tighter leading-tight ${
             dark ? "text-white" : "text-navy"
           }`}
         >
@@ -63,7 +63,7 @@ export default function ProjectCard({
         </p>
         <Link
           href={`/projects/${project.slug}`}
-          className={`mt-5 inline-flex items-center gap-2 font-display text-[13px] font-black uppercase tracking-button transition-colors ${
+          className={`mt-5 inline-flex items-center gap-2 font-display text-[13px] font-bold uppercase tracking-button transition-colors ${
             dark
               ? "text-gold-bright hover:text-white"
               : "text-gold-deep hover:text-navy"

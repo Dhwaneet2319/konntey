@@ -1,315 +1,373 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { m, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { ChevronDown, Phone } from "lucide-react";
+import { business } from "@/content/business";
+import { scrollBehavior } from "@/lib/motion";
 
-const navLinks = [
-  { label: "Home", href: "/#hero" },
-  { 
-    label: "Services", 
-    href: "/#services",
-    children: [
-      { label: "Extensions & New Builds", href: "/home-extensions-melbourne" },
-      { label: "Kitchen Renovations", href: "/kitchen-renovations-melbourne" },
-      { label: "Bathroom Renovations", href: "/bathroom-renovations-melbourne" },
-      { label: "Decks & Pergolas", href: "/decks-pergolas-melbourne" },
-      { label: "Interior Painting", href: "/interior-painting-melbourne" },
-      { label: "Vastu & Feng Shui", href: "/vastu-renovations-melbourne" },
-    ]
-  },
-  { label: "Guides", href: "/guides" },
+const services = [
+  { label: "Kitchen renovations", href: "/kitchen-renovations-melbourne" },
+  { label: "Bathroom renovations", href: "/bathroom-renovations-melbourne" },
+  { label: "Home extensions", href: "/home-extensions-melbourne" },
+  { label: "Decks & pergolas", href: "/decks-pergolas-melbourne" },
+  { label: "Painting", href: "/interior-painting-melbourne" },
+  { label: "Vastu renovations", href: "/vastu-renovations-melbourne" },
+];
+
+const primaryLinks = [
+  { label: "Our work", href: "/#work" },
   { label: "About", href: "/#about" },
-  { label: "Careers", href: "/#careers" },
+  { label: "Guides", href: "/guides" },
+];
+
+const secondaryLinks = [
+  { label: "Areas we service", href: "/renovations" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/#contact" },
 ];
 
-function smoothScrollTo(hash: string) {
-  if (!hash || hash === "#") return;
-  const el = document.querySelector(hash);
-  el?.scrollIntoView({ behavior: "smooth", block: "start" });
+function scrollToHash(hash: string) {
+  document.querySelector(hash)?.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
 }
 
+/**
+ * Site header. `theme="dark"` starts transparent with light text over a navy
+ * hero; both themes switch to a solid white bar once the page scrolls.
+ */
 export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const scrollTicking = useRef(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const servicesButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
-  const isDark = theme === "dark" && !scrolled && !mobileOpen;
+  const onDark = theme === "dark" && !scrolled && !mobileOpen;
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (scrollTicking.current) return;
-
-      scrollTicking.current = true;
-      window.requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 50);
-        scrollTicking.current = false;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 24);
+        ticking = false;
       });
     };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Desktop services menu: close on outside click, on Escape (returning
+  // focus to its button) and when focus leaves it.
   useEffect(() => {
-    if (mobileOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    if (!servicesOpen) return;
+    const onPointer = (e: PointerEvent) => {
+      if (!servicesRef.current?.contains(e.target as Node)) setServicesOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setServicesOpen(false);
+        servicesButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [servicesOpen]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  // Mobile menu: focus moves in on open, Tab stays within toggle + menu,
+  // Escape closes, and focus returns to the toggle on close.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const toggle = toggleRef.current;
+    const menu = menuRef.current;
+    const frame = requestAnimationFrame(() => menu?.querySelector<HTMLElement>("a[href]")?.focus());
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = [
+        ...(toggle ? [toggle] : []),
+        ...Array.from(menu?.querySelectorAll<HTMLElement>("a[href], button") ?? []),
+      ];
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      cancelAnimationFrame(frame);
+      document.removeEventListener("keydown", onKey);
+      if (menu?.contains(document.activeElement) || document.activeElement === document.body) {
+        toggle?.focus();
+      }
+    };
+  }, [mobileOpen]);
+
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setMobileOpen(false);
+    setServicesOpen(false);
     if (href.startsWith("/#") && pathname === "/") {
       e.preventDefault();
-      const hash = href.replace("/", "");
-      smoothScrollTo(hash);
+      scrollToHash(href.slice(1));
+      history.replaceState(null, "", href.slice(1));
     }
   };
 
+  // Closed menus are only visibility-hidden, so Next's viewport prefetcher
+  // would treat every link in them as visible and fetch ~12 routes on each
+  // page load. Their links prefetch only once the menu is opened.
+  const servicesPrefetch = servicesOpen ? undefined : false;
+  const mobilePrefetch = mobileOpen ? undefined : false;
+
+  const linkTone = onDark ? "text-white/85 hover:text-white" : "text-navy/80 hover:text-navy";
+
   return (
     <>
-      <m.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          mobileOpen ? "bg-navy" : scrolled ? "glass-light" : "bg-transparent"
-        } ${
-          scrolled && !mobileOpen ? "h-[70px]" : "h-[90px]"
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,height] duration-200 ease-brand ${
+          mobileOpen
+            ? "h-16 bg-navy"
+            : scrolled
+              ? "h-16 bg-white/95 shadow-[0_1px_0_rgba(13,31,60,0.08)] backdrop-blur-sm"
+              : "h-16 bg-transparent lg:h-20"
         }`}
       >
-        <div className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="group flex items-center gap-3 overflow-hidden">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:bg-gold-bright focus:px-4 focus:py-2 focus:font-body focus:text-[14px] focus:font-semibold focus:text-navy"
+        >
+          Skip to content
+        </a>
+        <div className="mx-auto flex h-full max-w-[1280px] items-center justify-between gap-6 px-5 sm:px-8">
+          <Link
+            href="/"
+            prefetch={pathname === "/" ? false : undefined}
+            aria-label={`${business.name} home`}
+            className="flex shrink-0 items-center gap-2.5"
+          >
             <Image
               src="/images/logo.png"
-              alt="Konntey Home & Renovations logo"
-              width={56}
-              height={56}
-              className={`h-11 w-auto sm:h-14 transition-all duration-300 group-hover:scale-105 ${mobileOpen || isDark ? "brightness-0 invert" : ""}`}
+              alt=""
+              width={154}
+              height={112}
+              loading="eager"
+              sizes="56px"
+              className={`h-9 w-auto lg:h-10 ${mobileOpen || onDark ? "brightness-0 invert" : ""}`}
             />
-            <div className="flex flex-col leading-none">
-              <m.span
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className={`font-display text-[26px] sm:text-[32px] font-black tracking-tighter transition-colors duration-300 ${mobileOpen || isDark ? "text-white" : "text-navy"}`}
+            <span className="flex flex-col leading-none">
+              <span
+                className={`font-display text-[22px] font-bold tracking-[-0.01em] lg:text-[24px] ${
+                  mobileOpen || onDark ? "text-white" : "text-navy"
+                }`}
               >
-                KONNTEY
-              </m.span>
-              <m.span
-                initial={{ x: -10, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.5, type: "spring" }}
-                className="font-display text-[10px] sm:text-[12px] font-bold tracking-[1.5px] uppercase text-gold-bright transition-transform duration-300 group-hover:translate-x-1"
+                Konntey
+              </span>
+              <span
+                className={`mt-0.5 font-body text-[11px] font-medium ${
+                  mobileOpen || onDark ? "text-gold-bright" : "text-gold-deep"
+                }`}
               >
-                Homes and Renovations
-              </m.span>
-            </div>
+                Home &amp; Renovations
+              </span>
+            </span>
           </Link>
 
-          <nav className="hidden items-center gap-10 lg:flex">
-            {navLinks.map((item) => (
-              <div key={item.label} className="group relative">
-                {item.children ? (
-                  <div className="relative flex items-center h-[90px]">
+          <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
+            <div ref={servicesRef} className="relative">
+              <button
+                ref={servicesButtonRef}
+                type="button"
+                aria-expanded={servicesOpen}
+                aria-controls="services-menu"
+                onClick={() => setServicesOpen((v) => !v)}
+                className={`inline-flex items-center gap-1 font-body text-[15px] font-medium transition-colors duration-hover ${linkTone}`}
+              >
+                Services
+                <ChevronDown
+                  aria-hidden="true"
+                  size={15}
+                  className={`transition-transform duration-hover ease-brand ${servicesOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <div
+                id="services-menu"
+                className={`absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3 transition-[opacity,transform,visibility] duration-200 ease-brand ${
+                  servicesOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0"
+                }`}
+              >
+                <ul className="border border-navy/10 bg-white p-2 shadow-[0_16px_40px_-16px_rgba(13,31,60,0.25)]">
+                  {services.map((s) => (
+                    <li key={s.href}>
+                      <Link
+                        href={s.href}
+                        prefetch={servicesPrefetch}
+                        onClick={(e) => onNavClick(e, s.href)}
+                        className="block px-3 py-2.5 font-body text-[15px] text-navy/80 transition-colors duration-hover hover:bg-off-white hover:text-navy"
+                      >
+                        {s.label}
+                      </Link>
+                    </li>
+                  ))}
+                  <li className="mt-1 border-t border-navy/10 pt-1">
                     <Link
-                      href={item.href}
-                      onClick={(e) => handleLinkClick(e, item.href)}
-                      className={`group/btn relative font-body text-[13px] font-medium tracking-[1px] uppercase flex items-center gap-1.5 transition-colors duration-300 ${isDark ? "text-white/80" : "text-navy/80"}`}
+                      href="/#services"
+                      prefetch={servicesPrefetch}
+                      onClick={(e) => onNavClick(e, "/#services")}
+                      className="block px-3 py-2.5 font-body text-[14px] font-semibold text-gold-deep hover:bg-off-white"
                     >
-                      <span className="relative z-10 transition-colors duration-300 group-hover/btn:text-gold-bright">
-                        {item.label}
-                      </span>
-                      <span className="absolute -bottom-1 left-0 h-[1px] w-0 bg-gold-bright transition-all duration-300 ease-out group-hover/btn:w-full" />
-                      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:rotate-180 opacity-60">
-                        <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+                      Compare all services
                     </Link>
-                    
-                    {/* Hover Dropdown Menu */}
-                    <div className="absolute left-0 top-[70%] pt-4 opacity-0 translate-y-4 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-50">
-                      <div className="w-64 bg-white border border-navy/5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] p-2 flex flex-col gap-1 relative before:absolute before:-top-2 before:left-8 before:border-8 before:border-transparent before:border-b-white">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.label}
-                            href={child.href}
-                            prefetch={false}
-                            className="font-body text-[12px] font-semibold uppercase tracking-[1px] text-navy/70 p-3 hover:bg-off-white hover:text-gold-bright transition-colors text-left flex items-center justify-between group/link"
-                          >
-                            <span>{child.label}</span>
-                            <span className="opacity-0 -translate-x-2 transition-all duration-300 group-hover/link:opacity-100 group-hover/link:translate-x-0">
-                              &rarr;
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href}
-                    onClick={(e) => handleLinkClick(e, item.href)}
-                    className={`group/btn relative font-body text-[13px] font-medium tracking-[1px] uppercase transition-colors duration-300 ${isDark ? "text-white/80" : "text-navy/80"}`}
-                  >
-                    <span className="relative z-10 transition-colors duration-300 group-hover/btn:text-gold-bright">
-                      {item.label}
-                    </span>
-                    <span className="absolute -bottom-1 left-0 h-[1px] w-0 bg-gold-bright transition-all duration-300 ease-out group-hover/btn:w-full" />
-                  </Link>
-                )}
+                  </li>
+                </ul>
               </div>
+            </div>
+            {primaryLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={(e) => onNavClick(e, l.href)}
+                className={`font-body text-[15px] font-medium transition-colors duration-hover ${linkTone} ${
+                  l.label === "Guides" ? "opacity-80" : ""
+                }`}
+              >
+                {l.label}
+              </Link>
             ))}
-            <Link
-              href="/quote"
-              className="group relative overflow-hidden bg-gold-bright px-7 py-3 font-display text-[14px] font-black uppercase tracking-button text-navy"
-            >
-              <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-10">
-                Get a Quote
-              </span>
-              <span className="absolute inset-x-0 top-10 z-10 flex h-full items-center justify-center transition-transform duration-300 group-hover:-translate-y-10">
-                Let&apos;s Talk
-              </span>
-            </Link>
           </nav>
 
+          <div className="hidden items-center gap-5 lg:flex">
+            <a
+              href={`tel:${business.phoneE164}`}
+              data-placement="header"
+              className={`hidden items-center gap-2 font-body text-[15px] font-semibold transition-colors duration-hover xl:inline-flex ${linkTone}`}
+            >
+              <Phone aria-hidden="true" size={16} />
+              {business.phoneDisplay}
+            </a>
+            <Link
+              href="/quote"
+              className="inline-flex min-h-[44px] items-center bg-gold-bright px-5 font-body text-[15px] font-semibold text-navy transition-colors duration-hover hover:bg-[#e0b847]"
+            >
+              Get a free quote
+            </Link>
+          </div>
+
           <button
-            aria-label="Toggle menu"
+            ref={toggleRef}
+            type="button"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
             onClick={() => setMobileOpen((v) => !v)}
-            className="relative z-50 inline-flex h-12 w-12 items-center justify-center lg:hidden"
+            className="relative z-50 -mr-2 inline-flex h-11 w-11 items-center justify-center lg:hidden"
           >
-            <div className="flex flex-col gap-1.5">
-              <m.span
-                animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className={`block h-[2px] w-8 ${mobileOpen || isDark ? "bg-white" : "bg-navy"}`}
-              />
-              <m.span
-                animate={mobileOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-                transition={{ duration: 0.2 }}
-                className={`block h-[2px] w-8 ${mobileOpen || isDark ? "bg-white" : "bg-navy"}`}
-              />
-              <m.span
-                animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className={`block h-[2px] w-8 ${mobileOpen || isDark ? "bg-white" : "bg-navy"}`}
-              />
-            </div>
+            <span aria-hidden="true" className="relative block h-4 w-6">
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  className={`absolute left-0 block h-0.5 w-6 transition-[transform,opacity] duration-200 ease-brand ${
+                    mobileOpen || onDark ? "bg-white" : "bg-navy"
+                  } ${
+                    i === 0
+                      ? mobileOpen ? "top-[7px] rotate-45" : "top-0"
+                      : i === 1
+                        ? mobileOpen ? "top-[7px] opacity-0" : "top-[7px]"
+                        : mobileOpen ? "top-[7px] -rotate-45" : "top-[14px]"
+                  }`}
+                />
+              ))}
+            </span>
           </button>
         </div>
-      </m.header>
+      </header>
 
-      {/* Full Screen Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <m.div
-            initial={{ opacity: 0, y: "-10%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-10%" }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-navy pt-[90px] lg:hidden overflow-y-auto"
-          >
-            <div className="grain-overlay" />
-            <div className="flex min-h-full flex-col px-6 relative z-10 pb-20 pt-10">
-              {navLinks.map((item, index) => (
-                <div key={item.label} className="border-b border-white/10">
-                  {item.children ? (
-                    <div className="flex flex-col">
-                      <div className="flex items-center justify-between py-4">
-                        <Link
-                          href={item.href}
-                          onClick={(e) => {
-                            setMobileOpen(false);
-                            handleLinkClick(e, item.href);
-                          }}
-                          className="font-display text-[clamp(2.5rem,10vw,4rem)] font-black uppercase tracking-tightest text-white transition-colors active:text-gold-bright"
-                        >
-                          {item.label}
-                        </Link>
-                        <button 
-                          onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)} 
-                          className="p-4 text-gold-bright"
-                          aria-label="Toggle services submenu"
-                          aria-expanded={openDropdown === item.label}
-                        >
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className={`transition-transform duration-300 ${openDropdown === item.label ? "rotate-180" : ""}`}>
-                            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </button>
-                      </div>
-                      <AnimatePresence>
-                        {openDropdown === item.label && (
-                          <m.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                            className="overflow-hidden"
-                          >
-                            <div className="flex flex-col gap-4 pb-6 pl-4 border-l-2 border-gold-bright/30 ml-2 mb-4">
-                              {item.children.map((child) => (
-                                <Link
-                                  key={child.label}
-                                  href={child.href}
-                                  prefetch={false}
-                                  onClick={() => setMobileOpen(false)}
-                                  className="font-display text-[18px] font-bold uppercase tracking-button text-white/70 hover:text-gold-bright"
-                                >
-                                  {child.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </m.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <m.div
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{
-                        delay: index * 0.08,
-                        duration: 0.6,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                    >
-                      <Link
-                        href={item.href}
-                        onClick={(e) => {
-                          setMobileOpen(false);
-                          handleLinkClick(e, item.href);
-                        }}
-                        className="block py-4 text-left font-display text-[clamp(2.5rem,10vw,4rem)] font-black uppercase tracking-tightest text-white transition-colors active:text-gold-bright"
-                      >
-                        {item.label}
-                      </Link>
-                    </m.div>
-                  )}
-                </div>
-              ))}
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="mt-10"
-              >
+      <div
+        ref={menuRef}
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        inert={!mobileOpen}
+        className={`fixed inset-0 z-[45] overflow-y-auto bg-navy pt-16 transition-[opacity,transform,visibility] duration-200 ease-brand lg:hidden ${
+          mobileOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
+        }`}
+      >
+        <nav aria-label="Mobile" className="px-5 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-6 sm:px-8">
+          <p className="font-body text-[13px] font-semibold text-gold-bright">Services</p>
+          <ul className="mt-3 grid gap-1">
+            {services.map((s) => (
+              <li key={s.href}>
                 <Link
-                  href="/quote"
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-flex bg-gold-bright px-8 py-5 font-display text-[18px] font-black uppercase tracking-button text-navy"
+                  href={s.href}
+                  prefetch={mobilePrefetch}
+                  onClick={(e) => onNavClick(e, s.href)}
+                  className="block py-2.5 font-display text-[24px] font-bold text-white"
                 >
-                  Get a Quote
+                  {s.label}
                 </Link>
-              </m.div>
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
+              </li>
+            ))}
+          </ul>
+          <ul className="mt-6 grid gap-1 border-t border-white/15 pt-6">
+            {[...primaryLinks, ...secondaryLinks].map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  prefetch={mobilePrefetch}
+                  onClick={(e) => onNavClick(e, l.href)}
+                  className="block py-2.5 font-body text-[18px] text-white/85"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <Link
+              href="/quote"
+              prefetch={mobilePrefetch}
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex min-h-[52px] items-center justify-center bg-gold-bright px-6 font-body text-[16px] font-semibold text-navy"
+            >
+              Get a free quote
+            </Link>
+            <a
+              href={`tel:${business.phoneE164}`}
+              data-placement="mobile_menu"
+              className="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/30 px-6 font-body text-[16px] font-semibold text-white"
+            >
+              <Phone aria-hidden="true" size={16} />
+              Call {business.phoneDisplay}
+            </a>
+          </div>
+        </nav>
+      </div>
     </>
   );
 }

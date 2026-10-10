@@ -1,9 +1,6 @@
-"use client";
-
 import NavBar from "@/components/NavBar";
-
-import { m } from "framer-motion";
 import Link from "next/link";
+import { business } from "@/content/business";
 import { 
   Hammer, 
   Wrench, 
@@ -49,41 +46,32 @@ export default function ScanLandingPage() {
       <NavBar theme="dark" />
 
       {/* Main content wrapped in a mobile-first, centered container */}
-      <main className="flex-grow flex flex-col items-center w-full max-w-2xl mx-auto px-6 pt-[120px] pb-20 relative">
+      <main id="main" className="flex-grow flex flex-col items-center w-full max-w-2xl mx-auto px-6 pt-[120px] pb-20 relative">
         <div className="grain-overlay" />
         
         {/* Hero Section */}
         <section className="w-full text-center mb-16 relative z-10">
-          <m.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="font-display text-[32px] sm:text-[40px] font-black uppercase tracking-tightest leading-none text-white">
+          <div>
+            <div className="font-display text-[32px] sm:text-[40px] font-bold uppercase tracking-tightest leading-none text-white">
               KONNTEY
             </div>
             <div className="font-display text-[12px] sm:text-[14px] font-bold tracking-[2px] uppercase text-gold-bright mt-2 mb-6">
-              Homes &amp; Renovations
+              Home &amp; Renovations
             </div>
             
-            <h1 className="font-display text-[24px] sm:text-[32px] font-black uppercase leading-[1.1] mb-4">
+            <h1 className="font-display text-[24px] sm:text-[32px] font-bold uppercase leading-[1.1] mb-4">
               Quality you can see. <br/>
               <span className="text-gold-bright">Service you can trust.</span>
             </h1>
             <p className="font-body text-[15px] text-white/70 uppercase tracking-kicker">
               Serving Melbourne &amp; surrounds
             </p>
-          </m.div>
+          </div>
         </section>
 
         {/* Services Grid */}
         <section className="w-full mb-16 relative z-10">
-          <m.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="grid grid-cols-2 gap-4"
-          >
+          <div className="grid grid-cols-2 gap-4">
             {services.map((service, idx) => (
               <div 
                 key={idx} 
@@ -97,31 +85,27 @@ export default function ScanLandingPage() {
                 </span>
               </div>
             ))}
-          </m.div>
+          </div>
         </section>
 
         {/* CTA Section */}
         <section className="w-full flex flex-col gap-4 relative z-10">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="flex flex-col gap-4"
-          >
-            <a 
-              href="tel:0493191798" 
-              className="w-full bg-gold-bright text-navy py-4 font-display text-[16px] font-black uppercase tracking-button text-center rounded-lg hover:bg-white transition-colors shadow-lg shadow-gold-bright/20"
-            >
-              Get a Free Quote
-            </a>
-            <Link 
+          <div className="flex flex-col gap-4">
+            <Link
               prefetch={false}
-              href="/#contact" 
-              className="w-full border-2 border-white/20 bg-transparent text-white py-4 font-display text-[16px] font-black uppercase tracking-button text-center rounded-lg hover:border-gold-bright hover:text-gold-bright transition-colors"
+              href="/quote"
+              className="w-full bg-gold-bright text-navy py-4 font-body text-[16px] font-semibold text-center rounded-lg hover:bg-white transition-colors shadow-lg shadow-gold-bright/20"
             >
-              Send us a Message
+              Get a free quote
             </Link>
-          </m.div>
+            <a
+              href={`tel:${business.phoneE164}`}
+              data-placement="scan"
+              className="w-full border-2 border-white/20 bg-transparent text-white py-4 font-body text-[16px] font-semibold text-center rounded-lg hover:border-gold-bright hover:text-gold-bright transition-colors"
+            >
+              Call {business.phoneDisplay}
+            </a>
+          </div>
         </section>
       </main>
 

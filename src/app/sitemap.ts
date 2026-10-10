@@ -5,43 +5,64 @@ import { sitemapProjects, projectsHubLive } from "@/content/projects";
 import { isSuburbIndexable } from "@/content/localProof";
 import { credentialsPageIndexable } from "@/content/business";
 
+/**
+ * Date of the last significant change to each page's main content — not the
+ * build date. Update an entry only when that page's content materially
+ * changes. Routes without a known date omit lastModified entirely.
+ */
+const contentUpdated: Record<string, string> = {
+  "/": "2026-10-04",
+  "/kitchen-renovations-melbourne": "2026-09-29",
+  "/bathroom-renovations-melbourne": "2026-09-29",
+  "/home-extensions-melbourne": "2026-09-29",
+  "/decks-pergolas-melbourne": "2026-09-29",
+  "/interior-painting-melbourne": "2026-09-29",
+  "/vastu-renovations-melbourne": "2026-09-29",
+  "/quote": "2026-09-29",
+  "/renovations/[suburb]": "2026-09-29",
+};
+
+function lastModifiedFor(route: string): { lastModified?: Date } {
+  const date = contentUpdated[route];
+  return date ? { lastModified: new Date(date) } : {};
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.konnteyhomerenovations.com.au";
-  const now = new Date();
 
-  const staticPages = [
-    { url: baseUrl, lastModified: now, changeFrequency: "weekly" as const, priority: 1 },
-    { url: `${baseUrl}/kitchen-renovations-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/bathroom-renovations-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/home-extensions-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/decks-pergolas-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/interior-painting-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/vastu-renovations-melbourne`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${baseUrl}/renovations`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${baseUrl}/guides`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 },
-    { url: `${baseUrl}/quote`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 },
-    { url: `${baseUrl}/privacy`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.2 },
-    { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.2 },
+  const staticRoutes = [
+    "/",
+    "/kitchen-renovations-melbourne",
+    "/bathroom-renovations-melbourne",
+    "/home-extensions-melbourne",
+    "/decks-pergolas-melbourne",
+    "/interior-painting-melbourne",
+    "/vastu-renovations-melbourne",
+    "/renovations",
+    "/guides",
+    "/quote",
+    "/privacy",
+    "/terms",
   ];
+
+  const staticPages = staticRoutes.map((route) => ({
+    url: route === "/" ? baseUrl : `${baseUrl}${route}`,
+    ...lastModifiedFor(route),
+  }));
 
   // Projects hub enters the sitemap only once enough owner-approved case
   // studies are published (it is noindexed until then).
-  const projectsHub = projectsHubLive()
-    ? [{ url: `${baseUrl}/projects`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 }]
-    : [];
+  const projectsHub = projectsHubLive() ? [{ url: `${baseUrl}/projects` }] : [];
 
   // Individual projects: published AND seo.indexable only.
   const projectPages = sitemapProjects().map((project) => ({
     url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
   }));
 
   // Credentials page: owner flips credentialsPageIndexable after reviewing
   // every displayed fact.
   const credentialsPage = credentialsPageIndexable
-    ? [{ url: `${baseUrl}/credentials-and-compliance`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.5 }]
+    ? [{ url: `${baseUrl}/credentials-and-compliance` }]
     : [];
 
   // Existing suburb pages stay listed unless the owner explicitly sets a
@@ -50,16 +71,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((suburb) => isSuburbIndexable(suburb.slug))
     .map((suburb) => ({
       url: `${baseUrl}/renovations/${suburb.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
+      ...lastModifiedFor("/renovations/[suburb]"),
     }));
 
   const guidePages = guides.map((guide) => ({
     url: `${baseUrl}/guides/${guide.slug}`,
     lastModified: new Date(guide.dateModified),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
   }));
 
   return [

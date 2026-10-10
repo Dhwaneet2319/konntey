@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 export interface ServiceFaqItem {
   q: string;
@@ -9,60 +6,44 @@ export interface ServiceFaqItem {
 }
 
 /**
- * Accordion FAQ client island for the service pages. Kept as a small island so
- * the rest of the page can render as a server component. Markup mirrors the
- * original inline accordion so the pages look identical to before the refactor.
+ * FAQ list using native <details>, so every answer is in the server HTML and
+ * works without JavaScript.
  */
-export default function ServiceFaq({ faqs }: { faqs: ServiceFaqItem[] }) {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
+export default function ServiceFaq({
+  faqs,
+  tone = "light",
+}: {
+  faqs: ServiceFaqItem[];
+  tone?: "light" | "dark";
+}) {
+  const dark = tone === "dark";
   return (
-    <div className="mt-12 max-w-3xl space-y-4">
-      {faqs.map((faq, i) => (
-        <m.div
-          key={faq.q}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "100px" }}
-          transition={{ duration: 0.5, delay: i * 0.05 }}
-          className="border border-navy/10"
-        >
-          <button
-            onClick={() => setOpenFaq(openFaq === i ? null : i)}
-            aria-expanded={openFaq === i}
-            className="flex w-full items-center justify-between p-6 text-left"
+    <div className={`divide-y ${dark ? "divide-white/15 border-y border-white/15" : "divide-navy/10 border-y border-navy/10"}`}>
+      {faqs.map((faq) => (
+        <details key={faq.q} className="group">
+          <summary
+            className={`flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-6 py-5 text-left font-body text-[17px] font-semibold [&::-webkit-details-marker]:hidden ${
+              dark ? "text-white" : "text-navy"
+            }`}
           >
-            <span className="font-display text-[16px] font-black uppercase tracking-tight text-navy pr-4">
-              {faq.q}
-            </span>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className={`shrink-0 transition-transform duration-300 text-gold-bright ${openFaq === i ? "rotate-180" : ""}`}
-            >
-              <path d="M5 8l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          <AnimatePresence>
-            {openFaq === i && (
-              <m.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
-              >
-                <div className="px-6 pb-6 font-body text-[15px] leading-[1.8] text-navy/70">
-                  {faq.a}
-                </div>
-              </m.div>
-            )}
-          </AnimatePresence>
-        </m.div>
+            <span>{faq.q}</span>
+            <ChevronDown
+              aria-hidden="true"
+              size={20}
+              strokeWidth={2}
+              className={`shrink-0 transition-transform duration-hover ease-brand group-open:rotate-180 ${
+                dark ? "text-gold-bright" : "text-gold-deep"
+              }`}
+            />
+          </summary>
+          <p
+            className={`max-w-3xl pb-6 font-body text-[16px] leading-[1.75] ${
+              dark ? "text-white/80" : "text-navy/75"
+            }`}
+          >
+            {faq.a}
+          </p>
+        </details>
       ))}
     </div>
   );

@@ -1,38 +1,18 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy policy",
   description:
     "Privacy policy for Konntey Home & Renovations, Melbourne. How we handle your personal information under the Australian Privacy Principles.",
-  alternates: {
-    canonical: "/privacy",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title: "Privacy Policy | Konntey H&R",
-    description:
-      "How Konntey Home & Renovations handles your personal information under the Australian Privacy Principles.",
-    url: "https://www.konnteyhomerenovations.com.au/privacy",
-    siteName: "Konntey Home & Renovations",
-    locale: "en_AU",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Privacy Policy | Konntey H&R",
-    description:
-      "How Konntey Home & Renovations handles your personal information under the Australian Privacy Principles.",
-  },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-navy text-white">
+    <main id="main" className="min-h-screen bg-navy text-white">
       <div className="mx-auto max-w-3xl px-4 py-32 sm:px-6 lg:px-8">
         <Link
           href="/"
@@ -42,7 +22,7 @@ export default function PrivacyPage() {
           <span>Back to Home</span>
         </Link>
 
-        <h1 className="mt-10 font-display text-[clamp(2.5rem,6vw,4rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
+        <h1 className="mt-10 font-display text-[clamp(2.5rem,6vw,4rem)] font-bold uppercase leading-[0.9] tracking-tightest text-white">
           Privacy Policy
         </h1>
         <p className="mt-4 font-body text-[14px] text-white/70">
@@ -51,7 +31,7 @@ export default function PrivacyPage() {
 
         <div className="mt-12 space-y-10 font-body text-[16px] leading-[1.8] text-white/90">
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Who We Are
             </h2>
             <p className="mt-4">
@@ -62,7 +42,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Information We Collect
             </h2>
             <p className="mt-4">
@@ -77,7 +57,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               How We Use Your Information
             </h2>
             <p className="mt-4">We use the information you provide solely to:</p>
@@ -93,7 +73,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Data Storage & Security
             </h2>
             <p className="mt-4">
@@ -105,7 +85,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Cookies & Analytics
             </h2>
             <p className="mt-4">
@@ -117,7 +97,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Your Rights
             </h2>
             <p className="mt-4">
@@ -128,7 +108,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Contact
             </h2>
             <p className="mt-4">
@@ -151,6 +131,6 @@ export default function PrivacyPage() {
           </section>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

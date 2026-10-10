@@ -1,54 +1,53 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
+import { ButtonLink, PhoneButton } from "@/components/ui";
+import { serviceList } from "@/content/services";
+import { business } from "@/content/business";
 
 export const metadata: Metadata = {
-  title: "Page Not Found",
+  title: "Page not found",
   robots: { index: false, follow: true },
 };
 
-const popularPages = [
-  { href: "/kitchen-renovations-melbourne", label: "Kitchen Renovations" },
-  { href: "/bathroom-renovations-melbourne", label: "Bathroom Renovations" },
-  { href: "/home-extensions-melbourne", label: "Home Extensions" },
-  { href: "/decks-pergolas-melbourne", label: "Decks & Pergolas" },
-  { href: "/interior-painting-melbourne", label: "Interior Painting" },
-  { href: "/quote", label: "Get a Free Quote" },
-];
-
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-navy text-white font-body flex items-center">
-      <div className="mx-auto max-w-3xl px-4 py-32 sm:px-6 lg:px-8 text-center">
-        <div className="font-display text-[clamp(6rem,20vw,12rem)] font-black uppercase leading-none tracking-tighter text-gold-bright">
-          404
-        </div>
-        <h1 className="mt-4 font-display text-[clamp(1.5rem,4vw,2.5rem)] font-black uppercase tracking-tightest text-white">
-          Page Not Found
+    <main id="main" className="flex min-h-screen items-center bg-off-white font-body text-navy">
+      <div className="mx-auto w-full max-w-2xl px-5 py-20 sm:px-8">
+        <Link href="/" aria-label={`${business.name} home`} className="inline-flex items-center gap-2.5">
+          <Image src="/images/logo.png" alt="" width={154} height={112} className="h-10 w-auto" />
+          <span className="font-display text-[22px] font-bold leading-none">
+            Konntey
+            <span className="mt-1 block font-body text-[12px] font-medium text-gold-deep">Home &amp; Renovations</span>
+          </span>
+        </Link>
+        <p className="mt-12 font-body text-[13px] font-semibold uppercase tracking-kicker text-gold-deep">Error 404</p>
+        <h1 className="mt-3 font-display text-[clamp(2.25rem,6vw,3.5rem)] font-bold leading-[1.02] tracking-[-0.02em]">
+          We can&apos;t find that page
         </h1>
-        <p className="mt-6 font-body text-[16px] leading-[1.8] text-white/80">
-          Sorry, the page you&apos;re looking for doesn&apos;t exist or has been
-          moved. Here are some popular pages instead:
+        <p className="mt-5 max-w-lg text-[17px] leading-[1.7] text-navy/75">
+          It may have moved or the link may be mistyped. Try one of these instead, or get in touch
+          and we&apos;ll point you in the right direction.
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          {popularPages.map((page) => (
-            <Link
-              key={page.href}
-              href={page.href}
-              className="border border-white/15 px-6 py-3 font-display text-[14px] font-bold uppercase tracking-button text-white/85 hover:border-gold-bright hover:text-gold-bright transition-colors"
-            >
-              {page.label}
-            </Link>
+        <ul className="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+          {serviceList.map((s) => (
+            <li key={s.route}>
+              <Link href={s.route} className="text-[16px] font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-gold-deep">
+                {s.name}
+              </Link>
+            </li>
           ))}
-        </div>
-        <div className="mt-12">
-          <Link
-            href="/"
-            className="bg-gold-bright px-8 py-5 font-display text-[16px] font-black uppercase tracking-button text-navy inline-flex"
-          >
-            Back to Home
-          </Link>
+          <li>
+            <Link href="/guides" className="text-[16px] font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-gold-deep">
+              Renovation guides
+            </Link>
+          </li>
+        </ul>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <ButtonLink href="/">Back to the homepage</ButtonLink>
+          <PhoneButton label={`Call ${business.phoneDisplay}`} />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

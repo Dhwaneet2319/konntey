@@ -1,11 +1,12 @@
 import { MetadataRoute } from "next";
+import { business } from "@/content/business";
+import { SITE_SHORT_NAME, siteDescription } from "@/lib/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Konntey Home & Renovations",
-    short_name: "Konntey H&R",
-    description:
-      "Professional home extensions, kitchen & bathroom renovations across Melbourne. BPC registered, fixed-price quotes.",
+    name: business.name,
+    short_name: SITE_SHORT_NAME,
+    description: siteDescription,
     start_url: "/",
     display: "standalone",
     background_color: "#0a1628",

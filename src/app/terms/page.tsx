@@ -1,38 +1,18 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions",
+export const metadata: Metadata = pageMetadata({
+  title: "Terms & conditions",
   description:
-    "Terms and conditions for Konntey Home & Renovations, Melbourne. Our renovation services, quotes, liability and your rights under Australian Consumer Law.",
-  alternates: {
-    canonical: "/terms",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title: "Terms & Conditions | Konntey H&R",
-    description:
-      "Terms for Konntey Home & Renovations — services, quotes, liability and your rights under Australian Consumer Law.",
-    url: "https://www.konnteyhomerenovations.com.au/terms",
-    siteName: "Konntey Home & Renovations",
-    locale: "en_AU",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Terms & Conditions | Konntey H&R",
-    description:
-      "Terms for Konntey Home & Renovations — services, quotes, liability and your rights under Australian Consumer Law.",
-  },
-};
+    "Terms and conditions for Konntey Home & Renovations, Melbourne: our renovation services, quotes, liability and your rights under Australian Consumer Law.",
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-navy text-white">
+    <main id="main" className="min-h-screen bg-navy text-white">
       <div className="mx-auto max-w-3xl px-4 py-32 sm:px-6 lg:px-8">
         <Link
           href="/"
@@ -42,7 +22,7 @@ export default function TermsPage() {
           <span>Back to Home</span>
         </Link>
 
-        <h1 className="mt-10 font-display text-[clamp(2.5rem,6vw,4rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
+        <h1 className="mt-10 font-display text-[clamp(2.5rem,6vw,4rem)] font-bold uppercase leading-[0.9] tracking-tightest text-white">
           Terms of Service
         </h1>
         <p className="mt-4 font-body text-[14px] text-white/70">
@@ -51,7 +31,7 @@ export default function TermsPage() {
 
         <div className="mt-12 space-y-10 font-body text-[16px] leading-[1.8] text-white/90">
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Agreement
             </h2>
             <p className="mt-4">
@@ -62,7 +42,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Services & Quotes
             </h2>
             <p className="mt-4">
@@ -74,8 +54,29 @@ export default function TermsPage() {
             </p>
           </section>
 
+          <section id="imagery" className="scroll-mt-24">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
+              Imagery
+            </h2>
+            <p className="mt-4">
+              Some images on this website are AI-generated design inspiration.
+              They are illustrative concepts of the kind of look, layout and
+              finish a renovation can achieve. They are not photographs of
+              completed Konntey Home &amp; Renovations projects, real
+              customers&apos; homes or verified work, and they do not evidence
+              Vastu compliance or any specific project outcome. Any before and
+              after comparison presented on this website is an illustrative
+              redesign concept, not a real project record.
+            </p>
+            <p className="mt-4">
+              Photographs of our actual completed projects are published
+              separately, with the client&apos;s permission, and are labelled as
+              such.
+            </p>
+          </section>
+
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Intellectual Property
             </h2>
             <p className="mt-4">
@@ -87,7 +88,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Limitation of Liability
             </h2>
             <p className="mt-4">
@@ -99,7 +100,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Australian Consumer Law
             </h2>
             <p className="mt-4">
@@ -111,7 +112,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               External Links
             </h2>
             <p className="mt-4">
@@ -122,7 +123,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Changes to These Terms
             </h2>
             <p className="mt-4">
@@ -132,7 +133,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-display text-[20px] font-black uppercase tracking-button text-gold-bright">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Contact
             </h2>
             <p className="mt-4">
@@ -155,6 +156,6 @@ export default function TermsPage() {
           </section>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

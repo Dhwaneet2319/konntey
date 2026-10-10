@@ -18,7 +18,7 @@ const config: Config = {
           bright: "#d4a832",
           // Darker gold for small text on light backgrounds — passes WCAG AA
           // (≈4.9:1 on white) where `gold`/`gold-bright` fall short.
-          deep: "#8a6d1d",
+          deep: "#7a5f17",
         },
         "off-white": "#f5f3ee",
       },
@@ -36,14 +36,13 @@ const config: Config = {
         display: "0.9",
         body: "1.65",
       },
-      keyframes: {
-        ticker: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
+      // Mirrors src/lib/motion.ts.
+      transitionTimingFunction: {
+        brand: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
-      animation: {
-        ticker: "ticker 25s linear infinite",
+      transitionDuration: {
+        hover: "160ms",
+        enter: "450ms",
       },
     },
   },

@@ -20,6 +20,25 @@ export interface GuideLink {
   href: string;
 }
 
+export interface ChecklistItem {
+  id: string;
+  label: string;
+  /** What to ask or look for in the written quote. */
+  ask: string;
+}
+
+export interface GuideChecklist {
+  heading: string;
+  intro: string;
+  items: ChecklistItem[];
+  /** Hypothetical comparison — must stay labelled illustrative, with no prices. */
+  example?: {
+    heading: string;
+    note: string;
+    rows: { item: string; quoteA: string; quoteB: string }[];
+  };
+}
+
 export interface GuideAuthor {
   /** Real person's name, supplied and approved by the owner. */
   name: string;
@@ -47,6 +66,14 @@ export interface Guide {
    */
   author?: GuideAuthor;
   /**
+   * OWNER TODO: the qualified practitioner who checked the technical and
+   * regulatory statements. Until supplied the page says "Last updated"
+   * rather than "Reviewed".
+   */
+  reviewer?: GuideAuthor;
+  /** Date the reviewer signed off, e.g. "2026-10-05". Required with reviewer. */
+  reviewedDate?: string;
+  /**
    * Official sources backing regulatory/permit/cost claims (council, VBA,
    * Building and Plumbing Commission, consumer.vic.gov.au …). Rendered
    * prominently when present; strongly recommended for every cost/permit
@@ -55,6 +82,8 @@ export interface Guide {
   sources?: GuideLink[];
   /** Opening paragraphs shown before the first sub-heading. */
   intro: string[];
+  /** Interactive scope checklist rendered after the intro. */
+  checklist?: GuideChecklist;
   sections: GuideSection[];
   keyTakeaways: string[];
   /** Internal links surfaced at the foot of the article. */
@@ -75,9 +104,19 @@ export const guides: Guide[] = [
     category: "Cost Guides",
     readMinutes: 7,
     datePublished: "2026-07-01",
-    dateModified: "2026-07-01",
+    dateModified: "2026-09-29",
+    sources: [
+      {
+        label: "WorkSafe Victoria — Identifying engineered stone and the ban",
+        href: "https://www.worksafe.vic.gov.au/interpreting-data-sheets-identify-engineered-stone",
+      },
+      {
+        label: "Safe Work Australia — Engineered stone ban",
+        href: "https://www.safeworkaustralia.gov.au/safety-topic/hazards/silica/engineered-stone-ban",
+      },
+    ],
     intro: [
-      "A kitchen renovation is one of the highest-return upgrades you can make to a Melbourne home — but \"how much does it cost?\" almost always gets the same frustrating answer: it depends. This guide replaces that with real 2026 ranges, an honest breakdown of where each dollar goes, and the choices that move the price up or down.",
+      "A kitchen is often the room that changes daily life in a Melbourne home the most — but \"how much does it cost?\" almost always gets the same frustrating answer: it depends. This guide replaces that with real 2026 ranges, an honest breakdown of where each dollar goes, and the choices that move the price up or down.",
       "The figures below reflect what western and southeastern Melbourne homeowners are actually paying, from Tarneit and Point Cook new-estate kitchens to full strip-outs in established Werribee and Hoppers Crossing homes.",
     ],
     sections: [
@@ -88,7 +127,7 @@ export const guides: Guide[] = [
         ],
         bullets: [
           "Cabinet & benchtop refresh — $15,000 to $25,000. New doors, benchtop and splashback over the existing footprint. Best value if the layout already works.",
-          "Full kitchen renovation — $25,000 to $45,000. Complete strip-out, new cabinetry, stone benchtop, new appliances and finishes.",
+          "Full kitchen renovation — $25,000 to $45,000. Complete strip-out, new cabinetry, new benchtop, new appliances and finishes.",
           "Premium open-plan redesign — $45,000 to $80,000+. Removing walls, an island bench, butler's pantry and high-end fixtures.",
         ],
       },
@@ -99,7 +138,7 @@ export const guides: Guide[] = [
         ],
         bullets: [
           "Cabinetry — the biggest variable. Flat-pack is cheapest, custom joinery costs more but fits awkward spaces and lasts longer.",
-          "Benchtops — laminate is the budget option; engineered stone and natural stone sit at the top.",
+          "Benchtops — laminate is the budget option; timber, porcelain and natural stone cost more. We'll confirm which compliant products suit your budget at quote stage.",
           "Appliances — you control this entirely, from mid-range to premium European brands.",
           "Trades & labour — electrical, plumbing, tiling, plastering and project management.",
           "Structural work — removing a wall for open-plan living adds cost and may need a permit and engineering.",
@@ -110,7 +149,7 @@ export const guides: Guide[] = [
         bullets: [
           "Moving plumbing or the sink to a new location.",
           "Removing load-bearing walls (engineering + permit).",
-          "Stone benchtops with waterfall ends and full-height splashbacks.",
+          "Premium benchtops with waterfall ends and full-height splashbacks.",
           "Custom joinery, integrated appliances and soft-close everything.",
           "Older homes: asbestos checks and rectifying hidden damage found at demolition.",
         ],
@@ -119,9 +158,16 @@ export const guides: Guide[] = [
         heading: "How to save without cutting corners",
         bullets: [
           "Keep the existing layout — plumbing and gas stay put, which saves thousands.",
-          "Choose a quality engineered stone in a standard thickness rather than exotic natural stone.",
+          "Choose a benchtop in a standard thickness and edge profile — waterfall ends and thick edges add fabrication cost.",
           "Lock in every selection before work starts to avoid costly mid-project changes.",
           "Get an itemised fixed-price quote so you can see exactly what each upgrade adds.",
+        ],
+      },
+      {
+        heading: "A note on engineered stone",
+        paragraphs: [
+          "Since 1 July 2024, the manufacture, supply, processing and installation of engineered stone benchtops, panels and slabs has been prohibited in Australia. Some products are excluded from the ban, and there are separate rules for working on engineered stone that is already installed.",
+          "If you're comparing benchtop quotes, ask for the exact product name and its supplier documentation so you can check it is permitted. WorkSafe Victoria explains how to identify engineered stone from a product's safety data sheet.",
         ],
       },
       {
@@ -134,6 +180,7 @@ export const guides: Guide[] = [
     keyTakeaways: [
       "Budget $15k–$25k for a refresh, $25k–$45k for a full renovation, and $45k+ for open-plan.",
       "Cabinetry and benchtops are the biggest cost drivers — this is where your choices matter most.",
+      "New engineered stone benchtops have been banned in Australia since 1 July 2024 — ask for product documentation.",
       "Keeping the existing layout is the single biggest way to control cost.",
       "Always get an itemised, fixed-price quote so upgrades are transparent.",
     ],
@@ -141,6 +188,7 @@ export const guides: Guide[] = [
       { label: "Kitchen Renovations Melbourne", href: "/kitchen-renovations-melbourne" },
       { label: "Do You Need a Permit to Renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
       { label: "How to Choose a Renovation Builder", href: "/guides/how-to-choose-a-renovation-builder-melbourne" },
+      { label: "Renovation Quote Comparison Checklist", href: "/guides/renovation-quote-checklist-melbourne" },
       { label: "Get a Free Quote", href: "/quote" },
     ],
   },
@@ -155,7 +203,7 @@ export const guides: Guide[] = [
     category: "Cost Guides",
     readMinutes: 7,
     datePublished: "2026-07-01",
-    dateModified: "2026-07-01",
+    dateModified: "2026-09-29",
     intro: [
       "Bathrooms are small rooms with big budgets. Every square metre involves waterproofing, tiling, plumbing and fixtures — so cost per square metre is higher than almost any other room in the house. This guide sets out realistic 2026 ranges for Melbourne and explains what you're paying for.",
       "It also covers the part most quotes gloss over: the hidden costs that surface once demolition begins, especially in the 1970s–90s brick homes common across Werribee, Hoppers Crossing and Frankston.",
@@ -175,11 +223,11 @@ export const guides: Guide[] = [
           "Unlike a kitchen, much of a bathroom's cost is in labour and compliance rather than the visible fittings. Waterproofing and tiling are skilled, time-intensive trades — and getting them wrong is expensive.",
         ],
         bullets: [
-          "Waterproofing — a legal requirement, certified to AS/NZS 3740. Non-negotiable and worth paying to get right.",
+          "Waterproofing — wet areas must meet the National Construction Code, which references AS 3740 (Waterproofing of domestic wet areas). Non-negotiable and worth paying to get right.",
           "Tiling — labour-heavy; large-format tiles and full-height walls add time and cost.",
           "Plumbing — relocating the toilet, shower or vanity is far dearer than keeping fixtures in place.",
           "Fixtures & tapware — the range from builder-grade to premium is enormous.",
-          "Waterproofing certificate — issued on completion and kept with your property records.",
+          "Waterproofing documentation — ask who will install the membrane, which system is used, and what written record you'll receive on completion.",
         ],
       },
       {
@@ -203,7 +251,7 @@ export const guides: Guide[] = [
       {
         heading: "Permits and compliance",
         paragraphs: [
-          "Cosmetic swaps — retiling, a new vanity, fixture upgrades — generally don't need a permit. Moving plumbing or altering the layout in a way that affects the waterproofing membrane can. Waterproofing itself must always be certified. See our Victorian permit guide for the detail, and confirm with a registered building surveyor.",
+          "Cosmetic swaps — retiling, a new vanity, fixture upgrades — generally don't need a building permit. Moving plumbing or altering the layout in a way that affects the waterproofing membrane can. Plumbing work must be done by a licensed plumber, and waterproofing must meet the building code whether or not a permit is needed. See our Victorian permit guide for the detail, and confirm with a registered building surveyor.",
         ],
       },
     ],
@@ -211,12 +259,13 @@ export const guides: Guide[] = [
       "Budget $10k–$20k for an ensuite, $20k–$35k for a full bathroom, and $35k+ for a premium remodel.",
       "Waterproofing and tiling — not the fittings — are where much of the cost sits.",
       "Older homes carry real risk of hidden water damage or asbestos; build a contingency in.",
-      "Always insist on a waterproofing certificate on completion.",
+      "Ask for written details of the waterproofing system and who installed it on completion.",
     ],
     related: [
       { label: "Bathroom Renovations Melbourne", href: "/bathroom-renovations-melbourne" },
       { label: "Do You Need a Permit to Renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
       { label: "Kitchen Renovation Cost Guide", href: "/guides/kitchen-renovation-cost-melbourne" },
+      { label: "Renovation Quote Comparison Checklist", href: "/guides/renovation-quote-checklist-melbourne" },
       { label: "Get a Free Quote", href: "/quote" },
     ],
   },
@@ -231,7 +280,25 @@ export const guides: Guide[] = [
     category: "Permits & Process",
     readMinutes: 8,
     datePublished: "2026-07-01",
-    dateModified: "2026-07-01",
+    dateModified: "2026-09-29",
+    sources: [
+      {
+        label: "Building and Plumbing Commission — Appointing a building surveyor",
+        href: "https://www.bpc.vic.gov.au/home-owners/before-you-start-building/appointing-a-building-surveyor",
+      },
+      {
+        label: "Building and Plumbing Commission — Landscaping and decks",
+        href: "https://www.bpc.vic.gov.au/home-owners/home-renovation-and-building-essentials/landscaping",
+      },
+      {
+        label: "Wyndham City — When a building permit is required",
+        href: "https://www.wyndham.vic.gov.au/services/building/do-i-need-approval/when-building-permit-required",
+      },
+      {
+        label: "Building and Plumbing Commission — What is domestic building work?",
+        href: "https://www.bpc.vic.gov.au/resource-hub/info-sheets/What-is-domestic-building-work",
+      },
+    ],
     intro: [
       "Permits are the part of renovating that causes the most confusion — and the most expensive mistakes when skipped. This guide explains, in plain English, when a Victorian renovation needs approval, when it doesn't, and who actually issues permits.",
       "Important: this is general information, not legal advice. Rules are applied by individual councils and registered building surveyors, and they change. Always confirm your specific project before work starts.",
@@ -245,6 +312,7 @@ export const guides: Guide[] = [
         bullets: [
           "A building permit is about how you build — structural safety, waterproofing, energy and compliance with the building code. Issued by a registered building surveyor.",
           "A planning permit is about what and where you build — how a change affects the neighbourhood, overlays, heritage and setbacks. Issued through your local council.",
+          "Some trades carry their own separate requirements — for example, plumbing and electrical work must be done by licensed practitioners, whether or not a building permit is needed.",
         ],
       },
       {
@@ -253,7 +321,7 @@ export const guides: Guide[] = [
           "Home extensions and adding rooms.",
           "Removing or altering load-bearing (structural) walls.",
           "New garages, carports and many sheds.",
-          "Decks and verandahs above a certain height off the ground.",
+          "Decks built on a structural subfloor (stumps, bearers and joists), and verandahs.",
           "Re-stumping or underpinning.",
           "Significant plumbing or drainage changes.",
         ],
@@ -267,33 +335,35 @@ export const guides: Guide[] = [
           "Repainting, re-flooring and re-tiling.",
           "Like-for-like cabinetry, vanity and fixture replacement.",
           "Minor repairs and maintenance.",
-          "Some low, ground-level decks below the height threshold (confirm this — it's the one people get wrong).",
         ],
       },
       {
         heading: "Wet areas and waterproofing",
         paragraphs: [
-          "Even when a full permit isn't required, waterproofing in bathrooms, ensuites and laundries must be done to the Australian Standard (AS/NZS 3740) and certified. This protects your home and is checked at resale — never treat it as optional.",
+          "Even when a building permit isn't required, waterproofing in bathrooms, ensuites and laundries must meet the National Construction Code, which references the Australian Standard AS 3740 (Waterproofing of domestic wet areas). This protects your home from hidden water damage — never treat it as optional. Ask your builder which waterproofing system will be used, who will install it, and what written record you'll receive.",
         ],
       },
       {
         heading: "Decks and pergolas — the grey area",
         paragraphs: [
-          "Decks are the most common source of confusion. As a rule of thumb, low decks close to the ground are often exempt, while decks above a set height, or those attached to the dwelling, usually need a building permit — and sometimes a planning permit depending on your overlays. Because the thresholds are specific and council-dependent, always check before you build rather than after.",
+          "Decks are the most common source of confusion, and the deciding question is usually how the deck is built rather than simply how high it is. A deck built on a structural subfloor — stumps or footings carrying bearers and joists — generally needs a building permit. Decking boards laid directly onto an existing surface, such as a concrete slab, are treated differently.",
+          "Pergolas, verandahs and other roofed structures have their own rules, and any outdoor structure may also need a planning permit depending on your overlays. Wyndham City and the Building and Plumbing Commission both publish guidance (linked below), but the only reliable answer for your project comes from a registered building surveyor — check before you build, not after.",
         ],
       },
       {
         heading: "Who issues permits, and who can help",
         paragraphs: [
-          "Building permits are issued by registered building surveyors; planning permits go through your local council (for example Wyndham City, Casey, Greater Dandenong, Frankston or Cardinia Shire). A good renovation builder assesses what your project needs and manages the applications for you — at Konntey, permit assessment is part of every quote at no extra cost. You can also verify any builder's registration through the Building and Plumbing Commission (BPC).",
+          "Building permits are issued by registered building surveyors. As the owner, you can appoint a private building surveyor or use your council's municipal building surveyor — and you should appoint them yourself rather than leaving the choice entirely to the builder. Planning permits go through your local council (for example Wyndham City, Casey, Greater Dandenong, Frankston or Cardinia Shire).",
+          "A good renovation builder assesses what your project needs and coordinates the paperwork with your surveyor and council — at Konntey, permit assessment is part of every quote at no extra cost. You can also check any builder's registration on the Building and Plumbing Commission (BPC) public register.",
         ],
       },
     ],
     keyTakeaways: [
       "Building permits cover how you build; planning permits cover what and where — a project may need one, both or neither.",
-      "Extensions, structural changes, garages and higher decks generally need a building permit.",
-      "Most cosmetic refreshes don't — but waterproofing must always be certified.",
-      "Decks are the classic grey area: always confirm the height threshold with a surveyor first.",
+      "Extensions, structural changes, garages and decks on a structural subfloor generally need a building permit.",
+      "Most cosmetic refreshes don't need a building permit — but wet-area waterproofing must still meet the building code.",
+      "For decks, what matters is how the deck is built, not a single height rule — confirm with a registered building surveyor first.",
+      "You, as the owner, can choose and appoint the building surveyor.",
     ],
     related: [
       { label: "Home Extensions Melbourne", href: "/home-extensions-melbourne" },
@@ -388,6 +458,16 @@ export const guides: Guide[] = [
     readMinutes: 8,
     datePublished: "2026-07-01",
     dateModified: "2026-07-01",
+    sources: [
+      {
+        label: "Building and Plumbing Commission — What is domestic building work?",
+        href: "https://www.bpc.vic.gov.au/resource-hub/info-sheets/What-is-domestic-building-work",
+      },
+      {
+        label: "Building and Plumbing Commission — Appointing a building surveyor",
+        href: "https://www.bpc.vic.gov.au/home-owners/before-you-start-building/appointing-a-building-surveyor",
+      },
+    ],
     intro: [
       "Choosing the right builder is the single biggest factor in whether your renovation is a good experience or a costly one. Melbourne has thousands of operators, and the gap between the best and the worst is enormous. This checklist covers what to verify, what to ask, and the warning signs to walk away from.",
       "The regulatory points below are specific to Victoria — always confirm current requirements, as the rules and the regulator's name have changed in recent years.",
@@ -458,8 +538,96 @@ export const guides: Guide[] = [
     related: [
       { label: "Home Extensions Melbourne", href: "/home-extensions-melbourne" },
       { label: "Kitchen Renovations Melbourne", href: "/kitchen-renovations-melbourne" },
+      { label: "Renovation Quote Comparison Checklist", href: "/guides/renovation-quote-checklist-melbourne" },
       { label: "Do You Need a Permit to Renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
       { label: "Get a Free Quote", href: "/quote" },
+    ],
+  },
+  {
+    // OWNER TODO: have the builder review this checklist (especially the
+    // waterproofing, approvals and GST wording) and add a `reviewer` once done.
+    slug: "renovation-quote-checklist-melbourne",
+    title: "Renovation Quote Comparison Checklist (Melbourne)",
+    metaTitle: "Renovation Quote Comparison Checklist | Melbourne",
+    description:
+      "A free checklist for comparing renovation quotes in Melbourne: inclusions, exclusions, owner-supplied items, allowances, approvals, GST and variations.",
+    excerpt:
+      "Two quotes, very different numbers? Use this free 15-point checklist to see what each quote actually includes before you compare prices.",
+    category: "Planning",
+    readMinutes: 6,
+    datePublished: "2026-09-30",
+    dateModified: "2026-09-30",
+    intro: [
+      "Renovation quotes for the same job can look wildly different, and the gap is often less about price than about what each quote covers. One may include tiles, rubbish removal and waterproofing documentation; another may assume you'll supply the tiles and leave the skip to you.",
+      "This checklist helps you compare scope, item by item, before you compare the bottom line. It doesn't tell you what a fair price is and it can't check whether another builder's work will comply. What it does is show you which questions to ask so every quote describes the same job.",
+    ],
+    checklist: {
+      heading: "The 15-point scope checklist",
+      intro:
+        "Work through each quote you have. Tick an item only when the quote states it clearly in writing; anything left unticked is a question to ask that builder.",
+      items: [
+        { id: "demolition", label: "Demolition and removal", ask: "Is strip-out included, and does the price cover skip hire and disposal of the old materials?" },
+        { id: "preparation", label: "Preparation and repairs", ask: "What happens if hidden damage (rot, water damage, uneven floors) is found? Is there a stated rate or allowance for repairs?" },
+        { id: "services", label: "Plumbing and electrical scope", ask: "Which points are being moved, added or just reconnected? Are licensed trades and their compliance paperwork included?" },
+        { id: "waterproofing", label: "Waterproofing scope and documentation", ask: "Which areas will be waterproofed, who applies it, and what written documentation will you receive at the end?" },
+        { id: "fixtures", label: "Fixtures: builder-supplied or owner-supplied", ask: "Which fixtures (tapware, toilet, vanity, appliances) does the builder supply, and which are you expected to buy?" },
+        { id: "tiles", label: "Tile supply versus installation", ask: "Does the price include the tiles themselves, or only laying them? If supply is included, what tile price or range is assumed?" },
+        { id: "cabinetry", label: "Cabinets and benchtops", ask: "Are cabinet and benchtop materials, finishes and hardware named, or described only generally?" },
+        { id: "allowances", label: "Allowances", ask: "Are any items priced as an allowance? What is each allowance for, and what happens if your selection costs more or less?" },
+        { id: "exclusions", label: "Exclusions", ask: "Is there a written list of what is not included? Read it as carefully as the inclusions." },
+        { id: "access", label: "Site access and protection", ask: "Does the quote cover protecting floors and other rooms, dust control, and any access issues (parking, stairs, tight side access)?" },
+        { id: "approvals", label: "Approvals responsibility", ask: "If a permit or other approval is needed, who arranges it and is the cost included? If none is needed, has the builder said why?" },
+        { id: "programme", label: "Programme", ask: "Is there an expected start date and duration, and what could cause it to change?" },
+        { id: "gst", label: "GST treatment", ask: "Is the price stated as including or excluding GST?" },
+        { id: "variations", label: "Variation process", ask: "How are changes priced and approved? Look for changes being agreed in writing before the work is done." },
+        { id: "handover", label: "Handover documentation", ask: "What will you receive at the end: warranties, compliance certificates, care instructions, and product details?" },
+      ],
+      example: {
+        heading: "Illustrative example: two bathroom quotes",
+        note:
+          "This is a made-up comparison to show how the checklist works. It is not a real quote from Konntey or any other builder, and it deliberately shows no prices.",
+        rows: [
+          { item: "Tiles", quoteA: "Supply and install", quoteB: "Install only (owner supplies)" },
+          { item: "Tapware and vanity", quoteA: "Allowance stated per item", quoteB: "Not mentioned" },
+          { item: "Waterproofing documentation", quoteA: "Written documentation at handover", quoteB: "Not mentioned" },
+          { item: "Rubbish removal", quoteA: "Included", quoteB: "Excluded" },
+          { item: "GST", quoteA: "Included", quoteB: "Not stated" },
+          { item: "Variations", quoteA: "Priced and approved in writing", quoteB: "Not stated" },
+        ],
+      },
+    },
+    sections: [
+      {
+        heading: "Reading the illustrative example",
+        paragraphs: [
+          "In the example above, Quote B may well come in lower, but it leaves the tiles, fixtures and rubbish removal to the homeowner and says nothing about waterproofing paperwork, GST or changes. Until those gaps are filled in, the two numbers aren't describing the same bathroom.",
+          "The fix is simple: send each builder the same list of questions and ask them to confirm the answers in writing. A builder who answers clearly at the quoting stage is also showing you how they're likely to communicate during the job.",
+        ],
+      },
+      {
+        heading: "What this checklist can't do",
+        paragraphs: [
+          "It can't tell you whether a price is fair, and it can't confirm that work will meet building regulations. For permit questions, speak to a registered building surveyor or your council. To check a builder's registration, use the Building and Plumbing Commission's public register.",
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "Compare scope before price: make sure every quote describes the same job.",
+      "Anything not stated in writing is a question to ask, not an assumption to make.",
+      "Owner-supplied items and allowances are the most common reasons quotes differ.",
+      "Agree how changes will be priced and approved before work starts.",
+    ],
+    sources: [
+      {
+        label: "Building and Plumbing Commission — What is domestic building work?",
+        href: "https://www.bpc.vic.gov.au/resource-hub/info-sheets/What-is-domestic-building-work",
+      },
+    ],
+    related: [
+      { label: "How to Choose a Renovation Builder", href: "/guides/how-to-choose-a-renovation-builder-melbourne" },
+      { label: "Bathroom Renovation Cost Guide", href: "/guides/bathroom-renovation-cost-melbourne" },
+      { label: "Kitchen Renovation Cost Guide", href: "/guides/kitchen-renovation-cost-melbourne" },
+      { label: "Do You Need a Permit to Renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
     ],
   },
 ];

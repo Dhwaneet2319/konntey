@@ -2,28 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Mobile-only: loosen tight letter-spacing on display headings to prevent overlap */
-@media (max-width: 767px) {
-  .tracking-tightest {
-    letter-spacing: -0.5px !important;
-  }
-  .tracking-tighter {
-    letter-spacing: 0px !important;
-  }
-  .tracking-\[-4px\] {
-    letter-spacing: -1px !important;
-  }
-  .lg\:tracking-\[-10px\] {
-    letter-spacing: -1px !important;
-  }
-}
-
 :root {
   --navy: #0d1f3c;
   --navy-light: #152848;
   --gold: #b8962e;
   --gold-bright: #d4a832;
   --off-white: #f5f3ee;
+
+  /* Motion tokens; mirror src/lib/motion.ts and tailwind.config.ts. */
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-hover: 160ms;
+  --motion-entrance: 450ms;
+  --motion-travel: 12px;
 }
 
 * {
@@ -34,250 +24,16 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: var(--navy);
-  color: #fff;
-  overflow-x: hidden;
-}
-
-/* Glassmorphism utility */
-.glass {
-  background: rgba(13, 31, 60, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.glass-light {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(13, 31, 60, 0.06);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-
-/* Grain overlay - disabled for performance */
-.grain-overlay {
-  display: none;
-}
-
-/* Corner cut overlays */
-.corner-cut {
-  position: absolute;
-  width: 0;
-  height: 0;
-  z-index: 2;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.parent-group:hover .corner-cut-tl {
-  border-left-width: 70px;
-  border-bottom-width: 90px;
-}
-.parent-group:hover .corner-cut-br {
-  border-right-width: 70px;
-  border-top-width: 90px;
-}
-
-.corner-cut-tl {
-  top: 0;
-  left: 0;
-  border-left: 60px solid var(--navy);
-  border-bottom: 80px solid transparent;
-}
-
-.corner-cut-br {
-  bottom: 0;
-  right: 0;
-  border-right: 60px solid var(--navy);
-  border-top: 80px solid transparent;
-}
-
-.corner-cut-tr {
-  top: 0;
-  right: 0;
-  border-right: 60px solid var(--navy);
-  border-bottom: 80px solid transparent;
-}
-
-.corner-cut-light-tl {
-  top: 0;
-  left: 0;
-  border-left: 60px solid var(--off-white);
-  border-bottom: 80px solid transparent;
-}
-
-.corner-cut-light-br {
-  bottom: 0;
-  right: 0;
-  border-right: 60px solid var(--off-white);
-  border-top: 80px solid transparent;
-}
-
-.corner-cut-offwhite-tl {
-  top: 0;
-  left: 0;
-  border-left: 60px solid var(--off-white);
-  border-bottom: 80px solid transparent;
-}
-
-.corner-cut-offwhite-br {
-  bottom: 0;
-  right: 0;
-  border-right: 60px solid var(--off-white);
-  border-top: 80px solid transparent;
-}
-
-.corner-cut-small {
-  top: 0;
-  left: 0;
-  border-left: 30px solid var(--navy);
-  border-bottom: 40px solid transparent;
-}
-
-.corner-cut-white-tl {
-  top: 0;
-  left: 0;
-  border-left: 60px solid #fff;
-  border-bottom: 80px solid transparent;
-}
-
-.corner-cut-white-br {
-  bottom: 0;
-  right: 0;
-  border-right: 60px solid #fff;
-  border-top: 80px solid transparent;
-}
-
-/* Gold bracket corners on images */
-.bracket-corners {
-  position: relative;
-}
-
-.bracket-corners::before,
-.bracket-corners::after {
-  content: "";
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border-color: var(--gold);
-  z-index: 3;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.parent-group:hover .bracket-corners::before {
-  top: 8px;
-  left: 8px;
-}
-.parent-group:hover .bracket-corners::after {
-  bottom: 8px;
-  right: 8px;
-}
-
-.bracket-corners::before {
-  top: 16px;
-  left: 16px;
-  border-left: 2px solid var(--gold);
-  border-top: 2px solid var(--gold);
-}
-
-.bracket-corners::after {
-  bottom: 16px;
-  right: 16px;
-  border-right: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
-}
-
-.bracket-corners-extra::before {
-  content: "";
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
-  border-right: 2px solid var(--gold);
-  border-top: 2px solid var(--gold);
-  z-index: 3;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.bracket-corners-extra::after {
-  content: "";
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  width: 36px;
-  height: 36px;
-  border-left: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
-  z-index: 3;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.parent-group:hover .bracket-corners-extra::before {
-  top: 8px;
-  right: 8px;
-}
-.parent-group:hover .bracket-corners-extra::after {
-  bottom: 8px;
-  left: 8px;
-}
-
-/* Chevron decorations */
-.chevron-decoration {
-  position: absolute;
-  font-family: var(--font-barlow-condensed), sans-serif;
-  font-weight: 900;
-  font-size: 28px;
-  color: var(--gold);
-  opacity: 0.8;
-  z-index: 3;
-  letter-spacing: 2px;
-}
-
-.chevron-tl {
-  top: 16px;
-  left: 20px;
-}
-
-.chevron-br {
-  bottom: 16px;
-  right: 20px;
-}
-
-/* Custom Text Mask Reveal Layering */
-.text-mask-outline {
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
-  color: transparent;
-}
-
-/* Ticker animation */
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: ticker 35s linear infinite;
-}
-
-@keyframes ticker {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Hidden Scrollbar */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  background-color: #fff;
+  color: var(--navy);
+  overflow-x: clip;
 }
 
 ::selection {
@@ -285,101 +41,101 @@ body {
   color: var(--navy);
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--off-white);
+/* Long words and URLs (emails, suburb lists) must not force sideways scroll
+   at narrow widths or 200% zoom. */
+p,
+li,
+dd,
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--gold);
-  border-radius: 0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-bright);
-}
-
-
-/* ===== PERFORMANCE OPTIMIZATIONS ===== */
-
-/*
- * Previously every element with an inline transform/opacity (i.e. every
- * framer-motion node) was permanently promoted to its own compositor layer via
- * a broad [style*="transform"] rule. That bloats memory and can hurt scrolling.
- * framer-motion already toggles will-change for the duration of each animation,
- * so we only keep explicit GPU hints on the few always-animating elements below.
+/* ===== SCROLL REVEAL =====
+ * Server HTML is always visible. After hydration, RevealObserver marks only
+ * elements still below the viewport as "hidden", then "shown" on entry, so
+ * content never depends on JavaScript to appear.
  */
-
-/* Opt-in GPU promotion for genuinely hot elements */
-.gpu-layer {
-  will-change: transform, opacity;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+[data-reveal="rise"][data-reveal-state],
+[data-reveal="fade"][data-reveal-state],
+[data-reveal="group"][data-reveal-state] > * {
+  transition:
+    opacity var(--motion-entrance) var(--motion-ease) var(--reveal-delay, 0s),
+    transform var(--motion-entrance) var(--motion-ease) var(--reveal-delay, 0s);
 }
 
-/* GPU-accelerate ticker for silky smooth scrolling */
-.ticker-track {
-  will-change: transform;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+[data-reveal="rise"][data-reveal-state="hidden"],
+[data-reveal="group"][data-reveal-state="hidden"] > * {
+  opacity: 0;
+  transform: translateY(var(--motion-travel));
 }
 
-/* Promote layers for corner transitions */
-.corner-cut {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+[data-reveal="fade"][data-reveal-state="hidden"] {
+  opacity: 0;
 }
 
-/* Promote hover targets to own layer to avoid repaints */
-.parent-group {
-  isolation: isolate;
+[data-reveal="line"][data-reveal-state] {
+  transition: transform 600ms var(--motion-ease) var(--reveal-delay, 0s);
 }
 
-/* WhatsApp button fade-in via CSS (no JS spring needed) */
-@keyframes fadeInUp {
-  from {
+[data-reveal="line"][data-reveal-state="hidden"] {
+  transform: scaleX(0);
+}
+
+/* ===== FLOATING CONTACT ===== */
+.wa-float {
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 640px) {
+  .wa-float {
+    bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  html[data-mobile-bar] .wa-float {
+    bottom: calc(5.25rem + env(safe-area-inset-bottom));
+  }
+
+  html[data-typing] .wa-float {
     opacity: 0;
-    transform: translateY(12px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    pointer-events: none;
   }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 2s both;
+/* ===== /scan page helpers ===== */
+.grain-overlay {
+  display: none;
 }
 
-/* Optimize images — skip offscreen rendering + prevent CLS */
-img {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 300px;
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-/* Contain paint utility for image containers */
-.contain-paint {
-  contain: paint;
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Optimize font rendering for headings */
-.font-display {
-  text-rendering: optimizeSpeed;
-}
-
-/* ===== LOW-END DEVICE OPTIMIZATIONS ===== */
-
-/* Reduce motion for users who prefer it */
+/* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
-  .ticker-track {
-    animation: none;
+  html {
+    scroll-behavior: auto;
   }
-  
+
+  [data-reveal][data-reveal-state="hidden"],
+  [data-reveal="group"][data-reveal-state="hidden"] > * {
+    opacity: 1;
+    transform: none;
+  }
+
   *,
   *::before,
   *::after {
@@ -390,44 +146,59 @@ img {
   }
 }
 
-/* Reduce complexity on devices with limited memory/GPU */
-@media (max-width: 768px) {
-  /* Disable hover scale effects on mobile (saves GPU compositing) */
-  .parent-group:hover .corner-cut-tl,
-  .parent-group:hover .corner-cut-br {
-    border-left-width: 60px !important;
-    border-bottom-width: 80px !important;
-    border-right-width: 60px !important;
-    border-top-width: 80px !important;
-  }
-  
-  /* Reduce backdrop-blur intensity on mobile (very expensive on low-end) */
-  .glass,
-  .glass-light {
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-  
-  /* Simplify ticker animation for lower CPU usage */
-  .ticker-track {
-    animation-duration: 50s;
-  }
-  
-  /* Disable hover transforms on touch devices */
-  .group-hover\:scale-105 {
+/* ===== PRINT ===== */
+@media print {
+  [data-reveal][data-reveal-state="hidden"],
+  [data-reveal="group"][data-reveal-state="hidden"] > * {
+    opacity: 1 !important;
     transform: none !important;
   }
-}
 
-/* Force GPU compositing for smooth scrolling on all devices */
-main {
-  -webkit-overflow-scrolling: touch;
-}
+  @page {
+    margin: 16mm;
+  }
 
-/* Prevent expensive paint on navbar scroll */
-.glass-light,
-.glass {
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  header.fixed,
+  #mobile-menu,
+  .wa-float,
+  [data-placement="mobile_bar"],
+  nav[aria-label="Breadcrumb"],
+  footer {
+    display: none !important;
+  }
+
+  /* Dark sections print as plain black-on-white to save ink. */
+  body,
+  .bg-navy,
+  .bg-navy-light,
+  .bg-off-white {
+    background: #fff !important;
+  }
+
+  body,
+  [class*="text-white"],
+  [class*="text-gold"],
+  [class*="text-navy"] {
+    color: #000 !important;
+  }
+
+  [class*="border-white"],
+  [class*="border-gold"] {
+    border-color: #888 !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  li,
+  tr {
+    break-inside: avoid;
+  }
+
+  article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    overflow-wrap: anywhere;
+  }
 }

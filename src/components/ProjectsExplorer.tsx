@@ -108,7 +108,7 @@ export default function ProjectsExplorer({ projects }: { projects: Project[] }) 
           ))}
         </div>
       ) : (
-        <p className="font-body text-[15px] text-navy/60">
+        <p className="font-body text-[15px] text-navy/70">
           No projects match this filter yet.
         </p>
       )}

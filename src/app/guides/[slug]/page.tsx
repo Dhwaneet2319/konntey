@@ -5,53 +5,47 @@ import { ChevronRight, ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/chat/FloatingActions";
+import QuoteChecklist from "@/components/QuoteChecklist";
 import { guides, getGuide, GUIDES_BASE_URL } from "@/content/guides";
+import { quoteKind } from "@/content/business";
+import type { SiteImageKey } from "@/content/images";
+import { pageMetadata } from "@/lib/seo";
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = false;
+
+function formatMonth(date: string): string {
+  return new Date(date).toLocaleDateString("en-AU", { month: "long", year: "numeric" });
+}
 
 export function generateStaticParams() {
   return guides.map((g) => ({ slug: g.slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const guide = getGuide(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const guide = getGuide((await params).slug);
   if (!guide) return {};
 
-  const url = `${GUIDES_BASE_URL}/guides/${guide.slug}`;
-
-  return {
+  return pageMetadata({
     title: guide.metaTitle,
+    socialTitle: guide.title,
     description: guide.description,
-    alternates: { canonical: `/guides/${guide.slug}` },
-    openGraph: {
-      title: `${guide.title} | Konntey H&R`,
-      description: guide.description,
-      url,
-      siteName: "Konntey Home & Renovations",
-      locale: "en_AU",
-      type: "article",
-      publishedTime: guide.datePublished,
-      modifiedTime: guide.dateModified,
-      images: [
-        {
-          url: "/images/hero-main.webp",
-          width: 1200,
-          height: 630,
-          alt: guide.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${guide.title} | Konntey H&R`,
-      description: guide.description,
-      images: ["/images/hero-main.webp"],
-    },
-  };
+    path: `/guides/${guide.slug}`,
+    image: guideSocialImage(guide.slug),
+    article: { publishedTime: guide.datePublished, modifiedTime: guide.dateModified },
+  });
 }
 
-export default function GuideArticlePage({ params }: Props) {
-  const guide = getGuide(params.slug);
+function guideSocialImage(slug: string): SiteImageKey {
+  if (slug.includes("kitchen")) return "socialKitchen";
+  if (slug.includes("bathroom")) return "socialBathroom";
+  if (slug.includes("extension")) return "socialExtensions";
+  return "socialDefault";
+}
+
+export default async function GuideArticlePage({ params }: Props) {
+  const guide = getGuide((await params).slug);
   if (!guide) notFound();
 
   const url = `${GUIDES_BASE_URL}/guides/${guide.slug}`;
@@ -80,7 +74,20 @@ export default function GuideArticlePage({ params }: Props) {
       "@id": `${GUIDES_BASE_URL}/#organization`,
     },
     image: `${GUIDES_BASE_URL}/images/hero-main.webp`,
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+      ...(guide.reviewer && guide.reviewedDate
+        ? {
+            reviewedBy: {
+              "@type": "Person",
+              name: guide.reviewer.name,
+              jobTitle: guide.reviewer.role,
+            },
+            lastReviewed: guide.reviewedDate,
+          }
+        : {}),
+    },
     articleSection: guide.category,
   };
 
@@ -101,7 +108,7 @@ export default function GuideArticlePage({ params }: Props) {
       <NavBar theme="dark" />
       <FloatingActions />
 
-      <main className="flex-grow">
+      <main id="main" className="flex-grow">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="border-b border-white/10 px-4 sm:px-6 lg:px-8 pt-[110px]">
           <div className="mx-auto max-w-3xl pb-4">
@@ -123,7 +130,7 @@ export default function GuideArticlePage({ params }: Props) {
               <span className="text-white/25">•</span>
               <span className="text-white/50">{guide.readMinutes} min read</span>
             </div>
-            <h1 className="mt-5 font-display text-[clamp(2.25rem,6vw,4rem)] font-black uppercase leading-[0.9] tracking-tightest text-white">
+            <h1 className="mt-5 font-display text-[clamp(2.25rem,6vw,4rem)] font-bold leading-[1] tracking-[-0.02em] text-white">
               {guide.title}
             </h1>
 
@@ -135,11 +142,14 @@ export default function GuideArticlePage({ params }: Props) {
                   {" · "}
                 </>
               )}
-              Reviewed:{" "}
-              {new Date(guide.dateModified).toLocaleDateString("en-AU", {
-                month: "long",
-                year: "numeric",
-              })}
+              {guide.reviewer && guide.reviewedDate && (
+                <>
+                  Reviewed by: {guide.reviewer.name}, {guide.reviewer.role},{" "}
+                  {formatMonth(guide.reviewedDate)}
+                  {" · "}
+                </>
+              )}
+              Last updated: {formatMonth(guide.dateModified)}
               {" · "}Melbourne/Victoria guidance
             </p>
 
@@ -150,11 +160,13 @@ export default function GuideArticlePage({ params }: Props) {
               ))}
             </div>
 
+            {guide.checklist && <QuoteChecklist checklist={guide.checklist} />}
+
             {/* Sections */}
             <div className="mt-14 space-y-12">
               {guide.sections.map((section) => (
                 <section key={section.heading}>
-                  <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-black uppercase tracking-tightest leading-[1] text-gold-bright">
+                  <h2 className="font-display text-[clamp(1.5rem,3.5vw,2rem)] font-bold tracking-[-0.01em] leading-[1] text-gold-bright">
                     {section.heading}
                   </h2>
                   {section.paragraphs?.map((p) => (
@@ -178,8 +190,8 @@ export default function GuideArticlePage({ params }: Props) {
 
             {/* Key takeaways */}
             <div className="mt-14 border border-gold-bright/25 bg-navy-light p-8">
-              <h2 className="font-display text-[18px] font-black uppercase tracking-button text-gold-bright">
-                Key Takeaways
+              <h2 className="font-display text-[18px] font-bold text-gold-bright">
+                Key takeaways
               </h2>
               <ul className="mt-6 space-y-4">
                 {guide.keyTakeaways.map((t) => (
@@ -194,8 +206,8 @@ export default function GuideArticlePage({ params }: Props) {
             {/* Official sources — rendered when supplied for the guide */}
             {guide.sources && guide.sources.length > 0 && (
               <div className="mt-14 border border-white/10 bg-navy-light p-8">
-                <h2 className="font-display text-[16px] font-black uppercase tracking-button text-gold-bright">
-                  Official Sources
+                <h2 className="font-display text-[16px] font-bold text-gold-bright">
+                  Official sources
                 </h2>
                 <ul className="mt-5 space-y-3">
                   {guide.sources.map((s) => (
@@ -216,9 +228,9 @@ export default function GuideArticlePage({ params }: Props) {
             )}
 
             {/* Related links */}
-            <div className="mt-14 border-t border-white/10 pt-10">
-              <h2 className="font-display text-[16px] font-black uppercase tracking-button text-white/50 mb-5">
-                Keep Reading
+            <div className="mt-14 border-t border-white/10 pt-10 print:hidden">
+              <h2 className="font-display text-[16px] font-bold text-white/50 mb-5">
+                Keep reading
               </h2>
               <div className="flex flex-col gap-3">
                 {guide.related.map((r) => (
@@ -227,7 +239,7 @@ export default function GuideArticlePage({ params }: Props) {
                     href={r.href}
                     className="group inline-flex items-center justify-between border border-white/10 px-6 py-4 transition-colors hover:border-gold-bright/40"
                   >
-                    <span className="font-display text-[15px] font-bold uppercase tracking-button text-white/85 group-hover:text-gold-bright transition-colors">
+                    <span className="font-display text-[15px] font-bold text-white/85 group-hover:text-gold-bright transition-colors">
                       {r.label}
                     </span>
                     <ArrowRight size={16} strokeWidth={2.25} className="shrink-0 text-gold-bright transition-transform group-hover:translate-x-1" />
@@ -237,40 +249,40 @@ export default function GuideArticlePage({ params }: Props) {
             </div>
 
             {/* Disclaimer */}
-            <p className="mt-12 font-body text-[13px] leading-[1.7] text-white/40 italic">
+            <p className="mt-12 font-body text-[13px] leading-[1.7] text-white/60 italic">
               This guide is general information for Melbourne homeowners, not legal or financial
               advice. Costs are indicative and vary by project. Always confirm permit and
               compliance requirements with your council, a registered building surveyor, or the
               Building and Plumbing Commission before starting work.
             </p>
 
-            <div className="mt-10">
+            <div className="mt-10 print:hidden">
               <Link
                 href="/guides"
-                className="inline-flex items-center gap-2 font-display text-[15px] font-black uppercase tracking-button text-gold-bright hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 font-display text-[15px] font-bold text-gold-bright hover:text-white transition-colors"
               >
                 <ArrowLeft size={16} strokeWidth={2.25} className="shrink-0" />
-                <span>All Guides</span>
+                <span>All guides</span>
               </Link>
             </div>
           </div>
         </article>
 
         {/* CTA */}
-        <section className="bg-gold-bright text-navy py-16 px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mx-auto max-w-[1600px]">
-            <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tightest leading-[0.9] max-w-3xl mx-auto">
+        <section className="print:hidden bg-gold-bright text-navy py-16 px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mx-auto max-w-[1216px]">
+            <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-[-0.01em] leading-[1.05] max-w-3xl mx-auto">
               Ready to start your renovation?
             </h2>
             <p className="mt-6 font-body text-[17px] leading-[1.8] text-navy/80 max-w-2xl mx-auto">
-              Get a free, fixed-price quote from Melbourne&apos;s founder-led renovation team.
+              Book a free consultation and get a {quoteKind} for your project.
             </p>
-            <div className="mt-10">
+            <div className="mt-10 print:hidden">
               <Link
                 href="/quote"
-                className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-black uppercase tracking-button text-gold-bright hover:-translate-y-0.5 transition-transform"
+                className="inline-flex bg-navy px-8 py-4 font-display text-[14px] font-bold text-gold-bright hover:-translate-y-0.5 transition-transform"
               >
-                Get a Free Quote →
+                Get a free quote →
               </Link>
             </div>
           </div>
