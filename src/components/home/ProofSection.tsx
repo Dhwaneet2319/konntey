@@ -1,21 +1,20 @@
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
+import { homeImages } from "@/components/home/home-images";
 import { Container, SectionHeading, TextLink } from "@/components/ui";
 import { business, googleMapsSearchUrl } from "@/content/business";
-import { isVerifiedWork, siteImages } from "@/content/images";
 import { publishedProjects, projectsHubLive } from "@/content/projects";
 
 /**
  * Proof directly after the hero. Shows published, owner-approved case studies
- * when they exist; otherwise an honest empty state with a captioned example
- * before/after. Never placeholder projects, ratings or testimonials.
+ * when they exist; otherwise an honest empty state whose before/after is an
+ * illustrative AI-generated design concept (disclosed on /terms#imagery) —
+ * never placeholder projects, ratings or testimonials, and never presented
+ * as Konntey work.
  */
 export default function ProofSection() {
   const featured = publishedProjects().slice(0, 3);
-  const before = siteImages.kitchenBefore;
-  const after = siteImages.kitchenAfter;
-  const exampleIsOurs = isVerifiedWork(before, after);
 
   if (featured.length > 0) {
     return (
@@ -44,12 +43,8 @@ export default function ProofSection() {
           <SectionHeading
             id="work-heading"
             kicker="Our work"
-            title={exampleIsOurs ? "A recent kitchen transformation" : "See what a renovation can change"}
-            intro={
-              exampleIsOurs
-                ? undefined
-                : "Detailed case studies of completed Konntey projects are being prepared with our clients' permission. Until then, ask us for recent examples of similar work at your free consultation."
-            }
+            title="See what a redesign could change"
+            intro="Detailed case studies of completed Konntey projects are being prepared with our clients' permission. Until then, this AI-generated concept shows the kind of change a renovation can make — ask us for recent examples of similar work at your free consultation."
           />
           <div className="mt-6 flex flex-col items-start gap-3">
             <TextLink href="/kitchen-renovations-melbourne">Kitchen renovations</TextLink>
@@ -64,7 +59,12 @@ export default function ProofSection() {
             </a>
           </div>
         </div>
-        <BeforeAfterSlider before={before} after={after} placement="home_proof" sizes="(max-width: 1024px) 100vw, 720px" />
+        <BeforeAfterSlider
+          before={homeImages["kitchen-before-concept"]}
+          after={homeImages["kitchen-after-concept"]}
+          placement="home_proof"
+          sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), (max-width: 1279px) calc((100vw - 128px) * 0.6), 691px"
+        />
       </Container>
     </section>
   );

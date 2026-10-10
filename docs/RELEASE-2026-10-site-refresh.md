@@ -146,3 +146,50 @@ while keeping the SEO, facts and form work.
 test scripts: `routecheck.sh`, `jsonld.mjs`, `interact.mjs`, `formtest.mjs`,
 `shots.mjs`, `print.mjs`, `lh.sh`, plus the screenshots and Lighthouse reports.
 Delete it once you no longer need them.
+
+## Homepage image pack — pending review (working tree, not yet committed)
+
+On 4 October 2026 the homepage's generic illustrative photos were replaced
+with the supplied `konntey-home-v1` pack: nine AI-generated design-inspiration
+images, pre-encoded as AVIF and WebP at 480/768/1152/1536px (hero portrait:
+480/768/1122px), served from `public/images/konntey-home-v1/` through native
+`<picture>` markup (`src/components/home/ResponsivePicture.tsx`,
+`ResponsiveHomeImage.tsx`, `home-images.ts`). They are never routed through
+`/_next/image`, and hashed filenames get a one-year immutable cache header
+(`next.config.mjs`; the legacy `/images/*` 24h cache is unchanged).
+
+The AI-imagery disclosure lives on the terms page (`/terms#imagery`) rather
+than as a per-image caption, with a link from the services section; the
+homepage comparison heading/intro say "redesign concept". The nine images are
+not in `src/content/images.ts`, are never marked `konntey-project`, and
+appear in no completed-project record.
+The hero renders eagerly (`loading="eager"`, `fetchPriority="high"`) in
+server HTML; all lower images are lazy. The hero box is now 4:5 to match the
+portrait source with essentially no crop; service-card thumbs moved from 4:5
+to 4:3 to avoid heavily cropping the 3:2 sources. `BeforeAfterSlider` accepts
+pack assets or registry photos; service pages are unchanged.
+
+Sitemap date for `/` bumped to 2026-10-04.
+
+## Performance pass — 10 October 2026 (working tree, not yet committed)
+
+| Change | File |
+|---|---|
+| Inline the stylesheet (~9 KiB gzip) in `<head>` with `experimental.inlineCss`, removing the two render-blocking CSS requests | `next.config.mjs` |
+| Links inside the closed mobile menu and the desktop Services dropdown no longer prefetch. Both menus are only visibility-hidden, so Next's viewport prefetcher treated them as on screen and fetched about 12 routes of RSC data on every page load. They now prefetch when the menu opens. The header logo also skips prefetching `/` while already on `/` | `src/components/NavBar.tsx` |
+| Phones (up to 639px wide) are offered pack variants up to 768w only, through `<source media>`. A 3x phone was pulling the 1122w hero (103 KB AVIF) instead of 768w (53 KB) | `src/components/home/ResponsivePicture.tsx` |
+| The eager LCP image no longer sets `decoding="async"` | same |
+| Service page hero `sizes` now matches the container width at each breakpoint | `src/components/service/ServicePage.tsx` |
+| The open mobile menu now stacks above the WhatsApp button and the Call/Quote bar (`z-[45]`, still under the header). Before, both sat on top of the menu and outside its focus trap | `src/components/NavBar.tsx` |
+
+Measured on local production builds, Lighthouse mobile with DevTools
+(applied) throttling, median of 5 runs, before vs after:
+
+| Route | Perf | FCP | LCP | Transfer | Requests |
+|---|---|---|---|---|---|
+| `/` | 97 → 100 | 1.55 s → 0.83 s | 2.41 s → 1.84 s | 573 → 479 KB | 63 → 34 |
+| Kitchen service | 98 → 99 | 1.57 s → 0.82 s | 1.99 s → 1.66 s | 447 → 370 KB | 55 → 32 |
+
+The default simulated-throttling Lighthouse score swung between 2.1 s and
+4.7 s LCP on identical builds, so it was not used for this comparison.
+Typecheck, lint and `next build` are clean.

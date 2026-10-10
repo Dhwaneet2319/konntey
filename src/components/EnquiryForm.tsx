@@ -317,8 +317,11 @@ export default function EnquiryForm({
         </div>
 
         <fieldset className="grid gap-4">
-          <legend className={labelCls}>How should we contact you?</legend>
-          <p id={fid("contact-hint")} className={`-mt-2 ${hintCls}`}>
+          {/* A legend sits outside the fieldset's grid, so the gap never
+              applies beneath it; space it explicitly. The hint then sits
+              8px above the options, matching label-to-input spacing. */}
+          <legend className={`mb-1.5 ${labelCls}`}>How should we contact you?</legend>
+          <p id={fid("contact-hint")} className={`-mb-2 leading-[1.5] ${hintCls}`}>
             Give us a phone number, an email address or both.
           </p>
           <div role="radiogroup" aria-label="Preferred contact method" className="flex flex-wrap gap-2">

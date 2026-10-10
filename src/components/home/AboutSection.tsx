@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import ResponsiveHomeImage from "@/components/home/ResponsiveHomeImage";
 import { Container, SectionHeading } from "@/components/ui";
 import { business, claimText, type ClaimId } from "@/content/business";
 
@@ -41,14 +42,23 @@ export default function AboutSection() {
             </Link>
           </p>
         </div>
-        <Reveal as="dl" group className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-          {values.map((v) => (
-            <div key={v.name} className="border-l-2 border-gold-bright pl-5">
-              <dt className="font-display text-[21px] font-bold text-navy">{v.name}</dt>
-              <dd className="mt-1.5 font-body text-[15px] leading-[1.65] text-navy/70">{v.desc}</dd>
-            </div>
-          ))}
-        </Reveal>
+        <div>
+          <Reveal>
+            <ResponsiveHomeImage
+              image="cabinetry-detail"
+              sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), (max-width: 1279px) calc((100vw - 128px) * 0.524), 603px"
+              className="block h-auto w-full"
+            />
+          </Reveal>
+          <Reveal as="dl" group className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {values.map((v) => (
+              <div key={v.name} className="border-l-2 border-gold-bright pl-5">
+                <dt className="font-display text-[21px] font-bold text-navy">{v.name}</dt>
+                <dd className="mt-1.5 font-body text-[15px] leading-[1.65] text-navy/70">{v.desc}</dd>
+              </div>
+            ))}
+          </Reveal>
+        </div>
       </Container>
     </section>
   );

@@ -10,6 +10,12 @@
  *   could otherwise read as proof.
  *
  * OWNER: change a photo to "konntey-project" only once both facts are true.
+ *
+ * The homepage additionally renders a pre-encoded image pack
+ * (src/components/home/home-images.ts, served from
+ * public/images/konntey-home-v1/) through native <picture> markup. Those nine
+ * images are AI-generated design inspiration, disclosed on /terms#imagery, and
+ * are intentionally not registered here.
  */
 export type ImageProvenance = "konntey-project" | "unverified";
 

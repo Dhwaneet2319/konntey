@@ -11,7 +11,7 @@ import { credentialsPageIndexable } from "@/content/business";
  * changes. Routes without a known date omit lastModified entirely.
  */
 const contentUpdated: Record<string, string> = {
-  "/": "2026-09-29",
+  "/": "2026-10-04",
   "/kitchen-renovations-melbourne": "2026-09-29",
   "/bathroom-renovations-melbourne": "2026-09-29",
   "/home-extensions-melbourne": "2026-09-29",

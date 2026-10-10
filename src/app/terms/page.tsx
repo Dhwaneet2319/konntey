@@ -54,6 +54,27 @@ export default function TermsPage() {
             </p>
           </section>
 
+          <section id="imagery" className="scroll-mt-24">
+            <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
+              Imagery
+            </h2>
+            <p className="mt-4">
+              Some images on this website are AI-generated design inspiration.
+              They are illustrative concepts of the kind of look, layout and
+              finish a renovation can achieve. They are not photographs of
+              completed Konntey Home &amp; Renovations projects, real
+              customers&apos; homes or verified work, and they do not evidence
+              Vastu compliance or any specific project outcome. Any before and
+              after comparison presented on this website is an illustrative
+              redesign concept, not a real project record.
+            </p>
+            <p className="mt-4">
+              Photographs of our actual completed projects are published
+              separately, with the client&apos;s permission, and are labelled as
+              such.
+            </p>
+          </section>
+
           <section>
             <h2 className="font-display text-[20px] font-bold uppercase tracking-button text-gold-bright">
               Intellectual Property

@@ -22,6 +22,10 @@ const nextConfig = {
   compress: true,
   experimental: {
     optimizePackageImports: ["lucide-react"],
+    // The whole stylesheet is ~9 KiB gzip, so inlining it in <head> removes
+    // the render-blocking CSS requests that delayed first paint and the hero
+    // LCP on mobile. Production builds only.
+    inlineCss: true,
   },
   images: {
     // All images are served locally from /public — no remote patterns needed.
@@ -59,6 +63,18 @@ const nextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
+      {
+        // The konntey-home-v1 pack has content-hashed filenames, so those
+        // responses can be cached immutably for a year. Next applies the last
+        // matching rule's value, so this must come after /images/:path*.
+        source: "/images/konntey-home-v1/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },

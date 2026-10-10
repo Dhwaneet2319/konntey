@@ -3,13 +3,27 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import ResponsivePicture from "@/components/home/ResponsivePicture";
+import type { ResponsiveAsset } from "@/components/home/home-images";
 import { isVerifiedWork, type SiteImage } from "@/content/images";
 import { track } from "@/lib/analytics";
+
+/**
+ * A comparison layer: either a registry SiteImage (rendered through the
+ * Next.js Image pipeline, as on service pages) or a pre-encoded pack asset
+ * (rendered through native <picture> markup; see ResponsivePicture).
+ */
+export type ComparisonImage = SiteImage | ResponsiveAsset;
+
+const isPackImage = (image: ComparisonImage): image is ResponsiveAsset => "avif" in image;
 
 /**
  * Before/after comparison. Pointer drag (touch keeps vertical page scroll),
  * a visually hidden range input for keyboard and assistive tech, and preset
  * buttons. Height follows the photos' own aspect ratio.
+ *
+ * Pack assets are AI-generated design concepts, disclosed on /terms#imagery.
+ * They are never treated as verified Konntey work.
  */
 export default function BeforeAfterSlider({
   before,
@@ -17,8 +31,8 @@ export default function BeforeAfterSlider({
   placement,
   sizes = "(max-width: 1024px) 100vw, 960px",
 }: {
-  before: SiteImage;
-  after: SiteImage;
+  before: ComparisonImage;
+  after: ComparisonImage;
   /** Analytics placement, e.g. "home_proof" or "service_kitchen". */
   placement: string;
   sizes?: string;
@@ -77,7 +91,8 @@ export default function BeforeAfterSlider({
 
   const rounded = Math.round(position);
   const portrait = before.height > before.width;
-  const verified = isVerifiedWork(before, after);
+  const packImages = isPackImage(before) || isPackImage(after);
+  const verified = !isPackImage(before) && !isPackImage(after) && isVerifiedWork(before, after);
 
   return (
     <figure className={`mx-auto w-full ${portrait ? "max-w-[520px]" : "max-w-[960px]"}`}>
@@ -91,14 +106,24 @@ export default function BeforeAfterSlider({
         onPointerCancel={endDrag}
         onLostPointerCapture={endDrag}
       >
-        <Image
-          src={after.src}
-          alt={after.alt}
-          fill
-          sizes={sizes}
-          draggable={false}
-          className="pointer-events-none object-cover"
-        />
+        {isPackImage(after) ? (
+          <ResponsivePicture
+            asset={after}
+            sizes={sizes}
+            alt={after.alt}
+            pictureClassName="pointer-events-none absolute inset-0 block"
+            className="block h-full w-full object-cover"
+          />
+        ) : (
+          <Image
+            src={after.src}
+            alt={after.alt}
+            fill
+            sizes={sizes}
+            draggable={false}
+            className="pointer-events-none object-cover"
+          />
+        )}
         <span className="absolute bottom-4 right-4 z-10 bg-navy px-3 py-1.5 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-gold-bright">
           After
         </span>
@@ -107,14 +132,24 @@ export default function BeforeAfterSlider({
           className="absolute inset-0 overflow-hidden"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
         >
-          <Image
-            src={before.src}
-            alt={before.alt}
-            fill
-            sizes={sizes}
-            draggable={false}
-            className="pointer-events-none object-cover"
-          />
+          {isPackImage(before) ? (
+            <ResponsivePicture
+              asset={before}
+              sizes={sizes}
+              alt={before.alt}
+              pictureClassName="pointer-events-none absolute inset-0 block"
+              className="block h-full w-full object-cover"
+            />
+          ) : (
+            <Image
+              src={before.src}
+              alt={before.alt}
+              fill
+              sizes={sizes}
+              draggable={false}
+              className="pointer-events-none object-cover"
+            />
+          )}
           <span className="absolute bottom-4 left-4 z-10 bg-white/90 px-3 py-1.5 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-navy">
             Before
           </span>
@@ -175,11 +210,11 @@ export default function BeforeAfterSlider({
         ))}
       </div>
 
-      {!verified && (
+      {!packImages && !verified ? (
         <figcaption className="mt-3 text-center font-body text-[13px] text-navy/70">
           Example images — not presented as a specific Konntey project.
         </figcaption>
-      )}
+      ) : null}
     </figure>
   );
 }

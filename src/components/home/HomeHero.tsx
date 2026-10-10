@@ -1,12 +1,10 @@
-import Image from "next/image";
 import TrustStrip from "@/components/TrustStrip";
+import ResponsiveHomeImage from "@/components/home/ResponsiveHomeImage";
 import { ButtonLink, Container, Kicker, PhoneButton } from "@/components/ui";
 import { business } from "@/content/business";
-import { siteImages } from "@/content/images";
 
 /** Server-rendered hero: no entrance animation on the H1, copy, CTAs or LCP image. */
 export default function HomeHero() {
-  const image = siteImages.heroMain;
   return (
     <section id="hero" className="bg-off-white pt-16 lg:pt-20">
       <Container className="grid gap-10 pb-12 pt-8 sm:pt-12 lg:grid-cols-[1fr_1.08fr] lg:items-center lg:gap-14 lg:pb-20 lg:pt-14">
@@ -30,21 +28,16 @@ export default function HomeHero() {
             <TrustStrip />
           </div>
         </div>
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy/5 lg:aspect-[5/4]">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            priority
-            fetchPriority="high"
-            sizes="(max-width: 1024px) 100vw, 640px"
-            className="object-cover"
+        {/* hero-living-room is portrait (1122x1402, 4:5). A 4:5 box keeps the
+            native framing with effectively no crop at any breakpoint. */}
+        <div className="relative aspect-[4/5] w-full overflow-hidden bg-navy/5">
+          <ResponsiveHomeImage
+            image="hero-living-room"
+            eager
+            sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), (max-width: 1279px) calc((100vw - 120px) * 0.52), 602px"
+            pictureClassName="absolute inset-0 block"
+            className="block h-full w-full object-cover"
           />
-          {image.provenance !== "konntey-project" && (
-            <span className="absolute bottom-3 left-3 bg-white/85 px-2 py-1 font-body text-[12px] text-navy/70">
-              Illustrative image
-            </span>
-          )}
         </div>
       </Container>
     </section>

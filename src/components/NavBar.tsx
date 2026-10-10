@@ -139,6 +139,12 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
     }
   };
 
+  // Closed menus are only visibility-hidden, so Next's viewport prefetcher
+  // would treat every link in them as visible and fetch ~12 routes on each
+  // page load. Their links prefetch only once the menu is opened.
+  const servicesPrefetch = servicesOpen ? undefined : false;
+  const mobilePrefetch = mobileOpen ? undefined : false;
+
   const linkTone = onDark ? "text-white/85 hover:text-white" : "text-navy/80 hover:text-navy";
 
   return (
@@ -159,7 +165,12 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
           Skip to content
         </a>
         <div className="mx-auto flex h-full max-w-[1280px] items-center justify-between gap-6 px-5 sm:px-8">
-          <Link href="/" aria-label={`${business.name} home`} className="flex shrink-0 items-center gap-2.5">
+          <Link
+            href="/"
+            prefetch={pathname === "/" ? false : undefined}
+            aria-label={`${business.name} home`}
+            className="flex shrink-0 items-center gap-2.5"
+          >
             <Image
               src="/images/logo.png"
               alt=""
@@ -215,6 +226,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
                     <li key={s.href}>
                       <Link
                         href={s.href}
+                        prefetch={servicesPrefetch}
                         onClick={(e) => onNavClick(e, s.href)}
                         className="block px-3 py-2.5 font-body text-[15px] text-navy/80 transition-colors duration-hover hover:bg-off-white hover:text-navy"
                       >
@@ -225,6 +237,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
                   <li className="mt-1 border-t border-navy/10 pt-1">
                     <Link
                       href="/#services"
+                      prefetch={servicesPrefetch}
                       onClick={(e) => onNavClick(e, "/#services")}
                       className="block px-3 py-2.5 font-body text-[14px] font-semibold text-gold-deep hover:bg-off-white"
                     >
@@ -301,7 +314,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
         aria-modal="true"
         aria-label="Site menu"
         inert={!mobileOpen}
-        className={`fixed inset-0 z-40 overflow-y-auto bg-navy pt-16 transition-[opacity,transform,visibility] duration-200 ease-brand lg:hidden ${
+        className={`fixed inset-0 z-[45] overflow-y-auto bg-navy pt-16 transition-[opacity,transform,visibility] duration-200 ease-brand lg:hidden ${
           mobileOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
         }`}
       >
@@ -312,6 +325,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
               <li key={s.href}>
                 <Link
                   href={s.href}
+                  prefetch={mobilePrefetch}
                   onClick={(e) => onNavClick(e, s.href)}
                   className="block py-2.5 font-display text-[24px] font-bold text-white"
                 >
@@ -325,6 +339,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
               <li key={l.href}>
                 <Link
                   href={l.href}
+                  prefetch={mobilePrefetch}
                   onClick={(e) => onNavClick(e, l.href)}
                   className="block py-2.5 font-body text-[18px] text-white/85"
                 >
@@ -336,6 +351,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             <Link
               href="/quote"
+              prefetch={mobilePrefetch}
               onClick={() => setMobileOpen(false)}
               className="inline-flex min-h-[52px] items-center justify-center bg-gold-bright px-6 font-body text-[16px] font-semibold text-navy"
             >

@@ -103,7 +103,7 @@ export default function ServicePage({ service }: { service: ServiceContent }) {
                   fill
                   priority
                   fetchPriority="high"
-                  sizes="(max-width: 1024px) 100vw, 600px"
+                  sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), 600px"
                   className="object-cover"
                 />
               </div>
