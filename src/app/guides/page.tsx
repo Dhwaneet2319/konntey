@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { jsonLd, pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -9,9 +9,9 @@ import { guides, GUIDES_BASE_URL } from "@/content/guides";
 import { quoteKind } from "@/content/business";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Renovation guides for Melbourne: costs, permits & advice",
+  title: "Melbourne renovation guides: costs & permits",
   description:
-    "Practical renovation guides for Melbourne homeowners: kitchen and bathroom cost breakdowns, Victorian permit rules, a quote comparison checklist and how to choose a builder.",
+    "Practical guides for Melbourne homeowners: kitchen, bathroom and extension costs, Victorian permit and granny flat rules, and how to compare quotes.",
   path: "/guides",
 });
 
@@ -39,8 +39,8 @@ const breadcrumbSchema = {
 export default function GuidesIndexPage() {
   return (
     <div className="bg-navy text-white font-body min-h-screen flex flex-col">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(itemListSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbSchema)} />
       <NavBar theme="dark" />
       <FloatingActions />
 

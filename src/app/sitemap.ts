@@ -3,7 +3,7 @@ import { suburbLinks } from "@/content/suburbs";
 import { guides } from "@/content/guides";
 import { sitemapProjects, projectsHubLive } from "@/content/projects";
 import { isSuburbIndexable } from "@/content/localProof";
-import { credentialsPageIndexable } from "@/content/business";
+import { BASE_URL, credentialsPageIndexable } from "@/content/business";
 
 /**
  * Date of the last significant change to each page's main content — not the
@@ -12,14 +12,18 @@ import { credentialsPageIndexable } from "@/content/business";
  */
 const contentUpdated: Record<string, string> = {
   "/": "2026-10-04",
-  "/kitchen-renovations-melbourne": "2026-09-29",
-  "/bathroom-renovations-melbourne": "2026-09-29",
-  "/home-extensions-melbourne": "2026-09-29",
+  "/kitchen-renovations-melbourne": "2026-10-10",
+  "/bathroom-renovations-melbourne": "2026-10-10",
+  "/home-extensions-melbourne": "2026-10-10",
   "/decks-pergolas-melbourne": "2026-09-29",
   "/interior-painting-melbourne": "2026-09-29",
   "/vastu-renovations-melbourne": "2026-09-29",
   "/quote": "2026-09-29",
-  "/renovations/[suburb]": "2026-09-29",
+  "/renovations": "2026-10-10",
+  "/renovations/[suburb]": "2026-10-10",
+  "/terms": "2026-10-04",
+  // The guides hub changes whenever a guide is added or updated.
+  "/guides": guides.map((g) => g.dateModified).sort().at(-1) ?? "",
 };
 
 function lastModifiedFor(route: string): { lastModified?: Date } {
@@ -28,7 +32,7 @@ function lastModifiedFor(route: string): { lastModified?: Date } {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.konnteyhomerenovations.com.au";
+  const baseUrl = BASE_URL;
 
   const staticRoutes = [
     "/",

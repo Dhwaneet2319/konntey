@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { jsonLd, pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -11,15 +11,25 @@ import { quoteKind } from "@/content/business";
 const BASE = "https://www.konnteyhomerenovations.com.au";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Suburbs we service in Melbourne's west & southeast",
+  title: "Renovations in Melbourne's west & southeast",
   description:
-    "Konntey services renovation projects across Melbourne's west and southeast, from Tarneit and Point Cook to Dandenong and Berwick. Find local information for your suburb.",
+    "Renovations across Melbourne's western and south-eastern suburbs, from Tarneit and Point Cook to Dandenong and Berwick, with local notes for each suburb.",
   path: "/renovations",
 });
 
-const regions: { title: string; region: "West" | "Southeast" }[] = [
-  { title: "Melbourne's West", region: "West" },
-  { title: "Melbourne's Southeast", region: "Southeast" },
+const regions: { title: string; region: "West" | "Southeast"; intro: string }[] = [
+  {
+    title: "Melbourne's West",
+    region: "West",
+    intro:
+      "From the fast-growing estates of Tarneit, Truganina and Manor Lakes to established Werribee, Hoppers Crossing and Laverton. Newer homes often need builder-grade kitchens and bathrooms upgraded and outdoor living added; older brick homes suit full renovations and extensions.",
+  },
+  {
+    title: "Melbourne's Southeast",
+    region: "Southeast",
+    intro:
+      "From established Dandenong, Springvale and Frankston to the growth areas of Cranbourne, Clyde, Officer and Pakenham. Expect everything from first full renovations of 1990s homes to decks, pergolas and personalisation for new builds.",
+  },
 ];
 
 const itemListSchema = {
@@ -39,15 +49,15 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: BASE },
-    { "@type": "ListItem", position: 2, name: "Renovations", item: `${BASE}/renovations` },
+    { "@type": "ListItem", position: 2, name: "Areas we service", item: `${BASE}/renovations` },
   ],
 };
 
 export default function RenovationsHubPage() {
   return (
     <div className="bg-navy text-white font-body min-h-screen flex flex-col">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(itemListSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbSchema)} />
       <NavBar theme="dark" />
       <FloatingActions />
 
@@ -58,7 +68,7 @@ export default function RenovationsHubPage() {
             <ol className="flex flex-wrap items-center gap-2 font-body text-[13px] text-white/60">
               <li><Link href="/" className="transition-colors hover:text-gold-bright">Home</Link></li>
               <li aria-hidden="true" className="flex items-center"><ChevronRight size={14} className="text-white/30" /></li>
-              <li aria-current="page" className="text-white/90">Renovations</li>
+              <li aria-current="page" className="text-white/90">Areas we service</li>
             </ol>
           </div>
         </nav>
@@ -70,13 +80,13 @@ export default function RenovationsHubPage() {
               AREAS WE SERVICE
             </div>
             <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] font-bold uppercase leading-[0.85] tracking-tighter text-white">
-              Renovation Builders <br />
+              Home Renovations <br />
               <span className="text-gold-bright">Across Melbourne</span>
             </h1>
             <p className="mt-8 max-w-2xl font-body text-[18px] leading-[1.8] text-white/90">
               Konntey Home &amp; Renovations delivers kitchen renovations, bathroom renovations, home
               extensions, decks and painting right across Melbourne&apos;s west and southeast. Choose
-              your suburb for local pricing, permit guidance and project examples.
+              your suburb for local housing notes, permit information and the services available.
             </p>
           </div>
         </section>
@@ -84,11 +94,12 @@ export default function RenovationsHubPage() {
         {/* Suburb lists by region */}
         <section className="px-4 sm:px-6 lg:px-8 pb-20">
           <div className="mx-auto max-w-[1216px] grid gap-12 lg:grid-cols-2">
-            {regions.map(({ title, region }) => (
+            {regions.map(({ title, region, intro }) => (
               <div key={region}>
-                <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold uppercase tracking-tightest leading-[0.9] text-white mb-8">
+                <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold uppercase tracking-tightest leading-[0.9] text-white">
                   {title}
                 </h2>
+                <p className="mt-4 mb-8 max-w-xl font-body text-[16px] leading-[1.7] text-white/75">{intro}</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {suburbLinks
                     .filter((s) => s.region === region)
@@ -122,8 +133,8 @@ export default function RenovationsHubPage() {
                 { label: "Bathroom Renovations", href: "/bathroom-renovations-melbourne" },
                 { label: "Home Extensions", href: "/home-extensions-melbourne" },
                 { label: "Decks & Pergolas", href: "/decks-pergolas-melbourne" },
-                { label: "Interior Painting", href: "/interior-painting-melbourne" },
-                { label: "Vastu & Feng Shui", href: "/vastu-renovations-melbourne" },
+                { label: "Painting", href: "/interior-painting-melbourne" },
+                { label: "Vastu Renovations", href: "/vastu-renovations-melbourne" },
               ].map((svc) => (
                 <Link
                   key={svc.href}

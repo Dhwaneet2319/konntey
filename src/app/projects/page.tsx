@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { jsonLd, pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -21,7 +21,7 @@ const hubLive = projectsHubLive();
 export const metadata: Metadata = pageMetadata({
   title: "Completed renovation projects in Melbourne",
   description:
-    "Completed renovation projects by Konntey Home & Renovations across Melbourne: kitchens, bathrooms, extensions, decks and painting, with the client's permission and real photos.",
+    "Completed renovation projects across Melbourne — kitchens, bathrooms, extensions, decks and painting — published with each client's permission.",
   path: "/projects",
   noindex: !hubLive,
 });
@@ -44,7 +44,7 @@ export default function ProjectsHubPage() {
     <div className="bg-white text-navy font-body min-h-screen flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={jsonLd(breadcrumbSchema)}
       />
       <NavBar />
       <FloatingActions />

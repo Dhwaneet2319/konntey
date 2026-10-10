@@ -53,6 +53,16 @@ suburb page to `false` to noindex it and drop it from the sitemap (for pages
 with no evidence, after you review Search Console data). All pages stay
 indexable until *you* change this — nothing is automatic.
 
+## 2a. Council links on suburb pages — `src/content/councils.ts`
+
+Each suburb page links to its council's official building permit page (and
+VicPlan for zones and overlays). The granny flat guide also cites the
+councils' small second dwelling pages from this file. Council websites get
+restructured, so open every link once a year (Cardinia's old permit page
+has already moved), fix any that moved, and update `councilLinksLastChecked`.
+Several council sites block automated link checkers, so check them in a
+normal browser.
+
 ## 3. Credentials & compliance — `src/content/business.ts`
 
 The page `/credentials-and-compliance` exists but is **noindexed** until you
@@ -184,4 +194,7 @@ Konntey work, and the AI-imagery disclosure lives on the terms page
   — no IDs are hard-coded.
 - **Search Console:** verification already reads
   `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` from environment config.
+- **Search visibility outside the website** (Google Business Profile,
+  reviews, directory listings, the www redirect): see the owner checklist in
+  `docs/SEO-2026-10.md`.
 - **Photo provenance:** see section 5a.

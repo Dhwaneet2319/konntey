@@ -11,10 +11,12 @@ import Reveal from "@/components/Reveal";
 import ServiceFaq from "@/components/ServiceFaq";
 import { ButtonLink, Container, Kicker, PhoneButton, SectionHeading, TextLink } from "@/components/ui";
 import { BASE_URL, business, quoteKind } from "@/content/business";
+import { VICPLAN_URL, councils } from "@/content/councils";
+import { getGuide } from "@/content/guides";
 import { siteImages } from "@/content/images";
 import { getLocalProof, isSuburbIndexable } from "@/content/localProof";
 import { chooserServices } from "@/content/services";
-import { getSuburb, suburbProfiles, suburbSlugFor } from "@/content/suburbs";
+import { getSuburb, suburbProfiles, suburbSlugFor, type SuburbProfile } from "@/content/suburbs";
 import { breadcrumbSchema, jsonLd, pageMetadata, providerRef } from "@/lib/seo";
 
 type Props = { params: Promise<{ suburb: string }> };
@@ -25,14 +27,38 @@ export async function generateStaticParams() {
   return suburbProfiles.map((s) => ({ suburb: s.slug }));
 }
 
+// Cost and planning guides linked from every suburb page.
+const planningGuides = [
+  { label: "Kitchen renovation costs", slug: "kitchen-renovation-cost-melbourne" },
+  { label: "Bathroom renovation costs", slug: "bathroom-renovation-cost-melbourne" },
+  { label: "Home extension costs", slug: "home-extension-cost-melbourne" },
+  { label: "Granny flat rules in Victoria", slug: "granny-flat-rules-victoria" },
+];
+
+for (const g of planningGuides) {
+  if (!getGuide(g.slug)) throw new Error(`Suburb page links to a missing guide: ${g.slug}`);
+}
+
+/**
+ * A unique description per suburb, built from its own common projects. Falls
+ * back to fewer projects to stay within the ~160 characters search results show.
+ */
+function suburbDescription(suburb: SuburbProfile): string {
+  const projects = suburb.commonProjects.map((p) => `${p.charAt(0).toLowerCase()}${p.slice(1)}`);
+  const describe = (list: string[]) =>
+    `Home renovations in ${suburb.name}, including ${list.join(", ")} and more. Free consultation and a ${quoteKind}.`;
+  const two = describe(projects.slice(0, 2));
+  return projects.length > 1 && two.length <= 160 ? two : describe(projects.slice(0, 1));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).suburb;
   const suburb = getSuburb(slug);
   if (!suburb) return {};
 
   return pageMetadata({
-    title: `Home renovations ${suburb.name}`,
-    description: `Kitchen and bathroom renovations, home extensions, decks and painting in ${suburb.name}. Free consultation and a ${quoteKind}.`,
+    title: `${suburb.name} home renovations & extensions`,
+    description: suburbDescription(suburb),
     path: `/renovations/${slug}`,
     // Owner-controlled per-suburb indexability (src/content/localProof.ts).
     noindex: !isSuburbIndexable(slug),
@@ -52,6 +78,7 @@ export default async function SuburbPage({ params }: Props) {
     .map((name) => ({ name, slug: suburbSlugFor(name) }))
     .filter((n): n is { name: string; slug: string } => Boolean(n.slug));
   const nearbyOther = suburb.nearby.filter((name) => !suburbSlugFor(name));
+  const suburbCouncils = suburb.councils.map((id) => councils[id]);
 
   const suburbSchema = {
     "@context": "https://schema.org",
@@ -61,6 +88,14 @@ export default async function SuburbPage({ params }: Props) {
     provider: providerRef,
     areaServed: { "@type": "Place", name: `${suburb.name}, VIC` },
     url: `${BASE_URL}/renovations/${slug}`,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `Renovation services in ${suburb.name}`,
+      itemListElement: chooserServices.map((s) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: s.name, url: `${BASE_URL}${s.route}` },
+      })),
+    },
   };
 
   const faqSchema =
@@ -152,10 +187,33 @@ export default async function SuburbPage({ params }: Props) {
                 <p className="mt-3 font-body text-[15px] leading-[1.7] text-navy/75">
                   Structural work in {suburb.name} — extensions, wall removal or a deck on a
                   structural subfloor — usually needs a building permit from a registered
-                  building surveyor. You can appoint a private surveyor or use{" "}
-                  {suburb.council}&apos;s municipal building surveyor. Some projects also need a
-                  planning permit. We assess what your project needs as part of the quote.
+                  building surveyor, and most homeowners appoint a private one. Some projects
+                  also need a planning permit, depending on the property&apos;s zone and
+                  overlays, which you can check on{" "}
+                  <a
+                    href={VICPLAN_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-gold-deep"
+                  >
+                    VicPlan
+                  </a>
+                  . We assess what your project needs as part of the quote.
                 </p>
+                <ul className="mt-4 space-y-2 font-body text-[15px] leading-[1.6]">
+                  {suburbCouncils.map((c) => (
+                    <li key={c.name}>
+                      <a
+                        href={c.buildingPermitsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-gold-deep"
+                      >
+                        {c.name}: building permit information
+                      </a>
+                    </li>
+                  ))}
+                </ul>
                 <div className="mt-4">
                   <TextLink href="/guides/renovation-permits-victoria">Victorian permit guide</TextLink>
                 </div>
@@ -171,7 +229,7 @@ export default async function SuburbPage({ params }: Props) {
             <SectionHeading
               kicker="Services"
               title={`What we build in ${suburb.name}`}
-              intro="Pricing guidance, process and detailed FAQs are on each service page."
+              intro={`Kitchen renovations, bathroom renovations, home extensions, decks and painting in ${suburb.name}. Pricing guidance, process and detailed FAQs are on each service page.`}
             />
             <Reveal group className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
               {chooserServices.map((s) => {
@@ -202,6 +260,18 @@ export default async function SuburbPage({ params }: Props) {
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
               <TextLink href="/vastu-renovations-melbourne">Vastu renovations</TextLink>
               <TextLink href="/guides">Melbourne renovation guides</TextLink>
+            </div>
+            <div className="mt-10 border-t border-navy/10 pt-8">
+              <h3 className="font-display text-[20px] font-bold text-navy">
+                Planning a project in {suburb.name}?
+              </h3>
+              <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-3">
+                {planningGuides.map((g) => (
+                  <li key={g.slug}>
+                    <TextLink href={`/guides/${g.slug}`}>{g.label}</TextLink>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Container>
         </section>

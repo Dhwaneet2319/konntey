@@ -17,7 +17,7 @@ import {
 } from "@/content/projects";
 import { suburbLinks } from "@/content/suburbs";
 import { BASE_URL, quoteKind } from "@/content/business";
-import { pageMetadata } from "@/lib/seo";
+import { jsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -121,12 +121,12 @@ export default async function ProjectPage({ params }: Props) {
       {articleSchema && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+          dangerouslySetInnerHTML={jsonLd(articleSchema)}
         />
       )}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={jsonLd(breadcrumbSchema)}
       />
       <NavBar />
       <FloatingActions />

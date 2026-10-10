@@ -8,6 +8,7 @@
  * every guide points readers to confirm specifics with their council, a
  * registered building surveyor, or the Building and Plumbing Commission (BPC).
  */
+import { VICPLAN_URL, councils, type CouncilId } from "./councils";
 
 export interface GuideSection {
   heading: string;
@@ -91,6 +92,20 @@ export interface Guide {
 }
 
 const BASE = "https://www.konnteyhomerenovations.com.au";
+
+const HOME_WARRANTY_URL =
+  "https://www.bpc.vic.gov.au/home-owners/insurance-for-domestic-building-work/domestic-building-insurance-and-home-warranty";
+const SMALL_SECOND_HOMES_URL =
+  "https://www.planning.vic.gov.au/guides-and-resources/strategies-and-initiatives/small-second-dwellings";
+
+/** A council's own small second dwelling page, from src/content/councils.ts. */
+function councilSmallSecondDwelling(id: CouncilId): GuideLink {
+  const council = councils[id];
+  if (!council.smallSecondDwellingUrl) {
+    throw new Error(`No small second dwelling page recorded for ${council.name}`);
+  }
+  return { label: `${council.name} — Small second dwellings`, href: council.smallSecondDwellingUrl };
+}
 
 export const guides: Guide[] = [
   {
@@ -270,6 +285,125 @@ export const guides: Guide[] = [
     ],
   },
   {
+    slug: "home-extension-cost-melbourne",
+    title: "Home Extension Cost Guide Melbourne (2026)",
+    metaTitle: "Home Extension Cost Guide Melbourne (2026)",
+    description:
+      "What a home extension costs in Melbourne in 2026: prices per m² for ground-floor and second-storey additions and granny flats, plus the costs people miss.",
+    excerpt:
+      "From about $1,800 per m² for a ground-floor addition to $4,500+ per m² for a complex second storey — a realistic 2026 guide to Melbourne extension costs.",
+    category: "Cost Guides",
+    readMinutes: 7,
+    datePublished: "2026-10-10",
+    dateModified: "2026-10-10",
+    sources: [
+      {
+        label: "Building and Plumbing Commission — Domestic Building Insurance and Home Warranty",
+        href: HOME_WARRANTY_URL,
+      },
+      {
+        label: "Building and Plumbing Commission — What is domestic building work?",
+        href: "https://www.bpc.vic.gov.au/resource-hub/info-sheets/What-is-domestic-building-work",
+      },
+      { label: "Planning Victoria — Small second homes", href: SMALL_SECOND_HOMES_URL },
+    ],
+    intro: [
+      "An extension is usually the biggest renovation a Melbourne household takes on, and the hardest to price from a distance. Cost per square metre is the most useful starting point, but the number in your contract depends just as much on your block, your existing house and what goes inside the new rooms.",
+      "This guide gives indicative 2026 ranges for the main types of extension, a few worked examples, and the costs that most often get left out of early budgets. Use it to set a realistic range, then get an itemised quote for your own design.",
+    ],
+    sections: [
+      {
+        heading: "Home extension cost per square metre",
+        paragraphs: [
+          "These are indicative Melbourne ranges for the build itself. Where a project lands within each range depends mostly on the site, the structure and the level of finish.",
+        ],
+        bullets: [
+          "Ground-floor extension — $1,800 to $3,000 per m². Family rooms, extra bedrooms or a bigger kitchen, built out from the existing house.",
+          "Second-storey addition — $2,500 to $4,500 per m². Building up when the block has no room to build out.",
+          "Granny flat (60 m² small second dwelling) — $120,000 to $180,000. A self-contained home on the same lot.",
+          "Knockdown rebuild — $350,000 to $600,000+. Starting again with a new home on your existing block.",
+        ],
+      },
+      {
+        heading: "What a typical extension might cost",
+        paragraphs: [
+          "Multiplying the floor area by the per-square-metre range gives a sensible first estimate. These examples are illustrative only:",
+        ],
+        bullets: [
+          "A 25 m² ground-floor family room: roughly $45,000 to $75,000.",
+          "A 40 m² ground-floor extension that includes a second bathroom: toward the upper half of the range, because wet areas cost more per square metre than living space.",
+          "A 50 m² second storey with two bedrooms and a bathroom: roughly $125,000 to $225,000.",
+        ],
+      },
+      {
+        heading: "Why second storeys cost more per square metre",
+        bullets: [
+          "The existing structure usually needs engineering, and sometimes strengthening, to carry the new floor.",
+          "Part of the roof comes off, so the house has to be kept weatherproof during the build.",
+          "A staircase takes up floor space on both levels and adds cost of its own.",
+          "Scaffolding and safety measures for working at height, and crane hire on some sites.",
+          "Disruption: some families move out for part of the build, which belongs in the budget too.",
+        ],
+      },
+      {
+        heading: "What pushes the price up",
+        bullets: [
+          "Kitchens, bathrooms and laundries in the new space — plumbing, waterproofing and fixtures add cost quickly.",
+          "Reactive clay soils, common across parts of Melbourne's west, can call for deeper or engineered footings. A soil report tells you early.",
+          "Difficult access for machinery and deliveries, or a sloping block.",
+          "Matching existing bricks, cladding or roof tiles so the extension blends in.",
+          "Opening up the existing house with structural steel beams.",
+          "Relocating sewer, stormwater or electrical services that sit where the extension will go.",
+          "Asbestos in older homes, which needs testing and safe removal before work starts.",
+        ],
+      },
+      {
+        heading: "Costs people forget to budget for",
+        bullets: [
+          "Design: a draftsperson or architect, plus a structural engineer.",
+          "Site investigations: a soil test and a feature and level survey.",
+          "Building surveyor fees and the building permit, plus a planning permit if your property needs one.",
+          "Warranty cover: Home Warranty applies to eligible domestic building work valued at more than $20,000 under contracts signed on or after 1 July 2026.",
+          "Temporary accommodation or storage if you move out during the build.",
+          "Landscaping, fencing and driveway repairs once construction finishes.",
+          "A contingency for hidden conditions, especially in older homes.",
+        ],
+      },
+      {
+        heading: "Do you need a permit for an extension?",
+        paragraphs: [
+          "Almost every extension needs a building permit from a registered building surveyor, and work can't start until it is issued. Some also need a planning permit, for example where an overlay applies to the property or the design doesn't meet the planning scheme's siting rules. Our Victorian permit guide explains the difference.",
+          "For domestic building work costing more than $10,000, Victorian law requires the builder and owner to enter into a written major domestic building contract.",
+        ],
+      },
+      {
+        heading: "How to keep an extension on budget",
+        bullets: [
+          "Finalise the design and your selections before you sign, so the contract price reflects what you actually want.",
+          "Keep new wet areas close to existing plumbing where you can.",
+          "Compare building out with building up — on a large enough block, a ground-floor extension is usually cheaper per square metre.",
+          "Use standard window and door sizes where they suit the design.",
+          "Ask for an itemised quote with any provisional sums clearly listed, and agree every variation in writing.",
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "Budget roughly $1,800–$3,000 per m² for a ground-floor extension and $2,500–$4,500 per m² for a second storey.",
+      "Wet areas, soil conditions, access and structural work move the price the most.",
+      "Allow for design, engineering, surveys, permits and a contingency on top of the build cost.",
+      "Home Warranty applies to eligible work over $20,000 under contracts signed from 1 July 2026.",
+      "An itemised quote shows what each part of the design costs, so you can adjust before you commit.",
+    ],
+    related: [
+      { label: "Home Extensions Melbourne", href: "/home-extensions-melbourne" },
+      { label: "Granny Flat Rules in Victoria (2026)", href: "/guides/granny-flat-rules-victoria" },
+      { label: "Home Extension vs Moving House: Cost Comparison", href: "/guides/home-extension-vs-moving-house" },
+      { label: "Do You Need a Permit to Renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
+      { label: "Renovation Quote Comparison Checklist", href: "/guides/renovation-quote-checklist-melbourne" },
+      { label: "Get a Free Quote", href: "/quote" },
+    ],
+  },
+  {
     slug: "renovation-permits-victoria",
     title: "Do You Need a Permit to Renovate in Victoria?",
     metaTitle: "Do You Need a Permit to Renovate in Victoria?",
@@ -368,7 +502,138 @@ export const guides: Guide[] = [
     related: [
       { label: "Home Extensions Melbourne", href: "/home-extensions-melbourne" },
       { label: "Decks & Pergolas Melbourne", href: "/decks-pergolas-melbourne" },
+      { label: "Granny Flat Rules in Victoria (2026)", href: "/guides/granny-flat-rules-victoria" },
       { label: "Bathroom Renovation Cost Guide", href: "/guides/bathroom-renovation-cost-melbourne" },
+      { label: "Get a Free Quote", href: "/quote" },
+    ],
+  },
+  {
+    slug: "granny-flat-rules-victoria",
+    title: "Granny Flat Rules in Victoria (2026): Small Second Dwellings Explained",
+    metaTitle: "Granny Flat Rules in Victoria (2026)",
+    description:
+      "Can you build a granny flat without a planning permit in Victoria? The 2026 rules for small second dwellings up to 60 m², when permits apply and typical costs.",
+    excerpt:
+      "Most Victorian homes can add a granny flat of up to 60 m² without a planning permit, but a building permit is always needed. Here's how the rules work in 2026.",
+    category: "Permits & Process",
+    readMinutes: 7,
+    datePublished: "2026-10-10",
+    dateModified: "2026-10-10",
+    sources: [
+      { label: "Planning Victoria — Small second homes", href: SMALL_SECOND_HOMES_URL },
+      {
+        label: "Planning Victoria — Small second dwellings applicant's guide (PDF)",
+        href: "https://www.planning.vic.gov.au/__data/assets/pdf_file/0035/699461/Small-Second-Dwellings_applicants-Guide_v3_FA.pdf",
+      },
+      { label: "VicPlan — check your property's zone and overlays", href: VICPLAN_URL },
+      { label: "Consumer Affairs Victoria — Renting", href: "https://www.consumer.vic.gov.au/housing/renting" },
+      councilSmallSecondDwelling("wyndham"),
+      councilSmallSecondDwelling("melton"),
+      councilSmallSecondDwelling("casey"),
+      councilSmallSecondDwelling("greater-dandenong"),
+    ],
+    intro: [
+      "Since 14 December 2023, most Victorian homeowners have been able to build a small second home — a granny flat of up to 60 square metres — without a planning permit, as long as the property and the design meet a set of conditions. A building permit is still required every time.",
+      "This guide covers what counts as a small second dwelling, when you can skip the planning permit and when you can't, the 2025 change for small lots, and what a granny flat typically costs in Melbourne. Requirements depend on your property, so confirm them with your council or a registered building surveyor before you commit.",
+    ],
+    sections: [
+      {
+        heading: "What counts as a small second dwelling",
+        paragraphs: [
+          "Planning Victoria defines a small second dwelling as a self-contained home of 60 square metres or less, built on the same lot as an existing home.",
+        ],
+        bullets: [
+          "Size: a gross floor area of 60 m² or less, measured to the outside of the external walls and including all roofed areas, such as a covered verandah.",
+          "Self-contained: a kitchen sink and food preparation facilities, a bath or shower, and a toilet and wash basin.",
+          "No mains gas: it must not be connected to reticulated natural gas, so plan for all-electric appliances.",
+          "Same lot: it stays on the same title as the main home and can't be subdivided or sold separately.",
+          "No parking requirement: a car parking space isn't required.",
+        ],
+      },
+      {
+        heading: "When you don't need a planning permit",
+        paragraphs: [
+          "On most residential properties, a small second dwelling doesn't need a planning permit when all of these apply:",
+        ],
+        bullets: [
+          "The land is in a residential or rural zone, which covers most suburban house blocks.",
+          "The lot is larger than 300 m².",
+          "There is one existing home on the lot, and this is the only small second dwelling.",
+          "No overlay on the land requires a permit for it.",
+          "The design meets the siting requirements, such as height limits and any minimum garden area.",
+        ],
+      },
+      {
+        heading: "When you still need a planning permit",
+        paragraphs: ["You will generally need a planning permit if any of these apply:"],
+        bullets: [
+          "The lot is under 300 m² and in a residential zone (other than the Low Density Residential Zone). These need a planning permit assessed against Clause 54 of the planning scheme, whose standards were updated by Amendment VC282 from 8 September 2025. If your block is close to 300 m², check the exact area on your title and ask the council how the threshold applies.",
+          "An overlay on the land requires a permit — bushfire and flooding controls are common examples. Some heritage and design overlays can be exempt if the design meets set conditions, so check the overlay schedule for your property.",
+          "The building is over 60 m², or it would be a second small second dwelling on the same lot. These fall outside the small second dwelling rules.",
+        ],
+      },
+      {
+        heading: "Check your title and estate rules",
+        paragraphs: [
+          "A planning exemption doesn't override restrictions on your title. Covenants, section 173 agreements and estate design guidelines can limit outbuildings, materials, height or setbacks — Greater Dandenong, for example, lists covenants and agreements on title among the reasons a permit may be needed. Newer estates commonly have design guidelines, so check your title documents before you start designing.",
+        ],
+      },
+      {
+        heading: "A building permit is always required",
+        paragraphs: [
+          "Every small second dwelling needs a building permit, which confirms it meets the siting, amenity, design and safety requirements. On lots over 300 m², those siting and amenity requirements are assessed as part of the building permit rather than through a planning application.",
+          "Building permits are issued by registered building surveyors, and most homeowners appoint a private one. Building work can't start until the permit is issued.",
+        ],
+      },
+      {
+        heading: "Can you rent out a granny flat?",
+        paragraphs: [
+          "Yes. Anyone can live in a small second home — a family member, a dependent relative or an unrelated tenant — and you can rent it out. The residential tenancy requirements that apply to any rental home, including room sizes, facilities and smoke alarms, apply to a small second home too. Consumer Affairs Victoria explains a rental provider's obligations.",
+        ],
+      },
+      {
+        heading: "What does a granny flat cost in Melbourne?",
+        paragraphs: [
+          "As an indicative range, a 60 m² granny flat costs around $120,000 to $180,000 to build in Melbourne. Site conditions move the number the most:",
+        ],
+        bullets: [
+          "Connecting water, sewer, stormwater and electricity, and how far those services have to run.",
+          "Access for machinery to the back of the block.",
+          "Slab and footing design, which depends on the soil report.",
+          "The level of finish in the kitchen and bathroom.",
+          "Design, building surveyor and any planning fees, unless your quote includes them.",
+        ],
+      },
+      {
+        heading: "Granny flats and dependent person's units",
+        paragraphs: [
+          "The small second dwelling rules replaced the old dependent person's unit — a movable unit for a relative who depends on someone in the main home. Transitional rules still allow new applications for those units until 28 March 2027, and existing lawful units remain lawful. Because anyone can live in a small second dwelling, it is usually the more flexible choice.",
+        ],
+      },
+      {
+        heading: "Before you start: a quick checklist",
+        bullets: [
+          "Look up your zone and overlays on VicPlan.",
+          "Confirm the lot area on your title, and check for covenants, agreements or estate guidelines.",
+          "Plan within 60 m², including any roofed outdoor areas.",
+          "Design around all-electric appliances.",
+          "Talk to a registered building surveyor early about siting and services.",
+          "Get an itemised quote that shows service connections and site costs separately.",
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "A small second dwelling is a self-contained home of up to 60 m² on the same lot as an existing home.",
+      "On most residential lots over 300 m² with no permit-triggering overlay, no planning permit is needed.",
+      "Lots under 300 m², some overlays and restrictions on title can still require approval.",
+      "A building permit is always required, and the unit can't use mains gas, be subdivided or be sold separately.",
+      "You can rent it out. Budget an indicative $120,000–$180,000 for 60 m², plus site-specific costs.",
+    ],
+    related: [
+      { label: "Home Extensions Melbourne", href: "/home-extensions-melbourne" },
+      { label: "Home Extension Cost Guide Melbourne (2026)", href: "/guides/home-extension-cost-melbourne" },
+      { label: "Do You Need a Permit to Renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
+      { label: "How to Choose a Renovation Builder", href: "/guides/how-to-choose-a-renovation-builder-melbourne" },
       { label: "Get a Free Quote", href: "/quote" },
     ],
   },
@@ -441,6 +706,8 @@ export const guides: Guide[] = [
     ],
     related: [
       { label: "Home Extensions Melbourne", href: "/home-extensions-melbourne" },
+      { label: "Home Extension Cost Guide Melbourne (2026)", href: "/guides/home-extension-cost-melbourne" },
+      { label: "Granny Flat Rules in Victoria (2026)", href: "/guides/granny-flat-rules-victoria" },
       { label: "How to Choose a Renovation Builder", href: "/guides/how-to-choose-a-renovation-builder-melbourne" },
       { label: "Do You Need a Permit to Renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
       { label: "Get a Free Quote", href: "/quote" },
@@ -457,7 +724,7 @@ export const guides: Guide[] = [
     category: "Planning",
     readMinutes: 8,
     datePublished: "2026-07-01",
-    dateModified: "2026-07-01",
+    dateModified: "2026-10-10",
     sources: [
       {
         label: "Building and Plumbing Commission — What is domestic building work?",
@@ -466,6 +733,10 @@ export const guides: Guide[] = [
       {
         label: "Building and Plumbing Commission — Appointing a building surveyor",
         href: "https://www.bpc.vic.gov.au/home-owners/before-you-start-building/appointing-a-building-surveyor",
+      },
+      {
+        label: "Building and Plumbing Commission — Domestic Building Insurance and Home Warranty",
+        href: HOME_WARRANTY_URL,
       },
     ],
     intro: [
@@ -480,7 +751,7 @@ export const guides: Guide[] = [
         ],
         bullets: [
           "Confirm the builder or company is registered — you can check the public register held by the Building and Plumbing Commission (BPC).",
-          "For domestic building work over $16,000, the builder must take out domestic building insurance (also called builder's warranty insurance).",
+          "Ask how warranty cover applies to your job. Home Warranty, provided by the BPC, applies to eligible domestic building work valued at more than $20,000 under contracts signed on or after 1 July 2026. It replaced domestic building insurance, which was required for work over $16,000 under earlier contracts.",
           "Ask for evidence of current public liability insurance.",
         ],
       },
@@ -530,7 +801,7 @@ export const guides: Guide[] = [
       },
     ],
     keyTakeaways: [
-      "Verify registration on the BPC register and confirm domestic building insurance for work over $16,000.",
+      "Verify registration on the BPC register, and ask how Home Warranty applies to eligible work over $20,000.",
       "A written major domestic building contract is required in Victoria for work over $10,000.",
       "Compare itemised fixed-price quotes — the cheapest number is rarely the cheapest outcome.",
       "Poor communication and pressure for big cash deposits are your clearest red flags.",
@@ -548,7 +819,7 @@ export const guides: Guide[] = [
     // waterproofing, approvals and GST wording) and add a `reviewer` once done.
     slug: "renovation-quote-checklist-melbourne",
     title: "Renovation Quote Comparison Checklist (Melbourne)",
-    metaTitle: "Renovation Quote Comparison Checklist | Melbourne",
+    metaTitle: "Renovation Quote Checklist Melbourne",
     description:
       "A free checklist for comparing renovation quotes in Melbourne: inclusions, exclusions, owner-supplied items, allowances, approvals, GST and variations.",
     excerpt:

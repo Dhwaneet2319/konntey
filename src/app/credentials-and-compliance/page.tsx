@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { jsonLd, pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ChevronRight, ExternalLink } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -47,7 +47,7 @@ export default function CredentialsPage() {
     <div className="bg-navy text-white font-body min-h-screen flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={jsonLd(breadcrumbSchema)}
       />
       <NavBar theme="dark" />
       <FloatingActions />
