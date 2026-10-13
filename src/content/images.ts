@@ -62,6 +62,15 @@ export const siteImages = {
   bathroomEnsuite: img("/images/bathroom/small-ensuite.webp", 1086, 1448, "Compact ensuite with shower, vanity and toilet"),
   bathroomTiler: img("/images/bathroom/tiler-working.webp", 1086, 1448, "Tiler laying large-format wall tiles in a shower"),
 
+  // New home builds. AI-generated example images (disclosed on /terms#imagery).
+  // They stay "unverified", so the gallery labels them as example images and
+  // never as Konntey projects. Replace with real job photos when available.
+  newHomeHero: img("/images/new-homes/hero.webp", 1448, 1086, "Newly built single-storey brick home with a double garage and fresh front landscaping"),
+  newHomeFacade: img("/images/new-homes/facade.webp", 1086, 1448, "Front of a new double-storey home with rendered upper level and timber entry door"),
+  newHomeLiving: img("/images/new-homes/kitchen-living.webp", 1086, 1448, "Open-plan kitchen and living area in a newly built home with stone island bench"),
+  newHomeFrame: img("/images/new-homes/frame.webp", 1086, 1448, "Timber wall and roof frame of a new home under construction on a concrete slab"),
+  newHomeAlfresco: img("/images/new-homes/alfresco.webp", 1086, 1448, "Covered alfresco area at the back of a new home opening onto a small lawn"),
+
   socialDefault: img("/images/social/konntey-default.png", 1200, 630, "Konntey Home & Renovations: home renovations and extensions across Melbourne's west and southeast", "konntey-project"),
   socialKitchen: img("/images/social/kitchen.png", 1200, 630, "Konntey Home & Renovations: kitchen renovations in Melbourne", "konntey-project"),
   socialBathroom: img("/images/social/bathroom.png", 1200, 630, "Konntey Home & Renovations: bathroom renovations in Melbourne", "konntey-project"),
@@ -69,6 +78,7 @@ export const siteImages = {
   socialDecks: img("/images/social/decks.png", 1200, 630, "Konntey Home & Renovations: decks and pergolas in Melbourne", "konntey-project"),
   socialPainting: img("/images/social/painting.png", 1200, 630, "Konntey Home & Renovations: interior and exterior painting in Melbourne", "konntey-project"),
   socialVastu: img("/images/social/vastu.png", 1200, 630, "Konntey Home & Renovations: Vastu-aligned renovations in Melbourne", "konntey-project"),
+  socialNewHomes: img("/images/social/new-homes.png", 1200, 630, "Konntey Home & Renovations: new home builds in Melbourne", "konntey-project"),
 } satisfies Record<string, SiteImage>;
 
 export type SiteImageKey = keyof typeof siteImages;

@@ -216,11 +216,6 @@ export default function ServicePage({ service }: { service: ServiceContent }) {
                   </div>
                 ))}
               </Reveal>
-              {!galleryVerified && (
-                <p className="mt-4 font-body text-[13px] text-navy/70">
-                  Example images — not presented as specific Konntey projects.
-                </p>
-              )}
             </Container>
           </section>
         )}

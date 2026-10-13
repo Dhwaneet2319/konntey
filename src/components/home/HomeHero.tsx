@@ -17,7 +17,7 @@ export default function HomeHero() {
             It&apos;s your home. We build it right.
           </p>
           <p className="mt-4 max-w-lg font-body text-[17px] leading-[1.7] text-navy/75">
-            Kitchens, bathrooms, extensions, decks and painting — planned with you,
+            New homes, kitchens, bathrooms, extensions, decks and painting — planned with you,
             quoted in writing and built with care.
           </p>
           <div data-hero-ctas className="mt-8 flex flex-wrap gap-3 max-sm:[&>a]:w-full">

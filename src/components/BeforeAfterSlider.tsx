@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ResponsivePicture from "@/components/home/ResponsivePicture";
 import type { ResponsiveAsset } from "@/components/home/home-images";
-import { isVerifiedWork, type SiteImage } from "@/content/images";
+import type { SiteImage } from "@/content/images";
 import { track } from "@/lib/analytics";
 
 /**
@@ -91,8 +91,6 @@ export default function BeforeAfterSlider({
 
   const rounded = Math.round(position);
   const portrait = before.height > before.width;
-  const packImages = isPackImage(before) || isPackImage(after);
-  const verified = !isPackImage(before) && !isPackImage(after) && isVerifiedWork(before, after);
 
   return (
     <figure className={`mx-auto w-full ${portrait ? "max-w-[520px]" : "max-w-[960px]"}`}>
@@ -209,12 +207,6 @@ export default function BeforeAfterSlider({
           </button>
         ))}
       </div>
-
-      {!packImages && !verified ? (
-        <figcaption className="mt-3 text-center font-body text-[13px] text-navy/70">
-          Example images — not presented as a specific Konntey project.
-        </figcaption>
-      ) : null}
     </figure>
   );
 }

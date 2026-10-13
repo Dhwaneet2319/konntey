@@ -5,6 +5,7 @@
  */
 
 export const serviceSlugs = [
+  "new-home",
   "kitchen",
   "bathroom",
   "extension",
@@ -17,6 +18,7 @@ export type ServiceSlug = (typeof serviceSlugs)[number];
 
 /** Labels used by the enquiry form's service select. */
 export const serviceFormLabels: Record<ServiceSlug, string> = {
+  "new-home": "New home build",
   kitchen: "Kitchen renovation",
   bathroom: "Bathroom renovation",
   extension: "Home extension",

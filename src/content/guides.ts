@@ -321,7 +321,7 @@ export const guides: Guide[] = [
           "Ground-floor extension — $1,800 to $3,000 per m². Family rooms, extra bedrooms or a bigger kitchen, built out from the existing house.",
           "Second-storey addition — $2,500 to $4,500 per m². Building up when the block has no room to build out.",
           "Granny flat (60 m² small second dwelling) — $120,000 to $180,000. A self-contained home on the same lot.",
-          "Knockdown rebuild — $350,000 to $600,000+. Starting again with a new home on your existing block.",
+          "Knockdown rebuild — $400,000 to $850,000+, including demolition. Starting again with a new home on your existing block.",
         ],
       },
       {
@@ -396,6 +396,7 @@ export const guides: Guide[] = [
     ],
     related: [
       { label: "Home Extensions Melbourne", href: "/home-extensions-melbourne" },
+      { label: "New Home Builders Melbourne", href: "/new-home-builders-melbourne" },
       { label: "Granny Flat Rules in Victoria (2026)", href: "/guides/granny-flat-rules-victoria" },
       { label: "Home Extension vs Moving House: Cost Comparison", href: "/guides/home-extension-vs-moving-house" },
       { label: "Do You Need a Permit to Renovate in Victoria?", href: "/guides/renovation-permits-victoria" },

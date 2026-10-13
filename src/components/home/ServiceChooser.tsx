@@ -20,6 +20,8 @@ const cardImages: Partial<Record<ServiceSlug, HomeImageId>> = {
 
 export default function ServiceChooser() {
   const vastu = services.vastu;
+  const newHome = services["new-home"];
+  const newHomeImage = siteImages[newHome.card.image];
   const anyPackImage = chooserServices.some((s) => cardImages[s.slug] !== undefined);
   return (
     <section id="services" aria-labelledby="services-heading" className="scroll-mt-20 bg-off-white py-16 sm:py-24">
@@ -30,10 +32,47 @@ export default function ServiceChooser() {
           title="What are you planning?"
           intro="Choose a project to see what's involved, indicative Melbourne pricing and common questions."
         />
+        {/* New home builds is the newest service, so it gets a wide featured
+            card above the grid instead of a sixth tile. */}
+        <Link
+          href={newHome.route}
+          className="group mt-10 grid overflow-hidden bg-navy text-white transition-shadow duration-hover ease-brand hover:shadow-[0_16px_40px_-18px_rgba(13,31,60,0.55)] sm:grid-cols-[1.1fr_1fr]"
+        >
+          <span className="relative block aspect-[4/3] overflow-hidden bg-navy-light sm:aspect-auto sm:min-h-[320px]">
+            <Image
+              src={newHomeImage.src}
+              alt=""
+              fill
+              sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1279px) 52vw, 640px"
+              className="object-cover transition-transform duration-enter ease-brand group-hover:scale-[1.025]"
+            />
+          </span>
+          <span className="flex flex-col justify-center p-6 sm:p-10">
+            <span className="w-fit bg-gold-bright px-2 py-1 font-body text-[11px] font-semibold uppercase leading-none tracking-[0.08em] text-navy">
+              New service
+            </span>
+            <span className="mt-4 font-display text-[clamp(1.875rem,3.2vw,2.625rem)] font-bold leading-[1.02]">
+              New home builds
+            </span>
+            <span className="mt-3 max-w-md font-body text-[16px] leading-[1.65] text-white/75">
+              Single and double storey homes and knockdown rebuilds on your land, across
+              Melbourne&apos;s west and southeast.
+            </span>
+            <span className="mt-6 inline-flex items-center gap-2 font-body text-[15px] font-semibold text-gold-bright">
+              Explore new home builds
+              <ArrowRight
+                aria-hidden="true"
+                size={18}
+                strokeWidth={2.25}
+                className="transition-transform duration-hover ease-brand group-hover:translate-x-0.5"
+              />
+            </span>
+          </span>
+        </Link>
         <Reveal
           as="ul"
           group
-          className="mt-10 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5"
+          className="mt-3 grid gap-3 sm:mt-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5"
         >
           {chooserServices.map((s) => {
             const packImage = cardImages[s.slug];

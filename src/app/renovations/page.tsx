@@ -84,8 +84,8 @@ export default function RenovationsHubPage() {
               <span className="text-gold-bright">Across Melbourne</span>
             </h1>
             <p className="mt-8 max-w-2xl font-body text-[18px] leading-[1.8] text-white/90">
-              Konntey Home &amp; Renovations delivers kitchen renovations, bathroom renovations, home
-              extensions, decks and painting right across Melbourne&apos;s west and southeast. Choose
+              Konntey Home &amp; Renovations delivers new home builds, kitchen and bathroom renovations,
+              home extensions, decks and painting right across Melbourne&apos;s west and southeast. Choose
               your suburb for local housing notes, permit information and the services available.
             </p>
           </div>
@@ -129,6 +129,7 @@ export default function RenovationsHubPage() {
             </h2>
             <div className="flex flex-wrap gap-3">
               {[
+                { label: "New Home Builds", href: "/new-home-builders-melbourne" },
                 { label: "Kitchen Renovations", href: "/kitchen-renovations-melbourne" },
                 { label: "Bathroom Renovations", href: "/bathroom-renovations-melbourne" },
                 { label: "Home Extensions", href: "/home-extensions-melbourne" },

@@ -9,6 +9,7 @@ import { business } from "@/content/business";
 import { scrollBehavior } from "@/lib/motion";
 
 const services = [
+  { label: "New home builds", href: "/new-home-builders-melbourne" },
   { label: "Kitchen renovations", href: "/kitchen-renovations-melbourne" },
   { label: "Bathroom renovations", href: "/bathroom-renovations-melbourne" },
   { label: "Home extensions", href: "/home-extensions-melbourne" },

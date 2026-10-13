@@ -17,7 +17,7 @@ const sentence = (s: string) => (s ? `${s.charAt(0).toUpperCase()}${s.slice(1)}.
 
 /** Default site description built only from approved claims. */
 export const siteDescription = [
-  "Kitchen and bathroom renovations, home extensions, decks and painting across Melbourne's west and southeast.",
+  "New homes, kitchen and bathroom renovations, extensions, decks and painting in Melbourne's west and southeast.",
   sentence(isClaimApproved("bpcRegistration") ? claims.bpcRegistration.approvedWording : ""),
   `Free consultation and a written ${claimText("fixedPriceQuotes")} quote.`,
 ]
