@@ -110,6 +110,11 @@ const localBusinessSchema = {
   description: siteDescription,
   telephone: business.phoneE164,
   email: business.email,
+  // The ABN is already published sitewide; as an identifier it helps search
+  // engines tie this site to the business's other listings.
+  taxID: business.abn,
+  identifier: { "@type": "PropertyValue", propertyID: "ABN", value: business.abn },
+  knowsAbout: serviceList.map((s) => s.name),
   currenciesAccepted: "AUD",
   address: {
     "@type": "PostalAddress",

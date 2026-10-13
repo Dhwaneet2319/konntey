@@ -8,8 +8,8 @@ import FloatingActions from "@/components/chat/FloatingActions";
 import QuoteChecklist from "@/components/QuoteChecklist";
 import { guides, getGuide, GUIDES_BASE_URL } from "@/content/guides";
 import { quoteKind } from "@/content/business";
-import type { SiteImageKey } from "@/content/images";
-import { pageMetadata } from "@/lib/seo";
+import { siteImages, type SiteImageKey } from "@/content/images";
+import { ORGANIZATION_ID, WEBSITE_ID, jsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function guideSocialImage(slug: string): SiteImageKey {
   if (slug.includes("kitchen")) return "socialKitchen";
   if (slug.includes("bathroom")) return "socialBathroom";
-  if (slug.includes("extension")) return "socialExtensions";
+  if (slug.includes("extension") || slug.includes("granny-flat")) return "socialExtensions";
   return "socialDefault";
 }
 
@@ -49,6 +49,7 @@ export default async function GuideArticlePage({ params }: Props) {
   if (!guide) notFound();
 
   const url = `${GUIDES_BASE_URL}/guides/${guide.slug}`;
+  const image = siteImages[guideSocialImage(guide.slug)];
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -70,10 +71,15 @@ export default async function GuideArticlePage({ params }: Props) {
           name: "Konntey Home & Renovations",
           url: GUIDES_BASE_URL,
         },
-    publisher: {
-      "@id": `${GUIDES_BASE_URL}/#organization`,
+    publisher: { "@id": ORGANIZATION_ID },
+    image: {
+      "@type": "ImageObject",
+      url: `${GUIDES_BASE_URL}${image.src}`,
+      width: image.width,
+      height: image.height,
     },
-    image: `${GUIDES_BASE_URL}/images/hero-main.webp`,
+    inLanguage: "en-AU",
+    isPartOf: { "@id": WEBSITE_ID },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
@@ -103,8 +109,8 @@ export default async function GuideArticlePage({ params }: Props) {
 
   return (
     <div className="bg-navy text-white font-body min-h-screen flex flex-col">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(articleSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbSchema)} />
       <NavBar theme="dark" />
       <FloatingActions />
 

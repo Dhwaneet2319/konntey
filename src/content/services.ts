@@ -105,9 +105,9 @@ export const services: Record<ServiceSlug, ServiceContent> = {
     schemaName: "Kitchen renovations, western Melbourne",
     serviceType: "Kitchen Renovation",
     meta: {
-      title: "Kitchen renovations Melbourne",
+      title: "Kitchen renovations Melbourne & western suburbs",
       description: join(
-        "Kitchen renovations across Melbourne's west, from cabinet and benchtop refreshes to open-plan redesigns.",
+        "Kitchen renovations across Melbourne's western suburbs, from benchtop refreshes to open-plan redesigns.",
         approvedSentences("bpcRegistration"),
         quoteSentence,
       ),
@@ -115,7 +115,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
     socialImage: "socialKitchen",
     hero: {
       kicker: "Kitchen renovations",
-      title: "Kitchen renovations for western Melbourne homes",
+      title: "Kitchen renovations across Melbourne's western suburbs",
       intro: join(
         "We renovate kitchens across Melbourne's west, from cabinet replacements to full open-plan rebuilds, for homeowners in Tarneit, Werribee, Point Cook, Footscray, Hoppers Crossing and Sunshine.",
         approvedSentences("bpcRegistration", "noSubcontractors"),
@@ -207,9 +207,9 @@ export const services: Record<ServiceSlug, ServiceContent> = {
     schemaName: "Bathroom renovations, western Melbourne",
     serviceType: "Bathroom Renovation",
     meta: {
-      title: "Bathroom renovations Melbourne",
+      title: "Bathroom renovations Melbourne & western suburbs",
       description: join(
-        "Bathroom renovations across Melbourne's west, from small ensuite refreshes to full rebuilds.",
+        "Bathroom and ensuite renovations across Melbourne's western suburbs, from compact ensuites to full rebuilds.",
         approvedSentences("bpcRegistration", "waterproofingCertificate"),
         quoteSentence,
       ),
@@ -217,7 +217,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
     socialImage: "socialBathroom",
     hero: {
       kicker: "Bathroom renovations",
-      title: "Bathroom renovations in western Melbourne",
+      title: "Bathroom renovations in Melbourne's western suburbs",
       accent: "from ensuite to full remodel",
       intro: join(
         "We renovate bathrooms across Melbourne's western suburbs, from small ensuite refreshes to full rebuilds, for homeowners in Tarneit, Point Cook, Werribee, Footscray, Hoppers Crossing and Williamstown.",
@@ -337,9 +337,9 @@ export const services: Record<ServiceSlug, ServiceContent> = {
     schemaName: "Home extensions, Melbourne",
     serviceType: "Home Extension",
     meta: {
-      title: "Home extensions Melbourne",
+      title: "Home extensions Melbourne: cost & process",
       description: join(
-        "Ground-floor extensions, second storeys, granny flats and knockdown rebuilds across Melbourne, with permits and approvals coordinated.",
+        "Ground-floor extensions, second storeys and granny flats across Melbourne, with indicative costs per m².",
         approvedSentences("bpcRegistration"),
         quoteSentence,
       ),
@@ -416,6 +416,8 @@ export const services: Record<ServiceSlug, ServiceContent> = {
       phoneLabel: "Call us",
     },
     relatedGuides: [
+      { label: "Home extension cost guide for Melbourne", href: "/guides/home-extension-cost-melbourne" },
+      { label: "Granny flat rules in Victoria", href: "/guides/granny-flat-rules-victoria" },
       { label: "Home extension vs moving house: which adds more value?", href: "/guides/home-extension-vs-moving-house" },
       { label: "Do you need a permit to renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
       { label: "How to choose a renovation builder in Melbourne", href: "/guides/how-to-choose-a-renovation-builder-melbourne" },
@@ -440,7 +442,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
     meta: {
       title: "Deck & pergola builders Melbourne",
       description: join(
-        "Timber and composite decks, pergolas, carports and outdoor rooms across Melbourne, in merbau, spotted gum or composite.",
+        "Timber and composite decks, pergolas and alfresco areas across Melbourne, with indicative prices per m².",
         approvedSentences("bpcRegistration"),
         quoteSentence,
       ),
@@ -540,9 +542,9 @@ export const services: Record<ServiceSlug, ServiceContent> = {
     schemaName: "Interior and exterior painting, Melbourne",
     serviceType: "House Painting",
     meta: {
-      title: "Interior & exterior painting Melbourne",
+      title: "House painters Melbourne: interior & exterior",
       description: join(
-        "Interior and exterior house painting across Melbourne, with careful preparation, clean lines and colour advice included.",
+        "Interior and exterior house painting across Melbourne, with careful preparation, clean lines and colour advice.",
         quoteSentence,
       ),
     },
@@ -639,7 +641,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
     schemaName: "Vastu-compliant home renovations, Melbourne",
     serviceType: "Vastu Renovation",
     meta: {
-      title: "Vastu-compliant renovations Melbourne",
+      title: "Vastu home design & renovations Melbourne",
       description: join(
         "Kitchen, bathroom, entrance and whole-home renovations planned around Vastu Shastra principles and built to Australian standards across Melbourne.",
         approvedSentences("ownershipHeritage"),

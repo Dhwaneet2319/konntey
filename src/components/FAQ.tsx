@@ -2,6 +2,13 @@ import ServiceFaq from "@/components/ServiceFaq";
 import { Container, SectionHeading, TextLink } from "@/components/ui";
 import { homeFaqs } from "@/content/homeFaqs";
 
+const costAndPermitGuides = [
+  { label: "Kitchen renovation costs", href: "/guides/kitchen-renovation-cost-melbourne" },
+  { label: "Bathroom renovation costs", href: "/guides/bathroom-renovation-cost-melbourne" },
+  { label: "Home extension costs", href: "/guides/home-extension-cost-melbourne" },
+  { label: "Permits in Victoria", href: "/guides/renovation-permits-victoria" },
+];
+
 /** Homepage FAQ; the same array feeds the homepage FAQPage JSON-LD. */
 export default function FAQ() {
   return (
@@ -16,6 +23,16 @@ export default function FAQ() {
           <div className="mt-4">
             <TextLink href="/guides/renovation-quote-checklist-melbourne">Quote comparison checklist</TextLink>
           </div>
+          <p className="mt-8 font-body text-[16px] leading-[1.7] text-navy/75">
+            Working out a budget or whether you need a permit? Start with our guides.
+          </p>
+          <ul className="mt-4 grid gap-3">
+            {costAndPermitGuides.map((g) => (
+              <li key={g.href}>
+                <TextLink href={g.href}>{g.label}</TextLink>
+              </li>
+            ))}
+          </ul>
         </div>
         <ServiceFaq faqs={homeFaqs} />
       </Container>

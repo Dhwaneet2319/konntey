@@ -85,7 +85,7 @@ export const claims = {
   },
   insurance: {
     claim:
-      "Konntey holds current public liability insurance and takes out domestic building insurance where the law requires it.",
+      "Konntey holds current public liability insurance, and eligible domestic building work has the warranty cover the law requires (Home Warranty for contracts signed from 1 July 2026; domestic building insurance for earlier contracts).",
     evidence: "",
     approvedWording: "Insured",
     neutralWording: "",
@@ -181,7 +181,7 @@ export const claims = {
       "We'll reply to arrange a site visit, then send you a written quote for the agreed scope.",
     status: "needs-evidence",
     reviewedOn: "",
-    usedIn: "Service FAQs, homepage FAQ, enquiry section, quote page metadata.",
+    usedIn: "Service FAQs, homepage FAQ, enquiry section.",
   },
   priceRanges: {
     claim:

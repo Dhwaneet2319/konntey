@@ -1,4 +1,5 @@
 import { quoteKind } from "@/content/business";
+import type { CouncilId } from "@/content/councils";
 import { suburbIndex } from "@/content/taxonomy";
 
 /**
@@ -18,6 +19,8 @@ export interface SuburbProfile {
   slug: string;
   region: SuburbRegion;
   council: string;
+  /** Councils covering the suburb, for the official permit links. */
+  councils: CouncilId[];
   /** Nearby suburbs; only those with their own page are linked. */
   nearby: string[];
   profile: string[];
@@ -30,6 +33,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "tarneit",
     region: "West",
     council: "Wyndham City Council",
+    councils: ["wyndham"],
     nearby: ["Truganina", "Werribee", "Hoppers Crossing", "Wyndham Vale", "Manor Lakes"],
     profile: [
       "Tarneit is one of Australia's fastest-growing suburbs, and most of its housing was built in the last ten to twenty years. That first wave of builder-grade kitchens and bathrooms is now reaching the end of its life — laminate benchtops, basic tapware and standard-range tiles that are ready for an upgrade. Replacing builder basics with stone benchtops, quality cabinetry and modern fittings improves daily living and presentation for resale.",
@@ -47,6 +51,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "truganina",
     region: "West",
     council: "Wyndham City Council",
+    councils: ["wyndham"],
     nearby: ["Tarneit", "Williams Landing", "Laverton", "Hoppers Crossing"],
     profile: [
       "Truganina's estates are among the newest in Melbourne's west, with open-plan layouts that already suit modern living. What many homes lack is the finishing touch — builder-grade splashbacks, basic benchtops and unlandscaped yards — so typical projects personalise a standard volume build.",
@@ -64,6 +69,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "werribee",
     region: "West",
     council: "Wyndham City Council",
+    councils: ["wyndham"],
     nearby: ["Hoppers Crossing", "Wyndham Vale", "Point Cook", "Tarneit"],
     profile: [
       "Werribee is the established heart of Melbourne's west, and much of its housing dates from the 1970s to the 1990s. These solid brick-veneer homes have good bones but original kitchens and bathrooms that are well past their use-by date, which makes full strip-out renovations a common choice.",
@@ -81,6 +87,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "hoppers-crossing",
     region: "West",
     council: "Wyndham City Council",
+    councils: ["wyndham"],
     nearby: ["Werribee", "Tarneit", "Williams Landing", "Point Cook"],
     profile: [
       "Hoppers Crossing is classic 1970s and 80s brick-veneer territory — sturdy family homes with original bathrooms, dated kitchens and separate, closed-off living rooms. Common projects here are full bathroom strip-outs with new waterproofing, and open-plan conversions that bring kitchen, dining and living together.",
@@ -98,6 +105,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "point-cook",
     region: "West",
     council: "Wyndham City Council",
+    councils: ["wyndham"],
     nearby: ["Williams Landing", "Hoppers Crossing", "Werribee", "Laverton"],
     profile: [
       "Point Cook boomed through the 2000s, which means many of its homes are now fifteen to twenty-five years old — right in the renovation sweet spot. Kitchens and ensuites from that era look dated next to current builds, and replacing the mid-2000s laminate-and-chrome finish is a common upgrade.",
@@ -115,6 +123,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "wyndham-vale",
     region: "West",
     council: "Wyndham City Council",
+    councils: ["wyndham"],
     nearby: ["Manor Lakes", "Werribee", "Tarneit", "Melton"],
     profile: [
       "Wyndham Vale has grown rapidly as one of the west's more affordable family suburbs, and many owners who bought new five to fifteen years ago are now ready to upgrade. Budget-conscious renovations suit many homes here — cabinet and benchtop refreshes, bathroom updates and repainting.",
@@ -132,6 +141,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "manor-lakes",
     region: "West",
     council: "Wyndham City Council",
+    councils: ["wyndham"],
     nearby: ["Wyndham Vale", "Tarneit", "Werribee", "Melton"],
     profile: [
       "Manor Lakes is one of Melbourne's newer communities, so renovation needs look different to older suburbs. Rather than gut renovations, most projects are finishing works: decks, pergolas and alfresco areas, landscaping structures, feature painting, and upgrades to builder-grade fixtures.",
@@ -149,6 +159,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "williams-landing",
     region: "West",
     council: "Wyndham City Council",
+    councils: ["wyndham"],
     nearby: ["Laverton", "Point Cook", "Hoppers Crossing", "Truganina"],
     profile: [
       "Williams Landing is a master-planned suburb where most housing is barely a decade old. Renovation work here centres on personalisation: upgrading standard builder inclusions, custom storage and study nooks, feature walls and repainting, and small-footprint kitchen upgrades in townhouses.",
@@ -166,6 +177,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "laverton",
     region: "West",
     council: "Wyndham or Hobsons Bay council, depending on your address",
+    councils: ["wyndham", "hobsons-bay"],
     nearby: ["Williams Landing", "Point Cook", "Truganina", "Hoppers Crossing"],
     profile: [
       "Laverton has post-war and 1960s–70s homes on blocks that are generous by newer-estate standards, about seventeen kilometres from the CBD. Full renovations can turn tired weatherboard and brick homes into modern family houses.",
@@ -183,6 +195,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "melton",
     region: "West",
     council: "Melton City Council",
+    councils: ["melton"],
     nearby: ["Wyndham Vale", "Manor Lakes", "Tarneit", "Werribee"],
     profile: [
       "Melton spans two different renovation markets: the established centre with solid 1980s and 90s homes due for kitchen and bathroom updates, and the new growth estates where finishing works — decks, pergolas, landscaping structures and painting — are in demand.",
@@ -200,6 +213,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "dandenong",
     region: "Southeast",
     council: "Greater Dandenong City Council",
+    councils: ["greater-dandenong"],
     nearby: ["Springvale", "Narre Warren", "Cranbourne", "Berwick"],
     profile: [
       "Dandenong's housing stock includes many solid post-war brick homes that were built to last but are overdue for modern interiors. Kitchen and bathroom modernisations are common, turning compartmentalised mid-century layouts into open, light-filled family spaces.",
@@ -217,6 +231,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "springvale",
     region: "Southeast",
     council: "Greater Dandenong City Council",
+    councils: ["greater-dandenong"],
     nearby: ["Dandenong", "Clayton", "Noble Park", "Keysborough"],
     profile: [
       "Springvale's 1960s–80s brick homes are often good candidates for renovation — where frames and slabs are sound, new kitchens, bathrooms and open-plan conversions bring older layouts up to how families live today.",
@@ -234,6 +249,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "cranbourne",
     region: "Southeast",
     council: "Casey City Council",
+    councils: ["casey"],
     nearby: ["Narre Warren", "Berwick", "Clyde", "Frankston"],
     profile: [
       "Cranbourne mixes 1990s established homes with the newer estates spreading toward Clyde. In the established areas, 90s kitchens and bathrooms are due for replacement; in the newer estates, decks, pergolas and alfresco areas top the list.",
@@ -251,6 +267,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "frankston",
     region: "Southeast",
     council: "Frankston City Council",
+    councils: ["frankston"],
     nearby: ["Cranbourne", "Seaford", "Langwarrin", "Carrum Downs"],
     profile: [
       "Frankston's mix of 1960s–80s weatherboard and brick homes near the bay suits coastal-style kitchen and bathroom renovations — light palettes, quality tiling and finishes chosen to handle salt air.",
@@ -268,6 +285,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "narre-warren",
     region: "Southeast",
     council: "Casey City Council",
+    councils: ["casey"],
     nearby: ["Berwick", "Dandenong", "Cranbourne", "Officer"],
     profile: [
       "Narre Warren's family homes from the 1980s and 90s are reaching the age where original kitchens and bathrooms need full replacement rather than repair. Complete kitchen renovations with modern appliances and stone benchtops are a common project.",
@@ -285,6 +303,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "berwick",
     region: "Southeast",
     council: "Casey City Council",
+    councils: ["casey"],
     nearby: ["Narre Warren", "Officer", "Pakenham", "Clyde"],
     profile: [
       "Berwick is one of the southeast's most established and leafy suburbs, with quality 1980s–2000s homes. Premium kitchen renovations, ensuites and second-storey extensions are popular projects.",
@@ -302,6 +321,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "pakenham",
     region: "Southeast",
     council: "Cardinia Shire Council",
+    councils: ["cardinia"],
     nearby: ["Officer", "Berwick", "Clyde", "Nar Nar Goon"],
     profile: [
       "Pakenham has grown quickly over two decades, leaving a clear split: 1990s–2000s homes in the established areas now due their first full kitchen and bathroom renovations, and newer estates wanting decks, pergolas and outdoor living.",
@@ -319,6 +339,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "officer",
     region: "Southeast",
     council: "Cardinia Shire Council",
+    councils: ["cardinia"],
     nearby: ["Pakenham", "Berwick", "Narre Warren", "Clyde"],
     profile: [
       "Officer is one of the southeast's newest suburbs, so most work here completes and personalises near-new homes: alfresco decks and pergolas, landscaping structures, feature painting and upgraded storage.",
@@ -336,6 +357,7 @@ export const suburbProfiles: SuburbProfile[] = [
     slug: "clyde",
     region: "Southeast",
     council: "Casey City Council",
+    councils: ["casey"],
     nearby: ["Cranbourne", "Berwick", "Pakenham", "Officer"],
     profile: [
       "Clyde and Clyde North sit at the newest edge of Melbourne's southeast growth corridor. Most homes here are under ten years old, so demand centres on outdoor living — merbau and composite decks, pergolas and alfresco areas built to estate design guidelines.",

@@ -31,6 +31,17 @@ export default function ServicePage({ service }: { service: ServiceContent }) {
     areaServed: { "@type": "City", name: "Melbourne" },
     description: service.meta.description,
     url: `${BASE_URL}${service.route}`,
+    image: `${BASE_URL}${heroImage.src}`,
+    // The same project types listed on the page, so the schema describes
+    // exactly what a visitor can read.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: service.types.heading,
+      itemListElement: service.types.items.map((item) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: item.title, description: item.desc },
+      })),
+    },
     ...(service.pricing && isClaimApproved("priceRanges")
       ? {
           offers: {
