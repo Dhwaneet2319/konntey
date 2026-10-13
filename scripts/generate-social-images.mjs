@@ -26,6 +26,7 @@ const cards = [
   { file: "decks.png", kicker: "Decks & pergolas", lines: ["Outdoor living", "built for Melbourne"] },
   { file: "painting.png", kicker: "Interior & exterior painting", lines: ["Careful prep,", "clean finishes"] },
   { file: "vastu.png", kicker: "Vastu renovations", lines: ["Vastu-aligned design,", "built to code"] },
+  { file: "new-homes.png", kicker: "New home builds", lines: ["New homes built", "on your land"] },
 ];
 
 const escape = (s) =>

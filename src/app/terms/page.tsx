@@ -26,7 +26,7 @@ export default function TermsPage() {
           Terms of Service
         </h1>
         <p className="mt-4 font-body text-[14px] text-white/70">
-          Last updated: November 2025
+          Last updated: October 2026
         </p>
 
         <div className="mt-12 space-y-10 font-body text-[16px] leading-[1.8] text-white/90">
@@ -67,6 +67,13 @@ export default function TermsPage() {
               Vastu compliance or any specific project outcome. Any before and
               after comparison presented on this website is an illustrative
               redesign concept, not a real project record.
+            </p>
+            <p className="mt-4">
+              Other photos on our service pages, including image galleries and
+              before-and-after comparisons, are example images showing the kind
+              of finish a project can achieve. Unless an image is labelled as a
+              completed Konntey Home &amp; Renovations project, it is not
+              presented as a specific Konntey project.
             </p>
             <p className="mt-4">
               Photographs of our actual completed projects are published

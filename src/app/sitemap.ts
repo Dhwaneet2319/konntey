@@ -11,7 +11,8 @@ import { BASE_URL, credentialsPageIndexable } from "@/content/business";
  * changes. Routes without a known date omit lastModified entirely.
  */
 const contentUpdated: Record<string, string> = {
-  "/": "2026-10-04",
+  "/": "2026-10-13",
+  "/new-home-builders-melbourne": "2026-10-13",
   "/kitchen-renovations-melbourne": "2026-10-10",
   "/bathroom-renovations-melbourne": "2026-10-10",
   "/home-extensions-melbourne": "2026-10-10",
@@ -21,7 +22,7 @@ const contentUpdated: Record<string, string> = {
   "/quote": "2026-09-29",
   "/renovations": "2026-10-10",
   "/renovations/[suburb]": "2026-10-10",
-  "/terms": "2026-10-04",
+  "/terms": "2026-10-13",
   // The guides hub changes whenever a guide is added or updated.
   "/guides": guides.map((g) => g.dateModified).sort().at(-1) ?? "",
 };
@@ -36,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes = [
     "/",
+    "/new-home-builders-melbourne",
     "/kitchen-renovations-melbourne",
     "/bathroom-renovations-melbourne",
     "/home-extensions-melbourne",

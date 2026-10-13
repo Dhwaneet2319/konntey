@@ -97,6 +97,116 @@ const quoteStep = (extra = "") =>
   join(`A ${quoteKind} for the agreed scope`, extra).trim();
 
 export const services: Record<ServiceSlug, ServiceContent> = {
+  "new-home": {
+    slug: "new-home",
+    route: "/new-home-builders-melbourne",
+    name: "New home builds",
+    projectNoun: "new home build",
+    schemaName: "New home construction, Melbourne",
+    serviceType: "New Home Construction",
+    meta: {
+      // "new home builders melbourne" and "home builders western suburbs
+      // melbourne" are the main searches (Google AU autocomplete, Oct 2026).
+      title: "New home builders Melbourne & western suburbs",
+      description: join(
+        "New single and double storey homes and knockdown rebuilds across Melbourne's west and southeast.",
+        approvedSentences("bpcRegistration"),
+        quoteSentence,
+      ),
+    },
+    socialImage: "socialNewHomes",
+    hero: {
+      kicker: "New home builds",
+      title: "New home builders in Melbourne",
+      accent: "Single storey, double storey & knockdown rebuilds",
+      intro: join(
+        "We build new homes on your land across Melbourne's western and south-eastern suburbs, from family homes on new estate blocks in Tarneit, Truganina and Clyde to knockdown rebuilds in established Werribee, Dandenong and Frankston streets.",
+        approvedSentences("bpcRegistration"),
+      ),
+      image: "newHomeHero",
+      ctaLabel: "Get a free new home quote",
+    },
+    cost: {
+      heading: "How much does it cost to build a new home in Melbourne?",
+      body: `Building a new home in Melbourne generally costs about $1,900 to $3,000 per square metre for a single-storey home and $2,300 to $3,800 per square metre for a double storey, with custom and architectural homes from about $3,500 per square metre. A knockdown rebuild, including demolition, is usually $400,000 to $850,000 or more. These figures exclude the land, and site costs such as soil conditions, slope and access move them most. Your ${quoteKind} lists the inclusions, so you can see exactly what the price covers.`,
+    },
+    types: {
+      heading: "New homes we build",
+      items: [
+        { title: "Single-storey homes", desc: "Family homes on one level, designed around your block and the way you live." },
+        { title: "Double-storey homes", desc: "More living space on a smaller footprint, a good fit for narrower estate blocks." },
+        { title: "Knockdown rebuilds", desc: "Demolish an ageing house and build new on the block you already own, in the street you already know." },
+        { title: "Custom home design", desc: "Plans drawn for your block and brief with a draftsperson or architect, rather than picked from a fixed range." },
+        { title: "Duplex & dual occupancy", desc: "Two homes on one block for family living or investment, where the planning scheme allows it." },
+        { title: "Vastu-aligned new homes", desc: "Entrance, kitchen, bedroom and pooja room placement planned around Vastu Shastra from the first sketch." },
+      ],
+    },
+    gallery: ["newHomeFacade", "newHomeLiving", "newHomeFrame", "newHomeAlfresco"],
+    process: {
+      heading: "How a new home build runs",
+      steps: [
+        { title: "Free consultation", desc: "Site visit, your brief and budget, and a first look at what the block allows." },
+        { title: "Site investigation", desc: "Soil test, feature and level survey, and checks of the title and planning controls." },
+        { title: "Design & quote", desc: quoteStep("with plans, selections and inclusions listed") },
+        { title: "Permits", desc: "A planning permit if your property needs one, then the building permit from a registered building surveyor." },
+        { title: "Base stage", desc: "Site cut, footings and slab, inspected before the concrete is poured." },
+        { title: "Frame & lock-up", desc: "Frame inspection, roof, windows and external cladding until the home is weather-tight." },
+        { title: "Fixing & fit-out", desc: "Plastering, cabinetry, wet areas, and electrical and plumbing fit-off." },
+        { title: "Handover", desc: "Final inspection, the occupancy permit and a full walkthrough of your new home." },
+      ],
+      image: "newHomeFrame",
+    },
+    compliance: {
+      heading: "Built to current Victorian standards",
+      intro: "New homes in Victoria have to meet stricter rules than they did a few years ago. These are the ones that shape your design and budget:",
+      items: [
+        "A minimum 7-star NatHERS energy rating, required for new homes since May 2024.",
+        "All-electric: no new homes can connect to gas from 1 January 2027, and homes that needed a planning permit lodged from 1 January 2024 already can't.",
+        "A building permit from a registered building surveyor, with mandatory inspections at key stages and an occupancy permit before you move in.",
+        "A written major domestic building contract for work over $10,000, and Home Warranty cover for eligible work over $20,000 under contracts signed from 1 July 2026.",
+      ],
+      note: "Requirements change, so confirm the current rules for your property with your building surveyor before you sign.",
+    },
+    pricing: {
+      rows: [
+        { scope: "Single-storey home", range: "$1,900 – $3,000/m²" },
+        { scope: "Double-storey home", range: "$2,300 – $3,800/m²" },
+        { scope: "Custom / architectural home", range: "$3,500 – $5,500+/m²" },
+        { scope: "Knockdown rebuild (incl. demolition)", range: "$400,000 – $850,000+" },
+      ],
+      note: "Excludes land. Site conditions, demolition, design and permit fees vary with the block, the soil and access.",
+      low: 300000,
+      high: 850000,
+    },
+    testimonials: [],
+    faqs: [
+      { q: "How much does it cost to build a new home in Melbourne?", a: `As an indicative guide, about $1,900–$3,000 per m² for a single-storey home, $2,300–$3,800 per m² for a double storey, and from about $3,500 per m² for a custom design, excluding land. A knockdown rebuild is usually $400,000–$850,000 or more including demolition. You'll get a ${quoteKind} once the design and selections are set.` },
+      { q: "Can you build on land I already own?", a: "Yes. We build on your existing block, whether it's a vacant estate lot or a knockdown rebuild. We check the title, planning controls and site conditions before quoting so there are no surprises later." },
+      { q: "Is a knockdown rebuild better value than buying a new house?", a: "Often, if you like your location. Because you keep the land, you avoid the stamp duty, agent fees and moving costs of buying elsewhere, and you end up with a new home in the street you already know. Demolition, site costs and temporary accommodation during the build need to be in the budget." },
+      { q: "How long does it take to build a new home?", a: "Construction typically takes around 6–9 months for a single-storey home and 9–14 months for a double storey, after design and permits are complete. Weather, site conditions and selection changes can affect the timeline, and your contract sets out the agreed build period." },
+      { q: "Can my new home have gas?", a: "From 1 January 2027, all new homes in Victoria must be built all-electric, and new homes that needed a planning permit lodged from 1 January 2024 already can't connect to gas. We design around efficient electric heating, hot water and cooking from the start." },
+      { q: "Do you build Vastu-compliant homes?", a: `Yes. A new build is the easiest time to follow Vastu, because the entrance, kitchen, bedrooms and pooja room can all be placed correctly from the first sketch. ${claimText("vastuProvider")}` },
+      { q: "How do I get started?", a: getStarted },
+    ],
+    finalCta: {
+      heading: "Ready to build your new home?",
+      body: join(quoteSentence, approvedSentences("bpcRegistration")),
+      phoneLabel: "Call us",
+    },
+    relatedGuides: [
+      { label: "How to choose a renovation builder in Melbourne", href: "/guides/how-to-choose-a-renovation-builder-melbourne" },
+      { label: "Home extension vs moving house: which adds more value?", href: "/guides/home-extension-vs-moving-house" },
+      { label: "Do you need a permit to renovate in Victoria?", href: "/guides/renovation-permits-victoria" },
+      { label: "Renovation quote comparison checklist", href: "/guides/renovation-quote-checklist-melbourne" },
+    ],
+    relatedServices: [
+      { label: "Home extensions", href: "/home-extensions-melbourne" },
+      { label: "Vastu renovations", href: "/vastu-renovations-melbourne" },
+      { label: "Decks & pergolas", href: "/decks-pergolas-melbourne" },
+    ],
+    areasLabel: "New home builds",
+    card: { title: "New homes", blurb: "Single storey, double storey and knockdown rebuilds.", image: "newHomeHero" },
+  },
   kitchen: {
     slug: "kitchen",
     route: "/kitchen-renovations-melbourne",
@@ -366,7 +476,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
         { title: "Ground-floor extension", desc: "Expand outward for open-plan living, extra bedrooms or a larger kitchen." },
         { title: "Second-storey addition", desc: "Build up when you can't build out." },
         { title: "Granny flat / DPU", desc: "A dependent person's unit or rental space, self-contained and built with the approvals it needs." },
-        { title: "Knockdown rebuild", desc: "Start fresh on your existing block with a new home." },
+        { title: "Knockdown rebuild", desc: "Start fresh on your existing block with a new home — see our new home builds." },
         { title: "Garage conversion", desc: "Turn an under-used garage into living space, a home office or a studio." },
       ],
     },
@@ -388,11 +498,11 @@ export const services: Record<ServiceSlug, ServiceContent> = {
         { scope: "Ground-floor extension", range: "$1,800 – $3,000/m²" },
         { scope: "Second-storey addition", range: "$2,500 – $4,500/m²" },
         { scope: "Granny flat (60 m²)", range: "$120,000 – $180,000" },
-        { scope: "Knockdown rebuild", range: "$350,000 – $600,000+" },
+        { scope: "Knockdown rebuild", range: "$400,000 – $850,000+" },
       ],
       note: "Prices vary with site conditions, structural requirements, material selections and planning overlays.",
       low: 80000,
-      high: 600000,
+      high: 850000,
     },
     // OWNER: set consentConfirmed only after matching each quote to a real
     // customer and getting their permission to publish it.
@@ -424,9 +534,9 @@ export const services: Record<ServiceSlug, ServiceContent> = {
       { label: "Renovation quote comparison checklist", href: "/guides/renovation-quote-checklist-melbourne" },
     ],
     relatedServices: [
+      { label: "New home builds", href: "/new-home-builders-melbourne" },
       { label: "Kitchen renovations", href: "/kitchen-renovations-melbourne" },
       { label: "Bathroom renovations", href: "/bathroom-renovations-melbourne" },
-      { label: "Decks & pergolas", href: "/decks-pergolas-melbourne" },
     ],
     areasLabel: "Home extensions",
     card: { title: "Extensions", blurb: "Ground floor, second storey and granny flats.", image: "extension" },

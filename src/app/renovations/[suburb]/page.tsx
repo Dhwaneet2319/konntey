@@ -15,7 +15,7 @@ import { VICPLAN_URL, councils } from "@/content/councils";
 import { getGuide } from "@/content/guides";
 import { siteImages } from "@/content/images";
 import { getLocalProof, isSuburbIndexable } from "@/content/localProof";
-import { chooserServices } from "@/content/services";
+import { chooserServices, services } from "@/content/services";
 import { getSuburb, suburbProfiles, suburbSlugFor, type SuburbProfile } from "@/content/suburbs";
 import { breadcrumbSchema, jsonLd, pageMetadata, providerRef } from "@/lib/seo";
 
@@ -26,6 +26,9 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
   return suburbProfiles.map((s) => ({ suburb: s.slug }));
 }
+
+// Every service with a card on the suburb page, new home builds first.
+const suburbServices = [services["new-home"], ...chooserServices];
 
 // Cost and planning guides linked from every suburb page.
 const planningGuides = [
@@ -91,7 +94,7 @@ export default async function SuburbPage({ params }: Props) {
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `Renovation services in ${suburb.name}`,
-      itemListElement: chooserServices.map((s) => ({
+      itemListElement: suburbServices.map((s) => ({
         "@type": "Offer",
         itemOffered: { "@type": "Service", name: s.name, url: `${BASE_URL}${s.route}` },
       })),
@@ -229,10 +232,10 @@ export default async function SuburbPage({ params }: Props) {
             <SectionHeading
               kicker="Services"
               title={`What we build in ${suburb.name}`}
-              intro={`Kitchen renovations, bathroom renovations, home extensions, decks and painting in ${suburb.name}. Pricing guidance, process and detailed FAQs are on each service page.`}
+              intro={`New home builds, kitchen and bathroom renovations, home extensions, decks and painting in ${suburb.name}. Pricing guidance, process and detailed FAQs are on each service page.`}
             />
-            <Reveal group className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
-              {chooserServices.map((s) => {
+            <Reveal group className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+              {suburbServices.map((s) => {
                 const image = siteImages[s.card.image];
                 return (
                   <Link key={s.slug} href={s.route} className="group block bg-white">
@@ -241,7 +244,7 @@ export default async function SuburbPage({ params }: Props) {
                         src={image.src}
                         alt=""
                         fill
-                        sizes="(max-width: 1024px) 50vw, 20vw"
+                        sizes="(max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-enter ease-brand group-hover:scale-[1.025]"
                       />
                     </div>
