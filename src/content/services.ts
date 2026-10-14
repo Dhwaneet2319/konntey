@@ -480,6 +480,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
         { title: "Garage conversion", desc: "Turn an under-used garage into living space, a home office or a studio." },
       ],
     },
+    gallery: ["extensionRear", "extensionSecondStorey", "extensionLiving"],
     process: {
       heading: "How an extension runs",
       steps: [
@@ -566,7 +567,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
         "We design and build decks, pergolas and outdoor living spaces across Melbourne, in merbau, spotted gum or composite.",
         approvedSentences("bpcRegistration", "noSubcontractors"),
       ),
-      image: "outdoor",
+      image: "deckHero",
       ctaLabel: "Get a free quote",
     },
     cost: {
@@ -584,6 +585,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
         { title: "Deck restoration", desc: "Sand, repair and re-oil an existing deck without a full rebuild." },
       ],
     },
+    gallery: ["deckMerbau", "deckPergola", "deckComposite", "deckAlfresco"],
     process: {
       heading: "How a deck or pergola build runs",
       steps: [
@@ -641,7 +643,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
       { label: "Kitchen renovations", href: "/kitchen-renovations-melbourne" },
     ],
     areasLabel: "Decks and pergolas",
-    card: { title: "Outdoor living", blurb: "Decks, pergolas and alfresco areas.", image: "outdoor" },
+    card: { title: "Outdoor living", blurb: "Decks, pergolas and alfresco areas.", image: "deckHero" },
   },
 
   painting: {
@@ -684,6 +686,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
         { title: "Cabinet & joinery painting", desc: "Spray-finished kitchen cabinets, built-in wardrobes and timber joinery." },
       ],
     },
+    gallery: ["paintingLiving", "paintingFeature", "paintingExterior"],
     process: {
       heading: "How a paint job runs",
       steps: [
@@ -697,6 +700,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
         { title: "Handover", desc: "Final inspection, clean-up and leftover paint for touch-ups." },
       ],
     },
+    beforeAfter: { before: "paintingBefore", after: "paintingAfter" },
     pricing: {
       rows: [
         { scope: "Single room (walls + ceiling)", range: "$400 – $800" },
@@ -766,7 +770,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
         "We plan and build renovations around Vastu Shastra principles — kitchen, bathroom, entrance and pooja room placement — while meeting Australian building standards.",
         approvedSentences("ownershipHeritage"),
       ),
-      image: "heroMain",
+      image: "vastuHero",
       ctaLabel: "Request a Vastu renovation quote",
     },
     principles: {
@@ -794,6 +798,7 @@ export const services: Record<ServiceSlug, ServiceContent> = {
           : []),
       ],
     },
+    gallery: ["vastuEntrance", "vastuKitchen"],
     process: {
       heading: "How a Vastu renovation runs",
       steps: [

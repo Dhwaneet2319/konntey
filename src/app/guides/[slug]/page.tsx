@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import NavBar from "@/components/NavBar";
@@ -49,7 +50,8 @@ export default async function GuideArticlePage({ params }: Props) {
   if (!guide) notFound();
 
   const url = `${GUIDES_BASE_URL}/guides/${guide.slug}`;
-  const image = siteImages[guideSocialImage(guide.slug)];
+  const headerImage = guide.image ? siteImages[guide.image] : undefined;
+  const image = headerImage ?? siteImages[guideSocialImage(guide.slug)];
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -158,6 +160,19 @@ export default async function GuideArticlePage({ params }: Props) {
               Last updated: {formatMonth(guide.dateModified)}
               {" · "}Melbourne/Victoria guidance
             </p>
+
+            {headerImage && (
+              <div className="relative mt-8 aspect-[16/9] overflow-hidden bg-navy-light">
+                <Image
+                  src={headerImage.src}
+                  alt={headerImage.alt}
+                  fill
+                  priority
+                  sizes="(max-width: 767px) calc(100vw - 32px), 768px"
+                  className="object-cover"
+                />
+              </div>
+            )}
 
             {/* Intro */}
             <div className="mt-8 space-y-5 font-body text-[18px] leading-[1.85] text-white/90">

@@ -155,7 +155,7 @@ export default function NavBar({ theme = "light" }: { theme?: "light" | "dark" }
           mobileOpen
             ? "h-16 bg-navy"
             : scrolled
-              ? "h-16 bg-white/95 shadow-[0_1px_0_rgba(13,31,60,0.08)] backdrop-blur-sm"
+              ? "h-16 bg-white shadow-[0_1px_0_rgba(13,31,60,0.08)]"
               : "h-16 bg-transparent lg:h-20"
         }`}
       >

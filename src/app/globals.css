@@ -99,14 +99,24 @@ h3 {
   }
 }
 
+/* Lifted clear of the mobile Call/Quote bar with `translate` rather than by
+   changing `bottom`, so the move runs on the compositor instead of forcing a
+   layout on every frame mid-scroll. `translate` also composes with the
+   hover scale. */
 @media (max-width: 1023px) {
   html[data-mobile-bar] .wa-float {
-    bottom: calc(5.25rem + env(safe-area-inset-bottom));
+    translate: 0 -4.25rem;
   }
 
   html[data-typing] .wa-float {
     opacity: 0;
     pointer-events: none;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  html[data-mobile-bar] .wa-float {
+    translate: 0 -3.75rem;
   }
 }
 
