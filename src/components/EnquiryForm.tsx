@@ -12,6 +12,7 @@ import {
   type ServiceSlug,
 } from "@/content/taxonomy";
 import { pageContext, track } from "@/lib/analytics";
+import ThemedSelect, { type SelectOption } from "@/components/ThemedSelect";
 
 /**
  * Formspree form xkopaqvd. NEXT_PUBLIC_ENQUIRY_ENDPOINT overrides it for
@@ -46,6 +47,35 @@ const timingOptions = [
 ];
 
 const fieldOrder: Field[] = ["name", "phone", "email", "service", "message"];
+
+const OTHER_SUBURB = "Other";
+
+const serviceOptions: SelectOption[] = [
+  ...serviceSlugs.map((slug) => ({ value: slug, label: serviceFormLabels[slug] })),
+  { value: "other", label: "Other / not sure" },
+];
+
+const suburbOptions: SelectOption[] = [
+  ...suburbIndex.map((s) => ({
+    value: s.name,
+    label: s.name,
+    group: s.region === "West" ? "Melbourne's west" : "Melbourne's southeast",
+  })),
+  { value: OTHER_SUBURB, label: "Other suburb" },
+];
+
+const timingSelectOptions: SelectOption[] = [
+  { value: "", label: "Not sure yet" },
+  ...timingOptions.map((t) => ({ value: t, label: t })),
+];
+
+/** A known suburb keeps its name; anything else becomes "Other" plus text. */
+function splitSuburb(raw: string): { choice: string; other: string } {
+  const value = raw.trim();
+  if (!value) return { choice: "", other: "" };
+  const known = suburbIndex.find((s) => s.name.toLowerCase() === value.toLowerCase());
+  return known ? { choice: known.name, other: "" } : { choice: OTHER_SUBURB, other: value };
+}
 
 function validPhone(raw: string): boolean {
   const digits = raw.replace(/[\s().-]/g, "");
@@ -117,7 +147,9 @@ export default function EnquiryForm({
   const [errors, setErrors] = useState<Errors>({});
   const [formError, setFormError] = useState("");
   const [service, setService] = useState<string>(defaultService ?? "");
-  const [suburb, setSuburb] = useState(defaultSuburb ?? "");
+  const [suburbChoice, setSuburbChoice] = useState(() => splitSuburb(defaultSuburb ?? "").choice);
+  const [suburbOther, setSuburbOther] = useState(() => splitSuburb(defaultSuburb ?? "").other);
+  const [timing, setTiming] = useState("");
   const [method, setMethod] = useState<Method>("any");
 
   useEffect(() => {
@@ -128,7 +160,11 @@ export default function EnquiryForm({
     // The URL is only readable after hydration on this static page.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (isServiceSlug(fromService)) setService(fromService);
-    if (fromSuburb) setSuburb(fromSuburb.slice(0, 60));
+    if (fromSuburb) {
+      const { choice, other } = splitSuburb(fromSuburb.slice(0, 60));
+      setSuburbChoice(choice);
+      setSuburbOther(other);
+    }
   }, [readUrlParams]);
 
   useEffect(() => {
@@ -164,6 +200,14 @@ export default function EnquiryForm({
   const revalidate = () => {
     if (!attempted || !formRef.current) return;
     setErrors(validate(new FormData(formRef.current)));
+  };
+  // Themed selects don't fire a native change event, so pass the new value
+  // in rather than reading it back from the not-yet-updated form.
+  const revalidateWith = (field: string, value: string) => {
+    if (!attempted || !formRef.current) return;
+    const data = new FormData(formRef.current);
+    data.set(field, value);
+    setErrors(validate(data));
   };
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -384,57 +428,74 @@ export default function EnquiryForm({
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="grid gap-2">
-            <label htmlFor={fid("service")} className={labelCls}>Project type</label>
-            <select
+            <label id={fid("service-label")} htmlFor={fid("service")} className={labelCls}>Project type</label>
+            <ThemedSelect
               id={fid("service")}
+              labelId={fid("service-label")}
               name="service"
               value={service}
-              onChange={(e) => setService(e.target.value)}
-              aria-invalid={!!errors.service}
-              aria-describedby={describedBy("service")}
+              onChange={(v) => {
+                setService(v);
+                revalidateWith("service", v);
+              }}
+              options={serviceOptions}
+              placeholder="Choose one"
+              placeholderDisabled
+              tone={tone}
+              invalid={!!errors.service}
+              describedBy={describedBy("service")}
               className={inputCls("service")}
-            >
-              <option value="" disabled>Choose one</option>
-              {serviceSlugs.map((slug) => (
-                <option key={slug} value={slug}>{serviceFormLabels[slug]}</option>
-              ))}
-              <option value="other">Other / not sure</option>
-            </select>
+            />
             {errors.service && <p id={fid("service-error")} className={errorCls}>{errors.service}</p>}
           </div>
           <div className="grid gap-2">
-            <label htmlFor={fid("suburb")} className={labelCls}>
+            <label id={fid("suburb-label")} htmlFor={fid("suburb")} className={labelCls}>
               Suburb <span className={`font-normal ${hintCls}`}>(optional)</span>
             </label>
-            <input
+            <ThemedSelect
               id={fid("suburb")}
-              name="suburb"
-              type="text"
-              list={fid("suburbs")}
-              autoComplete="address-level2"
-              value={suburb}
-              onChange={(e) => setSuburb(e.target.value)}
+              labelId={fid("suburb-label")}
+              // With "Other", the typed suburb below is submitted instead.
+              name={suburbChoice === OTHER_SUBURB ? undefined : "suburb"}
+              value={suburbChoice}
+              onChange={setSuburbChoice}
+              options={suburbOptions}
+              placeholder="Choose your suburb"
+              tone={tone}
               className={inputCls()}
             />
-            <datalist id={fid("suburbs")}>
-              {suburbIndex.map((s) => (
-                <option key={s.slug} value={s.name} />
-              ))}
-            </datalist>
+            {suburbChoice === OTHER_SUBURB && (
+              <input
+                id={fid("suburb-other")}
+                name="suburb"
+                type="text"
+                autoComplete="address-level2"
+                aria-label="Your suburb"
+                placeholder="Type your suburb"
+                value={suburbOther}
+                onChange={(e) => setSuburbOther(e.target.value)}
+                className={inputCls()}
+              />
+            )}
           </div>
         </div>
 
         {variant === "full" && (
           <div className="grid gap-2">
-            <label htmlFor={fid("timing")} className={labelCls}>
+            <label id={fid("timing-label")} htmlFor={fid("timing")} className={labelCls}>
               Timing <span className={`font-normal ${hintCls}`}>(optional)</span>
             </label>
-            <select id={fid("timing")} name="timing" defaultValue="" className={inputCls()}>
-              <option value="">Not sure yet</option>
-              {timingOptions.map((opt) => (
-                <option key={opt} value={opt}>{opt}</option>
-              ))}
-            </select>
+            <ThemedSelect
+              id={fid("timing")}
+              labelId={fid("timing-label")}
+              name="timing"
+              value={timing}
+              onChange={setTiming}
+              options={timingSelectOptions.slice(1)}
+              placeholder={timingSelectOptions[0].label}
+              tone={tone}
+              className={inputCls()}
+            />
           </div>
         )}
 
