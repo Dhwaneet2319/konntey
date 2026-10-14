@@ -88,6 +88,53 @@ h3 {
   transform: scaleX(0);
 }
 
+/* ===== PAGE SCROLLBAR =====
+ * Gold thumb on a navy track. Chrome, Edge and Firefox use scrollbar-color;
+ * Safari uses the ::-webkit-scrollbar rules. Phones keep their overlay bars.
+ */
+html {
+  scrollbar-color: var(--gold-bright) var(--navy);
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--gold-bright);
+  border: 3px solid var(--navy);
+  border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #e0b847;
+}
+
+/* ===== THEMED SCROLLBAR (dropdown lists) ===== */
+.themed-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-bright) transparent;
+  overscroll-behavior: contain;
+}
+
+.themed-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.themed-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.themed-scroll::-webkit-scrollbar-thumb {
+  background: var(--gold-bright);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
 /* ===== FLOATING CONTACT ===== */
 .wa-float {
   bottom: calc(1rem + env(safe-area-inset-bottom));
