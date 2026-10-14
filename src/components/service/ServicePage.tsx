@@ -102,7 +102,7 @@ export default function ServicePage({ service }: { service: ServiceContent }) {
                 <p className="mt-6 max-w-xl font-body text-[17px] leading-[1.7] text-white/80">
                   {service.hero.intro}
                 </p>
-                <div data-hero-ctas className="mt-8 flex flex-wrap gap-3">
+                <div data-hero-ctas className="mt-8 flex flex-wrap gap-3 max-sm:[&>a]:w-full">
                   <ButtonLink href={quoteHref}>{service.hero.ctaLabel}</ButtonLink>
                   <PhoneButton variant="outlineDark" label={`Call ${business.phoneDisplay}`} />
                 </div>
@@ -203,7 +203,7 @@ export default function ServicePage({ service }: { service: ServiceContent }) {
                 kicker={galleryVerified ? "Our work" : "Finishes & details"}
                 title={galleryVerified ? `Recent ${service.projectNoun} work` : "The kind of finish to expect"}
               />
-              <Reveal group className={`mt-10 grid grid-cols-2 gap-3 sm:gap-4 ${gallery.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
+              <Reveal group className={`mt-10 grid grid-cols-2 gap-3 sm:gap-4 ${gallery.length === 2 ? "max-w-3xl" : gallery.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
                 {gallery.map((img) => (
                   <div key={img.src} className="group relative aspect-[4/5] overflow-hidden bg-navy/5">
                     <Image

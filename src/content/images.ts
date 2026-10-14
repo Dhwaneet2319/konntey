@@ -71,6 +71,38 @@ export const siteImages = {
   newHomeFrame: img("/images/new-homes/frame.webp", 1086, 1448, "Timber wall and roof frame of a new home under construction on a concrete slab"),
   newHomeAlfresco: img("/images/new-homes/alfresco.webp", 1086, 1448, "Covered alfresco area at the back of a new home opening onto a small lawn"),
 
+  // Service galleries, Vastu hero, painting before/after and guide headers.
+  // AI-generated example images (disclosed on /terms#imagery) until real job
+  // photos replace them; they stay "unverified".
+  extensionRear: img("/images/extensions/rear-extension.webp", 1086, 1448, "Single-storey rear extension with large sliding doors opening onto a backyard"),
+  extensionSecondStorey: img("/images/extensions/second-storey.webp", 1086, 1448, "Brick home with a newly added rendered second storey"),
+  extensionLiving: img("/images/extensions/open-living.webp", 1086, 1448, "Open-plan family room inside a new rear extension with a raked ceiling"),
+  // PENDING: extensionGrannyFlat, vastuPooja and guidePermits have no image
+  // file yet; they are not referenced anywhere until one is supplied.
+  extensionGrannyFlat: img("/images/extensions/granny-flat.webp", 1086, 1448, "Small detached granny flat in a suburban backyard"),
+  deckHero: img("/images/decks/hero.webp", 1448, 1086, "Timber deck and pergola at the back of a suburban Melbourne home"),
+  deckMerbau: img("/images/decks/merbau-deck.webp", 1086, 1448, "Freshly oiled merbau deck with a step down to the lawn"),
+  deckPergola: img("/images/decks/pergola.webp", 1086, 1448, "Timber pergola over a deck with an outdoor table"),
+  deckComposite: img("/images/decks/composite-deck.webp", 1086, 1448, "Grey composite deck boards with a black aluminium balustrade"),
+  deckAlfresco: img("/images/decks/alfresco-roof.webp", 1086, 1448, "Covered alfresco with a flat roof, ceiling fan and downlights over a deck"),
+  paintingLiving: img("/images/painting/living-room.webp", 1086, 1448, "Freshly painted living room walls in a warm white with crisp ceiling lines"),
+  paintingFeature: img("/images/painting/feature-wall.webp", 1086, 1448, "Dark green feature wall in a bedroom with white trims"),
+  paintingExterior: img("/images/painting/exterior.webp", 1086, 1448, "Weatherboard house exterior freshly painted in light grey with white trims"),
+  paintingBefore: img("/images/painting/before.webp", 1448, 1086, "Living room with scuffed, dated cream walls and marked skirting boards"),
+  paintingAfter: img("/images/painting/after.webp", 1448, 1086, "The same living room repainted in a clean warm white"),
+  vastuHero: img("/images/vastu/hero.webp", 1448, 1086, "Bright north-east facing living area with a small pooja room alcove"),
+  vastuPooja: img("/images/vastu/pooja-room.webp", 1086, 1448, "Timber pooja room unit with brass diyas and soft lighting"),
+  vastuEntrance: img("/images/vastu/entrance.webp", 1086, 1448, "East-facing front entrance with a timber door and threshold"),
+  vastuKitchen: img("/images/vastu/kitchen.webp", 1086, 1448, "Kitchen with the cooktop in the south-east corner and morning light"),
+  guideKitchenCost: img("/images/guides/kitchen-cost.webp", 1536, 864, "Kitchen mid-renovation with new cabinets installed and benchtops yet to be fitted"),
+  guideBathroomCost: img("/images/guides/bathroom-cost.webp", 1536, 864, "Bathroom mid-renovation with waterproofing membrane applied before tiling"),
+  guideExtensionCost: img("/images/guides/extension-cost.webp", 1536, 864, "Rear extension at frame stage attached to an existing brick home"),
+  guidePermits: img("/images/guides/permits.webp", 1536, 864, "House plans and a building permit document on a kitchen bench"),
+  guideGrannyFlat: img("/images/guides/granny-flat.webp", 1536, 864, "Newly built granny flat at the back of a suburban block"),
+  guideExtendVsMove: img("/images/guides/extend-vs-move.webp", 1536, 864, "Suburban street with a blank for-sale board outside a family home"),
+  guideChooseBuilder: img("/images/guides/choose-builder.webp", 1536, 864, "Hands pointing at house plans spread on a site table"),
+  guideQuoteChecklist: img("/images/guides/quote-checklist.webp", 1536, 864, "Two printed renovation quotes side by side with a pen and highlighter"),
+
   socialDefault: img("/images/social/konntey-default.png", 1200, 630, "Konntey Home & Renovations: home renovations and extensions across Melbourne's west and southeast", "konntey-project"),
   socialKitchen: img("/images/social/kitchen.png", 1200, 630, "Konntey Home & Renovations: kitchen renovations in Melbourne", "konntey-project"),
   socialBathroom: img("/images/social/bathroom.png", 1200, 630, "Konntey Home & Renovations: bathroom renovations in Melbourne", "konntey-project"),

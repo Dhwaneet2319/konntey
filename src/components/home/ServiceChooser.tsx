@@ -22,7 +22,6 @@ export default function ServiceChooser() {
   const vastu = services.vastu;
   const newHome = services["new-home"];
   const newHomeImage = siteImages[newHome.card.image];
-  const anyPackImage = chooserServices.some((s) => cardImages[s.slug] !== undefined);
   return (
     <section id="services" aria-labelledby="services-heading" className="scroll-mt-20 bg-off-white py-16 sm:py-24">
       <Container>
@@ -120,15 +119,6 @@ export default function ServiceChooser() {
             );
           })}
         </Reveal>
-        {anyPackImage && (
-          <p className="mt-3 font-body text-[13px] text-navy/70">
-            See our{" "}
-            <Link href="/terms#imagery" className="underline underline-offset-4 hover:text-navy">
-              terms
-            </Link>{" "}
-            for how the imagery on this page was produced.
-          </p>
-        )}
         <div className="mt-8 border-t border-navy/10 pt-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
             <p className="max-w-2xl font-body text-[16px] leading-[1.6] text-navy/75">

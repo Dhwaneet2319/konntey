@@ -9,6 +9,7 @@
  * registered building surveyor, or the Building and Plumbing Commission (BPC).
  */
 import { VICPLAN_URL, councils, type CouncilId } from "./councils";
+import type { SiteImageKey } from "./images";
 
 export interface GuideSection {
   heading: string;
@@ -58,6 +59,8 @@ export interface Guide {
   /** Short summary shown on the guides index card. */
   excerpt: string;
   category: string;
+  /** Header image shown under the title and used as the Article image. */
+  image?: SiteImageKey;
   readMinutes: number;
   datePublished: string;
   dateModified: string;
@@ -117,6 +120,7 @@ export const guides: Guide[] = [
     excerpt:
       "From a $15k cabinet refresh to an $80k open-plan rebuild — a realistic 2026 breakdown of what kitchen renovations cost in Melbourne, and what drives the price.",
     category: "Cost Guides",
+    image: "guideKitchenCost",
     readMinutes: 7,
     datePublished: "2026-07-01",
     dateModified: "2026-09-29",
@@ -216,6 +220,7 @@ export const guides: Guide[] = [
     excerpt:
       "Ensuite refresh or full remodel? Real 2026 bathroom renovation costs for Melbourne, why waterproofing matters, and the hidden costs that catch owners of older homes.",
     category: "Cost Guides",
+    image: "guideBathroomCost",
     readMinutes: 7,
     datePublished: "2026-07-01",
     dateModified: "2026-09-29",
@@ -293,6 +298,7 @@ export const guides: Guide[] = [
     excerpt:
       "From about $1,800 per m² for a ground-floor addition to $4,500+ per m² for a complex second storey — a realistic 2026 guide to Melbourne extension costs.",
     category: "Cost Guides",
+    image: "guideExtensionCost",
     readMinutes: 7,
     datePublished: "2026-10-10",
     dateModified: "2026-10-10",
@@ -517,6 +523,7 @@ export const guides: Guide[] = [
     excerpt:
       "Most Victorian homes can add a granny flat of up to 60 m² without a planning permit, but a building permit is always needed. Here's how the rules work in 2026.",
     category: "Permits & Process",
+    image: "guideGrannyFlat",
     readMinutes: 7,
     datePublished: "2026-10-10",
     dateModified: "2026-10-10",
@@ -647,6 +654,7 @@ export const guides: Guide[] = [
     excerpt:
       "Outgrown your home? Before you sell, compare the true cost of moving — stamp duty, fees, removalists — against extending. A Melbourne 2026 breakdown.",
     category: "Planning",
+    image: "guideExtendVsMove",
     readMinutes: 6,
     datePublished: "2026-07-01",
     dateModified: "2026-07-01",
@@ -723,6 +731,7 @@ export const guides: Guide[] = [
     excerpt:
       "Registration, insurance, contracts and quotes — the checklist that separates a safe renovation builder from an expensive mistake. Plus the red flags to walk away from.",
     category: "Planning",
+    image: "guideChooseBuilder",
     readMinutes: 8,
     datePublished: "2026-07-01",
     dateModified: "2026-10-10",
@@ -826,6 +835,7 @@ export const guides: Guide[] = [
     excerpt:
       "Two quotes, very different numbers? Use this free 15-point checklist to see what each quote actually includes before you compare prices.",
     category: "Planning",
+    image: "guideQuoteChecklist",
     readMinutes: 6,
     datePublished: "2026-09-30",
     dateModified: "2026-09-30",
